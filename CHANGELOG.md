@@ -1,3 +1,12 @@
+# Changelog
+
+## 2026.10.07-developer-mobile.1
+
+- Four complete backend demos, two native mobile source projects, PHP1.1.4 and Skill1.1.4.
+- Dedicated HPP returns and ON_SITE/HPP asynchronous notification guide.
+- Canonical Guides/, Payment/ and Developers/ website documentation paths.
+- 29 current release assets; no old multilingual filename aliases.
+
 # 2026.10.07-multilanguages.1
 
 Ten checkout languages, browser preference, RTL and Multilanguages filenames.

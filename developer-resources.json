@@ -1,22 +1,22 @@
 {
-  "publication_revision": "2026.10.07-multilanguages.1",
+  "publication_revision": "2026.10.07-developer-mobile.1",
   "resources": [
     {
       "id": "php-api",
       "name": "PHP API Demo",
-      "version": "1.1.3",
-      "asset_name": "MochiPay_PHP_API_Demo_1.1.3_Multilanguages_Onsite_HPP.zip",
+      "version": "1.1.4",
+      "asset_name": "MochiPay_PHP_API_Demo_1.1.4_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/php-api",
       "native_root": "MochiPay_PHP_Demo",
-      "runtime": "PHP 7.0–8.4; cURL, JSON, sessions, HTTPS and private storage",
-      "guide": "https://mochi.bz/GuideAPI.aspx",
+      "runtime": "PHP 7.0\u20138.4; cURL, JSON, sessions, HTTPS and private storage",
+      "guide": "https://mochi.bz/Developers/APIGuide.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "556fa0f05e3f6e01be61302c61e3c9916e383b19c7e2c564262fa9c3bf539bf3",
-      "original_bytes": 37153
+      "original_sha256": "601d9bac2efeb500f181242544bb5c6a8cf015b4feaefdba22ff7470b8438a9e",
+      "original_bytes": 39008
     },
     {
       "id": "report-unlock",
@@ -25,8 +25,8 @@
       "asset_name": "MochiPay_Report_Unlock_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/report-unlock",
       "native_root": "mochipay-report-demo",
-      "runtime": "PHP 7.0–8.x; cURL, JSON, sessions, HTTPS and persistent private storage",
-      "guide": "https://mochi.bz/AIAgents.aspx",
+      "runtime": "PHP 7.0\u20138.x; cURL, JSON, sessions, HTTPS and persistent private storage",
+      "guide": "https://mochi.bz/Payment/AIAgents.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
@@ -38,19 +38,19 @@
     {
       "id": "integration-skill",
       "name": "AI Integration Skill",
-      "version": "1.1.3",
-      "asset_name": "MochiPay_AI_Integration_Skill_1.1.3.zip",
+      "version": "1.1.4",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.1.4.zip",
       "source_directory": "skills",
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
-      "guide": "https://mochi.bz/GuideSkill.aspx",
+      "guide": "https://mochi.bz/Developers/Skill.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "6e5a850860fabb53134fba1402c124262dcf4b8d1334ce5486c517d64e2c7fc5",
-      "original_bytes": 19179
+      "original_sha256": "0a9de99be299acd2b942d09c42297937c28c154e3d3c93a73781a8531c277ab7",
+      "original_bytes": 25457
     },
     {
       "id": "mcp-server",
@@ -60,7 +60,7 @@
       "source_directory": "mcp",
       "native_root": "mochipay-mcp",
       "runtime": "Python 3.10+; pinned MCP SDK dependency; a host that launches stdio servers",
-      "guide": "https://mochi.bz/AIAgents.aspx",
+      "guide": "https://mochi.bz/Payment/AIAgents.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
@@ -68,6 +68,108 @@
       ],
       "original_sha256": "a01f9ecb8749724bcb63738144ffc80af0b012fad6fe7117cff4fbed451ec3fc",
       "original_bytes": 9179
+    },
+    {
+      "id": "nodejs-demo",
+      "name": "Node.js Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_NodeJS_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "examples/nodejs-api",
+      "native_root": "MochiPay_nodejs_Demo",
+      "runtime": "22+",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "441b7e5586b5456af6a3088421bf128b6db6789a184d5fe688bb4eb8744b0a3e",
+      "original_bytes": 33463
+    },
+    {
+      "id": "python-demo",
+      "name": "Python Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_Python_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "examples/python-api",
+      "native_root": "MochiPay_python_Demo",
+      "runtime": "3.10+",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "cd0ab5455450f3daf18a81a79515f71012d3abb81d6dd6ad6d539acf6c7a0713",
+      "original_bytes": 33625
+    },
+    {
+      "id": "dotnet-demo",
+      "name": "C# / .NET Framework Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_DotNet_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "examples/dotnet-api",
+      "native_root": "MochiPay_dotnet_Demo",
+      "runtime": "4.6.1 / VS2019",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "807d8d57a37716f686ae1534791fd574a8ab9c55368a918810b29644322a6373",
+      "original_bytes": 35120
+    },
+    {
+      "id": "java-demo",
+      "name": "Java Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_Java_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "examples/java-api",
+      "native_root": "MochiPay_java_Demo",
+      "runtime": "JDK17+",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "3f9f6d408d6ac3389c09ed713eaaca46678d29b9840c913ab240464fd55a4f79",
+      "original_bytes": 37018
+    },
+    {
+      "id": "ios-demo",
+      "name": "iOS Swift Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_iOS_Swift_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "mobile/ios",
+      "native_root": "MochiPay_iOS_Swift_Demo",
+      "runtime": "iOS15+ / Xcode14+",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "25eb44b2d548a1b8efe3025bb7a489b12339383df95ed5baff63b138eff161f6",
+      "original_bytes": 8868
+    },
+    {
+      "id": "android-demo",
+      "name": "Android Kotlin Demo",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_Android_Kotlin_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "source_directory": "mobile/android",
+      "native_root": "MochiPay_Android_Kotlin_Demo",
+      "runtime": "API26+ / SDK35 / JDK17",
+      "guide": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "5dd47051658d033e3ee09eddac3c68aec355017232aeb5e9cf3eb9f34b51f48a",
+      "original_bytes": 9193
     }
   ]
 }

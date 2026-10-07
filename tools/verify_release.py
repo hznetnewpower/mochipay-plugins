@@ -15,7 +15,7 @@ def main():
     originals = verify_baseline()
     manifest = json.loads((output / "release-manifest.json").read_text(encoding="utf-8"))
     entries = {a["id"]: a for a in manifest["assets"]}
-    if len(entries) != 23 or manifest["publication_revision"] != catalog["publication_revision"]:
+    if len(entries) != 29 or manifest["publication_revision"] != catalog["publication_revision"]:
         raise ValueError("Release manifest does not match the source publication.")
     expected_sums = []
     runtime_count = 0
@@ -61,14 +61,14 @@ def main():
             findings.append(f.relative_to(ROOT).as_posix())
     if findings:
         raise ValueError("Review suspected secret locations: " + ", ".join(findings))
-    result = {"result": "PASS", "archives": 23, "store_families": 12, "native_plugin_packages": 19,
-              "developer_resource_packages": 4, "developer_original_files_byte_identical": developer_originals,
+    result = {"result": "PASS", "archives": 29, "store_families": 12, "native_plugin_packages": 19,
+              "developer_resource_packages": 10, "developer_original_files_byte_identical": developer_originals,
               "retained_original_files_byte_identical": originals,
               "reviewed_metadata_only_changes": 2,
               "archive_entries_verified": total_files + developer_originals, "runtime_or_metadata_files": runtime_count,
               "all_crc_checks": "PASS", "native_layouts": "PASS", "source_archive_parity": "PASS",
               "secret_pattern_scan": "No matching embedded credentials; heuristic only",
-              "live_store_or_payment_tests": "Not performed for this packaging-only revision"}
+              "live_store_or_payment_tests": "Not performed for this developer-demo/source publication revision"}
     print(json.dumps(result, indent=2))
 
 

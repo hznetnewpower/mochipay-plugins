@@ -1,7 +1,7 @@
 # Install and use
 
-Download: https://mochi.bz/Downloads/MochiPay_AI_Integration_Skill_1.1.2.zip
-Guide: https://mochi.bz/GuideSkill.aspx
+Download: https://mochi.bz/Downloads/MochiPay_AI_Integration_Skill_1.1.4.zip
+Guide: https://mochi.bz/Developers/Skill.aspx
 
 ZIP contains one integrate-mochipay folder with SKILL.md, references, assets and an optional Python helper. It does not install a gateway, open an account or grant store/API access.
 

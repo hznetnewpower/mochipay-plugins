@@ -1,6 +1,6 @@
 # API integration contract
 
-Snapshot: Web75 / PHP Demo 1.1.2, 2026-10-06. Full reference: https://mochi.bz/Developers.aspx#checkout-modes and https://mochi.bz/GuideAPI.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.3_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
+Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.4_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
 
 ## Authentication and fields
 
@@ -35,10 +35,12 @@ ON_SITE keeps the store experience and can reduce checkout friction; do not clai
 
 ## Durable attempts and fulfillment
 
-Repeated merchant_order_id is **not server idempotency**: duplicate creates are possible. Persist and lock a local attempt before creation. After ambiguous timeout/response, query the saved ID or original reference and reconcile before creating again. A reference query does not prove historical uniqueness; review conflicting attempts.
+Repeated merchant_order_id alone is **not server idempotency**. The current server supports optional request_id: 1–64 ASCII letters/digits or . _ : -. Persist it and the exact payload before creation. Repeating an identical request_id with unchanged creation fields returns the same order; conflicting fields yield REQUEST_ID_CONFLICT, active creation may yield REQUEST_IN_PROGRESS (Retry-After:2), and a missing saved result yields REQUEST_ORDER_UNAVAILABLE. Once order_id is saved, query it. Only on a verified current server with request_id support may an uncertain initial create replay the unchanged payload/request_id. Preserve legacy attempts without request_id with query-first/manual recovery; do not invent historical IDs or retry blindly. A reference query does not prove historical uniqueness.
 
 On callback/browser return, ignore unverified incoming payment values. Query server-to-server and compare ID, reference, currency, original amount, method/network and address with the immutable local binding. Require PAID and exact received_amount == pay_amount. Use decimal arithmetic, preserving the unique payable amount. Underpayment, overpayment, expiration or inconsistent fields require pending/review handling. Fulfill atomically once; duplicate notifications must not ship/credit again. Neither a return nor screenshot proves payment.
 
 The Demo uses private demo records and does not fulfill production stores. Replace storage with durable transactions/locks and application ownership checks while keeping callback verification. Do not treat a demo record token as a complete production authorization system.
 
 Review the integration's HTTP transport configuration before deployment. Certificate-chain validation and hostname validation are separate controls. Use the merchant project's approved transport policy; do not introduce an insecure TLS setting as a troubleshooting shortcut. The official Demo is a reference implementation, not a guarantee of production security.
+
+Read returns-notifications.md for separate HPP synchronous-return and ON_SITE/HPP asynchronous routes. Read developer-examples.md to choose the correct backend/mobile package and common mobile contract.

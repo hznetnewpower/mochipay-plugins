@@ -27,12 +27,12 @@ def audit(config):
     if not isinstance(config, dict):
         return ['Configuration must be a JSON object.']
     issues = []
-    allowed = {'integration','base_url','payment_mode','unique_amount_direction','payment_methods','active_wallet_methods','api_key_configured','api_secret_configured','subscription_active','notify_url','redirect_url'}
+    allowed = {'integration','base_url','payment_mode','unique_amount_direction','payment_methods','active_wallet_methods','api_key_configured','api_secret_configured','subscription_active','notify_url','redirect_url','backend_language','request_id_supported','retry_uses_saved_payload','api_credentials_in_app','verified_callback_enabled','atomic_order_update_enabled'}
     if set(config) - allowed:
         issues.append('Unexpected fields: use only the sanitized example schema; never supply credentials or private configuration.')
     integration = config.get('integration')
-    if integration not in ('plugin', 'custom', 'classic_saas', 'payment_link'):
-        issues.append('integration must be plugin, custom, classic_saas or payment_link.')
+    if integration not in ('plugin', 'custom', 'mobile', 'classic_saas', 'payment_link'):
+        issues.append('integration must be plugin, custom, mobile, classic_saas or payment_link.')
     if not https_url(config.get('base_url'), True):
         issues.append('base_url must be an HTTPS origin without /api, credentials, query or fragment.')
     elif config.get('base_url').rstrip('/') != 'https://mochi.bz':
@@ -60,7 +60,7 @@ def audit(config):
         for flag in ('api_key_configured','api_secret_configured'):
             if config.get(flag) is not True:
                 issues.append('Confirm '+flag+' privately; do not supply credentials.')
-    if integration in ('custom','plugin'):
+    if integration in ('custom','plugin','mobile'):
         for field in ('notify_url','redirect_url'):
             value = config.get(field)
             if value in (None, ''):
@@ -76,6 +76,13 @@ def audit(config):
                     pass
                 if blocked:
                     issues.append(field+' is a placeholder/local/private endpoint.')
+    if config.get('backend_language') is not None and config['backend_language'] not in ('php','nodejs','python','dotnet','java'):
+        issues.append('Choose php, nodejs, python, dotnet or java for the implemented backend demo.')
+    for field in ('request_id_supported','retry_uses_saved_payload','verified_callback_enabled','atomic_order_update_enabled'):
+        if field in config and config[field] is not True:
+            issues.append('Confirm '+field+'; an offline declaration is not live verification.')
+    if integration == 'mobile' and config.get('api_credentials_in_app') is not False:
+        issues.append('Mobile apps must declare api_credentials_in_app:false; API key/secret belong on the merchant backend.')
     return issues
 
 def main():
@@ -83,10 +90,17 @@ def main():
     commands = parser.add_subparsers(dest='command', required=True)
     catalog = commands.add_parser('catalog', help='List pinned packages and exact core rows.')
     catalog.add_argument('--package')
+    examples = commands.add_parser('examples', help='List backend/mobile demos and pinned runtime requirements.')
+    examples.add_argument('--language', choices=['php','nodejs','python','dotnet','java','ios','android'])
     check = commands.add_parser('audit', help='Audit sanitized config; no network or secrets.')
     check.add_argument('config', type=Path)
     args = parser.parse_args()
     try:
+        if args.command == 'examples':
+            data = json.loads((Path(__file__).resolve().parent.parent/'references/developer-examples.json').read_text(encoding='utf-8'))
+            if args.language: data['resources'] = [r for r in data['resources'] if r['id'] == args.language]
+            data['limitation'] = LIMIT
+            print(json.dumps(data, indent=2, ensure_ascii=False)); return 0
         if args.command == 'catalog':
             data = json.loads((Path(__file__).resolve().parent.parent/'references/catalog.json').read_text(encoding='utf-8'))
             if args.package:

@@ -13,7 +13,7 @@ or **HPP** for the MochiPay hosted payment page.
 [Choose your plugin](docs/DOWNLOADS.md) ·
 [Try the checkout demo](https://mochi.bz/CheckoutDemo.aspx) ·
 [View pricing](https://mochi.bz/Pricing.aspx) ·
-[API guide](https://mochi.bz/GuideAPI.aspx)
+[API guide](https://mochi.bz/Developers/APIGuide.aspx)
 
 ## Store integrations
 
@@ -53,11 +53,28 @@ knowledge, or let an Agent create and query payment requests at runtime.
 | AI Integration Skill | Guides an Agent through plugin selection, API integration and troubleshooting | [Install and use](docs/DEVELOPER_RESOURCES.md#ai-integration-skill) |
 | MCP Server | Exposes create_payment_request and get_payment_status to compatible stdio hosts | [Configure the tools](docs/DEVELOPER_RESOURCES.md#mcp-server) |
 
-**19 store plugin ZIPs + 4 developer resource ZIPs.** Download the matching
+**19 store plugin ZIPs + 10 developer resource ZIPs.** Download the matching
 archive from [Releases → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/latest).
 The Skill provides instructions; MCP provides running tools. They are separate
 downloads and neither transfers cryptocurrency from a wallet. The report demo
 uses clearly marked sample content; connect your own AI service for real reports.
+
+## Backend and mobile examples
+
+Choose PHP, Node.js, Python, C# / .NET Framework or Java for the merchant backend.
+iOS Swift and Android Kotlin projects use a merchant backend; API credentials
+stay on that server. ON_SITE and HPP use the same saved order. Independent server
+notifications work even when the app or checkout is closed. Browser returns and
+polling reuse verified status; neither proves payment by itself.
+
+[Choose a demo](docs/DEVELOPER_RESOURCES.md) ·
+[Returns and notifications](https://mochi.bz/Developers/Reference.aspx#returns-notifications) ·
+[Source validation and acceptance limits](docs/VALIDATION_WEB80.md)
+
+These are source integration demos. Staging access controls and the private file
+store must be adapted to your application's authenticated ownership and atomic
+database updates. Swift/Kotlin projects still require native build/device and
+store-policy acceptance; they are not approved payment SDKs.
 
 ## Two checkout modes
 
@@ -116,14 +133,17 @@ monitoring service or merchant database.
 
 ## Current publication
 
-Revision **2026.10.07-multilanguages.1** adds ten buyer languages, browser preference,
-RTL and language-count-independent **Multilanguages** filenames. PHP API Demo is
-1.1.3, Report Unlock Demo1.0.2 and Integration Skill1.1.3; MCP1.0.0 is unchanged.
-Payment APIs, signatures, callback handling and payment verification are unchanged.
-Existing installed plugins remain usable; frontend updates are optional for the
-additional local buyer languages. All four developer ZIPs exactly match Web78.
-Native release ZIPs preserve the store installation roots and include public
-license/setup documents; their archive hashes differ from website ZIPs.
+Revision **2026.10.07-developer-mobile.1** adds Node.js, Python, C# / .NET Framework
+and Java backend demos, plus iOS Swift and Android Kotlin source projects.
+PHP API Demo **1.1.4** and AI Integration Skill **1.1.4** guide saved-request recovery
+and verified payment handling. Report Unlock Demo **1.0.2** and MCP Server **1.0.0**
+are unchanged. **19 native store ZIPs + 10 developer resource ZIPs** are available.
+
+Payment APIs, signatures and existing installed integrations remain compatible.
+ON_SITE and HPP reuse the same saved payment. Setup instructions stay English;
+buyer checkout supports ten languages. Native release ZIPs retain the store
+installation roots and public license/setup documents. Their archive hashes may
+differ from website ZIPs because publication documents are included.
 
 Only plugin, demo, Skill and MCP integration sources are public here.
 MochiPay's payment backend, Monitor, database and production configuration stay

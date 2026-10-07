@@ -7,7 +7,7 @@
       "core": "WooCommerce 5.8 or later with the native gateway API",
       "php": "PHP 7.4–8.4",
       "download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideWooCommerce.aspx",
+      "guide": "https://mochi.bz/Guides/GuideWooCommerce.aspx",
       "sha256": "3d1396631bb668eea3a614aa74aa89eab61240d94393d2505199da673d42fc35",
       "modes": [
         "ON_SITE",
@@ -37,7 +37,7 @@
       "core": "OpenCart 2.0.x-2.2.x",
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip",
-      "guide": "https://mochi.bz/GuideOpenCart2.aspx",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart2.aspx",
       "sha256": "3093f79275501a354ceae08baea251cd27ceaa6289af186d1e94b2ee8e59a669",
       "modes": [
         "ON_SITE",
@@ -67,7 +67,7 @@
       "core": "OpenCart 2.3.x",
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip",
-      "guide": "https://mochi.bz/GuideOpenCart23.aspx",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart23.aspx",
       "sha256": "c85c01bf824b74b694da2871fac24053b273aafad0402d7fbe369d90a6fdffd8",
       "modes": [
         "ON_SITE",
@@ -97,7 +97,7 @@
       "core": "OpenCart 3.0.x",
       "php": "PHP 5.6–8.4; exact core/dependency requirements apply",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip",
-      "guide": "https://mochi.bz/GuideOpenCart3.aspx",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart3.aspx",
       "sha256": "b823ab19c8163dd41eef8be427951bf629d1ca8639d37a46d7105b7ec248d4be",
       "modes": [
         "ON_SITE",
@@ -127,7 +127,7 @@
       "core": "OpenCart 4.0.2.x-4.1.x",
       "php": "PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+",
       "download": "https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip",
-      "guide": "https://mochi.bz/GuideOpenCart4.aspx",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart4.aspx",
       "sha256": "9de969dbbfb8a264f2e9069cd571ea4b1b9128767ec55f69705e90f784489121",
       "modes": [
         "ON_SITE",
@@ -157,7 +157,7 @@
       "core": "Zen Cart 1.5.3-1.5.7",
       "php": "PHP 5.6–8.0, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideZenCartLegacy.aspx",
+      "guide": "https://mochi.bz/Guides/GuideZenCartLegacy.aspx",
       "sha256": "4ec76149ecd37d41da22fa74a2a2805976001599aeb7bccd0d04bfbf5824895b",
       "modes": [
         "ON_SITE",
@@ -187,7 +187,7 @@
       "core": "Zen Cart 1.5.8 / 2.0.x / 2.1.x / 2.2.x",
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideZenCart.aspx",
+      "guide": "https://mochi.bz/Guides/GuideZenCart.aspx",
       "sha256": "4f954c58d94553550886dc52be3b41bea5ab4c20ac028f5abf9451bcce66a634",
       "modes": [
         "ON_SITE",
@@ -217,7 +217,7 @@
       "core": "Magento CE 1.9.3.0-1.9.4.5; OpenMage 19/20 native M1 API",
       "php": "PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideMagento1.aspx",
+      "guide": "https://mochi.bz/Guides/GuideMagento1.aspx",
       "sha256": "febb6a18f3a3ea95a21d9d28cf67f050f3865206789d3c5def9e5b74a8c747f0",
       "modes": [
         "ON_SITE",
@@ -247,7 +247,7 @@
       "core": "Magento Open Source 2.3.7-2.4.8 using native checkout",
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideMagento2.aspx",
+      "guide": "https://mochi.bz/Guides/GuideMagento2.aspx",
       "sha256": "352b32e3df2b3c0cab0966b9f8ad463884df4346ff6b06b8aa89840145519261",
       "modes": [
         "ON_SITE",
@@ -277,7 +277,7 @@
       "core": "PrestaShop 1.6.1.x",
       "php": "PHP 5.6–7.1",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuidePrestaShop16.aspx",
+      "guide": "https://mochi.bz/Guides/GuidePrestaShop16.aspx",
       "sha256": "4edd95f3e1cb4c1fbd22f400e98e23bc845ea570ef5c7b5b7a38267e60ed8756",
       "modes": [
         "ON_SITE",
@@ -307,7 +307,7 @@
       "core": "PrestaShop 1.7.6-1.7.8 / 8.x / 9.0.x",
       "php": "PHP 5.6–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuidePrestaShop.aspx",
+      "guide": "https://mochi.bz/Guides/GuidePrestaShop.aspx",
       "sha256": "18ff1ee2624760d19121ed6fc9559b5843fc64abfe6174b7a83789597073f950",
       "modes": [
         "ON_SITE",
@@ -337,7 +337,7 @@
       "core": "Shopware >=6.6.10.0 <6.7.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
       "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideShopware.aspx",
+      "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
       "sha256": "ebd8c90fcbdbd4f3132576214971a6cbfd55929f8b06c04ab0a5057f5a5f307f",
       "modes": [
         "ON_SITE",
@@ -367,7 +367,7 @@
       "core": "Shopware >=6.7.0.0 <6.8.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
       "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideShopware.aspx",
+      "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
       "sha256": "16d5848a21bfa725fb08c80fd6a9764ef80df37c41f50382dc805885ff04b29e",
       "modes": [
         "ON_SITE",
@@ -397,7 +397,7 @@
       "core": "Commerce 2.40.x with Drupal 9.3–10.x; or Commerce 3.3.10+ <3.4 with Drupal 10.3–11.x",
       "php": "Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; Drupal 11: PHP 8.3–8.4, only when allowed by the exact Drupal release",
       "download": "https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideDrupalCommerce.aspx",
+      "guide": "https://mochi.bz/Guides/GuideDrupalCommerce.aspx",
       "sha256": "39f3cdd36605b040c9e17033a013e4540e8fb4a49a874f8b16e34ff04d33eeb7",
       "modes": [
         "ON_SITE",
@@ -427,7 +427,7 @@
       "core": "EC-CUBE >=4.3.0 <4.4.0",
       "php": "PHP 8.1.x / 8.2.x / 8.3.x",
       "download": "https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideECCube.aspx",
+      "guide": "https://mochi.bz/Guides/GuideECCube.aspx",
       "sha256": "8b9ef7b02ad2e789e6147a81f4369d48d906549438676646bd462ee9652a8946",
       "modes": [
         "ON_SITE",
@@ -457,7 +457,7 @@
       "core": "Bagisto >=2.3.0 <2.4.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
       "download": "https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideBagisto.aspx",
+      "guide": "https://mochi.bz/Guides/GuideBagisto.aspx",
       "sha256": "f093d65b0cdb54b3d84f7620c00346344372b683efa3bddc9ff6ba24bdab2075",
       "modes": [
         "ON_SITE",
@@ -487,7 +487,7 @@
       "core": "Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
       "download": "https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideSylius.aspx",
+      "guide": "https://mochi.bz/Guides/GuideSylius.aspx",
       "sha256": "4306487401bbf86027be0a6709844c25fbdda90d5bd183a5e74944ce9e9e1c2c",
       "modes": [
         "ON_SITE",
@@ -517,7 +517,7 @@
       "core": "osCommerce 4.14.x; native V4 orderPayment module API",
       "php": "PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock",
       "download": "https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideOsCommerce.aspx",
+      "guide": "https://mochi.bz/Guides/GuideOsCommerce.aspx",
       "sha256": "c58b9bf6a5a3c15de003f52bfb26dc066c15c3d6128a900252ff7565e80082ac",
       "modes": [
         "ON_SITE",
@@ -547,7 +547,7 @@
       "core": "thirty bees >=1.6.0 <1.7.0",
       "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",
       "download": "https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.0_Multilanguages.zip",
-      "guide": "https://mochi.bz/GuideThirtyBees.aspx",
+      "guide": "https://mochi.bz/Guides/GuideThirtyBees.aspx",
       "sha256": "126d6a2b3398573bb2633b7a29797414007088f51537849c560138d002b937c9",
       "modes": [
         "ON_SITE",

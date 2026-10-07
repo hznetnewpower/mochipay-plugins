@@ -15,3 +15,10 @@ Inspect sanitized evidence and authenticated queries. Never print credentials, r
 | Upgrade regression | Settings/order mappings preserved, no uninstall, refreshed core caches/compiler and retained HPP preference. |
 
 Report concrete findings, fix and verification. Without live access, report live payment status unverified.
+
+
+## Return, notification and mobile troubleshooting
+
+A browser returning to redirect_url is not payment confirmation. Check the asynchronous notify_url separately; verify its public HTTPS reachability and that the saved URL matches the creation payload. Test browser-closed notifications and duplicate delivery. All paths must query the saved ID and compare exact received/payable amounts. For lost initial creation responses retain request_id and payload; interpret REQUEST_IN_PROGRESS/CONFLICT/ORDER_UNAVAILABLE before retrying. Never solve conflicts by generating a fresh request ID for the same uncertain purchase.
+
+For Swift/Kotlin inspect the merchant backend URL, certificate chain, request ownership and common route contract before changing API credentials. HPP uses an external browser; ON_SITE uses merchant WebView with local popup. No incoming native/browser success message can unlock content. Report simulator/device/live acceptance separately from source/fixture results. See developer-examples.md and returns-notifications.md.

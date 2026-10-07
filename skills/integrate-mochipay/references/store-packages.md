@@ -14,7 +14,7 @@ Plugin PHP envelope: PHP 7.4–8.4.
 | --- | --- |
 | WooCommerce + WordPress | 7.4-8.4 within both core releases' requirements |
 
-[Download](https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip) · [Guide](https://mochi.bz/GuideWooCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideWooCommerce.aspx)
 
 ## OpenCart 2.0–2.2 (`opencart20`)
 
@@ -27,7 +27,7 @@ Plugin PHP envelope: PHP 5.6–7.4; newer PHP needs core patches.
 | Stock 2.0.x-2.2.x | 5.6; use 7.0-7.1 only if the exact core build permits it |
 | Core with PHP compatibility patches | 7.2-7.4 only where the patched core permits it |
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/GuideOpenCart2.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart2.aspx)
 
 ## OpenCart 2.3 (`opencart23`)
 
@@ -40,7 +40,7 @@ Plugin PHP envelope: PHP 5.6–7.4; newer PHP needs core patches.
 | Stock 2.3.x | 5.6-7.1 within the exact core build's requirements |
 | Core with PHP compatibility patches | 7.2-7.4 only where the patched core permits it |
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/GuideOpenCart23.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart23.aspx)
 
 ## OpenCart 3 (`opencart3`)
 
@@ -54,7 +54,7 @@ Plugin PHP envelope: PHP 5.6–8.4; exact core/dependency requirements apply.
 | 3.0.3.8 and later 3.x builds | At least 7.3; newer locked dependencies may raise this minimum |
 | 3.x builds with native PHP 8 compatibility | 8.0-8.4 only within that core build's requirements |
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/GuideOpenCart3.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart3.aspx)
 
 ## OpenCart 4 (`opencart4`)
 
@@ -67,7 +67,7 @@ Plugin PHP envelope: PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+.
 | 4.0.2.x | 8.0.2-8.4 within the exact core/dependency requirements |
 | 4.1.x | 8.1-8.4 where required by the release; 4.1.0.4 composer minimum is 8.1 |
 
-[Download](https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip) · [Guide](https://mochi.bz/GuideOpenCart4.aspx)
+[Download](https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart4.aspx)
 
 ## Zen Cart 1.5.3–1.5.7 (`zencart-legacy`)
 
@@ -82,7 +82,7 @@ Plugin PHP envelope: PHP 5.6–8.0, depending on the core version.
 | 1.5.6 | 5.6-7.3 |
 | 1.5.7 | 5.6-8.0 |
 
-[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip) · [Guide](https://mochi.bz/GuideZenCartLegacy.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideZenCartLegacy.aspx)
 
 ## Zen Cart 1.5.8–2.2 (`zencart-modern`)
 
@@ -96,7 +96,7 @@ Plugin PHP envelope: PHP 7.3–8.4, depending on the core version.
 | 2.0.x / 2.1.x | 8.0-8.3 |
 | 2.2.x | 8.2-8.4 for this package |
 
-[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip) · [Guide](https://mochi.bz/GuideZenCart.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideZenCart.aspx)
 
 ## Magento 1 / OpenMage (`magento1`)
 
@@ -111,7 +111,7 @@ Plugin PHP envelope: PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core.
 | OpenMage 19 / older 20 releases | Use the exact release's PHP requirements, within 5.6-8.4 |
 | OpenMage 20.14+ | 8.1-8.4; upstream notes possible warnings on 8.4 |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip) · [Guide](https://mochi.bz/GuideMagento1.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideMagento1.aspx)
 
 ## Magento 2 (`magento2`)
 
@@ -128,7 +128,7 @@ Plugin PHP envelope: PHP 7.3–8.4, depending on the core version.
 | 2.4.7 | 8.2/8.3 |
 | 2.4.8 | 8.3/8.4 |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip) · [Guide](https://mochi.bz/GuideMagento2.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideMagento2.aspx)
 
 ## PrestaShop 1.6 (`prestashop-legacy`)
 
@@ -140,7 +140,7 @@ Plugin PHP envelope: PHP 5.6–7.1.
 | --- | --- |
 | 1.6.1.x | 5.6-7.1 for this module; no PHP 7.2+ or PHP 8 |
 
-[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip) · [Guide](https://mochi.bz/GuidePrestaShop16.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuidePrestaShop16.aspx)
 
 ## PrestaShop 1.7 / 8 / 9 (`prestashop-modern`)
 
@@ -156,7 +156,7 @@ Plugin PHP envelope: PHP 5.6–8.4, depending on the core version.
 | 8.0-8.2 | 7.2.5-8.1 |
 | 9.0.x | 8.1-8.4 |
 
-[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip) · [Guide](https://mochi.bz/GuidePrestaShop.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuidePrestaShop.aspx)
 
 ## Shopware 6.6 (`shopware66`)
 
@@ -168,7 +168,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
 | --- | --- |
 | Shopware >=6.6.10.0 <6.7.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideShopware.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
 
 ## Shopware 6.7 (`shopware67`)
 
@@ -180,7 +180,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
 | --- | --- |
 | Shopware >=6.7.0.0 <6.8.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideShopware.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
 
 ## Drupal Commerce (`drupal`)
 
@@ -194,7 +194,7 @@ Plugin PHP envelope: Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; 
 | Commerce 2.40.x / Drupal 10.x; Commerce 3.3.10+ <3.4 / Drupal 10.3+ | 8.1–8.3; later Drupal 10 releases may require 8.3 |
 | Commerce 3.3.10+ <3.4 / Drupal 11.x | 8.3–8.4 only where allowed by the exact core/dependency lock |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideDrupalCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideDrupalCommerce.aspx)
 
 ## EC-CUBE 4.3 (`eccube`)
 
@@ -206,7 +206,7 @@ Plugin PHP envelope: PHP 8.1.x / 8.2.x / 8.3.x.
 | --- | --- |
 | EC-CUBE >=4.3.0 <4.4.0 | PHP 8.1.x / 8.2.x / 8.3.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideECCube.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideECCube.aspx)
 
 ## Bagisto 2.3 (`bagisto`)
 
@@ -218,7 +218,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependenc
 | --- | --- |
 | Bagisto >=2.3.0 <2.4.0 | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideBagisto.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideBagisto.aspx)
 
 ## Sylius 2.0 (`sylius`)
 
@@ -230,7 +230,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependenc
 | --- | --- |
 | Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideSylius.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideSylius.aspx)
 
 ## osCommerce 4.14 (`oscommerce`)
 
@@ -242,7 +242,7 @@ Plugin PHP envelope: PHP 7.4.x–8.3.x, subject to the installed osCommerce rele
 | --- | --- |
 | osCommerce 4.14.x; native V4 orderPayment module API | PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock |
 
-[Download](https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideOsCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideOsCommerce.aspx)
 
 ## thirty bees 1.6 (`thirtybees`)
 
@@ -254,7 +254,7 @@ Plugin PHP envelope: PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching
 | --- | --- |
 | thirty bees >=1.6.0 <1.7.0 | PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution |
 
-[Download](https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/GuideThirtyBees.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideThirtyBees.aspx)
 
 New adapters require MochiPay Web65+ for optional request_id deduplication. Do not install both Shopware branches. osCommerce means V4.14, not 2.x/3.x; EC-CUBE means 4.3 with JPY; Sylius means 2.0 with its native Payum checkout. Read each package README for native installation, database and channel constraints. Treat source/interface/simulated checks as distinct from full native-store installation or paid acceptance. Keep existing customer plugins and API programs working unchanged.
 

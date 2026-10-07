@@ -1,13 +1,13 @@
 {
-  "publication_revision": "2026.10.07-multilanguages.1",
+  "publication_revision": "2026.10.07-developer-mobile.1",
   "store_families": 12,
   "independent_packages": 19,
   "packages": [
     {
       "name": "WooCommerce",
       "core": "WooCommerce 5.8 or later with the native gateway API",
-      "php": "PHP 7.4–8.4",
-      "guide": "https://mochi.bz/GuideWooCommerce.aspx",
+      "php": "PHP 7.4\u20138.4",
+      "guide": "https://mochi.bz/Guides/GuideWooCommerce.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -41,10 +41,10 @@
       "source_files_preserved": 13
     },
     {
-      "name": "OpenCart 2.0–2.2",
+      "name": "OpenCart 2.0\u20132.2",
       "core": "OpenCart 2.0.x-2.2.x",
-      "php": "PHP 5.6–7.4; newer PHP needs core patches",
-      "guide": "https://mochi.bz/GuideOpenCart2.aspx",
+      "php": "PHP 5.6\u20137.4; newer PHP needs core patches",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart2.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -80,8 +80,8 @@
     {
       "name": "OpenCart 2.3",
       "core": "OpenCart 2.3.x",
-      "php": "PHP 5.6–7.4; newer PHP needs core patches",
-      "guide": "https://mochi.bz/GuideOpenCart23.aspx",
+      "php": "PHP 5.6\u20137.4; newer PHP needs core patches",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart23.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -117,8 +117,8 @@
     {
       "name": "OpenCart 3",
       "core": "OpenCart 3.0.x",
-      "php": "PHP 5.6–8.4; exact core/dependency requirements apply",
-      "guide": "https://mochi.bz/GuideOpenCart3.aspx",
+      "php": "PHP 5.6\u20138.4; exact core/dependency requirements apply",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart3.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -154,8 +154,8 @@
     {
       "name": "OpenCart 4",
       "core": "OpenCart 4.0.2.x-4.1.x",
-      "php": "PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+",
-      "guide": "https://mochi.bz/GuideOpenCart4.aspx",
+      "php": "PHP 8.0.2\u20138.4; 4.1.0.4 requires 8.1+",
+      "guide": "https://mochi.bz/Guides/GuideOpenCart4.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -189,10 +189,10 @@
       "source_files_preserved": 17
     },
     {
-      "name": "Zen Cart 1.5.3–1.5.7",
+      "name": "Zen Cart 1.5.3\u20131.5.7",
       "core": "Zen Cart 1.5.3-1.5.7",
-      "php": "PHP 5.6–8.0, depending on the core version",
-      "guide": "https://mochi.bz/GuideZenCartLegacy.aspx",
+      "php": "PHP 5.6\u20138.0, depending on the core version",
+      "guide": "https://mochi.bz/Guides/GuideZenCartLegacy.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -226,10 +226,10 @@
       "source_files_preserved": 15
     },
     {
-      "name": "Zen Cart 1.5.8–2.2",
+      "name": "Zen Cart 1.5.8\u20132.2",
       "core": "Zen Cart 1.5.8 / 2.0.x / 2.1.x / 2.2.x",
-      "php": "PHP 7.3–8.4, depending on the core version",
-      "guide": "https://mochi.bz/GuideZenCart.aspx",
+      "php": "PHP 7.3\u20138.4, depending on the core version",
+      "guide": "https://mochi.bz/Guides/GuideZenCart.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -265,8 +265,8 @@
     {
       "name": "Magento 1 / OpenMage",
       "core": "Magento CE 1.9.3.0-1.9.4.5; OpenMage 19/20 native M1 API",
-      "php": "PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core",
-      "guide": "https://mochi.bz/GuideMagento1.aspx",
+      "php": "PHP 5.6\u20138.4; PHP 8 requires a compatible OpenMage core",
+      "guide": "https://mochi.bz/Guides/GuideMagento1.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -275,7 +275,7 @@
       "initial_adapter": false,
       "id": "magento1",
       "family": "Magento",
-      "summary": "Magento CE 1.9.3.0–1.9.4.5 and compatible OpenMage 19/20.",
+      "summary": "Magento CE 1.9.3.0\u20131.9.4.5 and compatible OpenMage 19/20.",
       "buyer_languages": [
         "en",
         "zh",
@@ -302,8 +302,8 @@
     {
       "name": "Magento 2",
       "core": "Magento Open Source 2.3.7-2.4.8 using native checkout",
-      "php": "PHP 7.3–8.4, depending on the core version",
-      "guide": "https://mochi.bz/GuideMagento2.aspx",
+      "php": "PHP 7.3\u20138.4, depending on the core version",
+      "guide": "https://mochi.bz/Guides/GuideMagento2.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -312,7 +312,7 @@
       "initial_adapter": false,
       "id": "magento2",
       "family": "Magento",
-      "summary": "Magento Open Source 2.3.7–2.4.8 with native checkout.",
+      "summary": "Magento Open Source 2.3.7\u20132.4.8 with native checkout.",
       "buyer_languages": [
         "en",
         "zh",
@@ -339,8 +339,8 @@
     {
       "name": "PrestaShop 1.6",
       "core": "PrestaShop 1.6.1.x",
-      "php": "PHP 5.6–7.1",
-      "guide": "https://mochi.bz/GuidePrestaShop16.aspx",
+      "php": "PHP 5.6\u20137.1",
+      "guide": "https://mochi.bz/Guides/GuidePrestaShop16.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -376,8 +376,8 @@
     {
       "name": "PrestaShop 1.7 / 8 / 9",
       "core": "PrestaShop 1.7.6-1.7.8 / 8.x / 9.0.x",
-      "php": "PHP 5.6–8.4, depending on the core version",
-      "guide": "https://mochi.bz/GuidePrestaShop.aspx",
+      "php": "PHP 5.6\u20138.4, depending on the core version",
+      "guide": "https://mochi.bz/Guides/GuidePrestaShop.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -386,7 +386,7 @@
       "initial_adapter": false,
       "id": "prestashop-modern",
       "family": "PrestaShop",
-      "summary": "PrestaShop 1.7.6–1.7.8, 8.x and 9.0.x paymentOptions.",
+      "summary": "PrestaShop 1.7.6\u20131.7.8, 8.x and 9.0.x paymentOptions.",
       "buyer_languages": [
         "en",
         "zh",
@@ -414,7 +414,7 @@
       "name": "Shopware 6.6",
       "core": "Shopware >=6.6.10.0 <6.7.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
-      "guide": "https://mochi.bz/GuideShopware.aspx",
+      "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -451,7 +451,7 @@
       "name": "Shopware 6.7",
       "core": "Shopware >=6.7.0.0 <6.8.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
-      "guide": "https://mochi.bz/GuideShopware.aspx",
+      "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -486,9 +486,9 @@
     },
     {
       "name": "Drupal Commerce",
-      "core": "Commerce 2.40.x with Drupal 9.3–10.x; or Commerce 3.3.10+ <3.4 with Drupal 10.3–11.x",
-      "php": "Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; Drupal 11: PHP 8.3–8.4, only when allowed by the exact Drupal release",
-      "guide": "https://mochi.bz/GuideDrupalCommerce.aspx",
+      "core": "Commerce 2.40.x with Drupal 9.3\u201310.x; or Commerce 3.3.10+ <3.4 with Drupal 10.3\u201311.x",
+      "php": "Drupal 9.3\u20139.5: PHP 7.4\u20138.1; Drupal 10: PHP 8.1\u20138.3; Drupal 11: PHP 8.3\u20138.4, only when allowed by the exact Drupal release",
+      "guide": "https://mochi.bz/Guides/GuideDrupalCommerce.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -525,7 +525,7 @@
       "name": "EC-CUBE 4.3",
       "core": "EC-CUBE >=4.3.0 <4.4.0",
       "php": "PHP 8.1.x / 8.2.x / 8.3.x",
-      "guide": "https://mochi.bz/GuideECCube.aspx",
+      "guide": "https://mochi.bz/Guides/GuideECCube.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -562,7 +562,7 @@
       "name": "Bagisto 2.3",
       "core": "Bagisto >=2.3.0 <2.4.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
-      "guide": "https://mochi.bz/GuideBagisto.aspx",
+      "guide": "https://mochi.bz/Guides/GuideBagisto.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -599,7 +599,7 @@
       "name": "Sylius 2.0",
       "core": "Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
-      "guide": "https://mochi.bz/GuideSylius.aspx",
+      "guide": "https://mochi.bz/Guides/GuideSylius.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -635,8 +635,8 @@
     {
       "name": "osCommerce 4.14",
       "core": "osCommerce 4.14.x; native V4 orderPayment module API",
-      "php": "PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock",
-      "guide": "https://mochi.bz/GuideOsCommerce.aspx",
+      "php": "PHP 7.4.x\u20138.3.x, subject to the installed osCommerce release and dependency lock",
+      "guide": "https://mochi.bz/Guides/GuideOsCommerce.aspx",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -673,7 +673,7 @@
       "name": "thirty bees 1.6",
       "core": "thirty bees >=1.6.0 <1.7.0",
       "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",
-      "guide": "https://mochi.bz/GuideThirtyBees.aspx",
+      "guide": "https://mochi.bz/Guides/GuideThirtyBees.aspx",
       "modes": [
         "ON_SITE",
         "HPP"

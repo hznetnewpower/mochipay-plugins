@@ -1,4 +1,4 @@
-"""Preserve the four existing developer archives and their native source layouts."""
+"""Preserve the ten current developer archives and their native source layouts."""
 from pathlib import Path, PurePosixPath
 import hashlib
 import json
@@ -14,12 +14,19 @@ def digest(data):
 def load_resources():
     data = json.loads((ROOT / 'developer-resources.json').read_text(encoding='utf-8'))
     resources = data['resources']
-    if len(resources) != 4 or len({r['id'] for r in resources}) != 4:
-        raise ValueError('Expected four distinct developer resources.')
+    if len(resources) != 10 or len({r['id'] for r in resources}) != 10:
+        raise ValueError('Expected ten distinct developer resources.')
     allowed = {'php-api': ('examples/php-api', 'MochiPay_PHP_Demo'),
                'report-unlock': ('examples/report-unlock', 'mochipay-report-demo'),
                'integration-skill': ('skills', 'integrate-mochipay'),
-               'mcp-server': ('mcp', 'mochipay-mcp')}
+               'mcp-server': ('mcp', 'mochipay-mcp'),
+               'nodejs-demo': ('examples/nodejs-api', 'MochiPay_nodejs_Demo'),
+               'python-demo': ('examples/python-api', 'MochiPay_python_Demo'),
+               'dotnet-demo': ('examples/dotnet-api', 'MochiPay_dotnet_Demo'),
+               'java-demo': ('examples/java-api', 'MochiPay_java_Demo'),
+               'ios-demo': ('mobile/ios', 'MochiPay_iOS_Swift_Demo'),
+               'android-demo': ('mobile/android', 'MochiPay_Android_Kotlin_Demo'),
+               }
     for resource in resources:
         if allowed.get(resource['id']) != (resource['source_directory'], resource['native_root']):
             raise ValueError('Unexpected developer source layout.')
@@ -53,7 +60,7 @@ def source_entries(resource):
     expected = {}
     for entry in layout['entries']:
         name = entry['filename']
-        allowed_root_document = name == 'MULTILANGUAGES.md' and resource['id'] in {'php-api', 'report-unlock'}
+        allowed_root_document = name in {'MULTILANGUAGES.md','LICENSE','LICENSE.txt','LICENSE.md'}
         if not (name.startswith(resource['native_root'] + '/') or allowed_root_document) or '..' in PurePosixPath(name).parts:
             raise ValueError('Invalid developer archive path.')
         if name in expected:
@@ -92,7 +99,7 @@ def verify_resources(output, manifest):
     count = verify_sources()
     resources = load_resources()['resources']
     by_id = {a['id']: a for a in manifest['assets']}
-    if manifest.get('developer_resources') != 4 or manifest.get('total_installation_packages') != 23:
+    if manifest.get('developer_resources') != 10 or manifest.get('total_installation_packages') != 29:
         raise ValueError('Developer resource totals are incorrect.')
     for resource in resources:
         layout, expected = source_entries(resource)
