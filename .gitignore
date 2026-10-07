@@ -1,0 +1,13 @@
+/release-assets/
+/dist/
+/publication-kit/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+*.log
+/vendor/
+/node_modules/
