@@ -1,0 +1,27 @@
+{
+  "plugin": "MochiPay",
+  "version": "1.0.0",
+  "platform": "thirty bees",
+  "core": "thirty bees >=1.6.0 <1.7.0",
+  "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",
+  "defaults": {
+    "url": "https://mochi.bz",
+    "mode": "ON_SITE",
+    "unique_amount_direction": "UP",
+    "enabled": false,
+    "methods": [
+      "USDT_TRC20",
+      "USDC_ERC20",
+      "BTC_BITCOIN",
+      "ETH_ERC20",
+      "SOL_SOLANA"
+    ]
+  },
+  "supported_modes": [
+    "ON_SITE",
+    "HPP"
+  ],
+  "native_api": "PaymentModule, native waiting state and OrderHistory payment transition",
+  "source": "https://github.com/thirtybees/thirtybees/tree/1.6.0",
+  "acceptance": "Complete-store staging installation and a real paid order remain to be accepted."
+}

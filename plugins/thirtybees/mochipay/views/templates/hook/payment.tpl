@@ -1,0 +1,1 @@
+<div class="row"><div class="col-xs-12"><form method="post" action="{$mochipay_action|escape:'html':'UTF-8'}"><input type="hidden" name="mochipay_nonce" value="{$mochipay_nonce|escape:'html':'UTF-8'}"><button type="submit" class="btn btn-default">Pay with MochiPay</button><p>Choose your cryptocurrency and network on the next step.</p></form></div></div>
