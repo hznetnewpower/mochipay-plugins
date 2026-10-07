@@ -1,0 +1,4 @@
+mochipay_checkout:
+    path: /mochipay/checkout
+    controller: MochiPay\Sylius\Controller\Checkout
+    methods: [GET, POST]

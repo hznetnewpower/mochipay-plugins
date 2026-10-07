@@ -1,0 +1,27 @@
+{
+  "plugin": "MochiPay",
+  "version": "1.0.0",
+  "platform": "Shopware 6.7",
+  "core": "Shopware >=6.7.0.0 <6.8.0.0",
+  "php": "PHP 8.2.x / 8.3.x / 8.4.x",
+  "defaults": {
+    "url": "https://mochi.bz",
+    "mode": "ON_SITE",
+    "unique_amount_direction": "UP",
+    "enabled": false,
+    "methods": [
+      "USDT_TRC20",
+      "USDC_ERC20",
+      "BTC_BITCOIN",
+      "ETH_ERC20",
+      "SOL_SOLANA"
+    ]
+  },
+  "supported_modes": [
+    "ON_SITE",
+    "HPP"
+  ],
+  "native_api": "Shopware AbstractPaymentHandler",
+  "source": "https://github.com/shopware/shopware/tree/v6.7.0.0",
+  "acceptance": "Complete-store staging installation and a real paid order remain to be accepted."
+}

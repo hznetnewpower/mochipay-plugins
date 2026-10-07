@@ -1,0 +1,28 @@
+services:
+    MochiPay\Sylius\Support:
+        arguments:
+            $em: '@doctrine.orm.entity_manager'
+            $payments: '@sylius.repository.payment'
+            $router: '@router'
+            $states: '@sylius_abstraction.state_machine'
+    MochiPay\Sylius\Controller\Checkout:
+        arguments: ['@MochiPay\Sylius\Support']
+        tags: ['controller.service_arguments']
+        public: true
+    MochiPay\Sylius\Command\Install:
+        arguments: ['@MochiPay\Sylius\Support']
+        tags: ['console.command']
+    mochipay.gateway_factory:
+        class: Payum\Bundle\PayumBundle\Builder\GatewayFactoryBuilder
+        arguments: [MochiPay\Sylius\GatewayFactory]
+        tags: [{ name: payum.gateway_factory_builder, factory: mochipay }]
+    MochiPay\Sylius\Form\Configuration:
+        tags: [{ name: form.type }, { name: sylius.gateway_configuration_type, type: mochipay, label: MochiPay }]
+    MochiPay\Sylius\Action\Convert:
+        tags: [{ name: payum.action, factory: mochipay, alias: mochipay.convert, prepend: true }]
+    MochiPay\Sylius\Action\Capture:
+        arguments: ['@MochiPay\Sylius\Support']
+        tags: [{ name: payum.action, factory: mochipay, alias: mochipay.capture, prepend: true }]
+    MochiPay\Sylius\Action\Status:
+        arguments: ['@MochiPay\Sylius\Support']
+        tags: [{ name: payum.action, factory: mochipay, alias: mochipay.status, prepend: true }]

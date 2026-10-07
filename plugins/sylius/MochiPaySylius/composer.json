@@ -1,0 +1,20 @@
+{
+  "name": "mochipay/sylius-plugin",
+  "version": "1.0.0",
+  "description": "MochiPay ON_SITE and HPP payment gateway for Sylius",
+  "type": "sylius-plugin",
+  "license": "MIT",
+  "require": {
+    "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
+    "sylius/sylius": "~2.0.0",
+    "payum/payum-bundle": "^2.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "MochiPay\\Sylius\\": "src/"
+    },
+    "files": [
+      "src/lib/bootstrap.php"
+    ]
+  }
+}

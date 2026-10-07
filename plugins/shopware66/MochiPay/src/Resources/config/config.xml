@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd"><card><title>MochiPay</title>
+<input-field type="bool"><name>enabled</name><label>Enable MochiPay</label><defaultValue>false</defaultValue></input-field>
+<input-field type="text"><name>url</name><label>MochiPay URL</label><defaultValue>https://mochi.bz</defaultValue></input-field>
+<input-field type="text"><name>key</name><label>API key</label><defaultValue></defaultValue></input-field>
+<input-field type="password"><name>secret</name><label>API secret</label><defaultValue></defaultValue></input-field>
+<input-field type="single-select"><name>mode</name><label>Payment mode</label><defaultValue>ON_SITE</defaultValue><options><option><id>ON_SITE</id><name>ON_SITE</name></option><option><id>HPP</id><name>HPP</name></option></options></input-field>
+<input-field type="single-select"><name>direction</name><label>Unique amount direction</label><defaultValue>UP</defaultValue><options><option><id>UP</id><name>UP</name></option><option><id>DOWN</id><name>DOWN</name></option></options></input-field>
+<input-field type="bool"><name>asset_USDT_TRC20</name><label>Enable USDT - TRON (TRC20)</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_USDC_ERC20</name><label>Enable USDC - Ethereum (ERC20)</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_BTC_BITCOIN</name><label>Enable BTC - Bitcoin</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_ETH_ERC20</name><label>Enable ETH - Ethereum</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_SOL_SOLANA</name><label>Enable SOL - Solana</label><defaultValue>true</defaultValue></input-field>
+</card></config>
