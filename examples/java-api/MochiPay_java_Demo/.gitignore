@@ -1,0 +1,7 @@
+.env
+private-data/
+bin/
+obj/
+target/
+packages/
+classes/
