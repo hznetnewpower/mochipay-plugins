@@ -1,0 +1,14 @@
+interface:
+  display_name: MochiPay Integration
+  short_description: Connect stores and apps to MochiPay payments
+  default_prompt: Use $integrate-mochipay to connect my store or application to MochiPay
+    and verify the integration.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

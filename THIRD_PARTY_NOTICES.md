@@ -28,3 +28,10 @@ Store/framework names and compatibility APIs are referenced for interoperability
 The WordPress, WooCommerce, OpenCart, Zen Cart, Magento, OpenMage, PrestaShop,
 Shopware, Drupal, EC-CUBE, Bagisto, Sylius, osCommerce and thirty bees cores are
 not included. No other project's logo or claim of official endorsement is used.
+
+## Developer resources
+
+- PHP API Demo: [original QR license](examples/php-api/MochiPay_PHP_Demo/portable/qrcode-LICENSE.txt).
+- Report Unlock Demo: [original QR license](examples/report-unlock/mochipay-report-demo/portable/qrcode-LICENSE.txt).
+- MCP installs the dependency pin declared in [requirements.txt](mcp/mochipay-mcp/requirements.txt); its SDK is not vendored here. Its upstream license applies to the installed dependency.
+- The Skill, MCP and report example do not bundle an AI provider or model.

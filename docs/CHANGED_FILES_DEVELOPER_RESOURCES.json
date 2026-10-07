@@ -1,0 +1,381 @@
+{
+  "revision": "2026.10.07-publication.2",
+  "previous_revision": "2026.10.07-publication.1",
+  "runtime_change": false,
+  "source_deletions": [],
+  "manifest_self_excluded": true,
+  "changes": [
+    {
+      "path": ".gitignore",
+      "change": "modified",
+      "before_sha256": "5f4de368a9f7c70deccc0cdc37c12c0e4d5151f089f7f15974de7aa067876524",
+      "after_sha256": "ec02660cc41f46f56841017b9c00eace6402cf1a5f4a5a9bcf146ff9f9d0765f"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "change": "modified",
+      "before_sha256": "6b33b5cf60b28a2e00d318ba3343da41517b2ab68cc44baa2c5fed0d5faff715",
+      "after_sha256": "bcae766ea4f52c28c43a0f200a6544d6e58fc5a648ca10a29951638285d0fa7c"
+    },
+    {
+      "path": "LICENSE.md",
+      "change": "modified",
+      "before_sha256": "bd2d02c740f99b4a01de29374ff811015fecf3d0457aa733f51f3ebf6de5c860",
+      "after_sha256": "819b90b98f4f6afd9a2a1cc2e825004704d9bb2901b0aca7ecb2b798147c911b"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "change": "modified",
+      "before_sha256": "aa8eedf6e264e8bb7669163796ce26282916fb8cbd50eeade55c6569a0dad038",
+      "after_sha256": "c7541954c37b3d1b2aac408e5e559b256fd613f370b65a1e8a0ab90640089540"
+    },
+    {
+      "path": "README.md",
+      "change": "modified",
+      "before_sha256": "315df02ea4ccebbc1bef66075aecee0d35bda62b01fc2723321a5d4fe2bf455e",
+      "after_sha256": "5b9f947835a190b6667c8b047168b7beae68c7b0b416d8578ec1dfeb06d7b7f9"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "change": "modified",
+      "before_sha256": "55f0bb10f4ef29fc5ad0e151d7442095f09a59b821167e3e58a9603dcd68eca7",
+      "after_sha256": "81ee9c5ada3acbb34ee00a3ac74f622d4609a9d887ba242d84d696901389f2d7"
+    },
+    {
+      "path": "developer-resources.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "5dbc007786c14502e5b5600ab3f3b1fd6e09ebcf1ab4184465cf1690febbed59"
+    },
+    {
+      "path": "docs/DEVELOPER_RESOURCES.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "a64be15fff59472cd4e1dedeaf0fe419fb7bd8d63bb5acd1a6275df6742ba3b7"
+    },
+    {
+      "path": "docs/DOWNLOADS.md",
+      "change": "modified",
+      "before_sha256": "52b8440c5789d27f21cba094e818329e706c6926b8bb92f24291894de1721d9d",
+      "after_sha256": "5e07d98a129090a33568e2b6c13c2481f760cbf55f9ca16e62588b68e2da4883"
+    },
+    {
+      "path": "docs/GITHUB_SETUP.md",
+      "change": "modified",
+      "before_sha256": "834ef5119b08360d78a07f455d8d86a540044b054b9de383b354e9f7e252b1d5",
+      "after_sha256": "ec81bf7b2c2cd0a59387c7d73a6f2ea9cd41cc29f0aada09319772f58bf8b1d2"
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "change": "modified",
+      "before_sha256": "036d5c554967bc5a7a6a9d27a645063934e67c27c3b279b30a03337a5d5f74c2",
+      "after_sha256": "4dadc18b5407ef32a22b67e72c7e99bd216ba82087ff35453a628c8622aa4a68"
+    },
+    {
+      "path": "docs/SETUP.md",
+      "change": "modified",
+      "before_sha256": "1e227605453aae1a95f2caa03a4b8a3e1725de4cb0aace8dfebee9cebaf6df3c",
+      "after_sha256": "f83140042a725c43d4642c1697dd4da50fda047e9e55b266bd782d47b019eebc"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "change": "modified",
+      "before_sha256": "67b76932d879ac8db8d4967b0658f839cca72d2c98f0b62cbae1f669dd717585",
+      "after_sha256": "70441213c7181c950a7bfe6c027af57a5fe9f7cddb2fb83fd2927917b28b2de9"
+    },
+    {
+      "path": "examples/php-api/LICENSE",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "80206c6dac1c7dae044813e0068a18a9cb05f66f7f2b732c377c715f5997ba6b"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/README.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "9587878fc8fbc2a7d01798fbf4dcf885bca51bfd6199235328844fffef31b08c"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/callback.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "5e8d643256375a0eaa4f75a1ecfec2d698ec0e854265b762cd4329901a0e05c0"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/checkout.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "a4db7bf38693648ba9e6016995eee27e8ea23f93dab679d8d703ef704b6703a0"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/order.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "4b724750e7d9d490d0fccfde01539ce5bc1834641095631639cbac9a2e1f3c3d"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/checkout.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "d6176cea5403b360c2ce486299af1e8f4d011f9a936aaa5c882a59174fa2b44f"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/onsite.css",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "ad8983642c7b178378b4c2e7bb81a2308af36781f5e379072bc4454e9246917b"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/onsite.js",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "181e1d4c91cb6e2e0800226a4e7625c3e690099f3dbc10360dbff7b7970001ed"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/qrcode-LICENSE.txt",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "aaa1f349028a59432eb00222b8ddfe4d2ccebdce04cf8348dcb8d41b7068107b"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/qrcode.min.js",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "c541ef06327885a8415bca8df6071e14189b4855336def4f36db54bde8484f36"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/LICENSE",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "006be6953c8c354c0b6d3da4ab7c999a85ac944e54ec17f7579799a2c3c8872d"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/README.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "6f3c81d1ecd45395f583373b87b62690001307d58e062d47a679bd6efda29ba1"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/VALIDATION.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "6d3d7c385295a1a2a9558ae6d79fd4937444714bc15b8cdaaf79d10b225d7708"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/api.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "dec51380a3d340a3904f4b2ad94176fb2f2695ba514630ab052e1ce0f6fb60db"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/callback.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "4a58add2931706eaffd105a9beeceb1de738eac5bcbc18fdf944cff665bbe8d8"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/config.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "f714726badf70c759a857081a30e8358e48b0e63ff10e0cbf0d667ca8d7245a1"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/index.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "bcf36810b2f94bceb407a47dab8daa05916a7ff31cb73ae0bdb7af27db1eca58"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/checkout.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "d6176cea5403b360c2ce486299af1e8f4d011f9a936aaa5c882a59174fa2b44f"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/onsite.css",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "ad8983642c7b178378b4c2e7bb81a2308af36781f5e379072bc4454e9246917b"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/onsite.js",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "7eed3f75a5f5dc683e8b1b5d02f58e5b821b29351c20dd20bb0b07d7e82d1770"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/qrcode-LICENSE.txt",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "aaa1f349028a59432eb00222b8ddfe4d2ccebdce04cf8348dcb8d41b7068107b"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/qrcode.min.js",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "c541ef06327885a8415bca8df6071e14189b4855336def4f36db54bde8484f36"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/report-lib.php",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "b2dc9359d38647be623e1533c089fe61d7cf765a9f29de8841a664e19b334eb1"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/report.css",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "160d3caa92ce2012e7069b4e577b5bc8b59ee267146f06e31448e952a95f13aa"
+    },
+    {
+      "path": "mcp/mochipay-mcp/LICENSE",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "006be6953c8c354c0b6d3da4ab7c999a85ac944e54ec17f7579799a2c3c8872d"
+    },
+    {
+      "path": "mcp/mochipay-mcp/README.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "9ac9a5d595029f55a92ad63daa1ea1e9d27bdd63691f1de9c3c04939128c0635"
+    },
+    {
+      "path": "mcp/mochipay-mcp/VALIDATION.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "05a4724c32df8815bf3aa729762aa0de76ed47dd8950c2d3a1e05557051320a4"
+    },
+    {
+      "path": "mcp/mochipay-mcp/client.py",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "06b6abccb132e951cc70ca05c7f13b1d2a71ae54bced541ad8acb1edffc176bf"
+    },
+    {
+      "path": "mcp/mochipay-mcp/mcp-config.example.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "23a684c7bd07ec9758825d13f04801e7b3ba9f0f65acc03fdf280d46fec53385"
+    },
+    {
+      "path": "mcp/mochipay-mcp/requirements.txt",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "b2a3a41cb92969a57ba10746218731ed453fe6528322ddda667df989ac494035"
+    },
+    {
+      "path": "mcp/mochipay-mcp/server.py",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "ffba06df74f0ab050fa9980dd0b93bce915e7204260c92bc1aa64300a5eaa787"
+    },
+    {
+      "path": "packages.json",
+      "change": "modified",
+      "before_sha256": "60e1e4d4d61793130731798113e770056626c6fd8cecc9fd2760e10605710b64",
+      "after_sha256": "c92ff5a02019c73e313014f5317a028b4d26b3008fb7d8556b9e76203b4aeb0f"
+    },
+    {
+      "path": "skills/integrate-mochipay/SKILL.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "3b800b17398a6a76e8c876e5130cb889a96355b6a99b4080e7a25733068a30fe"
+    },
+    {
+      "path": "skills/integrate-mochipay/agents/openai.yaml",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "55bc0fd389178d8950a6a59e2208ac2640ae94a53ae2f84f18e53320da76c761"
+    },
+    {
+      "path": "skills/integrate-mochipay/assets/config.example.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "75115ac1313f16d183495d55664152d8865f83aae02b1262f6d10f84a77fd10f"
+    },
+    {
+      "path": "skills/integrate-mochipay/assets/icon.svg",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "8936b24f674a1250d999e2c2b5901374fb4240426f32bd1ae340c352a90d617d"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/api-integration.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "8614c07b01eebb1d7cc2af626f52dad7b08e36140c6d9a18d196e41924ad3aaf"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/catalog.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "45c59b3fe82b180c72c18df88ed37982cb56cf28351f3c6e5dbaf941eaeb5621"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/installation.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "899276fd2c306591b25c7fcbc61666bf2a276d92a6a55a0da15feddbebecfb95"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/license.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "e27843fdd0ff3317521163af67a400951b4af01d8aa9cc811da97ad7c75171dc"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/store-packages.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "c711da3a5668ccfeaf7706c19d4bc4e2719234643aac4826d58995d7efb3a12d"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/troubleshooting.md",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "347871b5bfc71bf47a1f9f1abad517f859ec0e72be546bbb73f7235faa28bbc7"
+    },
+    {
+      "path": "skills/integrate-mochipay/scripts/mochipay_check.py",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "e3eb84659751b3c0d0ec639a848fae479bd0e5063e4d4065a5e60b82a28c8c91"
+    },
+    {
+      "path": "tools/build_release.py",
+      "change": "modified",
+      "before_sha256": "51f0e1374ad9d0aacc4ba467ff698b2ec3a493fd65b3250e79ad9528afe6d94b",
+      "after_sha256": "4b9e259f35ad342f3d61bbfb3c2b9a4ba653500f8ab9fc2944ab1d16fd769eda"
+    },
+    {
+      "path": "tools/developer-archive-layouts.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "eab2b3463206cc98db3c27d3826d80dbf32c15a3987e41e92a554acc3c3e29e4"
+    },
+    {
+      "path": "tools/developer_resources.py",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "1024e48de9d20b703430697b63c4dc54ae1801fe7f9d7727393d91e3f8ceec56"
+    },
+    {
+      "path": "tools/link_github_release.py",
+      "change": "modified",
+      "before_sha256": "522043ee3d16699580417581589c8e75bbbd45aa2ce69513a8e5aa19f0e7f15a",
+      "after_sha256": "f35162895faa049f2aa4e9d380c930a0745757c00bfb1ab38d2aecc11c452c76"
+    },
+    {
+      "path": "tools/original-developer-files.sha256.json",
+      "change": "added",
+      "before_sha256": null,
+      "after_sha256": "a0f3d087c7fb2471ebd95984d1b5f6f14e1fe0141930c40a453d5b643516ac3d"
+    },
+    {
+      "path": "tools/verify_release.py",
+      "change": "modified",
+      "before_sha256": "22c14d9f8d85bcda62735f5068df1ba1424ca8ab4929d0444055d59803419b82",
+      "after_sha256": "17d16661035f4356c08fc24a6ea8dbbaaa29bbee7b632cce66c8304d2f7e3667"
+    }
+  ]
+}

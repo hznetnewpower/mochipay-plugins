@@ -1,0 +1,7 @@
+# Validation summary — Report Unlock Demo 1.0.0
+
+63 workflow checks passed against unchanged PHP application code with real PHP 8.3.6, secure session cookies, a local HTTPS fixture and Chromium. Mock cURL verified request/query HMAC and the requested SSL transport options. Covered ON_SITE dialog/QR/exact amount, same-order HPP redirects, session isolation, forged callbacks, waiting/review states, exact received amount, ten tampered API fields, signed-query delivery, duplicate callback persistence, paid download/return, CSRF rejection and lost-create-response recovery with original method/direction/mode retained. Verified paid report return/reload plus four responsive widths (320–1440px) and browser/PHP error checks passed. Hosted page itself was not fetched; HPP redirect/return behavior used fixture responses.
+
+9 additional PHP checks passed for Windows/Unix absolute paths, private storage rejection and exact decimal/scientific notation. All 6 PHP source files passed native PHP 8.3 lint and PHP 7.0 syntax parsing. The subsequently added PHP 7.0–7.2 SameSite fallback is syntax-checked; no native PHP 7 runtime was available. No live credentials, funds, external AI model, IIS integration, filesystem crash test, Windows runtime or production deployment was tested.
+
+Single-host file locks and atomic writes demonstrate persistent once-only sample generation. Production multi-host fulfillment requires your transaction database and job queue.

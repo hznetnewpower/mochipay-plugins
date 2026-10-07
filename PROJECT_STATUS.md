@@ -1,15 +1,23 @@
-# Plugin publication 2026.10.07-publication.1
+# Integration publication 2026.10.07-publication.2
 
-Scope: standalone GitHub publication kit derived from current Web77 plugin
-downloads. Public scope is plugin code and release documentation only.
-19 packages / 12 families. Payment code and frontend assets preserved byte-for-byte. Two Shopware
-composer.json documentation URLs corrected; non-runtime WooCommerce validation
-assets removed. Full license texts and
-publication notices added; existing MIT/QR notices retained.
+Public repository: https://github.com/hznetnewpower/mochipay-plugins.
+Publication.1 was manually uploaded by the owner. This task prepares its
+supplement; it does not directly upload new source or publish a GitHub release.
 
-No website, database, Monitor, API, signature, checkout state or merchant
-configuration change. Existing plugin users need no mandatory upgrade.
-No GitHub repository has been created or published by this task.
+Scope: 19 plugin packages across 12 store families, plus 2 PHP examples, 1 existing
+Agent Skill and 1 existing MCP server. New original sources come from current
+Web77.1 website downloads. All 41 original resource files and all four ZIP bytes
+are preserved. The 19 original plugin trees and their publication.1 ZIP bytes
+are unchanged. No personal skill installation/update is performed.
 
-See docs/CHANGED_FILES.json for exact per-package added/removed files,
-docs/VALIDATION.md for verification scope and docs/GITHUB_SETUP.md for publishing.
+No MochiPay website patch, payment backend/Monitor/database/configuration source,
+credentials, wallet recovery material or runtime state is included. Existing
+merchant plugin/API clients need no upgrade. No WEB/Monitor rebuild or SQL.
+
+Repository documentation, developer-resource licensing, ignore patterns,
+source/archive baselines and build/verify/link tools are updated. Exact source
+changes and validation scope are in docs/DEVELOPER_RESOURCES.md,
+docs/CHANGED_FILES_DEVELOPER_RESOURCES.json and docs/VALIDATION.md.
+
+Use the supplement's START_HERE.md to upload the changed root files/directories
+and create release tag v2026.10.07-publication.2 with all 23 ZIPs and checksum files.

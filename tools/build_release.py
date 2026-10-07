@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build store-installable ZIPs with Python 3.10+ standard library only."""
+"""Build 19 store ZIPs and 4 unchanged developer archives with Python3.10+."""
 from pathlib import Path, PurePosixPath
 import hashlib
 import json
 import re
 import zipfile
+from developer_resources import load_resources, build_resources, verify_sources
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "dist"
@@ -112,8 +113,12 @@ def validate_layout(package, names):
 def main():
     catalog = load_catalog()
     originals = verify_baseline()
+    developer_originals = verify_sources()
+    resources = load_resources()
+    if resources["publication_revision"] != catalog["publication_revision"]:
+        raise ValueError("Publication revisions differ.")
     OUTPUT.mkdir(exist_ok=True)
-    known = {p["asset_name"] for p in catalog["packages"]} | {"SHA256SUMS.txt", "release-manifest.json"}
+    known = {p["asset_name"] for p in catalog["packages"]} | {r["asset_name"] for r in resources["resources"]} | {"SHA256SUMS.txt", "release-manifest.json"}
     unexpected = [p.name for p in OUTPUT.iterdir() if p.name not in known]
     if unexpected:
         raise ValueError("Output directory has unrelated files; use a clean dist directory.")
@@ -140,9 +145,12 @@ def main():
                        "store": p["core"], "php": p["php"], "license": p["license"],
                        "modes": p["modes"], "initial_adapter": p["initial_adapter"],
                        "original_sha256": p["original_sha256"], "files": len(files)})
+    assets.extend(build_resources(OUTPUT))
     (OUTPUT / "SHA256SUMS.txt").write_text("".join(a["sha256"] + "  " + a["asset_name"] + "\n" for a in assets), encoding="utf-8", newline="\n")
     manifest = {"publication_revision": catalog["publication_revision"], "runtime_change": False,
-                "store_families": 12, "independent_packages": 19, "original_files_preserved": originals,
+                "store_families": 12, "independent_packages": 19, "developer_resources": 4,
+                "total_installation_packages": 23, "original_files_preserved": originals,
+                "developer_original_files_preserved": developer_originals,
                 "assets": assets}
     (OUTPUT / "release-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"output": str(OUTPUT), "assets": len(assets), "original_files_preserved": originals}))

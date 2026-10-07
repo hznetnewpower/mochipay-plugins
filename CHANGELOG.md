@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.10.07-publication.2 — Developer and AI resources
+
+Adds the four existing PHP/AI resources, developer installation guide, MIT resource declarations, source/checksum catalogues and 23-asset build/verification tooling. Existing 19 plugin ZIPs and all 41 original developer files are preserved. No website/server or integration behavior change.
+
 ## 2026.10.07-publication.1 — GitHub publication packaging
 
 - Added an English overview, store/PHP/download matrix, setup guidance and

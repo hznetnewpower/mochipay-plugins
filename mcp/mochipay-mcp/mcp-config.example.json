@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "mochipay": {
+      "command": "/absolute/path/to/mochipay-mcp/.venv/bin/python",
+      "args": ["/absolute/path/to/mochipay-mcp/server.py"],
+      "env": {
+        "MOCHIPAY_URL": "https://mochi.bz",
+        "MOCHIPAY_API_KEY": "SET_PRIVATELY",
+        "MOCHIPAY_API_SECRET": "SET_PRIVATELY",
+        "MOCHIPAY_ALLOW_CREATE": "true",
+        "MOCHIPAY_MAX_ORDER_AMOUNT": "1000",
+        "MOCHIPAY_STATE_FILE": "/private/persistent/path/mochipay-orders.sqlite3"
+      }
+    }
+  }
+}

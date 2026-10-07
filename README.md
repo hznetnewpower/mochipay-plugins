@@ -1,4 +1,4 @@
-# MochiPay payment plugins
+# MochiPay payment integrations
 
 ![MochiPay crypto checkout](docs/assets/mochipay-plugins.svg)
 
@@ -40,6 +40,24 @@ so you can choose the right installation layout and PHP environment.
 See [all packages and PHP ranges](docs/DOWNLOADS.md) before installing. Modern
 platforms may require PHP 8; legacy branches have their own PHP requirements.
 This publication is not an official certification by any shopping platform.
+
+## Developer and AI resources
+
+Build your own checkout, unlock a paid report, give an AI assistant integration
+knowledge, or let an Agent create and query payment requests at runtime.
+
+| Resource | What it does | Start here |
+|---|---|---|
+| PHP API Demo | Creates and queries an order; includes ON_SITE and HPP examples | [Setup](docs/DEVELOPER_RESOURCES.md#php-api-demo) |
+| Report Unlock Demo | Verifies payment on the server before unlocking persisted sample content | [Setup](docs/DEVELOPER_RESOURCES.md#report-unlock-demo) |
+| AI Integration Skill | Guides an Agent through plugin selection, API integration and troubleshooting | [Install and use](docs/DEVELOPER_RESOURCES.md#ai-integration-skill) |
+| MCP Server | Exposes create_payment_request and get_payment_status to compatible stdio hosts | [Configure the tools](docs/DEVELOPER_RESOURCES.md#mcp-server) |
+
+**19 store plugin ZIPs + 4 developer resource ZIPs.** Download the matching
+archive from [Releases → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/latest).
+The Skill provides instructions; MCP provides running tools. They are separate
+downloads and neither transfers cryptocurrency from a wallet. The report demo
+uses clearly marked sample content; connect your own AI service for real reports.
 
 ## Two checkout modes
 
@@ -95,13 +113,19 @@ monitoring service or merchant database.
 
 ## Current publication
 
-Revision **2026.10.07-publication.1** organizes the existing plugins for public distribution.
-Payment code and frontend assets remain byte-identical to the current website
-packages. The two Shopware Composer support links now point to the correct guide. Existing merchants do not need to reinstall for this revision.
-See [changes](CHANGELOG.md) and [validation scope](docs/VALIDATION.md).
+Revision **2026.10.07-publication.2** adds public PHP examples, the existing
+integration Skill and the existing MCP server to the published store plugins.
+All four developer ZIPs are byte-identical to the current website downloads.
+The 19 native installation ZIPs are unchanged from publication.1. Existing
+merchants do not need to reinstall or change their API integration.
 
-Newer adapters still require staging acceptance in a complete running store.
-The checkout demo is a simulation, not evidence of a live payment.
+Only plugin, demo, Skill and MCP integration sources are public here.
+MochiPay's payment backend, Monitor, database and production configuration stay
+outside this repository. See [changes](CHANGELOG.md),
+[developer setup](docs/DEVELOPER_RESOURCES.md) and [validation](docs/VALIDATION.md).
+
+Newer store adapters still need complete staging acceptance. No native-store
+certification, live-chain test or live AI-provider integration is claimed.
 
 ## Help and contribution
 

@@ -20,6 +20,7 @@ def main():
     if not tag or any(ord(c) < 32 for c in tag):
         raise SystemExit("Invalid tag.")
     packages = json.loads((ROOT / "packages.json").read_text(encoding="utf-8"))["packages"]
+    packages += json.loads((ROOT / "developer-resources.json").read_text(encoding="utf-8"))["resources"]
     target = ROOT / "docs/DOWNLOADS.md"
     text = target.read_text(encoding="utf-8")
     for p in packages:
@@ -33,7 +34,7 @@ def main():
     end = text.index("Every branch has a separate archive.", start)
     text = text[:start] + "Use **Releases → Assets** for the installable ZIPs. Download links below point\nto the selected GitHub release. Check SHA256SUMS.txt attached to that release.\n\n" + text[end:]
     target.write_text(text, encoding="utf-8", newline="\n")
-    print("Updated 19 download links; review and commit docs/DOWNLOADS.md. No network request was made.")
+    print("Updated 23 download links; review and commit docs/DOWNLOADS.md. No network request was made.")
 
 
 if __name__ == "__main__":

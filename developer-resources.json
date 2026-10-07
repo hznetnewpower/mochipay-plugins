@@ -1,0 +1,73 @@
+{
+  "publication_revision": "2026.10.07-publication.2",
+  "resources": [
+    {
+      "id": "php-api",
+      "name": "PHP API Demo",
+      "version": "1.1.2",
+      "asset_name": "MochiPay_PHP_API_Demo_1.1.2_Onsite_HPP.zip",
+      "source_directory": "examples/php-api",
+      "native_root": "MochiPay_PHP_Demo",
+      "runtime": "PHP 7.0–8.4; cURL, JSON, sessions, HTTPS and private storage",
+      "guide": "https://mochi.bz/GuideAPI.aspx",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "760ce771e8525e3436719f7626dc057cce76432a2465d1afb291237a2cb255b7",
+      "original_bytes": 33210
+    },
+    {
+      "id": "report-unlock",
+      "name": "Report Unlock Demo",
+      "version": "1.0.1",
+      "asset_name": "MochiPay_Report_Unlock_Demo_1.0.1_Onsite_HPP.zip",
+      "source_directory": "examples/report-unlock",
+      "native_root": "mochipay-report-demo",
+      "runtime": "PHP 7.0–8.x; cURL, JSON, sessions, HTTPS and persistent private storage",
+      "guide": "https://mochi.bz/AIAgents.aspx",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "66f9127788e8676d36aa21807b99a57b13b5187a795bf883d1ab411d65de9c5c",
+      "original_bytes": 34011
+    },
+    {
+      "id": "integration-skill",
+      "name": "AI Integration Skill",
+      "version": "1.1.2",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.1.2.zip",
+      "source_directory": "skills",
+      "native_root": "integrate-mochipay",
+      "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
+      "guide": "https://mochi.bz/GuideSkill.aspx",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "9da6ff291fe879312a976ef2e898955cb23b3bfd007dcfb366e94a1b1fb9f949",
+      "original_bytes": 23436
+    },
+    {
+      "id": "mcp-server",
+      "name": "MCP Server",
+      "version": "1.0.0",
+      "asset_name": "MochiPay_MCP_Server_1.0.0.zip",
+      "source_directory": "mcp",
+      "native_root": "mochipay-mcp",
+      "runtime": "Python 3.10+; pinned MCP SDK dependency; a host that launches stdio servers",
+      "guide": "https://mochi.bz/AIAgents.aspx",
+      "license": "MIT",
+      "modes": [
+        "ON_SITE",
+        "HPP"
+      ],
+      "original_sha256": "a01f9ecb8749724bcb63738144ffc80af0b012fad6fe7117cff4fbed451ec3fc",
+      "original_bytes": 9179
+    }
+  ]
+}

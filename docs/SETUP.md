@@ -50,3 +50,7 @@ this publication. Follow the current platform guide for actual capabilities.
 
 For existing installations, replace files in place while preserving settings
 and payment history. Do not uninstall/reinstall as a routine upgrade.
+
+## PHP, Skill and MCP
+
+See [Developer and AI resources](DEVELOPER_RESOURCES.md). These four resources are independent of the store plugins and do not install into a shopping-platform extensions screen.

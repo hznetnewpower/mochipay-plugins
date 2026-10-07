@@ -1,24 +1,30 @@
-# MochiPay Plugins — GitHub publication 2026.10.07-publication.1
+# MochiPay Integrations — Plugins, PHP, Skills and MCP
 
-Crypto checkout integrations for 12 store families, supplied as 19 independent
-platform packages. Choose ON_SITE or HPP. Customer payments go directly to the
-merchant's receiving wallet.
+Publication 2026.10.07-publication.2 now includes 23 independent downloads:
+19 native store plugin packages and 4 developer/AI resources.
 
-This revision organizes the existing plugin code for public distribution,
-adds English setup/download documentation and missing license text, preserves
-third-party notices, and supplies reproducible ZIPs and SHA-256 checksums.
-The two Shopware Composer help URLs now point to the actual Shopware guide.
-Payment code, checkout assets, signatures and callback formats are unchanged.
-Existing installations do not need to reinstall for this publication revision.
+- PHP API Demo 1.1.2: ON_SITE and HPP with bound server-side verification.
+- Report Unlock Demo 1.0.1: trusted payment, server verification and persistent
+  delivery of sample report content. Bring your own real AI provider.
+- AI Integration Skill 1.1.2: package/PHP selection, API integration and troubleshooting.
+- MCP Server 1.0.0: create_payment_request and get_payment_status for local stdio hosts.
 
-**Install:** select your platform ZIP under Assets. Do not install the automatic
-whole-repository Source code archive. Read the README inside your ZIP and check
-the platform-specific PHP range. OpenCart 4: save its package as
-`mochipay.ocmod.zip` before installation.
+The 19 native installation ZIPs are unchanged from publication.1. The four
+developer ZIPs exactly match the latest official website distributions. No
+payment code, credentials, API contract or installed skill was changed by this
+publication. The payment server, Monitor, database and production config remain private.
 
-The newer native adapters remain initial integration builds. Verify a complete
-staging checkout, callback and real paid order before live use.
+Install the matching platform/resource ZIP under Assets. The automatic Source
+code archive contains all source and is not a single-store installer. Skill and
+MCP are separate resources; MCP requests do not automatically unlock the PHP demo.
+Plugin/demo checkout supports ON_SITE and HPP. MCP ON_SITE returns checkout data;
+the application must render its own payment UI. Integration code is licensed
+per package; hosted MochiPay subscriptions and AI-host fees remain separate.
 
-Setup guides: https://mochi.bz/IntegrationGuides.aspx
-Checkout simulation: https://mochi.bz/CheckoutDemo.aspx
-Service and pricing: https://mochi.bz
+Read docs/DEVELOPER_RESOURCES.md and the original archive README/reference files.
+Verify actual host/runtime configuration in staging. This publication adds no
+native-store/live-chain/model-provider certification.
+
+Setup: https://mochi.bz/IntegrationGuides.aspx
+Developer resources: https://mochi.bz/Developers.aspx
+AI tools: https://mochi.bz/AIAgents.aspx

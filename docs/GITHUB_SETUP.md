@@ -1,86 +1,96 @@
-# Publish on GitHub
+# Publish the developer-resource supplement on GitHub
 
-This folder is prepared for publication but has not been uploaded to GitHub.
-No GitHub account, repository URL or access token is embedded.
+Repository: https://github.com/hznetnewpower/mochipay-plugins
 
-## Create and upload the repository
+The first plugin release already exists. This kit prepares the next release;
+it does not upload files or publish a release automatically.
 
-1. Sign in at https://github.com and create a repository named
-   `mochipay-plugins`. Begin with a private repository if you want to review the
-   files before public launch. Do not select a single blanket license: use the
-   package licenses provided here.
-2. Copy the **contents** of `repository/` into the repository root: README.md,
-   plugins/, docs/, tools/, .github/, licenses and packages.json. Do not upload
-   the whole publication-kit wrapper, the parent release-assets/ folder or any
-   MochiPay website/server backup.
-3. For a browser upload, add the files in batches of at most 100. Drag folders
-   so their internal paths survive. A file beginning with a dot, such as
-   `.github/` or `.gitignore`, is also part of the prepared source.
-4. For all files at once, use GitHub Desktop (https://desktop.github.com): clone
-   your newly created repository; copy the prepared contents into that local
-   clone without replacing its `.git` folder; review Changes; Commit; Push.
-5. Review the README, package links and private-reporting settings. Make the
-   repository public when ready to launch.
+## Update the existing repository
 
-## Release the installable archives
+1. Use the supplement ZIP's **repository-update/** folder. Upload its contents
+   to the repository root, preserving examples/, skills/, mcp/, docs/ and tools/.
+   Do not upload the repository-update wrapper itself or release-assets/ as source.
+2. The 19 plugin source directories are unchanged and need no second upload.
+   The supplement contains only added or changed files. It removes no source files.
+3. Use **Add file → Upload files**, with at most 100 files in each browser batch.
+   Drag folders to retain their paths. Review the changed paths before committing.
+4. Edit the existing root **.gitignore** with GitHub's pencil button and paste
+   the supplied .gitignore content if the browser uploader rejects hidden files.
+   Existing .github files are unchanged.
+5. Commit with: **Add PHP examples, AI Skill and MCP resources**.
 
-Open **Releases → Draft a new release**, create the tag
-`v2026.10.07-publication.1`, and choose the commit containing this source. Copy
-docs/RELEASE_NOTES.md into the release description. Attach all 19 ZIPs from the
-publication kit's **release-assets/** folder, together with SHA256SUMS.txt and
-release-manifest.json. Publish after the attachments finish uploading.
+GitHub Desktop is another option: clone the existing repository, copy the
+supplement contents into the clone, review Changes, Commit and Push. Preserve
+its .git directory and any unrelated user changes.
 
-These archive names preserve platform expectations. OpenCart 4 is attached as
-mochipay-six-languages.ocmod.zip; its instructions tell the merchant to save it
-as mochipay.ocmod.zip for installation. Do not rezip the archives or add a folder.
-The tag is a publication revision; it is not a claim that all native plugins
-have the same runtime version.
+The complete kit's repository/ is a standalone source snapshot. Use the
+supplement for the existing repository so unrelated owner changes are retained.
+Never upload a MochiPay website/server backup, credentials or runtime state.
 
-## Optional: point the download table at GitHub
+## Publish the new release
 
-The initial download table uses the real current website links, so it has no
-placeholder account links. Once your repository and release exist, run:
+Open **Releases → Draft a new release** and use:
 
-```text
-python tools/link_github_release.py YOUR_USERNAME mochipay-plugins v2026.10.07-publication.1
+- Tag: **v2026.10.07-publication.2** (create a new tag).
+- Target: **main**, after committing the supplement.
+- Release title: **MochiPay Integrations — Plugins, PHP, Skills and MCP**.
+- Release label/type, if offered: leave **None / unspecified**.
+- Description: copy **docs/RELEASE_NOTES.md**.
+
+Attach **all 23 ZIPs** from release-assets/, plus **SHA256SUMS.txt** and
+**release-manifest.json**: 25 attachments total. The 19 plugin ZIPs are unchanged
+but are included again so the new release offers every download. Attaching only
+the four new ZIPs would leave the new release's plugin links unavailable.
+
+Wait for uploads to finish, review all attachments and publish the release.
+Do not rezip these installer archives or add an extra wrapper folder.
+OpenCart 4's published asset remains mochipay-six-languages.ocmod.zip; follow
+its instructions to save it as mochipay.ocmod.zip for native installation.
+
+The automatic GitHub Source code ZIP is a repository snapshot, not a store
+installer. Merchants install the corresponding archive under **Assets**.
+This publication revision is not a shared runtime version for every plugin.
+
+## Download links
+
+The supplied docs/DOWNLOADS.md already points all 23 downloads to the owner's
+new release tag. Those links become available after the new release is published.
+For a later publication, run from the repository root:
+
+```sh
+python tools/link_github_release.py hznetnewpower mochipay-plugins YOUR_NEXT_TAG
 ```
 
-Use your actual GitHub username or organization. This command changes only the
-download table; it does not contact GitHub, create releases, alter plugins or
-send social posts. Review and commit docs/DOWNLOADS.md. It points at the selected
-release tag; run it with the next tag when publishing a later revision.
+This edits only the download table and makes no network request. Commit the
+updated table alongside the corresponding source revision and release.
 
-## Repository visibility and promotion
+## Optional repository About update
 
-In **About**, add the description: "Crypto payment plugins for ecommerce stores.
-ON_SITE and HPP checkout with MochiPay." Set the website to https://mochi.bz.
+Description:
 
-Suggested relevant topics: `mochipay`, `crypto-payments`, `payment-gateway`,
-`ecommerce`, `woocommerce`, `opencart`, `prestashop`, `magento`, `shopware`,
-`drupal-commerce`, `eccube`, `bagisto`, `sylius`, `php`.
+> Crypto payment integrations: store plugins, PHP examples, AI Skill and MCP.
+> ON_SITE and HPP checkout with MochiPay.
 
-Enable Issues and private vulnerability reporting. Pin the repository on your
-profile. Share the repository and the relevant integration guide with merchants
-and developers. GitHub visibility can help discovery; it does not guarantee
-traffic or paid subscriptions. Do not post repetitive promotions to other
-projects' issues or ask for artificial stars.
+Website: https://mochi.bz
 
-## Later updates
+Relevant topics include mochipay, crypto-payments, payment-gateway, ecommerce,
+php, woocommerce, opencart, prestashop, magento, shopware, mcp and agent-skills.
+Keep the existing useful topics and add the relevant new ones.
 
-Keep the same repository. Submit reviewed source changes, build the platform
-ZIPs and publish a new release. Change only the affected plugin versions when
-runtime behavior changes. Mark initial adapters accurately and never replace
-staging acceptance with a marketing badge.
+## Rebuild and check the archives
 
-To reproduce the ZIPs locally, use Python 3.10 or later (standard library only;
-no pip packages). This is a release-tool requirement, not a store requirement.
-Run from the repository root:
+The already-built assets are supplied; Python is not needed for manual upload.
+To rebuild locally, use Python 3.10+ with its standard library, then run:
 
-```text
+```sh
 python tools/build_release.py
 python tools/verify_release.py
 ```
 
-The resulting 19 ZIPs and checksum files are in `dist/`, which is ignored by Git.
-Already-built release assets are supplied in the publication kit, so Python is
-not needed for the initial upload or for a merchant installation.
+The output is 23 ZIPs plus two checksum/catalog files in ignored dist/.
+The builder preserves the original developer ZIP metadata and refuses byte
+identity drift. See VALIDATION.md for the tested scope and runtime caveat.
+MCP's separate Python dependency is needed only when running the MCP server.
+
+No WEB/Monitor compilation, database script or existing customer upgrade is
+needed for this GitHub publication.

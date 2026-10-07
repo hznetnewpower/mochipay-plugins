@@ -6,6 +6,7 @@ import sys
 import zipfile
 from pathlib import Path
 from build_release import ROOT, sha, load_catalog, verify_baseline, package_files, validate_layout
+from developer_resources import load_resources, verify_resources
 
 
 def main():
@@ -14,7 +15,7 @@ def main():
     originals = verify_baseline()
     manifest = json.loads((output / "release-manifest.json").read_text(encoding="utf-8"))
     entries = {a["id"]: a for a in manifest["assets"]}
-    if len(entries) != 19 or manifest["publication_revision"] != catalog["publication_revision"]:
+    if len(entries) != 23 or manifest["publication_revision"] != catalog["publication_revision"]:
         raise ValueError("Release manifest does not match the source publication.")
     expected_sums = []
     runtime_count = 0
@@ -40,9 +41,12 @@ def main():
                 if name.endswith((".php", ".js", ".css", ".twig", ".tpl", ".phtml", ".xml", ".yml", ".json")):
                     runtime_count += 1
                 total_files += 1
+    developer_originals = verify_resources(output, manifest)
+    resources = load_resources()["resources"]
+    expected_sums.extend(entries[r["id"]]["sha256"] + "  " + r["asset_name"] + "\n" for r in resources)
     if (output / "SHA256SUMS.txt").read_text(encoding="utf-8") != "".join(expected_sums):
         raise ValueError("Checksum file mismatch.")
-    allowed = {p["asset_name"] for p in catalog["packages"]} | {"SHA256SUMS.txt", "release-manifest.json"}
+    allowed = {p["asset_name"] for p in catalog["packages"]} | {r["asset_name"] for r in resources} | {"SHA256SUMS.txt", "release-manifest.json"}
     if {p.name for p in output.iterdir()} != allowed:
         raise ValueError("Release directory has missing or unexpected files.")
     # Report locations, never credential values, if suspicious assignments exist.
@@ -51,16 +55,17 @@ def main():
     for f in ROOT.rglob("*"):
         if not f.is_file() or f.suffix == ".zip" or "__pycache__" in f.parts or f.is_relative_to(output):
             continue
-        if f.suffix.lower() not in {".php", ".js", ".json", ".xml", ".yml", ".yaml", ".md", ".txt", ".ini", ".config"}:
+        if f.suffix.lower() not in {".php", ".js", ".json", ".xml", ".yml", ".yaml", ".md", ".txt", ".ini", ".config", ".py"}:
             continue
         if suspicious.search(f.read_text(encoding="utf-8-sig", errors="replace")):
             findings.append(f.relative_to(ROOT).as_posix())
     if findings:
         raise ValueError("Review suspected secret locations: " + ", ".join(findings))
-    result = {"result": "PASS", "archives": 19, "store_families": 12,
+    result = {"result": "PASS", "archives": 23, "store_families": 12, "native_plugin_packages": 19,
+              "developer_resource_packages": 4, "developer_original_files_byte_identical": developer_originals,
               "retained_original_files_byte_identical": originals,
               "reviewed_metadata_only_changes": 2,
-              "archive_entries_verified": total_files, "runtime_or_metadata_files": runtime_count,
+              "archive_entries_verified": total_files + developer_originals, "runtime_or_metadata_files": runtime_count,
               "all_crc_checks": "PASS", "native_layouts": "PASS", "source_archive_parity": "PASS",
               "secret_pattern_scan": "No matching embedded credentials; heuristic only",
               "live_store_or_payment_tests": "Not performed for this packaging-only revision"}

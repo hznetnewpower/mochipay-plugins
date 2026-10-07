@@ -1,6 +1,6 @@
 # Package-specific licenses
 
-This repository contains independently packaged plugins, not one uniformly
+This repository contains independently packaged integrations, not one uniformly
 licensed application. Each plugin's LICENSE.txt, NOTICE.md and original notices
 govern its files. Do not replace the entire repository's licenses with a single
 MIT declaration.
@@ -44,3 +44,20 @@ and logo are not licensed for impersonation or claims of endorsement.
 The hosted MochiPay service is separate from this repository and is subject to
 its published service terms. Its source, credentials and customer data are not
 included in these plugin licenses or distributions.
+
+## Developer resources
+
+The following MochiPay-authored integration sources and their corresponding
+official downloadable archives are offered under MIT. Existing license and
+third-party notices are retained; no payment server code is included.
+
+| Resource | License |
+|---|---|
+| PHP API Demo | [MIT](examples/php-api/LICENSE), applies to the MochiPay-authored files in this subtree and their official archive |
+| Report Unlock Demo | [MIT](examples/report-unlock/mochipay-report-demo/LICENSE) |
+| AI Integration Skill | [MIT](skills/integrate-mochipay/references/license.md) |
+| MCP Server | [MIT](mcp/mochipay-mcp/LICENSE) |
+
+The QR libraries retain their davidshimjs MIT notices. Dependencies installed
+separately keep their upstream licenses. Free integration code does not waive
+MochiPay subscriptions or third-party AI-host/model charges.
