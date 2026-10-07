@@ -1,3 +1,8 @@
+# 2026.10.07-multilanguages.1
+
+Ten checkout languages, browser preference, RTL and Multilanguages filenames.
+Current PHP demos and Integration Skill references; payment contracts unchanged.
+
 # Changelog
 
 ## 2026.10.07-publication.2 — Developer and AI resources

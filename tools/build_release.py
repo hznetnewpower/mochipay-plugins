@@ -147,7 +147,7 @@ def main():
                        "original_sha256": p["original_sha256"], "files": len(files)})
     assets.extend(build_resources(OUTPUT))
     (OUTPUT / "SHA256SUMS.txt").write_text("".join(a["sha256"] + "  " + a["asset_name"] + "\n" for a in assets), encoding="utf-8", newline="\n")
-    manifest = {"publication_revision": catalog["publication_revision"], "runtime_change": False,
+    manifest = {"publication_revision": catalog["publication_revision"], "runtime_change": True, "payment_business_change": False, "buyer_ui_build": "78",
                 "store_families": 12, "independent_packages": 19, "developer_resources": 4,
                 "total_installation_packages": 23, "original_files_preserved": originals,
                 "developer_original_files_preserved": developer_originals,

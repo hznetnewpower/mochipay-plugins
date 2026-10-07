@@ -31,7 +31,7 @@ Never upload a MochiPay website/server backup, credentials or runtime state.
 
 Open **Releases → Draft a new release** and use:
 
-- Tag: **v2026.10.07-publication.2** (create a new tag).
+- Tag: **v2026.10.07-multilanguages.1** (create a new tag).
 - Target: **main**, after committing the supplement.
 - Release title: **MochiPay Integrations — Plugins, PHP, Skills and MCP**.
 - Release label/type, if offered: leave **None / unspecified**.
@@ -44,7 +44,7 @@ the four new ZIPs would leave the new release's plugin links unavailable.
 
 Wait for uploads to finish, review all attachments and publish the release.
 Do not rezip these installer archives or add an extra wrapper folder.
-OpenCart 4's published asset remains mochipay-six-languages.ocmod.zip; follow
+OpenCart 4's published asset remains mochipay-multilanguages.ocmod.zip; follow
 its instructions to save it as mochipay.ocmod.zip for native installation.
 
 The automatic GitHub Source code ZIP is a repository snapshot, not a store

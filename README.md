@@ -67,9 +67,12 @@ uses clearly marked sample content; connect your own AI service for real reports
 | Shows network, exact amount, address, QR and payment status | Uses the hosted checkout and returns to the store |
 | Default mode in these plugins | Available in the same gateway settings |
 
-Buyer payment interfaces offer English (default), Chinese, Spanish, Brazilian
-Portuguese, French and German through a manual selector. Merchant settings and
-installation instructions remain English. Both modes require server-side
+Buyer payment interfaces offer English (fallback), Chinese, Spanish, Brazilian
+Portuguese, French, German, Dutch, Persian, Russian and Arabic. An explicit
+language choice takes priority; otherwise supported browser preferences are
+used, with English fallback. Buyers can switch manually. Arabic/Persian use RTL;
+crypto amounts, addresses and technical identifiers keep their original values.
+Merchant settings and installation instructions remain English. Both modes require server-side
 payment verification; a browser return or a callback body alone is not proof
 of payment.
 
@@ -113,11 +116,14 @@ monitoring service or merchant database.
 
 ## Current publication
 
-Revision **2026.10.07-publication.2** adds public PHP examples, the existing
-integration Skill and the existing MCP server to the published store plugins.
-All four developer ZIPs are byte-identical to the current website downloads.
-The 19 native installation ZIPs are unchanged from publication.1. Existing
-merchants do not need to reinstall or change their API integration.
+Revision **2026.10.07-multilanguages.1** adds ten buyer languages, browser preference,
+RTL and language-count-independent **Multilanguages** filenames. PHP API Demo is
+1.1.3, Report Unlock Demo1.0.2 and Integration Skill1.1.3; MCP1.0.0 is unchanged.
+Payment APIs, signatures, callback handling and payment verification are unchanged.
+Existing installed plugins remain usable; frontend updates are optional for the
+additional local buyer languages. All four developer ZIPs exactly match Web78.
+Native release ZIPs preserve the store installation roots and include public
+license/setup documents; their archive hashes differ from website ZIPs.
 
 Only plugin, demo, Skill and MCP integration sources are public here.
 MochiPay's payment backend, Monitor, database and production configuration stay

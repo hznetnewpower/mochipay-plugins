@@ -200,6 +200,28 @@
         "external_attr": 32,
         "comment": "",
         "extra": ""
+      },
+      {
+        "filename": "MULTILANGUAGES.md",
+        "date_time": [
+          2026,
+          10,
+          7,
+          3,
+          7,
+          42
+        ],
+        "compress_type": 8,
+        "create_system": 3,
+        "create_version": 20,
+        "extract_version": 20,
+        "reserved": 0,
+        "flag_bits": 0,
+        "volume": 0,
+        "internal_attr": 0,
+        "external_attr": 25165824,
+        "comment": "",
+        "extra": ""
       }
     ]
   },
@@ -514,6 +536,28 @@
         "external_attr": 32,
         "comment": "",
         "extra": ""
+      },
+      {
+        "filename": "MULTILANGUAGES.md",
+        "date_time": [
+          2026,
+          10,
+          7,
+          3,
+          7,
+          42
+        ],
+        "compress_type": 8,
+        "create_system": 3,
+        "create_version": 20,
+        "extract_version": 20,
+        "reserved": 0,
+        "flag_bits": 0,
+        "volume": 0,
+        "internal_attr": 0,
+        "external_attr": 25165824,
+        "comment": "",
+        "extra": ""
       }
     ]
   },
@@ -526,20 +570,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          7,
+          3,
+          8,
+          18
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -548,20 +592,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -570,20 +614,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -592,20 +636,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -614,20 +658,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          7,
+          3,
+          8,
+          18
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -636,20 +680,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          7,
+          3,
+          8,
+          18
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -659,19 +703,19 @@
           2026,
           10,
           6,
-          12,
-          0,
-          0
+          5,
+          31,
+          46
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -680,20 +724,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -702,20 +746,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          7,
+          3,
+          8,
+          18
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -724,20 +768,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       },
@@ -746,20 +790,20 @@
         "date_time": [
           2026,
           10,
-          6,
-          12,
-          0,
-          0
+          3,
+          9,
+          46,
+          12
         ],
         "compress_type": 8,
-        "create_system": 0,
+        "create_system": 3,
         "create_version": 20,
         "extract_version": 20,
         "reserved": 0,
         "flag_bits": 0,
         "volume": 0,
         "internal_attr": 0,
-        "external_attr": 32,
+        "external_attr": 2175008768,
         "comment": "",
         "extra": ""
       }

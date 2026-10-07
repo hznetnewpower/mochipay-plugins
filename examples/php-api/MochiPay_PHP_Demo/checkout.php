@@ -45,7 +45,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
     <title>Your store checkout · MochiPay on-site example</title>
-    <link rel="stylesheet" href="portable/onsite.css?v=76">
+    <link rel="stylesheet" href="portable/onsite.css?v=78">
     <style>main.store-checkout{max-width:760px;margin:40px auto;padding:30px;text-align:left;border:1px solid #d8dfd8;border-radius:18px;background:#fffdf6}.store-checkout h1{margin-top:0}.store-checkout a{display:inline-block;margin:12px 0;color:#b64d0e}.store-total{font-size:23px;font-weight:bold}.store-checkout p{line-height:1.65}</style>
 </head>
 <body>
@@ -59,6 +59,6 @@ try {
 </main>
 <script>window.MochiPayConfig = <?php echo $config; ?>;</script>
 <script src="portable/qrcode.min.js"></script>
-<script src="portable/onsite.js?v=76"></script>
+<script src="portable/onsite.js?v=78"></script>
 </body>
 </html>

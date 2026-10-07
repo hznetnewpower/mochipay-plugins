@@ -53,7 +53,8 @@ def source_entries(resource):
     expected = {}
     for entry in layout['entries']:
         name = entry['filename']
-        if not name.startswith(resource['native_root'] + '/') or '..' in PurePosixPath(name).parts:
+        allowed_root_document = name == 'MULTILANGUAGES.md' and resource['id'] in {'php-api', 'report-unlock'}
+        if not (name.startswith(resource['native_root'] + '/') or allowed_root_document) or '..' in PurePosixPath(name).parts:
             raise ValueError('Invalid developer archive path.')
         if name in expected:
             raise ValueError('Duplicate developer archive entry.')

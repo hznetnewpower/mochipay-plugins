@@ -5,7 +5,7 @@ description: Integrate MochiPay crypto payments into a store or custom applicati
 
 # MochiPay Integration
 
-Guide or implement the merchant's authorized integration using official packages and the application's conventions. Keep merchant gateway settings and installation documentation in English. Use English by default in the payment UI; current native downloads include a manual six-language buyer selector in one package. Reply to the merchant in their language.
+Guide or implement the merchant's authorized integration using official packages and the application's conventions. Keep merchant gateway settings and installation documentation in English. Use the browser language initially when supported, falling back to English. Explicit language choices take priority; current native downloads include a manual ten-language buyer selector in one Multilanguages package per platform branch. Merchant settings and instructions stay English. Reply to the merchant in their language.
 
 ## Establish the environment
 

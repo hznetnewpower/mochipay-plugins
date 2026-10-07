@@ -1,6 +1,6 @@
 # API integration contract
 
-Snapshot: Web75 / PHP Demo 1.1.2, 2026-10-06. Full reference: https://mochi.bz/Developers.aspx#checkout-modes and https://mochi.bz/GuideAPI.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.2_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
+Snapshot: Web75 / PHP Demo 1.1.2, 2026-10-06. Full reference: https://mochi.bz/Developers.aspx#checkout-modes and https://mochi.bz/GuideAPI.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.3_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
 
 ## Authentication and fields
 
