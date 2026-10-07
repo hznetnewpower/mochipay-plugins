@@ -66,23 +66,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      * Make the operation idempotent: repeated callbacks must not deliver goods
      * or credit the customer more than once.
      */
+    try { mochipay_record_verified($record, $order); }
+    catch (Exception $e) { callback_text(503, 'LOCAL_UPDATE_FAILED'); }
     callback_text(200, 'OK');
 }
 
 // Browser return: query the saved order, then compare its original local binding.
 $merchantOrderId = isset($_GET['merchant_order_id']) ? trim((string)$_GET['merchant_order_id']) : '';
-$verified = null; $record = null; $paid = false;
+$verified = null; $record = null; $paid = false; $authorized = false;
 try {
     $record = mochipay_load($merchantOrderId);
-    if ($record && !empty($record['snapshot']['order_id'])) {
+    $returnToken = isset($_GET['token']) ? (string)$_GET['token'] : '';
+    $authorized = $record && $returnToken !== '' && hash_equals($record['token'], $returnToken);
+    if ($authorized && !empty($record['snapshot']['order_id'])) {
         $verified = mochipay_query_order('order_id', $record['snapshot']['order_id']);
         $data = $verified['data'];
         $paid = $verified['ok'] && mochipay_bound($record, $data) && strtoupper($data['status']) === 'PAID' && isset($data['received_amount']) && MochiPayPortable::decimal($data['received_amount']) === MochiPayPortable::decimal($data['pay_amount']);
+        if ($paid) mochipay_record_verified($record, $data);
     }
 } catch (Exception $e) { $paid = false; }
 // Show only the safe payment view, never the full API/customer response on a public return page.
 $safeView = null;
-if ($verified && $verified['ok'] && mochipay_bound($record, $verified['data'])) {
+if ($authorized && $verified && $verified['ok'] && mochipay_bound($record, $verified['data'])) {
     try { $safeView = MochiPayPortable::view($verified['data']); } catch (Exception $e) { $safeView = null; }
 }
 ?>

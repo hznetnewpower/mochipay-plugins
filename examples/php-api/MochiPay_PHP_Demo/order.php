@@ -79,10 +79,21 @@ function mochipay_begin($payload)
             if (!MochiPayPortable::matches($record['payload'], $payload, '') || $record['payload']['unique_amount_direction'] !== $payload['unique_amount_direction']) {
                 throw new RuntimeException('This reference already belongs to different payment details.');
             }
-            $result = mochipay_query_order(empty($record['snapshot']['order_id']) ? 'merchant_order_id' : 'order_id', empty($record['snapshot']['order_id']) ? $payload['merchant_order_id'] : $record['snapshot']['order_id']);
+            if (!empty($record['snapshot']['order_id'])) {
+                $result = mochipay_query_order('order_id', $record['snapshot']['order_id']);
+            } elseif (!empty($record['payload']['request_id'])) {
+                // Current MochiPay deduplicates this unchanged request_id + payload.
+                $result = mochipay_create_order($record['payload']);
+            } else {
+                // Preserve old saved attempts: query-first recovery, never blind create.
+                $result = mochipay_query_order('merchant_order_id', $payload['merchant_order_id']);
+            }
         } else {
+            $payload['request_id'] = 'php-' . substr(hash('sha256', MOCHIPAY_API_KEY . ':' . $payload['merchant_order_id']), 0, 60);
             $record = array('payload'=>$payload, 'token'=>bin2hex(random_bytes(24)), 'snapshot'=>array(), 'stage'=>'creating');
-            // Save BEFORE the HTTP call. An uncertain response is recovered by query, never another POST.
+            // Save BEFORE the HTTP call. Recovery keeps the exact payload and request_id.
+            $payload['redirect_url'] .= '&token=' . rawurlencode($record['token']);
+            $record['payload'] = $payload;
             mochipay_save_locked($handle, $record);
             $result = mochipay_create_order($payload);
         }
@@ -96,6 +107,26 @@ function mochipay_begin($payload)
         $record['snapshot'] = $data; $record['stage'] = 'ready';
         mochipay_save_locked($handle, $record);
         return array($result, $record);
+    } finally { flock($handle, LOCK_UN); fclose($handle); }
+}
+
+
+// One verified-payment marker shared by notification and synchronous return.
+// Production fulfillment belongs in your durable order database transaction.
+function mochipay_record_verified($record, $data)
+{
+    if (!mochipay_bound($record, $data) || $data['status'] !== 'PAID' || !isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount'])) return false;
+    $path = mochipay_record_path($record['payload']['merchant_order_id']);
+    $handle = fopen($path, 'r+');
+    if (!$handle || !flock($handle, LOCK_EX)) throw new RuntimeException('Demo storage is busy.');
+    try {
+        $current = json_decode(stream_get_contents($handle), true);
+        if (!mochipay_bound($current, $data)) throw new RuntimeException('Saved binding changed.');
+        if (empty($current['paid_verified'])) {
+            $current['paid_verified'] = true;
+            mochipay_save_locked($handle, $current);
+        }
+        return true;
     } finally { flock($handle, LOCK_UN); fclose($handle); }
 }
 
@@ -267,6 +298,7 @@ if (isset($_GET['view'])) {
             if (!$verified['ok'] || !mochipay_bound($record, $verified['data'])) throw new RuntimeException('Payment verification failed.');
             $data = $verified['data'];
             if (strtoupper($data['status']) === 'PAID' && (!isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount']))) throw new RuntimeException('Received payment requires review.');
+            if (strtoupper($data['status']) === 'PAID') mochipay_record_verified($record, $data);
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(array('success'=>true, 'data'=>MochiPayPortable::view($data)), JSON_UNESCAPED_SLASHES);
         } else {

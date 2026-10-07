@@ -1,4 +1,4 @@
-# MochiPay PHP API Demo 1.1.1 — On-site + HPP
+# MochiPay PHP API Demo 1.1.4 — On-site + HPP
 
 Requirements: PHP 7.0–8.4, cURL, JSON, sessions, secure random_bytes, HTTPS, and writable PRIVATE temporary storage. This is an integration demo, not a production shopping cart. Restrict order.php to your administrators or a protected staging environment; the create/query forms are not a public checkout.
 
@@ -17,7 +17,7 @@ Use decimal strings for money. The decoder preserves API amount numbers as strin
 ## Verification and recovery
 Private records bind merchant reference, original amount/currency/method, system order ID, chain amount and address. They live outside the website under the OS temporary directory (mochipay-demo-*). Configure OS permissions/ACLs so only the PHP service account can read/write them. Temporary records can be lost when the host clears its temp directory: never use this storage as a production order database.
 
-The attempt is written before Create Order. An uncertain response is retried by Query Order using the SAME merchant reference. Do not blindly repeat Create Order or change the reference after a timeout: the API does not guarantee reference idempotency. A damaged/missing record requires review before another create. Treat references as unique; retain the MochiPay order_id once known. The demo retains the reference after a failed create for recovery; edit it only for a genuinely new order.
+The attempt is written before Create Order. Recover an uncertain response with the SAME saved merchant reference/request_id/payload. Known order IDs are queried; new request_id attempts can replay the unchanged payload against the current idempotent server. merchant_order_id alone is not idempotency. A damaged/missing record requires review before another create. Treat references as unique; retain the MochiPay order_id once known. The demo retains the reference after a failed create for recovery; edit it only for a genuinely new order.
 
 callback.php POST queries the authenticated API and compares the result with the saved local order. It returns OK only for a bound PAID order with the expected received amount. GET queries the saved order before displaying a safe result. A notification or browser return alone is never proof of payment.
 
@@ -52,3 +52,12 @@ Local language/browser checks cover the reusable dialog assets. Real store check
 The payment dialog keeps all four outer corners rounded. Long content scrolls inside an inset region; the close button and language selector remain outside it. Update both MochiPay_PHP_Demo/portable/onsite.css and MochiPay_PHP_Demo/portable/onsite.js. Preserve gateway settings and order mappings. Clear browser/CDN/storefront caches after replacing these assets. API, PHP payment business logic, exact amount, wallet address and callback verification are unchanged. HPP is unchanged.
 
 Also update MochiPay_PHP_Demo/checkout.php together with the two assets: it versions their browser URLs for layout build 76. This file changes asset cache metadata only. Use the complete package update if unsure which files to replace.
+
+
+## Web80: stable request IDs and complete return/notification flow
+
+New attempts save a deterministic request_id and the exact payload before creation. The current MochiPay API deduplicates unchanged request_id/payload pairs. If the initial response is uncertain, retrying the same merchant reference reuses that saved payload. Once an order ID is known, recovery queries it. Old records without request_id keep query-first recovery and are never blindly recreated. Run this new retry strategy against the current MochiPay server with request_id support.
+
+HPP synchronous return: redirect_url points to callback.php?mode=return&merchant_order_id=...&token=..., where GET verifies the saved capability and queries MochiPay before showing the minimal result. HPP/ON_SITE asynchronous notification: notify_url points to callback.php?mode=notify; POST uses the incoming order_id only as a lookup hint, queries the authenticated API, checks the saved immutable binding and exact received amount, and records paid_verified under an exclusive file lock before returning OK. Repeated callbacks reuse that marker. ON_SITE polls through order.php for display; closing a popup does not stop server notifications. This marker demonstrates an idempotent local update; it does not fulfill goods. Implement your production order update/fulfillment in an atomic database transaction.
+
+For mobile clients use the common Node.js/Python/C#/Java demo endpoints; this original PHP demo retains its existing route layout. Installation instructions remain English. Ten buyer languages and popup UI build78 are unchanged. New PHP version1.1.4 does not require existing customers to upgrade.

@@ -1,0 +1,17 @@
+*{box-sizing:border-box}body{margin:0;background:#edf2ef;color:#20392e;font:16px system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:650px;margin:70px auto;padding:30px}button{font:inherit;cursor:pointer;padding:12px 18px;border:1px solid #bccfc4;border-radius:9px;background:#f3f7f3;color:#20392e}button:disabled{opacity:.5;cursor:wait}.overlay{position:fixed;inset:0;background:#17211bc2;display:flex;align-items:center;justify-content:center;padding:16px;z-index:99999}.overlay[hidden],[hidden]{display:none!important}.dialog{position:relative;background:#fffdf7;max-width:500px;width:100%;max-height:calc(100dvh - 32px);max-height:calc(100vh - 32px);overflow:auto;border:1px solid #cad7cd;border-radius:20px;padding:28px;text-align:center;box-shadow:0 20px 60px #0004}.close{position:absolute;right:12px;top:9px;padding:4px 9px;font-size:25px;background:none;border:0}.brand{font-size:12px;letter-spacing:4px;font-weight:700;color:#52715f}h2{font-size:24px}#status{background:#eaf3e9;padding:12px;border-radius:10px}#amount{font-size:28px;font-weight:750;overflow-wrap:anywhere}#qr{display:flex;justify-content:center;padding:20px}#qr img{max-width:100%}#qr canvas{display:none}input{width:100%;padding:12px;border:1px solid #c8d8c9;border-radius:8px;background:#fafaf5;color:#243e30;margin:12px 0;font:13px monospace}.warning{font-size:14px;background:#fff2d8;padding:14px;border-radius:10px}#error{color:#a23029}.muted{color:#607166;font-size:13px;line-height:1.6}.dialog button{margin:5px}.locked{overflow:hidden}
+
+/* ON_SITE layout build 76: only the inner region scrolls; the outer corners stay clipped. */
+.overlay .dialog{display:flex;flex-direction:column;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:hidden;padding:8px;min-width:0}
+.overlay .dialog>[data-native-language-control]{flex:0 0 auto;min-width:0;padding-right:44px!important}
+.overlay .dialog>.mp-dialog-scroll{box-sizing:border-box;flex:1 1 auto;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#9caea2 transparent;border-radius:12px;padding:20px;overflow-wrap:anywhere}
+.overlay .dialog>.mp-dialog-scroll::-webkit-scrollbar{width:10px}
+.overlay .dialog>.mp-dialog-scroll::-webkit-scrollbar-track{background:transparent}
+.overlay .dialog>.mp-dialog-scroll::-webkit-scrollbar-thumb{background:#9caea2;border:2px solid transparent;background-clip:padding-box;border-radius:12px}
+.overlay .dialog>.mp-dialog-scroll:focus-visible{outline:2px solid #35795d;outline-offset:-2px}
+.overlay .dialog>.close,.overlay .dialog>.mp-close{top:8px;right:8px;z-index:2}
+@media(max-width:600px){.overlay .dialog>.mp-dialog-scroll{padding:16px 10px}}
+@media(max-height:420px){.overlay .dialog{max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px)}}
+
+/* Multilanguages UI78: preserve value direction within RTL dialogs. */
+[data-mp-native-language][dir="rtl"]{direction:rtl;text-align:start;font-family:Tahoma,Arial,sans-serif}
+[data-mp-native-language] input,[data-mp-native-language] code,[data-mp-native-language] .mp-pay-amount,[data-mp-native-language] .mp-amount{direction:ltr;unicode-bidi:isolate}

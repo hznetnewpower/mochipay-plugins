@@ -1,0 +1,5 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup><Configuration Condition="'$(Configuration)' == ''">Release</Configuration><Platform Condition="'$(Platform)' == ''">AnyCPU</Platform><OutputType>Exe</OutputType><TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion><AssemblyName>MochiPayDemo</AssemblyName><RootNamespace>MochiPayDemo</RootNamespace><OutputPath>bin\$(Configuration)\</OutputPath><LangVersion>6</LangVersion></PropertyGroup>
+  <ItemGroup><Reference Include="System"/><Reference Include="System.Core"/><Reference Include="Newtonsoft.Json"><HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath></Reference><Compile Include="Program.cs"/><None Include="packages.config"/></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+</Project>
