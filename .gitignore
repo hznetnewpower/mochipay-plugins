@@ -11,3 +11,10 @@ Thumbs.db
 *.log
 /vendor/
 /node_modules/
+# Private developer-tool environments and state
+.venv/
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+/mcp/mochipay-mcp/mcp-config.json
