@@ -25,10 +25,10 @@ Follow the original platform-specific instructions inside this ZIP:
 - `mochipay-woocommerce/INSTALL.md`
 - `mochipay-woocommerce/readme.txt`
 
-Full setup guide: https://mochi.bz/GuideWooCommerce.aspx
+Full setup guide: https://mochi.bz/Guides/GuideWooCommerce.aspx
 
 Download the platform ZIP attached to a GitHub Release, or the current package
-on https://mochi.bz/Developers.aspx#plugins. GitHub's automatic whole-repository
+on https://mochi.bz/Developers/Reference.aspx#plugins. GitHub's automatic whole-repository
 "Source code (zip)" is not an installable store plugin.
 For OpenCart 4, follow the original guide's filename instruction: save the
 selected package as `mochipay.ocmod.zip` before installing so its extension
