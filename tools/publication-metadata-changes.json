@@ -1,0 +1,12 @@
+{
+  "plugins/shopware66/MochiPay/composer.json": {
+    "original_sha256": "54bad708cf4c8a7c86a60d9e3171d4adf104b60bc99b1045269e17f6c80c6cdb",
+    "published_sha256": "36b4adcd2bd7121cc775601cf26200cbac6b7ac715fc74555e49583f6899d772",
+    "change": "Only supportLink changed from the missing Guide.aspx to GuideShopware.aspx."
+  },
+  "plugins/shopware67/MochiPay/composer.json": {
+    "original_sha256": "4a9de4e4eb2c114d748fbdecbaf4b7fa0f4fcffe8637e4fd2072c247f92b8d01",
+    "published_sha256": "6ef2761431f2b3a906ffbf18c60b1ebcadb5a7b42b039439c7a94b0f23bc0c79",
+    "change": "Only supportLink changed from the missing Guide.aspx to GuideShopware.aspx."
+  }
+}

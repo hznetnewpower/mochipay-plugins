@@ -1,0 +1,220 @@
+[
+  {
+    "id": "woocommerce",
+    "added": [
+      "mochipay-woocommerce/LICENSE.txt",
+      "mochipay-woocommerce/NOTICE.md",
+      "mochipay-woocommerce/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [
+      "mochipay-woocommerce/validation/browser-results.txt",
+      "mochipay-woocommerce/validation/desktop.png",
+      "mochipay-woocommerce/validation/mobile.png",
+      "mochipay-woocommerce/validation/php-results.txt",
+      "mochipay-woocommerce/validation/qr-results.txt",
+      "mochipay-woocommerce/validation/runtime-tests.php.txt"
+    ],
+    "modified_original_files": [],
+    "preserved_original_files": 12
+  },
+  {
+    "id": "opencart20",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 18
+  },
+  {
+    "id": "opencart23",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 16
+  },
+  {
+    "id": "opencart3",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 16
+  },
+  {
+    "id": "opencart4",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 16
+  },
+  {
+    "id": "zencart-legacy",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 14
+  },
+  {
+    "id": "zencart-modern",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 14
+  },
+  {
+    "id": "magento1",
+    "added": [
+      "LICENSE.txt",
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 19
+  },
+  {
+    "id": "magento2",
+    "added": [
+      "MochiPay/Payment/LICENSE.txt",
+      "MochiPay/Payment/NOTICE.md",
+      "MochiPay/Payment/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 31
+  },
+  {
+    "id": "prestashop16",
+    "added": [
+      "mochipay/LICENSE.txt",
+      "mochipay/NOTICE.md",
+      "mochipay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 17
+  },
+  {
+    "id": "prestashop-modern",
+    "added": [
+      "mochipay/LICENSE.txt",
+      "mochipay/NOTICE.md",
+      "mochipay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 16
+  },
+  {
+    "id": "shopware66",
+    "added": [
+      "MochiPay/NOTICE.md",
+      "MochiPay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [
+      {
+        "path": "MochiPay/composer.json",
+        "change": "Documentation supportLink only"
+      }
+    ],
+    "preserved_original_files": 19
+  },
+  {
+    "id": "shopware67",
+    "added": [
+      "MochiPay/NOTICE.md",
+      "MochiPay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [
+      {
+        "path": "MochiPay/composer.json",
+        "change": "Documentation supportLink only"
+      }
+    ],
+    "preserved_original_files": 19
+  },
+  {
+    "id": "drupal",
+    "added": [
+      "mochipay/NOTICE.md",
+      "mochipay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 21
+  },
+  {
+    "id": "eccube",
+    "added": [
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 20
+  },
+  {
+    "id": "bagisto",
+    "added": [
+      "MochiPay/NOTICE.md",
+      "MochiPay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 22
+  },
+  {
+    "id": "sylius",
+    "added": [
+      "MochiPaySylius/NOTICE.md",
+      "MochiPaySylius/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 25
+  },
+  {
+    "id": "oscommerce",
+    "added": [
+      "NOTICE.md",
+      "PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 13
+  },
+  {
+    "id": "thirtybees",
+    "added": [
+      "mochipay/NOTICE.md",
+      "mochipay/PUBLICATION.md"
+    ],
+    "removed_non_runtime": [],
+    "modified_original_files": [],
+    "preserved_original_files": 17
+  }
+]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title description">
+<title id="title">MochiPay payment plugins</title><desc id="description">Crypto checkout for ecommerce stores, with ON_SITE and HPP. Customer payments go directly to your wallet.</desc>
+<rect width="1200" height="360" rx="24" fill="#faf7f1"/>
+<circle cx="1090" cy="65" r="190" fill="#eae5fc"/><circle cx="1050" cy="320" r="150" fill="#e0eafb"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#102044">
+<text x="54" y="78" font-size="25" font-weight="700" letter-spacing="2">MOCHIPAY</text>
+<text x="54" y="147" font-size="49" font-weight="700">Crypto checkout for your store</text>
+<text x="54" y="196" font-size="26">Customer payments go directly to your wallet.</text>
+<rect x="54" y="234" width="168" height="48" rx="12" fill="#334dcb"/><text x="138" y="266" text-anchor="middle" font-size="23" font-weight="700" fill="white">ON_SITE</text>
+<rect x="240" y="234" width="112" height="48" rx="12" fill="#6a48c8"/><text x="296" y="266" text-anchor="middle" font-size="23" font-weight="700" fill="white">HPP</text>
+<text x="54" y="327" font-size="21">12 store families · 19 independent plugin packages</text>
+<text x="1085" y="327" font-size="24" text-anchor="end" font-weight="700">mochi.bz</text>
+</g></svg>
