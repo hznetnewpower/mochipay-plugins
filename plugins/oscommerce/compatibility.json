@@ -1,0 +1,27 @@
+{
+  "plugin": "MochiPay",
+  "version": "1.0.0",
+  "platform": "osCommerce 4",
+  "core": "osCommerce 4.14.x; native V4 orderPayment module API",
+  "php": "PHP 7.4.x\u20138.3.x, subject to the installed osCommerce release and dependency lock",
+  "defaults": {
+    "url": "https://mochi.bz",
+    "mode": "ON_SITE",
+    "unique_amount_direction": "UP",
+    "enabled": false,
+    "methods": [
+      "USDT_TRC20",
+      "USDC_ERC20",
+      "BTC_BITCOIN",
+      "ETH_ERC20",
+      "SOL_SOLANA"
+    ]
+  },
+  "supported_modes": [
+    "ON_SITE",
+    "HPP"
+  ],
+  "native_api": "ModulePayment, platform configuration and native OrdersPayment ledger",
+  "source": "https://github.com/osCommerce/osCommerce-V4/tree/48d31a361b614cfa66e505d4e8345afd9e30ad79",
+  "acceptance": "Complete-store staging installation and a real paid order remain to be accepted."
+}

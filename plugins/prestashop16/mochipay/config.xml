@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+  <name>mochipay</name>
+  <displayName><![CDATA[MochiPay Cryptocurrency Payments]]></displayName>
+  <version><![CDATA[1.1.0]]></version>
+  <description><![CDATA[Direct-to-wallet cryptocurrency payments through MochiPay hosted checkout.]]></description>
+  <author><![CDATA[MochiPay]]></author>
+  <tab><![CDATA[payments_gateways]]></tab>
+  <is_configurable>1</is_configurable>
+  <need_instance>0</need_instance>
+</module>
