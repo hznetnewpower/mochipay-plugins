@@ -1,0 +1,25 @@
+{
+  "name": "mochipay/bagisto-payment",
+  "version": "1.0.0",
+  "description": "MochiPay ON_SITE and HPP payments for Bagisto",
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "~8.2.0 || ~8.3.0 || ~8.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "MochiPay\\Bagisto\\": "src/"
+    },
+    "files": [
+      "src/lib/bootstrap.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MochiPay\\Bagisto\\Providers\\MochiPayServiceProvider"
+      ]
+    }
+  }
+}

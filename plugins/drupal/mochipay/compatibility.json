@@ -1,0 +1,27 @@
+{
+  "plugin": "MochiPay",
+  "version": "1.0.0",
+  "platform": "Drupal Commerce",
+  "core": "Commerce 2.40.x with Drupal 9.3\u201310.x; or Commerce 3.3.10+ <3.4 with Drupal 10.3\u201311.x",
+  "php": "Drupal 9.3\u20139.5: PHP 7.4\u20138.1; Drupal 10: PHP 8.1\u20138.3; Drupal 11: PHP 8.3\u20138.4, only when allowed by the exact Drupal release",
+  "defaults": {
+    "url": "https://mochi.bz",
+    "mode": "ON_SITE",
+    "unique_amount_direction": "UP",
+    "enabled": false,
+    "methods": [
+      "USDT_TRC20",
+      "USDC_ERC20",
+      "BTC_BITCOIN",
+      "ETH_ERC20",
+      "SOL_SOLANA"
+    ]
+  },
+  "supported_modes": [
+    "ON_SITE",
+    "HPP"
+  ],
+  "native_api": "Commerce offsite payment gateway and completed commerce_payment entity",
+  "source": "https://www.drupal.org/project/commerce",
+  "acceptance": "Complete-store staging installation and a real paid order remain to be accepted."
+}

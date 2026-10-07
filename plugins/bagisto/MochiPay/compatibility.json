@@ -1,0 +1,27 @@
+{
+  "plugin": "MochiPay",
+  "version": "1.0.0",
+  "platform": "Bagisto",
+  "core": "Bagisto >=2.3.0 <2.4.0",
+  "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
+  "defaults": {
+    "url": "https://mochi.bz",
+    "mode": "ON_SITE",
+    "unique_amount_direction": "UP",
+    "enabled": false,
+    "methods": [
+      "USDT_TRC20",
+      "USDC_ERC20",
+      "BTC_BITCOIN",
+      "ETH_ERC20",
+      "SOL_SOLANA"
+    ]
+  },
+  "supported_modes": [
+    "ON_SITE",
+    "HPP"
+  ],
+  "native_api": "Laravel package and Webkul payment adapter with native order/invoice repositories",
+  "source": "https://github.com/bagisto/bagisto/tree/v2.3.0",
+  "acceptance": "Complete-store staging installation and a real paid order remain to be accepted."
+}

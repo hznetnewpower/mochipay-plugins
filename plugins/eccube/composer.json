@@ -1,0 +1,19 @@
+{
+  "name": "mochipay/eccube-payment",
+  "version": "1.0.0",
+  "description": "MochiPay ON_SITE and HPP payments for EC-CUBE",
+  "type": "eccube-plugin",
+  "license": "MIT",
+  "require": {
+    "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
+    "ec-cube/plugin-installer": "^2.0"
+  },
+  "extra": {
+    "code": "MochiPay"
+  },
+  "autoload": {
+    "psr-4": {
+      "Plugin\\MochiPay\\": ""
+    }
+  }
+}

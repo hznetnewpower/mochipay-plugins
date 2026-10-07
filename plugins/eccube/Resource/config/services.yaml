@@ -1,0 +1,14 @@
+services:
+  Plugin\MochiPay\Support:
+    autowire: true
+    arguments:
+      $shoppingPurchaseFlow: '@eccube.purchase.flow.shopping'
+  Plugin\MochiPay\Service\Method:
+    autowire: true
+    public: true
+  Plugin\MochiPay\Controller\Checkout:
+    autowire: true
+    autoconfigure: true
+  Plugin\MochiPay\Controller\Config:
+    autowire: true
+    autoconfigure: true

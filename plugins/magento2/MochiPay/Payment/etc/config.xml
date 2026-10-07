@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+  <default>
+    <payment>
+      <mochipay>
+        <active>0</active>
+        <model>MochiPay\Payment\Model\Payment</model>
+        <title>Cryptocurrency (MochiPay)</title>
+        <order_status>pending_payment</order_status>
+        <api_url>https://mochi.bz</api_url>
+        <payment_methods>USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA</payment_methods>
+        <unique_direction>UP</unique_direction><checkout_mode>ON_SITE</checkout_mode>
+        <allowspecific>0</allowspecific>
+        <sort_order>90</sort_order>
+      </mochipay>
+    </payment>
+  </default>
+</config>

@@ -1,0 +1,12 @@
+<?php
+function mochipay_storage_definition()
+{
+    return ['mochipay_attempt'=>['description'=>'Immutable MochiPay payment attempts.','fields'=>[
+        'local_id'=>['type'=>'varchar','length'=>120,'not null'=>true],
+        'system_id'=>['type'=>'varchar','length'=>32,'not null'=>true,'default'=>''],
+        'record_text'=>['type'=>'text','size'=>'big','not null'=>true],
+    ],'primary key'=>['local_id'],'indexes'=>['system_id'=>['system_id']]]];
+}
+function mochipay_uninstall(){/* Retain payment records. Back up before removing this module. */}
+
+function mochipay_install(){ $schema=\Drupal::database()->schema();if(!$schema->tableExists('mochipay_attempt'))$schema->createTable('mochipay_attempt',mochipay_storage_definition()['mochipay_attempt']); }

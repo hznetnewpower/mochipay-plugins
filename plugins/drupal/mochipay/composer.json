@@ -1,0 +1,11 @@
+{
+  "name": "mochipay/drupal-commerce",
+  "version": "1.0.0",
+  "description": "MochiPay ON_SITE and HPP payments for Drupal Commerce",
+  "type": "drupal-module",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.4 <8.5",
+    "drupal/commerce": "~2.40.0 || ~3.3.10"
+  }
+}

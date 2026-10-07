@@ -1,0 +1,8 @@
+name: MochiPay
+type: module
+description: 'Cryptocurrency checkout with ON_SITE and HPP.'
+package: Commerce (contrib)
+core_version_requirement: '^9.3 || ^10 || ^11'
+php: 7.4
+dependencies:
+  - commerce:commerce_payment
