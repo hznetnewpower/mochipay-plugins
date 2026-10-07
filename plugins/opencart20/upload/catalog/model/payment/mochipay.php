@@ -1,0 +1,10 @@
+<?php
+class ModelPaymentMochipay extends Model
+{
+    public function getMethod($address, $total)
+    {
+        $this->load->language('payment/mochipay');
+        if (!$this->config->get('mochipay_status')) return array();
+        return array('code' => 'mochipay', 'title' => $this->config->get('mochipay_title') ?: $this->language->get('text_title'), 'terms' => '', 'sort_order' => (int) $this->config->get('mochipay_sort_order'));
+    }
+}
