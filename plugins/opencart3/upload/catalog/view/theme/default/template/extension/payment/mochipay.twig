@@ -1,0 +1,11 @@
+<div class="form-group">
+  <p>{{ text_description }}</p>
+  <label for="mochipay-payment-method">{{ text_payment_method }}</label>
+  <select id="mochipay-payment-method" class="form-control">{% for code,label in methods %}<option value="{{ code }}">{{ label }}</option>{% endfor %}</select>
+</div>
+<div class="buttons"><div class="pull-right"><button type="button" id="button-confirm-mochipay" class="btn btn-primary">{{ button_confirm }}</button></div></div>
+<script type="text/javascript">
+$('#button-confirm-mochipay').on('click', function () {
+  $.ajax({url: '{{ action }}', type: 'post', dataType: 'json', data: {mochipay_payment_method: $('#mochipay-payment-method').val()}, beforeSend: function(){ $('#button-confirm-mochipay').prop('disabled', true); }, complete: function(){ $('#button-confirm-mochipay').prop('disabled', false); }, success: function(json){ if (json.error) alert(json.error); if (json.redirect) location = json.redirect; }, error: function(xhr){ alert(xhr.responseText || 'MochiPay request failed.'); }});
+});
+</script>
