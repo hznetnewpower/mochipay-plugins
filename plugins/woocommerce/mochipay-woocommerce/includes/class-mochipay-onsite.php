@@ -22,9 +22,9 @@ final class MochiPay_Onsite
         if (!is_checkout() && !isset($_GET['mochipay_pay'])) { return; }
         $gateway = self::gateway();
         if (!$gateway || ('onsite' !== $gateway->get_option('checkout_mode', 'onsite') && !isset($_GET['mochipay_pay']))) { return; }
-        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui76');
+        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui78');
         wp_enqueue_script('mochipay-qr', MOCHIPAY_WC_URL . 'assets/js/qrcode.min.js', array(), MOCHIPAY_WC_VERSION, true);
-        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui76', true);
+        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui78', true);
         wp_localize_script('mochipay-onsite', 'MochiPayOnsiteConfig', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mochipay_payment'),

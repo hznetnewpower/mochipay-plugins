@@ -1,6 +1,6 @@
 # PrestaShop 1.7 / 8 / 9 — public distribution
 
-Publication revision: **2026.10.07-publication.1**. This identifies packaging and documentation,
+Publication revision: **2026.10.07-multilanguages.1**. This identifies packaging and documentation,
 not a new payment protocol or a new native plugin version.
 
 ## Choose the correct environment

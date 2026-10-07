@@ -11,3 +11,7 @@
 .overlay .dialog>.close,.overlay .dialog>.mp-close{top:8px;right:8px;z-index:2}
 @media(max-width:600px){.overlay .dialog>.mp-dialog-scroll{padding:16px 10px}}
 @media(max-height:420px){.overlay .dialog{max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px)}}
+
+/* Multilanguages UI78: preserve value direction within RTL dialogs. */
+[data-mp-native-language][dir="rtl"]{direction:rtl;text-align:start;font-family:Tahoma,Arial,sans-serif}
+[data-mp-native-language] input,[data-mp-native-language] code,[data-mp-native-language] .mp-pay-amount,[data-mp-native-language] .mp-amount{direction:ltr;unicode-bidi:isolate}
