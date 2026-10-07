@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Setup guides
+    url: https://mochi.bz/IntegrationGuides.aspx
+    about: Read the platform-specific installation guide.
+  - name: Account and billing support
+    url: https://mochi.bz/Community.aspx
+    about: Keep account and billing details out of public issues.

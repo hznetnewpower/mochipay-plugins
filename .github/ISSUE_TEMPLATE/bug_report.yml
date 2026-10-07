@@ -1,0 +1,41 @@
+name: Plugin bug report
+description: Report a reproducible problem with a MochiPay store plugin.
+title: "[Plugin] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include API secrets, wallet recovery material, live payment URLs or buyer data. Report vulnerabilities privately using SECURITY.md."
+  - type: input
+    id: platform
+    attributes:
+      label: Store system and exact version
+      placeholder: "Example: EC-CUBE 4.3.0"
+    validations:
+      required: true
+  - type: input
+    id: php
+    attributes:
+      label: PHP and plugin version / publication revision
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Checkout mode
+      options: [ON_SITE, HPP, Both, Not applicable]
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Use a staging store and redact any private data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

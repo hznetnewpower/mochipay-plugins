@@ -1,0 +1,20 @@
+name: Integration request
+description: Suggest a store branch or a focused plugin improvement.
+title: "[Request] "
+body:
+  - type: input
+    id: platform
+    attributes:
+      label: Shopping platform and version
+    validations:
+      required: true
+  - type: textarea
+    id: need
+    attributes:
+      label: Merchant use case and proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reference
+    attributes:
+      label: Official platform documentation links
