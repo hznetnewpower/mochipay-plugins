@@ -1,9 +1,8 @@
 <?php
 /**
  * Plugin Name: MochiPay for WooCommerce
- * Plugin URI: https://mochi.bz/
  * Description: Accept direct-to-wallet cryptocurrency payments with on-site payment dialogs or MochiPay hosted checkout.
- * Version: 1.5.2
+ * Version: 1.5.7
  * Author: MochiPay
  * Author URI: https://mochi.bz/
  * Text Domain: mochipay-woocommerce
@@ -15,7 +14,7 @@
 
 defined('ABSPATH') || exit;
 
-define('MOCHIPAY_WC_VERSION', '1.5.2');
+define('MOCHIPAY_WC_VERSION', '1.5.7');
 define('MOCHIPAY_WC_FILE', __FILE__);
 define('MOCHIPAY_WC_PATH', plugin_dir_path(__FILE__));
 define('MOCHIPAY_WC_URL', plugin_dir_url(__FILE__));

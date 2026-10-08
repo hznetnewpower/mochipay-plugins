@@ -17,6 +17,9 @@ final class MochiPay_Onsite
         return isset($all['mochipay']) ? $all['mochipay'] : null;
     }
 
+    // These query flags only decide whether to enqueue local payment UI assets.
+    // They do not disclose order data or change order/payment state.
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended
     public static function enqueue()
     {
         if (!is_checkout() && !isset($_GET['mochipay_pay'])) { return; }
@@ -31,6 +34,8 @@ final class MochiPay_Onsite
         ));
     }
 
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
+
     private static function authorized_order($id, $key)
     {
         $order = wc_get_order(absint($id));
@@ -39,11 +44,15 @@ final class MochiPay_Onsite
         return $order;
     }
 
+    // Read-only payment links are authorized by the order ID + secret order key
+    // in authorized_order(). A WordPress user nonce would expire guest links.
+    // Status retrieval and settlement happen only in ajax(), which checks its nonce.
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended
     public static function payment_page()
     {
         if (!isset($_GET['mochipay_pay'])) { return; }
-        $key = isset($_GET['key']) ? wc_clean(wp_unslash($_GET['key'])) : '';
-        $order = self::authorized_order($_GET['mochipay_pay'], $key);
+        $key = isset($_GET['key']) && is_string($_GET['key']) ? sanitize_text_field(wp_unslash($_GET['key'])) : '';
+        $order = self::authorized_order(is_scalar($_GET['mochipay_pay']) ? absint(wp_unslash($_GET['mochipay_pay'])) : 0, $key);
         if (!$order) { wp_die(esc_html__('Invalid payment link.', 'mochipay-woocommerce'), '', array('response' => 403)); }
         if ($order->is_paid()) { wp_safe_redirect($order->get_checkout_order_received_url()); exit; }
         nocache_headers();
@@ -60,14 +69,16 @@ final class MochiPay_Onsite
         exit;
     }
 
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
+
     public static function ajax()
     {
         nocache_headers();
         if (!check_ajax_referer('mochipay_payment', 'nonce', false)) {
             wp_send_json_error(array('message' => 'Payment session expired. Reload the payment page.'), 403);
         }
-        $id = isset($_POST['order_id']) ? absint($_POST['order_id']) : 0;
-        $key = isset($_POST['key']) ? wc_clean(wp_unslash($_POST['key'])) : '';
+        $id = isset($_POST['order_id']) && is_scalar($_POST['order_id']) ? absint(wp_unslash($_POST['order_id'])) : 0;
+        $key = isset($_POST['key']) && is_string($_POST['key']) ? sanitize_text_field(wp_unslash($_POST['key'])) : '';
         $order = self::authorized_order($id, $key);
         if (!$order) { wp_send_json_error(array('message' => 'Invalid payment link.'), 403); }
         $gateway = self::gateway();

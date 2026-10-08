@@ -146,7 +146,7 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
     public function payment_fields()
     {
         if ($this->description) {
-            echo wpautop(wp_kses_post($this->description));
+            echo wp_kses_post(wpautop($this->description));
         }
 
         $options = $this->customer_payment_options();
@@ -300,6 +300,7 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
         $order->update_meta_data('_mochipay_payment_method', $payment_method);
         $order->update_meta_data('_mochipay_payment_snapshot', $result);
         $order->add_order_note(sprintf(
+            /* translators: 1: MochiPay order ID, 2: payment currency and network. */
             __('MochiPay payment created. MochiPay order: %1$s; payment method: %2$s', 'mochipay-woocommerce'),
             $system_order_id,
             $payment_method
@@ -401,6 +402,7 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
                     $transaction_id = isset($verified['tx_hash']) ? sanitize_text_field($verified['tx_hash']) : '';
                     $order->payment_complete($transaction_id);
                     $order->add_order_note(sprintf(
+                        /* translators: 1: MochiPay order ID, 2: blockchain transaction hash. */
                         __('MochiPay payment confirmed. MochiPay order: %1$s; transaction: %2$s', 'mochipay-woocommerce'),
                         $system_order_id,
                         $transaction_id ? $transaction_id : '—'
@@ -436,11 +438,18 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
     private function selected_payment_method()
     {
         $selected = '';
-        if (isset($_POST['mochipay_payment_method'])) {
-            $selected = strtoupper(trim((string) wc_clean(
+        // Reading the choice here also renders the form; this method does not change orders.
+        // Checkout/payment submission is authorized by WooCommerce (classic nonce,
+        // or Store API authentication) before it calls this gateway. Do not add a
+        // classic-only nonce here because Checkout Blocks has its own validation.
+        // phpcs:disable WordPress.Security.NonceVerification.Missing
+        if (isset($_POST['mochipay_payment_method']) && is_string($_POST['mochipay_payment_method'])) {
+            $selected = strtoupper(trim((string) sanitize_text_field(
                 wp_unslash($_POST['mochipay_payment_method'])
             )));
         }
+
+        // phpcs:enable WordPress.Security.NonceVerification.Missing
 
         if ('' === $selected && !empty($this->enabled_payment_methods)) {
             $selected = $this->enabled_payment_methods[0];
@@ -466,7 +475,11 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
             'source' => 'WOOCOMMERCE',
             'unique_amount_direction' => $this->unique_amount_direction,
             'product_type' => $this->order_product_type($order),
-            'description' => sprintf(__('WooCommerce order #%s', 'mochipay-woocommerce'), $order->get_order_number()),
+            'description' => sprintf(
+                /* translators: %s: WooCommerce order number. */
+                __('WooCommerce order #%s', 'mochipay-woocommerce'),
+                $order->get_order_number()
+            ),
             'product_info' => wp_json_encode($this->get_product_summary($order), JSON_UNESCAPED_SLASHES),
             'customer_email' => $order->get_billing_email(),
             'customer_phone' => $order->get_billing_phone(),
@@ -557,7 +570,7 @@ class WC_Gateway_MochiPay extends WC_Payment_Gateway
 
     private function api_request($path, $method, $body, $signing_text)
     {
-        if ('https' !== strtolower((string) parse_url($this->api_base_url, PHP_URL_SCHEME))) {
+        if ('https' !== strtolower((string) wp_parse_url($this->api_base_url, PHP_URL_SCHEME))) {
             return new WP_Error('mochipay_https', 'The MochiPay API URL must use HTTPS.');
         }
         $url = $this->api_base_url . $path;
