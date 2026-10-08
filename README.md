@@ -54,7 +54,8 @@ knowledge, or let an Agent create and query payment requests at runtime.
 | MCP Server | Exposes create_payment_request and get_payment_status to compatible stdio hosts | [Configure the tools](docs/DEVELOPER_RESOURCES.md#mcp-server) |
 
 **19 store plugin ZIPs + 10 developer resource ZIPs.** Download the matching
-archive from [Releases → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/latest).
+archive from the [full collection → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1).
+For WooCommerce, use the newer [Multilanguages 1.5.7 release](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7).
 The Skill provides instructions; MCP provides running tools. They are separate
 downloads and neither transfers cryptocurrency from a wallet. The report demo
 uses clearly marked sample content; connect your own AI service for real reports.
@@ -97,10 +98,12 @@ of payment.
 
 1. Create a [MochiPay account](https://mochi.bz/Register.aspx), activate a
    subscription and configure an active receiving wallet for each method offered.
-2. [Choose the correct plugin](docs/DOWNLOADS.md). Download its ZIP from
-   **Releases → Assets**, or from the official guide. Do not upload the entire
+2. [Choose the correct plugin](docs/DOWNLOADS.md). Download WooCommerce from
+   [Multilanguages 1.5.7 → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7),
+   or other plugins from the [full collection → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1).
+   Official guides also provide download links. Do not upload the entire
    GitHub source archive to your store.
-3. Follow the README inside the ZIP. Enter your API key and secret in the store
+3. Follow the README or readme.txt inside the ZIP. Enter your API key and secret in the store
    settings, enable MochiPay and choose your Unique amount direction preference.
 4. Complete any native payment/delivery/channel setup. Test ON_SITE, HPP and a
    real verified payment in staging before enabling live checkout.
@@ -133,11 +136,31 @@ monitoring service or merchant database.
 
 ## Current publication
 
-Revision **2026.10.07-developer-mobile.1** adds Node.js, Python, C# / .NET Framework
+WooCommerce Multilanguages **1.5.7** updates input validation, sanitization,
+output escaping, URL parsing and translation comments. It preserves all ten
+buyer languages, the existing mobile rounded-corner layout, ON_SITE/HPP modes,
+gateway settings and order mappings.
+
+[Download WooCommerce 1.5.7](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7)
+
+Upgrade the existing plugin in place; do not uninstall it. Installation and
+language instructions are now included in `readme.txt`. The original
+`mochipay-woocommerce` folder is retained for upgrades, so Plugin Check may
+still report a folder-name trademark warning.
+
+PHP 7.4 syntax and ZIP integrity checks passed. Verify checkout and payment
+confirmation on your store after upgrading.
+
+The full integration collection remains available in
+[2026.10.07-developer-mobile.1](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1):
+**19 native store ZIPs + 10 developer resource ZIPs**. Use the separate
+WooCommerce 1.5.7 release above instead of the older WooCommerce ZIP in that
+collection. Other packages are unchanged by this update.
+
+Revision **2026.10.07-developer-mobile.1** added Node.js, Python, C# / .NET Framework
 and Java backend demos, plus iOS Swift and Android Kotlin source projects.
-PHP API Demo **1.1.4** and AI Integration Skill **1.1.4** guide saved-request recovery
-and verified payment handling. Report Unlock Demo **1.0.2** and MCP Server **1.0.0**
-are unchanged. **19 native store ZIPs + 10 developer resource ZIPs** are available.
+PHP API Demo **1.1.4**, AI Integration Skill **1.1.4**, Report Unlock Demo
+**1.0.2** and MCP Server **1.0.0** retain their existing versions.
 
 Payment APIs, signatures and existing installed integrations remain compatible.
 ON_SITE and HPP reuse the same saved payment. Setup instructions stay English;
