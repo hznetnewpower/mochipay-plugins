@@ -31,14 +31,18 @@
       ],
       "buyer_ui_build": "78",
       "source_directory": "plugins/woocommerce",
-      "asset_name": "MochiPay_WooCommerce_1.5.2_Multilanguages.zip",
-      "publication_revision": "2026.10.07-multilanguages.1",
+      "asset_name": "MochiPay_WooCommerce_1.5.7_Multilanguages.zip",
+      "publication_revision": "woocommerce-v1.5.7",
       "license": "GPL-2.0-or-later",
       "original_sha256": "3d1396631bb668eea3a614aa74aa89eab61240d94393d2505199da673d42fc35",
       "original_download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip",
-      "install_document": "mochipay-woocommerce/INSTALL.md",
+      "install_document": "mochipay-woocommerce/readme.txt",
       "publication_document": "mochipay-woocommerce/PUBLICATION.md",
-      "source_files_preserved": 13
+      "source_files_preserved": 6,
+      "version": "1.5.7",
+      "release_url": "https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7",
+      "source_baseline_version": "1.5.2",
+      "original_download_note": "Historical website source baseline; use release_url for current GitHub v1.5.7."
     },
     {
       "name": "OpenCart 2.0\u20132.2",

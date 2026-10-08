@@ -1,7 +1,7 @@
 # Choose your store package
 
 Use **Releases → Assets** for the installable ZIPs. Download links below point
-to the selected GitHub release. Check SHA256SUMS.txt attached to that release.
+to the selected GitHub release. Use SHA256SUMS.txt where supplied by the selected release.
 
 Every branch has a separate archive. The PHP range must also be permitted by
 your exact store release; do not infer that every listed core supports every
@@ -11,7 +11,7 @@ PHP version in a broad branch range.
 
 | Package | Store compatibility | PHP environment | Installable ZIP | Setup |
 |---|---|---|---|---|
-| WooCommerce | WooCommerce 5.8 or later with the native gateway API | PHP 7.4–8.4 | [MochiPay_WooCommerce_1.5.2_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.07-multilanguages.1/MochiPay_WooCommerce_1.5.2_Multilanguages.zip) | [Instructions](../plugins/woocommerce/mochipay-woocommerce/INSTALL.md) · [Website guide](https://mochi.bz/Guides/GuideWooCommerce.aspx) |
+| WooCommerce | WooCommerce 5.8 or later with the native gateway API | PHP 7.4–8.4 | [MochiPay_WooCommerce_1.5.7_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/woocommerce-v1.5.7/MochiPay_WooCommerce_1.5.7_Multilanguages.zip) | [Instructions](../plugins/woocommerce/mochipay-woocommerce/readme.txt) · [Website guide](https://mochi.bz/Guides/GuideWooCommerce.aspx) |
 | OpenCart 2.0–2.2 | OpenCart 2.0.x-2.2.x | PHP 5.6–7.4; newer PHP needs core patches | [MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.07-multilanguages.1/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) | [Instructions](../plugins/opencart20/README.md) · [Website guide](https://mochi.bz/Guides/GuideOpenCart2.aspx) |
 | OpenCart 2.3 | OpenCart 2.3.x | PHP 5.6–7.4; newer PHP needs core patches | [MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.07-multilanguages.1/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) | [Instructions](../plugins/opencart23/README.md) · [Website guide](https://mochi.bz/Guides/GuideOpenCart23.aspx) |
 | OpenCart 3 | OpenCart 3.0.x | PHP 5.6–8.4; exact core/dependency requirements apply | [MochiPay_OpenCart_3_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.07-multilanguages.1/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) | [Instructions](../plugins/opencart3/README.md) · [Website guide](https://mochi.bz/Guides/GuideOpenCart3.aspx) |

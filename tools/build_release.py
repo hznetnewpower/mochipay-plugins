@@ -38,19 +38,32 @@ def load_catalog():
 
 def verify_baseline():
     baseline = json.loads(FROZEN.read_text(encoding="utf-8"))
+    review_path = ROOT / "tools/reviewed-source-changes.json"
+    reviewed = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
+    if set(reviewed) - set(baseline):
+        raise ValueError("Reviewed source entry is absent from the original baseline.")
     for relative, expected in baseline.items():
         parts = PurePosixPath(relative).parts
         if ".." in parts or not relative.startswith("plugins/"):
             raise ValueError("Invalid original-file path.")
         path = ROOT / relative
+        change = reviewed.get(relative)
+        if change:
+            if change.get("original_sha256") != expected:
+                raise ValueError("Reviewed source baseline mismatch: " + relative)
+            if change.get("removed"):
+                if path.exists() or path.is_symlink():
+                    raise ValueError("Removed documentation unexpectedly exists: " + relative)
+                continue
+            expected = change["published_sha256"]
         if path.is_symlink() or not path.is_file() or sha(path.read_bytes()) != expected:
-            raise ValueError("Original file changed or missing: " + relative)
+            raise ValueError("Original/reviewed file changed or missing: " + relative)
     metadata = json.loads((ROOT / "tools/publication-metadata-changes.json").read_text(encoding="utf-8"))
     for relative, approved in metadata.items():
         path = ROOT / relative
         if path.is_symlink() or not path.is_file() or sha(path.read_bytes()) != approved["published_sha256"]:
             raise ValueError("Reviewed publication metadata changed: " + relative)
-    return len(baseline)
+    return len(baseline) - len(reviewed)
 
 
 def package_files(package):

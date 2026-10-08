@@ -1,5 +1,14 @@
 # Changelog
 
+## WooCommerce Multilanguages 1.5.7
+
+- Improved checkout input filtering, final HTML escaping, URL parsing and translator comments.
+- Preserved ten languages, mobile rounded corners, on-site defaults and saved order mappings.
+- Consolidated installation/language instructions in readme.txt.
+- Updated WooCommerce download/catalogue paths and aligned repository CSS with the released installation package.
+- Recorded reviewed source changes so packaging checks distinguish updates from original baseline files.
+
+
 ## 2026.10.07-developer-mobile.1
 
 - Four complete backend demos, two native mobile source projects, PHP1.1.4 and Skill1.1.4.

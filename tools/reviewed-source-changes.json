@@ -1,0 +1,37 @@
+{
+  "plugins/woocommerce/mochipay-woocommerce/INSTALL.md": {
+    "original_sha256": "a408a4280ff5eb38993851dc4cbda3843e9286f9a67abb408aa08fa6ee58ade3",
+    "removed": true,
+    "reason": "Documentation consolidated into readme.txt in v1.5.7."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/assets/css/onsite.css": {
+    "original_sha256": "ba649def2229a3be7d0582bfafd546ffa582cb8815723fc48423b3a48e87e13b",
+    "published_sha256": "82b0e5d6ce43e7cc066f8cf33be1d9ffd6b0032bb7a0445ffdb5307565c35b65",
+    "reason": "Reviewed WooCommerce Multilanguages v1.5.7 update."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/includes/class-mochipay-onsite.php": {
+    "original_sha256": "3b54a26dcf67936d38de0d914715292a0133cffad87f84a0625b900029577f92",
+    "published_sha256": "f7ab4d6d38467a6e4a62924a5933e60e3fc6e75c87bcefe6a51295eb75b7027d",
+    "reason": "Reviewed WooCommerce Multilanguages v1.5.7 update."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/includes/class-wc-gateway-mochipay.php": {
+    "original_sha256": "bb05ad58b3c1ccd6a0245582cac43ee75e2c1f833eee9ce5203253c7b65d8fd1",
+    "published_sha256": "b7db11fa35876a6037cf97b4f6626ff1496a22a5832532b2e6d55c0ae66dc7fa",
+    "reason": "Reviewed WooCommerce Multilanguages v1.5.7 update."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/mochipay-woocommerce.php": {
+    "original_sha256": "daf190799f83f7192900efe359b7d2b142a3397ccb10933000bfefd5dc9e907e",
+    "published_sha256": "eb135f433024d92dc7252883f56c1d9243ea0d18e61275d6bbca864d3cd8186b",
+    "reason": "Reviewed WooCommerce Multilanguages v1.5.7 update."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/readme.txt": {
+    "original_sha256": "d9d1b1033b9b55e0837c8dfd9d5882802520523d219ab0c59dae05574b616e8b",
+    "published_sha256": "df1137308d18377044317ff25bd7cb713d950f03d2dce349bb77e987e75ac208",
+    "reason": "Reviewed WooCommerce Multilanguages v1.5.7 update."
+  },
+  "plugins/woocommerce/mochipay-woocommerce/MULTILANGUAGES.md": {
+    "original_sha256": "cc6e21ed9c67bc0138ee74bb90e2538733d7073bcabd63828dbd8d85d89e30ff",
+    "removed": true,
+    "reason": "Documentation consolidated into readme.txt in v1.5.7."
+  }
+}

@@ -1,65 +1,22 @@
-# WooCommerce — public distribution
+# WooCommerce 1.5.7 — public distribution
 
-Publication revision: **2026.10.07-multilanguages.1**. This identifies packaging and documentation,
-not a new payment protocol or a new native plugin version.
+This release updates validation, sanitization, final output escaping, URL parsing and translation comments. Payment API contracts and saved settings remain compatible.
 
-## Choose the correct environment
+- WooCommerce 5.8 or later with the native gateway API; PHP 7.4–8.4, subject to the exact store/dependency requirements.
+- ON_SITE and HPP are available; ON_SITE is the default for new installations.
+- Buyer languages: English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian and Arabic. Browser preferences initialize the language, with English fallback; an explicit buyer choice takes priority.
+- Merchant settings and setup instructions remain English.
 
-| Setting | Supported environment |
-|---|---|
-| Store | WooCommerce 5.8 or later with the native gateway API |
-| PHP | PHP 7.4–8.4 |
-| Checkout modes | ON_SITE and HPP; ON_SITE is the default |
-| Merchant settings and installation instructions | English |
-| Buyer payment interface | English (default), Chinese, Spanish, Brazilian Portuguese, French, German |
+## Install or upgrade
 
-Use a PHP version permitted by both the plugin and the exact installed store
-release, including its dependency lock and patches. The plugin does not upgrade
-the store's PHP compatibility. Choose buyer language manually; this distribution
-does not add automatic store-language detection.
+Read `mochipay-woocommerce/readme.txt`. The installation and language documents are consolidated there. Update the existing folder in place and preserve settings and historical order mappings; do not uninstall first or activate both website and WordPress.org builds together.
 
-## Installation
+Download: https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7
 
-Follow the original platform-specific instructions inside this ZIP:
+Guide: https://mochi.bz/Guides/GuideWooCommerce.aspx
 
-- `mochipay-woocommerce/INSTALL.md`
-- `mochipay-woocommerce/readme.txt`
+The original folder name is retained for upgrades, so Plugin Check may report a folder-name trademark warning. GitHub's whole-repository ZIP is not an installable plugin ZIP.
 
-Full setup guide: https://mochi.bz/Guides/GuideWooCommerce.aspx
+## Verification scope
 
-Download the platform ZIP attached to a GitHub Release, or the current package
-on https://mochi.bz/Developers/Reference.aspx#plugins. GitHub's automatic whole-repository
-"Source code (zip)" is not an installable store plugin.
-For OpenCart 4, follow the original guide's filename instruction: save the
-selected package as `mochipay.ocmod.zip` before installing so its extension
-directory matches the native `mochipay` routes.
-
-## Ready-made defaults
-
-- MochiPay URL: `https://mochi.bz`.
-- Checkout: `ON_SITE`; `HPP` is also available.
-- Unique amount direction: `UP`; choose `DOWN` if preferred.
-- All five choices selected: USDT/TRC20, USDC/ERC20, BTC/Bitcoin,
-  ETH/Ethereum and SOL/Solana.
-- The gateway starts disabled. Enter the merchant API credentials, enable it
-  and save. Offer only methods with a matching active receiving wallet.
-- Native payment method, delivery and channel restrictions still apply.
-
-## Existing installations
-
-This revision adds publication documents and missing license text, and removes
-bundled validation screenshots. Retained plugin files are byte-identical to the
-current website distribution. There is no new payment logic, callback format,
-API signature, language behavior or PHP requirement. Existing merchants do not
-need to reinstall for this publication revision. If updating files, preserve
-credentials, settings and historical payment mappings; do not uninstall first.
-
-## Before accepting live payments
-
-Verify installation, both checkout modes, callbacks and a real paid order in
-your own staging store. Source and simulated checks do not certify every native
-store, custom theme or live blockchain payment. No "tested store versions"
-badge is claimed by this publication revision.
-
-Never expose API secrets in a public issue or in browser code. For a payment
-problem, check the server-side verified status rather than trusting a return URL.
+PHP 7.4 syntax and archive integrity were checked. Existing nonce, order-key and authenticated payment verification are preserved. CSS matches the supplied Multilanguages 1.5.7 installation package. Store/theme compatibility, ON_SITE/HPP behavior and real verified payments still need staging acceptance. Earlier validation reports describe their baseline only.

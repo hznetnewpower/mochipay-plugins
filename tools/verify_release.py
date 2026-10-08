@@ -65,6 +65,7 @@ def main():
               "developer_resource_packages": 10, "developer_original_files_byte_identical": developer_originals,
               "retained_original_files_byte_identical": originals,
               "reviewed_metadata_only_changes": 2,
+              "reviewed_source_changes": len(json.loads((ROOT / "tools/reviewed-source-changes.json").read_text(encoding="utf-8"))) if (ROOT / "tools/reviewed-source-changes.json").exists() else 0,
               "archive_entries_verified": total_files + developer_originals, "runtime_or_metadata_files": runtime_count,
               "all_crc_checks": "PASS", "native_layouts": "PASS", "source_archive_parity": "PASS",
               "secret_pattern_scan": "No matching embedded credentials; heuristic only",
