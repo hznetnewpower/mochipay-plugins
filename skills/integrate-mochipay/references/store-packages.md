@@ -14,7 +14,7 @@ Plugin PHP envelope: PHP 7.4–8.4.
 | --- | --- |
 | WooCommerce + WordPress | 7.4-8.4 within both core releases' requirements |
 
-[Download](https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideWooCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.14_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideWooCommerce.aspx)
 
 ## OpenCart 2.0–2.2 (`opencart20`)
 
@@ -168,7 +168,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
 | --- | --- |
 | Shopware >=6.6.10.0 <6.7.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
 
 ## Shopware 6.7 (`shopware67`)
 
@@ -180,7 +180,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
 | --- | --- |
 | Shopware >=6.7.0.0 <6.8.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
 
 ## Drupal Commerce (`drupal`)
 
@@ -194,7 +194,7 @@ Plugin PHP envelope: Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; 
 | Commerce 2.40.x / Drupal 10.x; Commerce 3.3.10+ <3.4 / Drupal 10.3+ | 8.1–8.3; later Drupal 10 releases may require 8.3 |
 | Commerce 3.3.10+ <3.4 / Drupal 11.x | 8.3–8.4 only where allowed by the exact core/dependency lock |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideDrupalCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideDrupalCommerce.aspx)
 
 ## EC-CUBE 4.3 (`eccube`)
 
@@ -206,7 +206,7 @@ Plugin PHP envelope: PHP 8.1.x / 8.2.x / 8.3.x.
 | --- | --- |
 | EC-CUBE >=4.3.0 <4.4.0 | PHP 8.1.x / 8.2.x / 8.3.x |
 
-[Download](https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideECCube.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideECCube.aspx)
 
 ## Bagisto 2.3 (`bagisto`)
 
@@ -218,7 +218,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependenc
 | --- | --- |
 | Bagisto >=2.3.0 <2.4.0 | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideBagisto.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideBagisto.aspx)
 
 ## Sylius 2.0 (`sylius`)
 
@@ -230,7 +230,7 @@ Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependenc
 | --- | --- |
 | Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
 
-[Download](https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideSylius.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideSylius.aspx)
 
 ## osCommerce 4.14 (`oscommerce`)
 
@@ -242,7 +242,7 @@ Plugin PHP envelope: PHP 7.4.x–8.3.x, subject to the installed osCommerce rele
 | --- | --- |
 | osCommerce 4.14.x; native V4 orderPayment module API | PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock |
 
-[Download](https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideOsCommerce.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideOsCommerce.aspx)
 
 ## thirty bees 1.6 (`thirtybees`)
 
@@ -254,7 +254,7 @@ Plugin PHP envelope: PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching
 | --- | --- |
 | thirty bees >=1.6.0 <1.7.0 | PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution |
 
-[Download](https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.0_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideThirtyBees.aspx)
+[Download](https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideThirtyBees.aspx)
 
 New adapters require MochiPay Web65+ for optional request_id deduplication. Do not install both Shopware branches. osCommerce means V4.14, not 2.x/3.x; EC-CUBE means 4.3 with JPY; Sylius means 2.0 with its native Payum checkout. Read each package README for native installation, database and channel constraints. Treat source/interface/simulated checks as distinct from full native-store installation or paid acceptance. Keep existing customer plugins and API programs working unchanged.
 
@@ -270,4 +270,10 @@ Update native packages in place, preserve settings and historical order mappings
 
 Classic SaaS: Shopyy / Shopoem (shared guide), Shoplus, Wooshoppaas and Fecify use HPP only. Read their guides from https://mochi.bz/IntegrationGuides.aspx. Dashboard payment links also use HPP; a link alone does not synchronize an external store order. Custom applications and the PHP Demo offer both ON_SITE and HPP.
 
-Current native downloads include one English-default buyer frontend with a manual selector for English, Chinese, Spanish, Brazilian Portuguese, French and German. Gateway settings and installation instructions stay English. No automatic store-language forwarding is required. The current catalog supersedes older download URLs; no old package or redirect is published. Existing installed gateways still work.
+Current native downloads include one English-default buyer frontend with a manual selector for English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian, Arabic, Japanese, Korean, Italian, Turkish and Indonesian. Gateway settings and installation instructions stay English. No automatic store-language forwarding is required. The current catalog supersedes older download URLs; no old package or redirect is published. Existing installed gateways still work.
+
+Install WEB82.6 or newer before these independent-attempt adapters; WEB82.7 adds HPP cancel/return. See payment-recovery.md. Current native release: WooCommerce1.5.14; eight modern branches1.0.6; OpenCart/PrestaShop/Magento branches1.2.0; Zen Cart branches1.2.0; nineteen packages across twelve families.
+
+## WooCommerce1.5.14 packaging repair
+
+Use the mochipay-for-woocommerce root and matching text domain. Deactivate the former mochipay-woocommerce build before installing/activating this package; never uninstall to upgrade. Gateway ID, settings/order-meta and attempt-option keys remain unchanged. Setup documents are TXT. Requests keep minimum30-second connection/response budgets through WordPress hooks, with no direct cURL calls. Separate English WordPress.org distribution is1.5.8. Run live Plugin Check; offline source checks are not directory approval.

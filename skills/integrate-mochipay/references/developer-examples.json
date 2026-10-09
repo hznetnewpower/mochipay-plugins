@@ -1,91 +1,98 @@
 {
-  "website_release": "Web80",
-  "documentation_url": "https://mochi.bz/Developers/Examples.aspx",
-  "notification_url": "https://mochi.bz/Developers/ReturnsNotifications.aspx",
+  "website_release": "WEB82.7",
+  "documentation_url": "https://mochi.bz/Developers/Reference.aspx#code-examples",
+  "notification_url": "https://mochi.bz/Developers/Reference.aspx#returns-notifications",
   "resources": [
     {
       "id": "php",
       "name": "PHP",
-      "runtime": "7.0\u20138.4",
-      "download": "https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.4_Multilanguages_Onsite_HPP.zip",
+      "runtime": "7.0–8.4",
+      "download": "https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.0_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Original PHP routes: order.php, checkout.php and callback.php"
+      "notes": "Original PHP routes: order.php, checkout.php and callback.php",
+      "sha256": "a6082e7162d96a72db47971f6e0fb6fac9f89066e2c1e86cfbaf17dfe3828a4f"
     },
     {
       "id": "nodejs",
       "name": "Node.js",
       "runtime": "22+",
-      "download": "https://mochi.bz/Downloads/MochiPay_NodeJS_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_NodeJS_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Common mobile/backend routes"
+      "notes": "Common mobile/backend routes",
+      "sha256": "c0eb99df1e8e3d8698540044590ce117503c4db08d205552e263688846234388"
     },
     {
       "id": "python",
       "name": "Python",
       "runtime": "3.10+",
-      "download": "https://mochi.bz/Downloads/MochiPay_Python_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Python_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Common mobile/backend routes"
+      "notes": "Common mobile/backend routes",
+      "sha256": "12381c32695e6fc14bfe59e739889d0c239df8f43192c11b075e51e52e4d4516"
     },
     {
       "id": "dotnet",
       "name": "C# / .NET Framework",
       "runtime": "4.6.1 / VS2019",
-      "download": "https://mochi.bz/Downloads/MochiPay_DotNet_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_DotNet_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Common mobile/backend routes"
+      "notes": "Common mobile/backend routes",
+      "sha256": "7cf05e6cc9afaff080daabe913d2c1331f8e2332c0d9822e3b4f6f2513333a3c"
     },
     {
       "id": "java",
       "name": "Java",
       "runtime": "JDK17+",
-      "download": "https://mochi.bz/Downloads/MochiPay_Java_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Java_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Common mobile/backend routes"
+      "notes": "Common mobile/backend routes",
+      "sha256": "0b33a20ba373c318cd44c30eb5c6bc859042b5408899438c08d6bee1f5a1f00d"
     },
     {
       "id": "ios",
       "name": "iOS Swift",
       "runtime": "iOS15+ / Xcode14+",
-      "download": "https://mochi.bz/Downloads/MochiPay_iOS_Swift_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_iOS_Swift_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Use one common backend; source project only"
+      "notes": "Use one common backend; source project only",
+      "sha256": "74fa2491ea6dc5b0f888f0bd09fa3cf337e190efbd812a4e6830ffeb75afb976"
     },
     {
       "id": "android",
       "name": "Android Kotlin",
       "runtime": "API26+ / SDK35 / JDK17",
-      "download": "https://mochi.bz/Downloads/MochiPay_Android_Kotlin_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Android_Kotlin_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
       "default_mode": "ON_SITE",
-      "notes": "Use one common backend; source project only"
+      "notes": "Use one common backend; source project only",
+      "sha256": "7f2a71994e0e8b48a3e7b90d3b6e9df997daa162118d77e361e29a3fe4bd881c"
     }
   ]
 }

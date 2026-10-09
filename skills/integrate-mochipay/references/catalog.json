@@ -1,14 +1,15 @@
 {
-  "release": "1.1.3",
-  "snapshot": "2026-10-06",
+  "website_release": "WEB82.7",
+  "store_families": 12,
+  "independent_packages": 19,
   "packages": [
     {
       "name": "WooCommerce",
       "core": "WooCommerce 5.8 or later with the native gateway API",
       "php": "PHP 7.4–8.4",
-      "download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.2_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.14_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideWooCommerce.aspx",
-      "sha256": "3d1396631bb668eea3a614aa74aa89eab61240d94393d2505199da673d42fc35",
+      "sha256": "3bbfa81842f3b73179ebb96c0d2751750d70fc53538ed3b9dc6498427cd514fe",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -28,9 +29,21 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "version": "1.5.14",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7",
+      "plugin_directory": "mochipay-for-woocommerce",
+      "upgrade_note": "Deactivate the former mochipay-woocommerce build before activating this root; do not uninstall. Gateway ID/settings/order/attempt keys unchanged."
     },
     {
       "name": "OpenCart 2.0–2.2",
@@ -38,7 +51,7 @@
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart2.aspx",
-      "sha256": "3093f79275501a354ceae08baea251cd27ceaa6289af186d1e94b2ee8e59a669",
+      "sha256": "aeebe10d9c318e887ab4ac434bf9a37955c3d780ccfd41c0fb8926afbfe5f60f",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -58,9 +71,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "OpenCart 2.3",
@@ -68,7 +91,7 @@
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart23.aspx",
-      "sha256": "c85c01bf824b74b694da2871fac24053b273aafad0402d7fbe369d90a6fdffd8",
+      "sha256": "3e47ed1ea2d4321e90a7634fb2804ea082939767b2395bc30072e17c04a82013",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -88,9 +111,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "OpenCart 3",
@@ -98,7 +131,7 @@
       "php": "PHP 5.6–8.4; exact core/dependency requirements apply",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart3.aspx",
-      "sha256": "b823ab19c8163dd41eef8be427951bf629d1ca8639d37a46d7105b7ec248d4be",
+      "sha256": "7b98fd66b8cd9f6532f2ab243a0f21d3ce8183f4601babb75d09d19bb0764d2e",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -118,9 +151,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "OpenCart 4",
@@ -128,7 +171,7 @@
       "php": "PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+",
       "download": "https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart4.aspx",
-      "sha256": "9de969dbbfb8a264f2e9069cd571ea4b1b9128767ec55f69705e90f784489121",
+      "sha256": "77a14897306f3cda9a022c27948aa4426cee4bca03e4d6edd9c76c31216e12d7",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -148,9 +191,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Zen Cart 1.5.3–1.5.7",
@@ -158,7 +211,7 @@
       "php": "PHP 5.6–8.0, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideZenCartLegacy.aspx",
-      "sha256": "4ec76149ecd37d41da22fa74a2a2805976001599aeb7bccd0d04bfbf5824895b",
+      "sha256": "252bde4cc15b3f7f445ce9383a5914d85a4b6c55b127b24baa3b1e9c38d0a56f",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -178,9 +231,21 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.6",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7",
+      "payment_attempt_policy": "independent-per-checkout",
+      "recovery_contract": "request-id-v1"
     },
     {
       "name": "Zen Cart 1.5.8–2.2",
@@ -188,7 +253,7 @@
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideZenCart.aspx",
-      "sha256": "4f954c58d94553550886dc52be3b41bea5ab4c20ac028f5abf9451bcce66a634",
+      "sha256": "e98daebf2580a4b02c51998fc9e3dedef224965c1be6cbedf4bc907ba6aa6834",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -208,9 +273,21 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.6",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7",
+      "payment_attempt_policy": "independent-per-checkout",
+      "recovery_contract": "request-id-v1"
     },
     {
       "name": "Magento 1 / OpenMage",
@@ -218,7 +295,7 @@
       "php": "PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideMagento1.aspx",
-      "sha256": "febb6a18f3a3ea95a21d9d28cf67f050f3865206789d3c5def9e5b74a8c747f0",
+      "sha256": "a290c4a057c820844ebcce401fcffcdfe446ecffffeb8a0c081aaee4eefcc841",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -238,9 +315,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Magento 2",
@@ -248,7 +335,7 @@
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideMagento2.aspx",
-      "sha256": "352b32e3df2b3c0cab0966b9f8ad463884df4346ff6b06b8aa89840145519261",
+      "sha256": "87ca12509036ee7337971b2d10efc7627749c3bd4a66962442eef63b6acd0550",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -268,9 +355,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "PrestaShop 1.6",
@@ -278,7 +375,7 @@
       "php": "PHP 5.6–7.1",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuidePrestaShop16.aspx",
-      "sha256": "4edd95f3e1cb4c1fbd22f400e98e23bc845ea570ef5c7b5b7a38267e60ed8756",
+      "sha256": "c66f1cbdd75c5f013c7e9c7db7b486befc3bcc432c61b34dd9c2ebf89c0f740a",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -298,9 +395,19 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "PrestaShop 1.7 / 8 / 9",
@@ -308,7 +415,7 @@
       "php": "PHP 5.6–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuidePrestaShop.aspx",
-      "sha256": "18ff1ee2624760d19121ed6fc9559b5843fc64abfe6174b7a83789597073f950",
+      "sha256": "b3b4b985815b1eca4406bdb93db8bdf97cfa5e880d8314d9438830845fc2c59e",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -328,17 +435,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "query_transport_build": "82.4",
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Shopware 6.6",
       "core": "Shopware >=6.6.10.0 <6.7.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
-      "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
-      "sha256": "ebd8c90fcbdbd4f3132576214971a6cbfd55929f8b06c04ab0a5057f5a5f307f",
+      "sha256": "7c74adbdaf47c038dc4c714f98a8aa6260e717f5bd9a994f82318e541d196bdc",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -358,17 +475,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Shopware 6.7",
       "core": "Shopware >=6.7.0.0 <6.8.0.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
-      "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
-      "sha256": "16d5848a21bfa725fb08c80fd6a9764ef80df37c41f50382dc805885ff04b29e",
+      "sha256": "9f115cf5384eaab2c8137fe6c1ca372c09cd6fa145516408a716cfb7a83a999e",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -388,17 +515,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Drupal Commerce",
       "core": "Commerce 2.40.x with Drupal 9.3–10.x; or Commerce 3.3.10+ <3.4 with Drupal 10.3–11.x",
       "php": "Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; Drupal 11: PHP 8.3–8.4, only when allowed by the exact Drupal release",
-      "download": "https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideDrupalCommerce.aspx",
-      "sha256": "39f3cdd36605b040c9e17033a013e4540e8fb4a49a874f8b16e34ff04d33eeb7",
+      "sha256": "78a3f7da15c26204cde5f042de0aeb9178aea4553ff7f4b3272beb03fb1bd9fa",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -418,17 +555,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "EC-CUBE 4.3",
       "core": "EC-CUBE >=4.3.0 <4.4.0",
       "php": "PHP 8.1.x / 8.2.x / 8.3.x",
-      "download": "https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideECCube.aspx",
-      "sha256": "8b9ef7b02ad2e789e6147a81f4369d48d906549438676646bd462ee9652a8946",
+      "sha256": "b41513d8edcc206223a239f78ee044d2384f800d3ec232523fcec4dd5ebf3317",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -448,17 +595,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Bagisto 2.3",
       "core": "Bagisto >=2.3.0 <2.4.0",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
-      "download": "https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideBagisto.aspx",
-      "sha256": "f093d65b0cdb54b3d84f7620c00346344372b683efa3bddc9ff6ba24bdab2075",
+      "sha256": "dd82bde193b2141fd741fd3bb426186207c5e1f2203ac616ce9566fdb108c846",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -478,17 +635,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "Sylius 2.0",
       "core": "Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core",
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
-      "download": "https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideSylius.aspx",
-      "sha256": "4306487401bbf86027be0a6709844c25fbdda90d5bd183a5e74944ce9e9e1c2c",
+      "sha256": "78a4f7c391adcbe1a1f87e6e8ec2addda14316a293bc535ae95b62f25a469b3d",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -508,17 +675,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "osCommerce 4.14",
       "core": "osCommerce 4.14.x; native V4 orderPayment module API",
       "php": "PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock",
-      "download": "https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideOsCommerce.aspx",
-      "sha256": "c58b9bf6a5a3c15de003f52bfb26dc066c15c3d6128a900252ff7565e80082ac",
+      "sha256": "f239420f19c1fc077b6428848b574629bb2d45f39d9569870c112bc0a5cf4888",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -538,17 +715,27 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     },
     {
       "name": "thirty bees 1.6",
       "core": "thirty bees >=1.6.0 <1.7.0",
       "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",
-      "download": "https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.0_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideThirtyBees.aspx",
-      "sha256": "126d6a2b3398573bb2633b7a29797414007088f51537849c560138d002b937c9",
+      "sha256": "c6349764232d539206f3b5ddd0f22614e9f8a6799401f5705e4e7d6d87182362",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -568,9 +755,47 @@
         "nl",
         "fa",
         "ru",
-        "ar"
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
       ],
-      "buyer_ui_build": "78"
+      "buyer_ui_build": "82.1",
+      "payment_recovery_release": "WEB82.3",
+      "minimum_recovery_server": "WEB82.6",
+      "version": "1.0.6",
+      "query_transport_build": "82.4",
+      "integration_fix_release": "WEB82.7"
     }
-  ]
+  ],
+  "buyer_languages": [
+    "en",
+    "zh",
+    "es",
+    "pt-br",
+    "fr",
+    "de",
+    "nl",
+    "fa",
+    "ru",
+    "ar",
+    "ja",
+    "ko",
+    "it",
+    "tr",
+    "id"
+  ],
+  "buyer_ui_build": "82.1",
+  "packaging_revision": "WEB82.6",
+  "packaging_fix": "WEB82.6 reference-independent creation and authenticated request lookup; Zen Cart1.2.0 independent token records and query-cache bypass. Prior WEB82.5 repairs retained.",
+  "recovery_contract": "request-id-v1",
+  "minimum_recovery_server": "WEB82.6",
+  "query_transport_build": "82.4",
+  "query_timeout_seconds": 30,
+  "query_failure_threshold": 3,
+  "integration_fix_release": "WEB82.6",
+  "payment_creation_policy": "merchant_order_id-may-repeat; request_id-only-retry",
+  "rollout_scope": "All native store branches; independent explicit checkout, immutable transport request ID."
 }

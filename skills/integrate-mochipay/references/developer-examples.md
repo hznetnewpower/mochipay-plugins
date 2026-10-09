@@ -1,6 +1,6 @@
 # Backend and mobile selection
 
-Read the pinned downloads in developer-examples.json; full guide: https://mochi.bz/Developers/Examples.aspx. Keep the merchant's existing stack. PHP supports7.0–8.4; Node22+, Python3.10+, .NETFramework4.6.1/VS2019 and Java17+ have independent packages. Swift/iOS15+ and Kotlin/AndroidAPI26+ are separate native source demos, not payment SDKs. Do not offer HarmonyOS/Flutter support that has not been implemented.
+Read the pinned downloads in developer-examples.json; full guide: https://mochi.bz/Developers/Reference.aspx#code-examples. Keep the merchant's existing stack. PHP supports7.0–8.4; Node22+, Python3.10+, .NETFramework4.6.1/VS2019 and Java17+ have independent packages. Swift/iOS15+ and Kotlin/AndroidAPI26+ are separate native source demos, not payment SDKs. Do not offer HarmonyOS/Flutter support that has not been implemented.
 
 ## Backend implementation
 

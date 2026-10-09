@@ -1,6 +1,6 @@
 # HPP returns and ON_SITE/HPP asynchronous processing
 
-Full reference: https://mochi.bz/Developers/ReturnsNotifications.aspx. Distinguish the three entry points and use the same verified update routine.
+Full reference: https://mochi.bz/Developers/Reference.aspx#returns-notifications. Distinguish the three entry points and use the same verified update routine.
 
 | Entry | Transport | Purpose |
 |---|---|---|
@@ -15,3 +15,7 @@ In the new backend demos, create() builds notify_url=/callback?r=...&t=... and r
 The PHP demo uses callback.php POST for notify_url and GET for redirect_url, and order.php polling. New1.1.4 attempts add stable request_id and a return capability, while legacy saved attempts retain query-first recovery. mochipay_record_verified() records the same once-only paid marker under a file lock. Replace the TODO with the merchant application's transaction; do not label the staging marker as real fulfillment.
 
 HPP browser returns may precede confirmations or fail to occur. Display waiting and let verified asynchronous updates/polls resolve it. ON_SITE popup closure does not cancel an order or notifications. A delayed callback does not authorize creating another payment or rounding the exact amount. Do not alter MochiPay's existing API or require native-plugin customers to upgrade for documentation/demo changes.
+
+## Saved HPP cancel destination (WEB82.7)
+
+The HPP page exposes a cancel/merchant-return link only for a validated saved HTTP(S) destination. Pending Classic SaaS uses cancel_return_url when present; a paid return uses redirect_url. A cancellation marker is navigation context, never proof of an order state. Bind every returned token/system ID to the original attempt, including older links for a repeated merchant order. Queries and authenticated callbacks continue verifying the exact saved invoice.
