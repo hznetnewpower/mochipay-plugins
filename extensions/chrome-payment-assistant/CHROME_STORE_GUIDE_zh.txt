@@ -1,0 +1,74 @@
+MochiPay Chrome 收款助手 1.0.3 上架步骤
+
+先完成部署和测试，再提交审核。这个包并不代表已经通过 Google 审核。
+
+一、先升级网站
+按完整网站包 START_HERE_zh.txt 操作：备份 → 执行 18_Upgrade_BrowserAssistant.sql → VS2019 重新生成 WEB → 发布 DLL 1.0.80.5 和网站文件。
+Monitor14 不用改。站点必须是 https://mochi.bz；插件第一版固定只连接这个官方域名。
+执行 ChromeExtension/ACCEPTANCE.md 中的实际验收，特别是连接、撤销、重试与金额。
+
+二、先自己装插件
+解压 MochiPay_Chrome_Payment_Assistant_1.0.3.zip 到固定文件夹。
+打开 chrome://extensions → 开启“开发者模式” →“加载已解压的扩展程序”。
+选择包含 manifest.json 的文件夹，不是完整网站文件夹。
+点插件“获取连接码”：保留一个插件连接标签页，再打开商户后台。生成并复制连接码，切回保留的插件标签页，粘贴后点“连接”。
+旧版更新：将新 ZIP 内容覆盖原来加载的固定扩展文件夹，在 chrome://extensions 点 MochiPay 的重新加载按钮；不要卸载重装。确认显示 1.0.3。
+
+三、开通商店开发者
+打开 https://chrome.google.com/webstore/devconsole
+使用你要长期维护插件的 Google 账户登录。
+按页面要求注册开发者、支付一次性注册费用，并完成邮件、身份或两步验证等页面要求。
+无需把 Google 密码发给我；你自行登录即可。
+
+四、上传
+点击 Add new item / New item。
+只上传 MochiPay_Chrome_Payment_Assistant_1.0.3.zip。
+不能上传完整网站源码包；不能上传外层 Store_Submission_Kit.zip。
+正确的插件 ZIP 根目录直接有 manifest.json。
+
+五、填写商店资料
+名称和短描述来自插件 manifest；长描述复制 STORE_LISTING_EN.txt。
+Website、Support、Privacy policy URL 也复制该文件里的对应地址；先确认这三个网页已上线可访问。
+分类优先选 Productivity，实际名称以当前后台为准。
+语言选英语作为主要说明语言，插件本身已有十种界面语言。
+图标：store-assets/store-icon-128.png
+宣传小图：store-assets/promo-small-440x280.png
+截图：store-assets/01-create-payment-1280x800.png、02-share-link-qr-1280x800.png、03-recent-orders-1280x800.png。
+这些截图来自真实界面＋明确标注的模拟数据，不是实款案例。
+
+六、填写 Privacy practices
+逐栏复制 PRIVACY_FIELDS_EN.txt 中对应的英文段落。
+Single purpose、storage、alarms、host permission、optional notifications 都已写好。
+Remote code 选 No；本包没有远程执行代码。
+按当前后台分类勾选实际处理的 Authentication information、Financial and payment information、Personally identifiable information。
+不要勾“完全不处理数据”；插件确实需要连接凭据和订单信息。
+数据使用保证要在你确认实际服务与政策一致后勾选。
+
+七、提供审核测试账户
+你需要自行准备一个单独的测试商户，配好有效订阅和收款钱包。
+在私有 Test instructions 栏填写该账户的登录方式，复制说明文件中的测试步骤。
+不要给审核员你的生产主账户、钱包助记词、API Secret；也不要把账户密码放进插件 ZIP。
+不能只填一个 10 分钟后就过期的连接码，否则审核时无法测试。让审核员登录测试商户自行生成新码。
+不要向审核员声称已有沙箱收款或模拟已付款；当前站点通过服务器真实状态确认付款。
+
+八、提交审核并公开发布
+Distribution / Visibility 选择 Public（公开），填写实际发行地区。
+确认资料和功能已联调后，点击 Submit for review。
+Google 审核通过并公开发布后，用户可在 Chrome Web Store 搜索 MochiPay；具体展示和排名由商店决定。
+审核进度以开发者后台/邮件为准，没有保证日期。
+
+九、启用网站商店安装按钮
+公开发布后，从商店地址或开发者后台复制实际扩展 ID（32 个 a–p 小写字母）。
+在生产 Web.config 的 ChromeAssistantStoreID 配置填写这个 ID，别填完整网址。
+网站 /Payment/ChromeAssistant.aspx 和安装指南会显示正式商店安装按钮。
+未上线时该值保持空，不显示假的安装链接；测试 ZIP 入口仍保留。
+
+以后更新插件要提高 manifest 版本号，例如 1.0.3，重新打包后上传同一个商店项目。
+首次上架不需要修改现有 GitHub 插件仓库，也不需要更新已安装的商城插件。
+
+官方参考（2026-10-08 核对）：
+https://developer.chrome.com/docs/webstore/register
+https://developer.chrome.com/docs/webstore/publish
+https://developer.chrome.com/docs/webstore/prepare
+https://developer.chrome.com/docs/webstore/cws-dashboard-privacy
+https://developer.chrome.com/docs/webstore/images

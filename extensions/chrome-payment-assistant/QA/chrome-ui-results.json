@@ -1,0 +1,188 @@
+{
+  "scope": "Actual popup HTML/JS/CSS with fixture Chrome APIs; no live website backend",
+  "passed": 20,
+  "results": [
+    {
+      "language": "en",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "zh",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "es",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "pt-br",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "fr",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "de",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "nl",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "fa",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "ru",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "language": "ar",
+      "checks": [
+        "connect",
+        "create",
+        "share",
+        "QR",
+        "clipboard",
+        "recent",
+        "optional-notifications",
+        "width",
+        "RTL"
+      ]
+    },
+    {
+      "regression": "Persistent tab accepts code and connects"
+    },
+    {
+      "regression": "Freshly reopened popup accepts connection code"
+    },
+    {
+      "regression": "Stalled initial get does not disable Connect"
+    },
+    {
+      "regression": "No worker reply times out and unlocks Connect without losing code"
+    },
+    {
+      "page": "ChromeAssistant.aspx",
+      "width": 390,
+      "no_horizontal_overflow": true
+    },
+    {
+      "page": "GuideChromeAssistant.aspx",
+      "width": 390,
+      "no_horizontal_overflow": true
+    },
+    {
+      "page": "ChromeAssistantPrivacy.aspx",
+      "width": 390,
+      "no_horizontal_overflow": true
+    },
+    {
+      "page": "ChromeAssistant.aspx",
+      "width": 1440,
+      "no_horizontal_overflow": true
+    },
+    {
+      "page": "GuideChromeAssistant.aspx",
+      "width": 1440,
+      "no_horizontal_overflow": true
+    },
+    {
+      "page": "ChromeAssistantPrivacy.aspx",
+      "width": 1440,
+      "no_horizontal_overflow": true
+    }
+  ]
+}

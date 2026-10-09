@@ -19,7 +19,14 @@ METHODS = ('USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA')
 STATES = ('WAITING_PAYMENT', 'CONFIRMING', 'PAID', 'UNDERPAID', 'OVERPAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'PENDING', 'WAITING')
 
 class PaymentError(Exception):
-    pass
+    def __init__(self, code, http=0, recovery_contract=''):
+        self.code, self.http, self.recovery_contract = code, http, recovery_contract
+        super().__init__(code)
+    def can_recover_not_found(self):
+        return self.http == 404 and self.code == 'ORDER_NOT_FOUND' and self.recovery_contract == 'request-id-v1'
+    def is_rejected(self):
+        return 400 <= self.http < 500 and self.http not in (408,409,429)
+
 
 def money(value):
     text = str(value)
@@ -72,19 +79,37 @@ class Client:
                 if len(raw)>262144:
                     raise PaymentError('INVALID_API_RESPONSE')
                 data = json.loads(raw, parse_float=Decimal, parse_int=Decimal)
-                if not isinstance(data, dict) or data.get('success') is not True:
-                    raise PaymentError('API_REQUEST_FAILED')
+                if not isinstance(data, dict):
+                    raise PaymentError('INVALID_API_RESPONSE')
+                if data.get('success') is not True:
+                    raise PaymentError(data.get('message') if re.fullmatch(r'[A-Z][A-Z0-9_]{0,100}', str(data.get('message',''))) else 'API_REQUEST_FAILED', getattr(response,'status',200), data.get('recovery_contract',''))
                 return data
         except PaymentError:
             raise
         except HTTPError as e:
-            raise PaymentError('API_HTTP_'+str(e.code)) from None
+            try:
+                data=json.loads(e.read(262145), parse_float=Decimal, parse_int=Decimal)
+                code=data.get('message','') if isinstance(data,dict) else ''
+                contract=data.get('recovery_contract','') if isinstance(data,dict) else ''
+            except Exception:
+                code,contract='', ''
+            if not re.fullmatch(r'[A-Z][A-Z0-9_]{0,100}', str(code)): code='API_HTTP_'+str(e.code)
+            raise PaymentError(code,e.code,contract) from None
+        except json.JSONDecodeError:
+            raise PaymentError('INVALID_API_RESPONSE') from None
         except Exception:
             raise PaymentError('API_UNAVAILABLE') from None
 
     def query(self, field, value):
         text = urlencode({field:value})
-        return self.request('GET', '/api/v1/orders/query?'+text, text)
+        for attempt in range(3):
+            try:
+                return self.request('GET', '/api/v1/orders/query?'+text, text)
+            except PaymentError as error:
+                transient = error.code == 'API_UNAVAILABLE' or error.http in (408, 429) or error.http >= 500
+                if not transient or attempt == 2:
+                    raise
+                time.sleep(attempt + 1)
 
     def validate(self, data, payload, snapshot=None):
         method = data.get('payment_method') or str(data.get('wallet_type',''))+'_'+str(data.get('network',''))
@@ -110,7 +135,7 @@ class Client:
         result['checkout_note'] = ('Use the payment fields in your own application checkout; this tool does not embed a payment UI in chat.' if checkout_mode=='ON_SITE' else 'Open payment_url to use hosted checkout.')
         return result
 
-    def create(self, request_id, amount, currency='USD', payment_method='USDT_TRC20', description='Payment request', checkout_mode='ON_SITE', unique_amount_direction='UP'):
+    def create(self, request_id, amount, currency='USD', payment_method='USDT_TRC20', description='Payment request', checkout_mode='ON_SITE', unique_amount_direction='UP', merchant_order_id=''):
         if not self.allow_create:
             raise PaymentError('CREATE_DISABLED_SET_MOCHIPAY_ALLOW_CREATE')
         if not re.fullmatch('[A-Za-z0-9_.-]{6,100}', request_id):
@@ -122,6 +147,8 @@ class Client:
             raise PaymentError('AMOUNT_OUTSIDE_CONFIGURED_LIMIT')
         if not re.fullmatch('[A-Z]{3,10}',currency) or payment_method not in METHODS or checkout_mode not in ('ON_SITE','HPP') or unique_amount_direction not in ('UP','DOWN') or len(description)>500:
             raise PaymentError('INVALID_PAYMENT_OPTIONS')
+        if merchant_order_id and (not isinstance(merchant_order_id,str) or len(merchant_order_id)>100 or any(ord(c)<32 for c in merchant_order_id)):
+            raise PaymentError('INVALID_MERCHANT_ORDER_ID')
         with self.connect() as db:
             db.execute('BEGIN IMMEDIATE')
             row = db.execute('SELECT payload,snapshot,stage FROM attempts WHERE scope=? AND request_id=?',(self.scope,request_id)).fetchone()
@@ -129,21 +156,37 @@ class Client:
                 payload=json.loads(row[0]);snapshot=json.loads(row[1]) if row[1] else None
                 if any(payload[k]!=v for k,v in {'amount':amount,'currency':currency,'payment_method':payment_method,'description':description,'unique_amount_direction':unique_amount_direction}.items()):
                     raise PaymentError('REQUEST_ID_ALREADY_USED_WITH_DIFFERENT_DETAILS')
-                fresh=False
+                if merchant_order_id and payload['merchant_order_id']!=merchant_order_id:
+                    raise PaymentError('REQUEST_ID_ALREADY_USED_WITH_DIFFERENT_DETAILS')
+                fresh=row[2]=='REJECTED'
             else:
-                payload={'merchant_order_id':'mcp-'+uuid.uuid4().hex,'amount':amount,'currency':currency,'payment_method':payment_method,'description':description,'product_type':'DIGITAL','unique_amount_direction':unique_amount_direction}
+                payload={'request_id':'mcp:'+hashlib.sha256((self.scope+':'+request_id).encode()).hexdigest()[:60], 'merchant_order_id':merchant_order_id or 'mcp-'+uuid.uuid4().hex,'amount':amount,'currency':currency,'payment_method':payment_method,'description':description,'product_type':'DIGITAL','unique_amount_direction':unique_amount_direction}
                 snapshot=None;fresh=True
                 db.execute('INSERT INTO attempts VALUES (?,?,?,?,?,?)',(self.scope,request_id,json.dumps(payload),None,'CREATING',time.time()))
-        # The durable attempt commits before the POST. Every later call queries it.
+        # Persist before POST. Recovery queries first, then uses the advertised request-id contract.
         try:
-            data=self.request('POST','/api/v1/orders/create',json.dumps(payload,ensure_ascii=False,separators=(',',':'))) if fresh else self.query('order_id' if snapshot else 'merchant_order_id',snapshot['order_id'] if snapshot else payload['merchant_order_id'])
+            creating=fresh
+            if fresh:
+                data=self.request('POST','/api/v1/orders/create',json.dumps(payload,ensure_ascii=False,separators=(',',':')))
+            else:
+                try:
+                    data=self.query('order_id' if snapshot else 'request_id',snapshot['order_id'] if snapshot else payload['request_id'])
+                except PaymentError as e:
+                    if snapshot or not e.can_recover_not_found(): raise
+                    creating=True
+                    data=self.request('POST','/api/v1/orders/create',json.dumps(payload,ensure_ascii=False,separators=(',',':')))
+
             binding=self.validate(data,payload,snapshot)
             with self.connect() as db:
                 db.execute('UPDATE attempts SET snapshot=?,stage=? WHERE scope=? AND request_id=?',(json.dumps(binding),'READY',self.scope,request_id))
             result=self.view(data,payload,checkout_mode);result['request_id']=request_id;result['reused_order']=not fresh
             return result
-        except PaymentError:
-            raise PaymentError('REQUEST_NEEDS_REVIEW_RETRY_SAME_REQUEST_ID_TO_QUERY') from None
+        except PaymentError as e:
+            if creating and e.is_rejected():
+                with self.connect() as db:
+                    db.execute('UPDATE attempts SET stage=? WHERE scope=? AND request_id=?',('REJECTED',self.scope,request_id))
+                raise PaymentError('CREATE_REJECTED_'+e.code) from None
+            raise PaymentError('PAYMENT_TEMPORARILY_UNAVAILABLE_RETRY_SAME_REQUEST_ID_'+e.code) from None
 
     def status(self, request_id):
         if not re.fullmatch('[A-Za-z0-9_.-]{6,100}',request_id):
@@ -153,7 +196,7 @@ class Client:
         if not row:
             raise PaymentError('LOCAL_REQUEST_NOT_FOUND')
         payload=json.loads(row[0]);snapshot=json.loads(row[1]) if row[1] else None
-        data=self.query('order_id' if snapshot else 'merchant_order_id',snapshot['order_id'] if snapshot else payload['merchant_order_id'])
+        data=self.query('order_id' if snapshot else 'request_id',snapshot['order_id'] if snapshot else payload['request_id'])
         binding=self.validate(data,payload,snapshot)
         if not snapshot:
             with self.connect() as db:

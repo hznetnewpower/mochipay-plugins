@@ -1,0 +1,12 @@
+{
+  "scope": "Source/package checks only; not a .NET/IIS/SQL run or native installed-extension acceptance",
+  "passed": 6,
+  "checks": [
+    "Manifest V3, 10 supported locale directories, localized field limits and least privilege permissions",
+    "Extension ZIP: manifest at root; no private backend/config/SQL/credentials/QA files",
+    "Project inclusions and XML/config/sitemap parse successfully",
+    "Existing 29 download ZIPs, Monitor, wallet/allocation/idempotency engine, query API, WEB80.4 signup/audio/video unchanged",
+    "Signed API creation business core unchanged except virtual source/persistence hooks (signed API keeps original persistence); scoped browser subclass reuses same logic",
+    "Public guide/privacy/landing internal links resolve to delivered files"
+  ]
+}

@@ -1,0 +1,2 @@
+Copyright (c) 2026 MochiPay. All rights reserved.
+Extension source is delivered to the MochiPay owner for maintenance and distribution.

@@ -85,12 +85,11 @@ function report_begin($reference, $topic, $method, $direction)
     return report_locked($reference, function ($record) use ($reference, $topic, $method, $direction) {
         if ($record) {
             if ($record['topic'] !== $topic || $record['payload']['payment_method'] !== $method || $record['payload']['unique_amount_direction'] !== $direction) throw new RuntimeException('This request already has different details. Reopen it or explicitly start a new report.');
-            $id = empty($record['snapshot']) ? $reference : $record['snapshot']['order_id'];
-            $result = mochipay_query_order(empty($record['snapshot']) ? 'merchant_order_id' : 'order_id', $id);
+            $result = empty($record['snapshot']) ? mochipay_create_order($record['payload']) : mochipay_query_order('order_id', $record['snapshot']['order_id']);
         } else {
             $record = array('topic'=>$topic, 'snapshot'=>array(), 'stage'=>'creating', 'unlocked_at'=>null, 'report'=>null, 'callback_token'=>bin2hex(random_bytes(24)), 'created_at'=>gmdate('c'));
-            $record['payload'] = array('merchant_order_id'=>$reference, 'amount'=>REPORT_PRICE, 'currency'=>REPORT_CURRENCY, 'payment_method'=>$method, 'unique_amount_direction'=>$direction, 'product_type'=>'DIGITAL', 'description'=>'Sample report access', 'redirect_url'=>report_url('return', $reference), 'notify_url'=>rtrim(REPORT_PUBLIC_URL,'/').'/callback.php?'.http_build_query(array('reference'=>$reference,'token'=>$record['callback_token']),'','&',PHP_QUERY_RFC3986));
-            // Durable write BEFORE sending Create Order. Existing attempts only query.
+            $record['payload'] = array('request_id'=>'report-'.substr(hash('sha256', $reference),0,56), 'merchant_order_id'=>$reference, 'amount'=>REPORT_PRICE, 'currency'=>REPORT_CURRENCY, 'payment_method'=>$method, 'unique_amount_direction'=>$direction, 'product_type'=>'DIGITAL', 'description'=>'Sample report access', 'redirect_url'=>report_url('return', $reference), 'notify_url'=>rtrim(REPORT_PUBLIC_URL,'/').'/callback.php?'.http_build_query(array('reference'=>$reference,'token'=>$record['callback_token']),'','&',PHP_QUERY_RFC3986));
+            // Persist before POST; retries reuse this exact request ID and payload.
             report_write($reference, $record);
             $result = mochipay_create_order($record['payload']);
         }
@@ -114,6 +113,7 @@ function report_verify($reference)
     return report_locked($reference, function ($record) use ($reference) {
         if (!$record || empty($record['snapshot'])) throw new RuntimeException('Saved payment is not ready. Retry the original request.');
         $response = mochipay_query_order('order_id', $record['snapshot']['order_id']);
+        if (!$response['ok'] && !empty($response['retryable'])) throw new MochiPayDemoQueryUnavailable('Connection failed. Your order is saved. Please check again.');
         if (!$response['ok'] || !report_binding($record, $response['data'])) throw new RuntimeException('Unable to verify the saved payment.');
         $data = $response['data'];
         $paid = $data['status'] === 'PAID' && isset($data['received_amount']) &&

@@ -1,4 +1,5 @@
 <?php
+class MochiPayDemoQueryUnavailable extends RuntimeException {}
 require_once __DIR__ . "/config.php";
 require_once __DIR__ . "/portable/checkout.php";
 
@@ -38,10 +39,10 @@ function mochipay_request($method, $path, $signingText, $body)
 
     $options = array(
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_FOLLOWLOCATION => false,
-        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_HTTPHEADER => $headers
     );
@@ -64,6 +65,7 @@ function mochipay_request($method, $path, $signingText, $body)
         return array(
             'ok' => false,
             'http_code' => $httpCode,
+            'retryable' => true,
             'error' => $curlError !== '' ? $curlError : 'REQUEST_FAILED',
             'raw' => '',
             'data' => null
@@ -73,6 +75,7 @@ function mochipay_request($method, $path, $signingText, $body)
     $data = mochipay_decode($raw);
     $apiSuccess = is_array($data) && isset($data['success']) && $data['success'] === true;
     return array(
+        'retryable' => $httpCode===408 || $httpCode===429 || $httpCode>=500,
         'ok' => $httpCode >= 200 && $httpCode < 300 && $apiSuccess,
         'http_code' => $httpCode,
         'error' => $apiSuccess ? '' : (is_array($data) && isset($data['message'])

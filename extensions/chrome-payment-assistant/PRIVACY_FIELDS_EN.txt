@@ -1,0 +1,41 @@
+Single purpose
+Help authenticated MochiPay merchants create and share payment requests and monitor their payment status from a browser popup.
+
+Storage justification
+Store a revocable connection token, language/notification preferences, recent payment state and an unresolved creation request locally, so the merchant can stay connected, recover interrupted requests and avoid duplicate payment notices. Chrome sync is not used.
+
+Alarms justification
+Periodically check the connected merchant's payment status, approximately once a minute while Chrome is running, including when the popup is closed.
+
+Host permission justification: https://mochi.bz/*
+Send the user's requested connection exchange and payment requests to MochiPay over HTTPS, retrieve merchant-bound order status and payment-link QR data, and revoke browser access. No other site's contents, messages or browsing activity are accessed.
+
+Notifications justification (optional)
+Show an optional desktop notice after an observed order transition to server-confirmed payment. Permission is requested only when the user enables the feature.
+
+Remote code
+No, I am not using remote code. All executable JavaScript is included in the extension package. HTTPS responses contain JSON payment data and PNG QR data only.
+
+Data-use disclosures to match the actual release
+Select Authentication information: one-time connection code and local revocable access token.
+Select Financial and payment information: payment-request amounts, currency, payment method, payment links/order references and confirmed payment state.
+Select Personally identifiable information: merchant display name/account identifier; standard service/security logs may include request IPs. Order notes are user-provided text and can contain identifiers.
+Do not select Web history, Website content or Personal communications merely because customers communicate on X/WhatsApp/email: the extension does not read those pages or messages. Do not claim that no data is collected or transmitted.
+Review the current dashboard's category definitions and select any additional category that matches the information you choose to put in optional notes. Do not collect unnecessary personal data through notes.
+
+Privacy URL
+https://mochi.bz/Payment/ChromeAssistantPrivacy.aspx
+
+Certification
+Confirm the dashboard's data-use certifications only after verifying the release and deployed policy accurately describe your real service. No data selling, advertising profiling or unrelated use is implemented in the extension.
+
+Test instructions template (owner must supply a dedicated review account)
+1. Install the extension. Sign in to the provided review merchant account at https://mochi.bz/Login.aspx.
+2. Open https://mochi.bz/Merchant/BrowserAssistant.aspx, enter a device name, generate a connection code and paste it into the extension.
+3. The review merchant must have an active subscription, configured receiving wallet and available exchange rate. Create a small test payment request. Do not send real cryptocurrency during the review.
+4. Test Copy link, Show QR, Recent orders and View details. Existing orders remain pending until the server confirms a real payment. No simulated PAID button exists in the production extension.
+5. Optional notifications can be enabled in Settings; describe that closed browser/offline/sleep can delay them. Testing an actual confirmed-payment notification requires an owner-coordinated real payment, not a forged payment state.
+6. Disconnect or revoke in the merchant dashboard. Verify the extension can no longer access orders using that connection.
+
+Review login: FILL IN A DEDICATED REVIEW ACCOUNT YOURSELF IN THE PRIVATE TEST-INSTRUCTIONS FIELD.
+Review password: FILL IN YOURSELF. Do not ship it in the extension ZIP or public listing.

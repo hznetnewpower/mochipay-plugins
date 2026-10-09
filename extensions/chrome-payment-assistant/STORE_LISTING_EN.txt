@@ -1,0 +1,39 @@
+Name
+MochiPay Payment Assistant
+
+Short description
+Create crypto payment links, share a link or QR, and check payment status from your browser.
+
+Detailed description
+Create and share MochiPay payment requests without opening the merchant dashboard every time.
+
+MochiPay Payment Assistant helps merchants:
+• Create a payment request with an amount, currency, crypto payment method and optional note.
+• Copy a hosted payment link or show its QR code to a customer.
+• View recent orders and open their details in the dashboard.
+• Receive optional notifications after the server confirms a payment.
+• Open the merchant dashboard and manage connected browsers.
+
+Connect with a one-time, revocable code from your MochiPay dashboard. The extension does not require your merchant API Secret and cannot send funds, change receiving wallets or read recovery phrases. It does not read messages or web pages and does not send customer messages for you.
+
+Supported payment methods: USDT on TRON/TRC20, USDC on Ethereum/ERC20, BTC on Bitcoin, ETH on Ethereum and SOL on Solana. Fiat-priced requests require an available platform exchange rate. Customers pay the exact cryptocurrency amount displayed on MochiPay hosted checkout.
+
+The extension is free to install. Creating payment requests requires an active MochiPay merchant subscription and a configured receiving wallet. MochiPay charges a platform subscription fee with no receiving-payment transaction commission.
+
+Notifications are optional and check approximately once a minute while Chrome runs. Offline mode, sleep, browser closure, notification permissions and system settings can delay alerts. The dashboard remains the authoritative payment record.
+
+Desktop Chrome 116+ is required. The interface supports English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian and Arabic.
+
+The screenshots use clearly marked demo data and do not show real transactions.
+
+Website
+https://mochi.bz/Payment/ChromeAssistant.aspx
+
+Support URL
+https://mochi.bz/Payment/GuideChromeAssistant.aspx
+
+Privacy policy URL
+https://mochi.bz/Payment/ChromeAssistantPrivacy.aspx
+
+Suggested category
+Productivity (choose the closest category offered by the current dashboard)

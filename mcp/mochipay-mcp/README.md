@@ -1,4 +1,4 @@
-# MochiPay MCP Server 1.0.0
+# MochiPay MCP Server 1.0.4
 
 An English, local stdio MCP tool server for a single MochiPay merchant. Python 3.10+ and the pinned official MCP Python SDK 2.3.0 are required. It calls the existing create/query API; no .NET website upgrade or database migration is needed to run this package.
 
@@ -41,7 +41,7 @@ The creation call is equivalent to:
 
 ## Retries, ownership and checkout
 
-SQLite attempts commit BEFORE a create API request. Same request_id and same details always query/reuse the saved order. A lost response must be retried with the SAME request_id; do not create a new ID to bypass an uncertain response. Same ID with different financial details is rejected. Back up the private database: losing it also loses local deduplication. Merchant scope isolates records when API credentials change. The remote API permits duplicate merchant references; the package's local durable attempt supplies deduplication, not the remote create endpoint.
+SQLite attempts commit BEFORE a create API request. Every explicit new checkout uses a new request_id; merchant_order_id may repeat unchanged. Same saved request_id and payload query/reuse only that attempt. Resolve a lost response by request_id, never by merchant reference. A previous uncertain request never blocks a new checkout. Same request_id with changed financial details is rejected. Back up the private database and preserve it during upgrades. Merchant scope isolates records when credentials change. Requires WEB82.6+; see PAYMENT_RECOVERY.md. Optional merchant_order_id is a repeatable business label and does not determine deduplication.
 
 ON_SITE provides the exact payment amount/address/network for your application's checkout. It does not insert a modal into an arbitrary chat host. HPP uses the returned, validated MochiPay payment_url. Both use one order. Wallet signing, transfers, report generation and fulfillment belong to separate authorized application workflows. Never round pay_amount or include recovery phrases/private keys in this server.
 
@@ -52,3 +52,7 @@ This is a single trusted merchant/operator connection, not a public multi-tenant
 The separate PHP Report Unlock Demo demonstrates local checkout and server-verified delivery. It has its own private session/order records. The MCP tool does not directly unlock a report; a production application must intentionally associate its own business order, price, customer and MochiPay payment before fulfillment. Do not assume MCP-created orders belong to the demo.
 
 Package validation uses mock API transport and real MCP stdio, not production credentials or blockchain transfers. See the included validation summary. Official developer documentation: https://mochi.bz/Developers.aspx and https://mochi.bz/AIAgents.aspx.
+
+## Buyer language (1.0.4)
+
+Both tools accept an optional `language` display preference (default `en`): en, zh, es, pt-br, fr, de, nl, fa, ru, ar, ja, ko, it, tr, id. Regional forms such as ja-JP and id-ID are normalized. Unsupported values fail before order creation. Only the returned hosted URL/display metadata is localized; signed API bodies, stable request_id, decimal amounts and payment verification are unchanged. ON_SITE implementers pass this preference to their updated buyer UI. Tool names, schemas and technical setup remain English.

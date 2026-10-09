@@ -1,0 +1,8 @@
+{
+  "extensionName": {
+    "message": "MochiPay 결제 도우미"
+  },
+  "extensionDescription": {
+    "message": "새 결제 · 결제 링크 · 최근 주문 · 결제 수령 알림"
+  }
+}

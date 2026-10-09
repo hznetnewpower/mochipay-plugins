@@ -1,0 +1,26 @@
+{
+  "scope": "Fixture tests of actual worker.js; no live orders or chain payments",
+  "passed": 20,
+  "tests": [
+    "Original startup crashes without optional notifications; fixed worker starts and pairs",
+    "Get code opens persistent extension form before merchant page",
+    "Persistent connection tab is allowed; arbitrary own extension pages rejected",
+    "Notification listener registers when optional API becomes available",
+    "Only own popup may send runtime messages",
+    "Pair stores scoped token locally but never returns it to popup state",
+    "Money remains exact decimal strings in transmitted creation request",
+    "Lost create response retains immutable attempt and blocks a new order",
+    "Recovery finds a committed order without another create request",
+    "Failure before commit retries identical request ID and exact payload",
+    "Mismatched creation response rejected and recovered from immutable binding",
+    "Validation rejects scientific notation and invalid payment methods",
+    "Conflicting server request retains attempt for manual recovery",
+    "Initial paid history is not notified; pending to exact PAID is notified once",
+    "Underpaid PAID and expired records never trigger payment notices",
+    "Malformed paid claim with unequal received amount is rejected",
+    "Notifications require affirmative optional permission",
+    "Unrecognized QR/order identifier rejected before network access",
+    "Server 401 clears token, merchant data and periodic alarm",
+    "All ten language catalogs have complete keys"
+  ]
+}

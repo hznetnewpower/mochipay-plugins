@@ -3,6 +3,7 @@ import os, json, re, hmac, hashlib, base64, secrets, atexit, signal, threading
 from pathlib import Path
 from urllib.parse import urlsplit, urlencode, parse_qs
 from urllib.request import Request, build_opener, HTTPRedirectHandler
+from urllib.error import HTTPError, URLError
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 
 ROOT = Path(__file__).resolve().parent
@@ -19,7 +20,7 @@ KEY, SECRET, ACCESS = env('MOCHIPAY_API_KEY', ''), env('MOCHIPAY_API_SECRET', ''
 if not KEY or not SECRET or len(ACCESS) < 32 or ACCESS.startswith('replace-'):
     raise ValueError('Set private API credentials and a random DEMO_ACCESS_TOKEN of 32+ characters')
 METHODS = ['USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA']
-LANGS = ['en', 'zh', 'es', 'pt-br', 'fr', 'de', 'nl', 'fa', 'ru', 'ar']
+LANGS = ['en', 'zh', 'es', 'pt-br', 'fr', 'de', 'nl', 'fa', 'ru', 'ar','ja','ko','it','tr','id']
 STORE = Path(env('DEMO_DATA_DIR', str(ROOT/'private-data'))).resolve()
 STORE.mkdir(parents=True, exist_ok=True, mode=0o700)
 LOCK = STORE/'.instance.lock'
@@ -37,18 +38,25 @@ if decimal(AMOUNT) == '0' or not re.fullmatch('[A-Z]{3,10}', CURRENCY) or DIRECT
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, *args): return None
 OPENER = build_opener(NoRedirect())
+class QueryUnavailable(Exception): pass
 def api(route, payload):
     post = isinstance(payload, dict)
     text = json.dumps(payload, separators=(',', ':'), ensure_ascii=False) if post else payload
     raw = text.encode('utf-8')
     sig = base64.b64encode(hmac.new(SECRET.encode(), raw, hashlib.sha256).digest()).decode()
     req = Request(BASE+route+('' if post else '?'+text), data=raw if post else None, headers={'Content-Type':'application/json','X-Mochi-Key':KEY,'X-Mochi-Signature':sig}, method='POST' if post else 'GET')
-    with OPENER.open(req, timeout=30) as res:
-        data = res.read(1048577)
-        if len(data) > 1048576: raise ValueError('Upstream response too large')
-        d = json.loads(data.decode(), parse_float=str, parse_int=str)
-        if res.status != 200 or d.get('success') is not True: raise ValueError('Upstream rejected payment')
-        return d
+    try:
+        with OPENER.open(req, timeout=30) as res:
+            data = res.read(1048577)
+            if len(data) > 1048576: raise ValueError('Upstream response too large')
+            d = json.loads(data.decode(), parse_float=str, parse_int=str)
+            if res.status != 200 or d.get('success') is not True: raise ValueError('Upstream rejected payment')
+            return d
+    except HTTPError as error:
+        if error.code in (408,429) or error.code>=500: raise QueryUnavailable() from None
+        raise
+    except (URLError,TimeoutError,ConnectionError): raise QueryUnavailable() from None
+
 def filename(r):
     if not isinstance(r, str) or not re.fullmatch(r'[A-Za-z0-9._:-]{1,64}', r): raise ValueError('Invalid request_id')
     return STORE/(r.encode().hex()+'.json')
@@ -129,8 +137,9 @@ class Handler(BaseHTTPRequestHandler):
                     self.out(200,'text/html; charset=utf-8',(ROOT/'assets/checkout.html').read_text().replace('{{CONFIG}}',cfg)); return
                 if self.command == 'GET' and u.path == '/complete': verify(r,t); self.out(200,'text/html; charset=utf-8',(ROOT/'assets/complete.html').read_bytes()); return
                 self.jout(404,dict(success=False,message='Not found'))
-            except Exception:
-                self.jout(409,dict(success=False,message='Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order.'))
+            except Exception as error:
+                retryable=isinstance(error,QueryUnavailable)
+                self.jout(503 if retryable else 409,dict(success=False,retryable=retryable,message='Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order.'))
 if __name__ == '__main__':
     print('MochiPay staging demo listening on loopback port '+env('DEMO_PORT','8080'))
     ThreadingHTTPServer(('127.0.0.1',int(env('DEMO_PORT','8080'))),Handler).serve_forever()
