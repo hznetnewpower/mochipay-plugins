@@ -2,12 +2,16 @@
 namespace MochiPay\Sylius\Action;
 class Status implements \Payum\Core\Action\ActionInterface
 {
- private $support;
- public function __construct(\MochiPay\Sylius\Support $support){$this->support=$support;}
+ private $support,$requests;
+ public function __construct(\MochiPay\Sylius\Support $support,\Symfony\Component\HttpFoundation\RequestStack $requests){$this->support=$support;$this->requests=$requests;}
  public function execute($r):void{
   \Payum\Core\Exception\RequestNotSupportedException::assertSupports($this,$r);$d=$r->getModel();
   if(!isset($d['mp_payment_id'])){$r->markNew();return;}
-  $p=$this->support->payment($d['mp_payment_id']);$row=$this->support->store()->get((string)$p->getId());
+  // A return from an older link must verify that link, even if details now point at a newer attempt.
+  $current=$this->requests->getCurrentRequest();$attempt=$current?$current->query->get('mochipay_token'):null;
+  $attempt=$attempt!==null?(string)$attempt:(string)($d['mochipay_token']??'');
+  if(!preg_match('/^[a-f0-9]{48}$/D',$attempt)){$r->markNew();return;}
+  $p=$this->support->payment($d['mp_payment_id']);$row=$this->support->store()->get((string)$p->getId(),$attempt);
   if(!$row||!$row['system_id']){$r->markNew();return;}
   $v=$this->support->service($p)->check((string)$p->getId(),$row['token'],[$this->support,'settle']);
   if($v['status']==='PAID'){$d['mochipay_remote']=$row['system_id'];$r->markCaptured();}else $r->markPending();

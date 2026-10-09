@@ -1,6 +1,6 @@
 {
   "plugin": "MochiPay",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "platform": "Sylius",
   "core": "Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core",
   "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",

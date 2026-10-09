@@ -1,6 +1,6 @@
 {
   "plugin": "MochiPay",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "platform": "Shopware 6.6",
   "core": "Shopware >=6.6.10.0 <6.7.0.0",
   "php": "PHP 8.2.x / 8.3.x / 8.4.x",

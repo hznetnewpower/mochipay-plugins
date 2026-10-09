@@ -12,7 +12,7 @@ class Controller extends \Shopware\Storefront\Controller\StorefrontController
     public function checkout(Request $request):Response
     {
         $input=array_merge($request->query->all(),$request->request->all());
-        $row=$this->support->row((string)($input['id']??''));
+        $row=$this->support->row((string)($input['id']??''),(string)($input['token']??''));
         if(!$row)return new Response('Invalid saved payment.',404,['Cache-Control'=>'no-store']);
         list($status,$headers,$body)=\MochiPayShared\Page::handle($this->support->service($row['extra']['channel']),$input,$request->getMethod(),[$this->support,'settle']);
         return new Response($body,$status,$headers);

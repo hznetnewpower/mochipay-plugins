@@ -24,5 +24,5 @@ services:
         arguments: ['@MochiPay\Sylius\Support']
         tags: [{ name: payum.action, factory: mochipay, alias: mochipay.capture, prepend: true }]
     MochiPay\Sylius\Action\Status:
-        arguments: ['@MochiPay\Sylius\Support']
+        arguments: ['@MochiPay\Sylius\Support', '@request_stack']
         tags: [{ name: payum.action, factory: mochipay, alias: mochipay.status, prepend: true }]

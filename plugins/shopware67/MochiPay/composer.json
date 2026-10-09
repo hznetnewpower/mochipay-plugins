@@ -1,6 +1,6 @@
 {
   "name": "mochipay/shopware-payment",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "MochiPay ON_SITE and HPP payments for Shopware 6.7",
   "type": "shopware-platform-plugin",
   "license": "MIT",
@@ -22,6 +22,6 @@
       "en-GB": "Cryptocurrency payments: ON_SITE and HPP"
     },
     "manufacturerLink": "https://mochi.bz",
-    "supportLink": "https://mochi.bz/Guides/GuideShopware.aspx"
+    "supportLink": "https://mochi.bz/Guide.aspx"
   }
 }

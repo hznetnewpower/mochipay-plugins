@@ -22,12 +22,6 @@ final class Payment
         self::localUrl($returnUrl,$endpoint);
         $self=$this;
         return $this->store->locked($id,function()use($self,$id,$amount,$currency,$returnUrl,$endpoint,$platform,$extra){
-            $row=$self->store->get($id);
-            if ($row) {
-                $self->owner($row);
-                if ($row['amount']!==$amount || $row['currency']!==$currency) throw new \RuntimeException('Order total changed. This payment requires review.');
-                return $row;
-            }
             $token=bin2hex(random_bytes(24));
             $returnUrl=str_replace('MOCHIPAY_ATTEMPT_TOKEN',$token,$returnUrl);
             $row=['local_id'=>(string)$id,'amount'=>$amount,'currency'=>$currency,'token'=>$token,'system_id'=>'','fingerprint'=>$self->client->fingerprint(),'return_url'=>$returnUrl,'endpoint'=>$endpoint,'methods'=>$self->config['methods'],'stage'=>'selected','settled'=>false,'platform'=>$platform,'extra'=>$extra];
@@ -37,7 +31,7 @@ final class Payment
     private function owner(array $row) { if (!hash_equals($row['fingerprint'],$this->client->fingerprint())) throw new \RuntimeException('Payment belongs to another merchant configuration.'); }
     public function authorized($id,$token)
     {
-        $row=$this->store->get($id);
+        $row=$this->store->get($id,$token);
         if (!$row || !is_string($token) || $token==='' || !hash_equals($row['token'],$token)) throw new \RuntimeException('Invalid payment link.');
         $this->owner($row); return $row;
     }
@@ -46,8 +40,10 @@ final class Payment
         $self=$this;
         return $this->store->locked($id,function()use($self,$id,$token,$method){
             $row=$self->authorized($id,$token);
-            if (isset($row['payload']) && $method!==$row['payload']['payment_method']) throw new \RuntimeException('This order already has a payment method. Do not create another payment.');
+            if (isset($row['payload']) && ($row['stage']??'')!=='rejected' && $method!==$row['payload']['payment_method']) throw new \RuntimeException('This order already has a payment method. Do not create another payment.');
             if ($row['system_id']!=='') return $row;
+            if (($row['stage']??'')==='rejected') unset($row['payload']);
+            $resume = isset($row['payload']);
             if (!isset($row['payload'])) {
                 if (!in_array($method,$row['methods'],true) || !in_array($method,$self->config['methods'],true)) throw new \RuntimeException('Payment method is unavailable.');
                 $reference='MP-'.substr(hash('sha256',$row['fingerprint'].':'.$row['platform']),0,12).'-'.$id;
@@ -56,7 +52,14 @@ final class Payment
                 // Store API payload before transport. Keep byte-equivalent retries on Web65+.
                 $row['stage']='creating'; $self->store->save($id,$row);
             }
-            $data=$self->client->create($row['payload']);
+            $creating=false;
+            try {
+                // The persisted request ID alone makes a retry idempotent; references may repeat.
+                $creating=true; $data=$self->client->create($row['payload']);
+            } catch (ApiException $e) {
+                if ($creating && $e->isRejected()) { $row['stage']='rejected'; $self->store->save($id,$row); }
+                throw $e;
+            }
             self::matches($data,$row['payload'],''); self::view($data);
             $self->client->hosted($data['payment_url']??'', $data['order_id']??'');
             $row['system_id']=$data['order_id']; $row['snapshot']=$data; $row['stage']='ready';

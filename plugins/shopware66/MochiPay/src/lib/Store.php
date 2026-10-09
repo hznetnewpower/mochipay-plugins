@@ -7,7 +7,7 @@ class Store
     public function __construct($run, $table, $driver = 'mysql')
     {
         if (!preg_match('/^[A-Za-z0-9_]+$/D', $table) || !in_array($driver, ['mysql','pgsql'], true)) throw new \RuntimeException('Unsupported payment storage configuration.');
-        $this->run = $run; $this->table = $table; $this->driver = $driver;
+        $this->run = $run; $this->table = $table . '_v2'; $this->driver = $driver; $this->install();
     }
     public static function pdo(\PDO $pdo, $table)
     {
@@ -29,23 +29,31 @@ class Store
     private function sql($sql, array $args = []) { return call_user_func($this->run, $sql, $args); }
     public function install()
     {
-        $this->sql('CREATE TABLE IF NOT EXISTS ' . $this->table . ' (local_id VARCHAR(120) NOT NULL PRIMARY KEY, system_id VARCHAR(32) NOT NULL, record_text TEXT NOT NULL)' . ($this->driver === 'mysql' ? ' ENGINE=InnoDB DEFAULT CHARSET=utf8mb4' : ''));
+        $identity=$this->driver==='mysql'?'BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE':'BIGSERIAL UNIQUE';
+        $this->sql('CREATE TABLE IF NOT EXISTS '.$this->table.' (record_id '.$identity.', token VARCHAR(64) NOT NULL PRIMARY KEY, local_id VARCHAR(120) NOT NULL, system_id VARCHAR(32) NOT NULL, record_text TEXT NOT NULL)'.($this->driver==='mysql'?' ENGINE=InnoDB DEFAULT CHARSET=utf8mb4':''));
     }
-    public function get($id)
+    public function get($id,$token='')
     {
-        $r = $this->sql('SELECT record_text FROM ' . $this->table . ' WHERE local_id=?', [(string)$id]);
-        if (!$r) return null;
-        $data = json_decode($r[0]['record_text'], true);
-        if (!is_array($data)) throw new \RuntimeException('Saved payment record requires review.');
+        $args=[(string)$id]; if($token!=='')$args[]=$token;
+        $r=$this->sql('SELECT record_text FROM '.$this->table.' WHERE local_id=?'.($token!==''?' AND token=?':'').' ORDER BY record_id DESC LIMIT 1',$args);
+        if(!$r)return null;
+        $data=json_decode($r[0]['record_text'],true);
+        if(!is_array($data))throw new \RuntimeException('Saved payment record requires review.');
         return $data;
     }
-    public function insert($id, array $record) { $this->sql('INSERT INTO ' . $this->table . ' (local_id, system_id, record_text) VALUES (?, ?, ?)', [(string)$id, '', Payment::json($record)]); }
-    public function save($id, array $record) { $this->sql('UPDATE ' . $this->table . ' SET system_id=?, record_text=? WHERE local_id=?', [$record['system_id'] ?? '', Payment::json($record), (string)$id]); }
+    public function insert($id,array $record)
+    {
+        $this->sql('INSERT INTO '.$this->table.' (local_id,token,system_id,record_text) VALUES (?,?,?,?)',[(string)$id,$record['token'],'',Payment::json($record)]);
+    }
+    public function save($id,array $record)
+    {
+        $this->sql('UPDATE '.$this->table.' SET system_id=?,record_text=? WHERE local_id=? AND token=?',[$record['system_id']??'',Payment::json($record),(string)$id,$record['token']]);
+    }
     public function find($remote)
     {
-        $r = $this->sql('SELECT local_id FROM ' . $this->table . ' WHERE system_id=?', [$remote]);
-        if (count($r) !== 1) throw new \RuntimeException('Payment mapping was not found uniquely.');
-        return $this->get($r[0]['local_id']);
+        $r=$this->sql('SELECT local_id,token FROM '.$this->table.' WHERE system_id=?',[$remote]);
+        if(count($r)!==1)throw new \RuntimeException('Payment mapping was not found uniquely.');
+        return $this->get($r[0]['local_id'],$r[0]['token']);
     }
     public function locked($id, $fn)
     {

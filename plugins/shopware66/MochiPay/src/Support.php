@@ -37,9 +37,9 @@ class Support
         $row=$service->prepare($id,(string)$t->getAmount()->getTotalPrice(),$o->getCurrency()->getIsoCode(),$returnUrl,$endpoint,'Shopware',['channel'=>$channel]);
         return Payment::url($row,'view');
     }
-    public function row(string $id)
+    public function row(string $id,string $token='')
     {
-        return Store::doctrine($this->db,'mochipay_attempt')->get($id);
+        return Store::doctrine($this->db,'mochipay_attempt')->get($id,$token);
     }
     public function settle(array $row,array $remote):void
     {

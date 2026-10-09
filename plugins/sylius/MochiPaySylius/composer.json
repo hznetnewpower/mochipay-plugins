@@ -1,6 +1,6 @@
 {
   "name": "mochipay/sylius-plugin",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "MochiPay ON_SITE and HPP payment gateway for Sylius",
   "type": "sylius-plugin",
   "license": "MIT",

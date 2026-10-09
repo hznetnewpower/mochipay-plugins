@@ -1,6 +1,6 @@
 # MochiPay for Sylius
 
-Version 1.0.0 — English interface and documentation.
+Version 1.0.6 — English interface and documentation.
 
 ## Compatibility
 
@@ -13,7 +13,7 @@ The PHP range is the intersection of this adapter and the shopping system's requ
 
 ## Installation
 
-1. Extract `MochiPaySylius` to `plugins/MochiPaySylius` in your Sylius project. Add a Composer path repository for `plugins/MochiPaySylius`, preserving existing repositories, then run `composer require mochipay/sylius-plugin:1.0.0`.
+1. Extract `MochiPaySylius` to `plugins/MochiPaySylius` in your Sylius project. Add a Composer path repository for `plugins/MochiPaySylius`, preserving existing repositories, then run `composer require mochipay/sylius-plugin:1.0.6`.
 2. Register `MochiPay\Sylius\MochiPayBundle::class => ['all' => true]` in `config/bundles.php`.
 3. Add a routing resource to `config/routes/mochipay.yaml`: `mochipay: { resource: '@MochiPayBundle/Resources/config/routes.yaml' }`.
 4. Run `bin/console cache:clear` and `bin/console mochipay:install`. The command creates/retains attempt storage; it does not change existing payments.
@@ -26,7 +26,7 @@ Use the Payum checkout integration provided by Sylius 2.0. A custom headless pay
 
 The defaults are MochiPay URL `https://mochi.bz`, payment mode `ON_SITE`, unique amount direction `UP`, and all five supported methods selected: USDT/TRC20, USDC/ERC20, BTC/Bitcoin, ETH/Ethereum and SOL/Solana. The gateway starts disabled. Enter your merchant API key and secret, choose UP or DOWN, enable the native payment method and save. Enable only methods for which the merchant has a matching active wallet configured in MochiPay. There is no third-party facilitator registration.
 
-`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated address-only QR code in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
+`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated QR code (With address by default; optional With amount for supported payments) in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
 
 One currency/network is fixed for each attempt. If creating an order times out, continue the saved checkout. Its immutable payload and `request_id` are reused. Do not create a replacement order or send a second transfer while the first is unresolved.
 
