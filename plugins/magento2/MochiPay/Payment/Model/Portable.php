@@ -13,7 +13,7 @@ class Portable
  public function settle($id,$data,$payload)
  {
   $o=$this->orders->get($id);
-  if(!$o->getId() || $o->getPayment()->getMethod()!=='mochipay' || strtoupper($o->getOrderCurrencyCode())!==strtoupper($payload['currency']) || \MochiPayPortable::decimal($o->getGrandTotal())!==\MochiPayPortable::decimal($payload['amount']))throw new \RuntimeException('Store order mismatch.');
+  if(!$o->getId() || $o->getPayment()->getMethod()!=='mochipay' || strtoupper($o->getOrderCurrencyCode())!==strtoupper($payload['currency']) || \MochiPayPortable::decimal(\MochiPayPortable::currencyAmount($o->getGrandTotal(),$o->getOrderCurrencyCode()))!==\MochiPayPortable::decimal($payload['amount']))throw new \RuntimeException('Store order mismatch.');
   if($o->isCanceled() || $o->getState()===\Magento\Sales\Model\Order::STATE_CLOSED)throw new \RuntimeException('Store order requires manual review.');
   if($o->getPayment()->getAdditionalInformation('mochipay_confirmed'))return;
   if((float)$o->getTotalPaid()>=(float)$o->getGrandTotal())return;

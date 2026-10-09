@@ -1,102 +1,105 @@
 <?php
-/** MochiPay portable payment engine. PHP 5.6+ syntax; no platform credentials in HTML. */
+/** Independent payment attempts. PHP 5.6+; local order ID is a label, token identifies an attempt. */
 class MochiPayPortable
 {
-    private $client;
-    private $query;
-    private $escape;
-    private $table;
+    private $client, $query, $escape, $table;
     public function __construct($client, $query, $escape, $table)
     {
         if (!preg_match('/^[A-Za-z0-9_]+$/', $table)) throw new RuntimeException('Invalid payment table.');
-        $this->client = $client; $this->query = $query; $this->escape = $escape; $this->table = '`' . $table . '`';
+        $this->client=$client; $this->query=$query; $this->escape=$escape; $this->table='`'.$table.'_v2`';
     }
-    private function sql($s) { return call_user_func($this->query, $s); }
-    private function quote($s) { return "'" . call_user_func($this->escape, (string) $s) . "'"; }
+    private function sql($sql) { return call_user_func($this->query,$sql); }
+    private function quote($value) { return "'".call_user_func($this->escape,(string)$value)."'"; }
+    private function where($id,$token) { return 'local_id='.(int)$id.' AND token='.$this->quote($token); }
     public function install()
     {
-        $this->sql('CREATE TABLE IF NOT EXISTS ' . $this->table . ' (local_id BIGINT UNSIGNED NOT NULL, reference VARCHAR(100) NOT NULL, system_id VARCHAR(32) NOT NULL DEFAULT \'\', token VARCHAR(64) NOT NULL, stage VARCHAR(20) NOT NULL, payload MEDIUMTEXT NOT NULL, snapshot MEDIUMTEXT NOT NULL, settled TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(local_id), KEY system_id(system_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8');
+        $this->sql('CREATE TABLE IF NOT EXISTS '.$this->table.' (attempt_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE, local_id BIGINT UNSIGNED NOT NULL, reference VARCHAR(100) NOT NULL, system_id VARCHAR(32) NOT NULL DEFAULT \'\', token VARCHAR(64) NOT NULL PRIMARY KEY, stage VARCHAR(20) NOT NULL, payload MEDIUMTEXT NOT NULL, snapshot MEDIUMTEXT NOT NULL, settled TINYINT NOT NULL DEFAULT 0, KEY local_id(local_id), KEY system_id(system_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8');
     }
-    public function get($id)
+    public function get($id,$token='')
     {
-        $rows = $this->sql('SELECT * FROM ' . $this->table . ' WHERE local_id=' . (int) $id . ' LIMIT 1');
-        return $rows ? $rows[0] : null;
+        $rows=$this->sql('SELECT * FROM '.$this->table.' WHERE local_id='.(int)$id.($token!==''?' AND token='.$this->quote($token):'').' ORDER BY attempt_id DESC LIMIT 1');
+        return $rows?$rows[0]:null;
     }
     public function find($system)
     {
-        $rows = $this->sql('SELECT * FROM ' . $this->table . ' WHERE system_id=' . $this->quote($system) . ' LIMIT 1');
-        return $rows ? $rows[0] : null;
+        $rows=$this->sql('SELECT * FROM '.$this->table.' WHERE system_id='.$this->quote($system).' LIMIT 1');
+        return $rows?$rows[0]:null;
     }
-    public function adopt($id, array $payload, array $snapshot)
+    public function adopt($id,array $payload,array $snapshot)
     {
-        // Only adapters with a trusted, previously stored mapping may call this.
-        if (!self::matches($snapshot, $payload, '') || empty($snapshot['order_id'])) throw new RuntimeException('Legacy payment does not match its store order.');
-        self::view($snapshot);
-        $self = $this;
-        return $this->locked($id, function () use ($self, $id, $payload, $snapshot) {
-            $row = $self->get($id);
-            if ($row) {
-                if (!hash_equals((string)$row['system_id'], (string)$snapshot['order_id'])) throw new RuntimeException('Payment already belongs to another attempt.');
-                return $row;
-            }
-            $self->sql('INSERT INTO ' . $self->table . ' (local_id, reference, system_id, token, stage, payload, snapshot) VALUES (' . (int)$id . ',' . $self->quote($payload['merchant_order_id']) . ',' . $self->quote($snapshot['order_id']) . ',' . $self->quote(self::token()) . ',\'ready\',' . $self->quote(self::json($payload)) . ',' . $self->quote(self::json($snapshot)) . ')');
-            return $self->get($id);
+        if (!self::matches($snapshot,$payload,'') || empty($snapshot['order_id'])) throw new RuntimeException('Payment does not match its store order.');
+        self::view($snapshot); $self=$this;
+        return $this->locked($id,function()use($self,$id,$payload,$snapshot){
+            $row=$self->find($snapshot['order_id']); if($row)return $row;
+            $token=self::token();
+            $self->sql('INSERT INTO '.$self->table.' (local_id,reference,system_id,token,stage,payload,snapshot) VALUES ('.(int)$id.','.$self->quote($payload['merchant_order_id']).','.$self->quote($snapshot['order_id']).','.$self->quote($token).',\'ready\','.$self->quote(self::json($payload)).','.$self->quote(self::json($snapshot)).')');
+            return $self->get($id,$token);
         });
     }
-    public function locked($id, $fn)
+    public function locked($id,$fn)
     {
-        $key = 'mp_' . substr(sha1($this->table), 0, 20) . '_' . (int) $id;
-        $r = $this->sql('SELECT GET_LOCK(' . $this->quote($key) . ', 0) AS acquired');
-        if (!$r || (int) $r[0]['acquired'] !== 1) throw new RuntimeException('Payment is being processed. Please check again.');
-        try { return call_user_func($fn); }
-        finally { $this->sql('SELECT RELEASE_LOCK(' . $this->quote($key) . ') AS released'); }
+        $key='mp_'.substr(sha1($this->table),0,20).'_'.(int)$id;
+        $r=$this->sql('SELECT GET_LOCK('.$this->quote($key).',0) AS acquired');
+        if(!$r || (int)$r[0]['acquired']!==1)throw new RuntimeException('Payment is being processed. Please check again.');
+        try { return call_user_func($fn); } finally { $this->sql('SELECT RELEASE_LOCK('.$this->quote($key).') AS released'); }
     }
-    public function begin($id, array $payload)
+    // Calling begin without a token always means a new checkout, even for the same local/reference ID.
+    public function begin($id,array $payload,$token='')
     {
-        $self = $this;
-        return $this->locked($id, function () use ($self, $id, $payload) {
-            $row = $self->get($id);
-            if (!$row) {
-                $token = self::token();
-                if (isset($payload['redirect_url'])) $payload['redirect_url'] = str_replace('MOCHIPAY_ATTEMPT_TOKEN', $token, $payload['redirect_url']);
-                $self->sql('INSERT INTO ' . $self->table . ' (local_id, reference, token, stage, payload, snapshot) VALUES (' . (int) $id . ',' . $self->quote($payload['merchant_order_id']) . ',' . $self->quote($token) . ',\'creating\',' . $self->quote(self::json($payload)) . ',\'{}\')');
-                // Commit the attempt before the network request. Uncertain responses are never reposted.
-                $result = $self->client->createOrder($payload);
-                $row = $self->get($id);
-            } elseif ($row['system_id'] !== '') {
-                return $row;
-            } else {
-                $result = $self->client->queryReference($row['reference']);
-                $payload = json_decode($row['payload'], true);
+        $self=$this;
+        return $this->locked($id,function()use($self,$id,$payload,$token){
+            $resume=$token!=='';
+            if($resume){
+                $row=$self->get($id,$token);
+                if(!$row)throw new RuntimeException('Invalid payment link.');
+                if($row['system_id']!=='')return $row;
+                if($row['stage']==='rejected')throw new RuntimeException('Payment request was rejected. Start a new checkout.');
+                $payload=json_decode($row['payload'],true);
+            }else{
+                $token=self::token(); $payload['request_id']='mp:'.self::token();
+                if(isset($payload['redirect_url']))$payload['redirect_url']=str_replace('MOCHIPAY_ATTEMPT_TOKEN',$token,$payload['redirect_url']);
+                $self->sql('INSERT INTO '.$self->table.' (local_id,reference,token,stage,payload,snapshot) VALUES ('.(int)$id.','.$self->quote($payload['merchant_order_id']).','.$self->quote($token).',\'creating\','.$self->quote(self::json($payload)).',\'{}\')');
             }
-            if (!self::matches($result, $payload, '') || empty($result['order_id']) || empty($result['payment_url'])) {
-                throw new RuntimeException('Payment creation needs review. Do not create another payment.');
+            $creating=false;
+            try{
+                if($resume){
+                    if(empty($payload['request_id']) || !method_exists($self->client,'queryRequest'))throw new RuntimeException('Payment request cannot be recovered safely.');
+                    try{$result=$self->client->queryRequest($payload['request_id']);}
+                    catch(MochiPayApiException $e){
+                        if($e->http!==404 || $e->apiCode!=='ORDER_NOT_FOUND' || $e->recoveryContract!=='request-id-v1')throw $e;
+                        $creating=true; $result=$self->client->createOrder($payload);
+                    }
+                }else{$creating=true; $result=$self->client->createOrder($payload);}
+            }catch(MochiPayApiException $e){
+                if($creating && $e->isRejected())$self->sql('UPDATE '.$self->table.' SET stage=\'rejected\' WHERE '.$self->where($id,$token));
+                throw $e;
             }
+            if(!self::matches($result,$payload,'') || empty($result['order_id']) || empty($result['payment_url']))throw new RuntimeException('Payment response is incomplete. Check this payment request.');
             self::view($result);
-            if (!preg_match('/^[a-f0-9]{32}$/i', $result['order_id'])) throw new RuntimeException('Invalid payment identifier.');
-            $self->sql('UPDATE ' . $self->table . ' SET system_id=' . $self->quote($result['order_id']) . ', stage=\'ready\', snapshot=' . $self->quote(self::json($result)) . ' WHERE local_id=' . (int) $id);
-            return $self->get($id);
+            if(!preg_match('/^[a-f0-9]{32}$/iD',$result['order_id']))throw new RuntimeException('Invalid payment identifier.');
+            $self->sql('UPDATE '.$self->table.' SET system_id='.$self->quote($result['order_id']).',stage=\'ready\',snapshot='.$self->quote(self::json($result)).' WHERE '.$self->where($id,$token));
+            return $self->get($id,$token);
         });
     }
-    public function check($id, $token, $settle)
+    public function check($id,$token,$settle)
     {
-        $self = $this;
-        return $this->locked($id, function () use ($self, $id, $token, $settle) {
-            $row = $self->get($id);
-            if (!$row || !$token || !hash_equals($row['token'], (string) $token) || !$row['system_id']) throw new RuntimeException('Invalid payment link.');
-            $data = $self->client->queryOrder($row['system_id']);
-            $payload = json_decode($row['payload'], true); $snapshot = json_decode($row['snapshot'], true);
-            if (!self::matches($data, $payload, $row['system_id'])) throw new RuntimeException('Payment order does not match this store order.');
-            foreach (array('payment_address', 'pay_amount') as $key) {
-                if (!isset($data[$key], $snapshot[$key]) || ($key === 'pay_amount' ? self::decimal($data[$key]) !== self::decimal($snapshot[$key]) : (string) $data[$key] !== (string) $snapshot[$key])) throw new RuntimeException('Payment instructions have changed. Contact the store.');
+        // Recover only the explicitly identified request. A new checkout never enters this branch.
+        $pending=$this->get($id,(string)$token);
+        if($pending && $token && hash_equals($pending['token'],(string)$token) && !$pending['system_id'])$this->begin($id,array(),$token);
+        $self=$this;
+        return $this->locked($id,function()use($self,$id,$token,$settle){
+            $row=$self->get($id,(string)$token);
+            if(!$row || !$token || !hash_equals($row['token'],(string)$token) || !$row['system_id'])throw new RuntimeException('Invalid payment link.');
+            $data=$self->client->queryOrder($row['system_id']);
+            $payload=json_decode($row['payload'],true); $snapshot=json_decode($row['snapshot'],true);
+            if(!self::matches($data,$payload,$row['system_id']))throw new RuntimeException('Payment order does not match this store order.');
+            foreach(array('payment_address','pay_amount')as $key){
+                if(!isset($data[$key],$snapshot[$key]) || ($key==='pay_amount'?self::decimal($data[$key])!==self::decimal($snapshot[$key]):(string)$data[$key]!== (string)$snapshot[$key]))throw new RuntimeException('Payment instructions have changed. Contact the store.');
             }
-            $view = self::view($data);
-            if ($view['status'] === 'PAID') {
-                if (!isset($data['received_amount']) || self::decimal($data['received_amount']) !== self::decimal($data['pay_amount'])) throw new RuntimeException('Received payment requires store review.');
-                if (!(int) $row['settled']) {
-                    call_user_func($settle, $data, $payload);
-                    $self->sql('UPDATE ' . $self->table . ' SET settled=1 WHERE local_id=' . (int) $id);
-                }
+            $view=self::view($data);
+            if($view['status']==='PAID'){
+                if(!isset($data['received_amount']) || self::decimal($data['received_amount'])!==self::decimal($data['pay_amount']))throw new RuntimeException('Received payment requires store review.');
+                if(!(int)$row['settled']){call_user_func($settle,$data,$payload);$self->sql('UPDATE '.$self->table.' SET settled=1 WHERE '.$self->where($id,$token));}
             }
             return $view;
         });
@@ -126,6 +129,59 @@ class MochiPayPortable
         $whole = ltrim(substr($digits, 0, $point), '0'); $tail = rtrim(substr($digits, $point), '0');
         $out = ($whole === '' ? '0' : $whole) . ($tail === '' ? '' : '.' . $tail);
         return $m[1] === '-' && $out !== '0' ? '-' . $out : $out;
+    }
+    public static function currencyAmount($total, $currency, $currencyValue = '1')
+    {
+        $parts = array();
+        $scale = 0;
+        foreach (array($total, $currencyValue) as $value) {
+            $value = self::decimal($value);
+            if (strlen($value) > 40 || !preg_match('/^([0-9]+)(?:\.([0-9]+))?$/', $value, $matches)) {
+                throw new RuntimeException('MochiPay store order amount or exchange rate is invalid.');
+            }
+            $fraction = isset($matches[2]) ? rtrim($matches[2], '0') : '';
+            $scale += strlen($fraction);
+            $digits = ltrim($matches[1] . $fraction, '0');
+            if ($digits === '') throw new RuntimeException('MochiPay store order amount and exchange rate must be positive.');
+            $parts[] = $digits;
+        }
+        $a = $parts[0]; $b = $parts[1];
+        $result = array_fill(0, strlen($a) + strlen($b), 0);
+        for ($i = strlen($a) - 1; $i >= 0; $i--) {
+            for ($j = strlen($b) - 1; $j >= 0; $j--) {
+                $position = $i + $j + 1;
+                $sum = $result[$position] + (int) $a[$i] * (int) $b[$j];
+                $result[$position] = $sum % 10;
+                $result[$position - 1] += (int) floor($sum / 10);
+            }
+        }
+        $digits = ltrim(implode('', $result), '0');
+        $digits = str_pad($digits, $scale + 1, '0', STR_PAD_LEFT);
+        $currency = strtoupper(trim((string) $currency));
+        // Mirrors the API defaults: fiat=2; USDT/USDC=6; BTC/ETH/SOL=8.
+        // Payment asset and payable-amount matching precision are separate.
+        $limits = array('USDT' => 6, 'USDC' => 6, 'BTC' => 8, 'ETH' => 8, 'SOL' => 8);
+        $decimals = isset($limits[$currency]) ? $limits[$currency] : 2;
+        if ($scale > $decimals) {
+            $cut = strlen($digits) - ($scale - $decimals);
+            $roundUp = (int) $digits[$cut] >= 5;
+            $digits = substr($digits, 0, $cut);
+            if ($roundUp) {
+                $carry = 1;
+                for ($i = strlen($digits) - 1; $i >= 0 && $carry; $i--) {
+                    $next = (int) $digits[$i] + $carry;
+                    $digits[$i] = (string) ($next % 10);
+                    $carry = $next >= 10 ? 1 : 0;
+                }
+                if ($carry) $digits = '1' . $digits;
+            }
+        } else {
+            $digits .= str_repeat('0', $decimals - $scale);
+        }
+        if (trim($digits, '0') === '') throw new RuntimeException('MochiPay converted order amount rounds to zero.');
+        $digits = str_pad($digits, $decimals + 1, '0', STR_PAD_LEFT);
+        $whole = ltrim(substr($digits, 0, -$decimals), '0');
+        return ($whole === '' ? '0' : $whole) . '.' . substr($digits, -$decimals);
     }
     public static function matches($data, $payload, $id)
     {

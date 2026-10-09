@@ -33,6 +33,12 @@ class Client
         return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query, $storeId);
     }
 
+    public function queryRequest($requestId, $storeId = null)
+    {
+        $query = 'request_id=' . rawurlencode(trim((string) $requestId));
+        return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query, $storeId);
+    }
+
     public function queryReference($reference, $storeId = null)
     {
         $query = 'merchant_order_id=' . rawurlencode(trim((string)$reference));

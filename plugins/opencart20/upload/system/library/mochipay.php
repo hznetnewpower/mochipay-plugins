@@ -12,7 +12,7 @@ class MochiPayClient
         $this->baseUrl = rtrim(trim((string) $baseUrl), '/');
         $this->apiKey = trim((string) $apiKey);
         $this->apiSecret = trim((string) $apiSecret);
-        $this->timeout = max(5, (int) $timeout);
+        $this->timeout = max(30, (int) $timeout);
 
         if (strtolower((string) parse_url($this->baseUrl, PHP_URL_SCHEME)) !== 'https' || parse_url($this->baseUrl, PHP_URL_USER) || parse_url($this->baseUrl, PHP_URL_QUERY)) { throw new RuntimeException('MochiPay URL must be an HTTPS site URL.'); }
         if ($this->baseUrl === '' || $this->apiKey === '' || $this->apiSecret === '') {
@@ -33,6 +33,12 @@ class MochiPayClient
     public function queryOrder($systemOrderId)
     {
         $query = 'order_id=' . rawurlencode(trim((string) $systemOrderId));
+        return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query);
+    }
+
+    public function queryRequest($requestId)
+    {
+        $query = 'request_id=' . rawurlencode(trim((string) $requestId));
         return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query);
     }
 
@@ -74,7 +80,7 @@ class MochiPayClient
     {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);

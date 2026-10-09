@@ -51,9 +51,10 @@ class Start extends Action
                 if (!$item->getIsVirtual()) $physical = true;
             }
             $returnUrl = $this->_url->getUrl('mochipay/payment/complete', array('_secure' => true, 'id' => $order->getId(), 'token' => 'MOCHIPAY_ATTEMPT_TOKEN'));
+            $engine = $this->portable->engine($storeId);
             $payload = array(
                 'merchant_order_id' => $merchantId,
-                'amount' => number_format((float) $order->getGrandTotal(), 8, '.', ''),
+                'amount' => \MochiPayPortable::currencyAmount($order->getGrandTotal(), $order->getOrderCurrencyCode()),
                 'currency' => strtoupper($order->getOrderCurrencyCode()),
                 'payment_method' => $method,
                 'unique_amount_direction' => strtoupper((string) $this->scopeConfig->getValue('payment/mochipay/unique_direction', ScopeInterface::SCOPE_STORE, $storeId)) === 'DOWN' ? 'DOWN' : 'UP',
@@ -75,7 +76,6 @@ class Start extends Action
                 'notify_url' => $this->_url->getUrl('mochipay/payment/callback', array('_secure' => true)),
                 'redirect_url' => $returnUrl,
             );
-            $engine = $this->portable->engine($storeId);
             $attempt = $engine->begin((int)$order->getId(), $payload);
             $result = json_decode($attempt['snapshot'],true);
             $order->getPayment()->setAdditionalInformation('mochipay_order_id',$attempt['system_id']);

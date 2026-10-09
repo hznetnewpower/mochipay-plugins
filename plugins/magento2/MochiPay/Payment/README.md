@@ -1,6 +1,6 @@
 # Magento Open Source 2.3.7-2.4.8 using native checkout — MochiPay
 
-Plugin version: 1.1.0
+Plugin version: 1.2.0
 
 # MochiPay setup
 
@@ -28,7 +28,7 @@ opens a merchant-local payment page and then the dialog. WooCommerce supports a
 checkout dialog and a protected order payment link. No iframe is used.
 HPP redirects the customer to the MochiPay hosted payment page.
 
-The QR contains the address only; customers must enter the exact displayed amount.
+By default, the QR contains the address only; customers enter the exact displayed amount. With amount is optional for supported assets and precision. See PAYMENT_QR_MODES.md in the package root.
 Automatic polling and callbacks query the authenticated MochiPay API before
 marking an order paid. Underpayment, overpayment, cancellation and expiration
 require review and do not automatically mark orders paid. Payable amounts retain
@@ -107,3 +107,10 @@ Local language/browser checks cover the reusable dialog assets. Real store check
 ## ON_SITE layout update — build 76
 
 The payment dialog keeps all four outer corners rounded. Long content scrolls inside an inset region; the close button and language selector remain outside it. Update both MochiPay/Payment/portable/onsite.css and MochiPay/Payment/portable/onsite.js. Preserve gateway settings and order mappings. Clear browser/CDN/storefront caches after replacing these assets. API, PHP payment logic, exact amount, wallet address and callback verification are unchanged. HPP is unchanged.
+
+
+## WEB82.5 integration repair
+
+Back up files and gateway settings, then update the package files in place. Do not uninstall the gateway or delete existing attempt/order tables. Stage-seven query deadlines, transient-query recovery, stable request IDs, QR assets and buyer languages are retained. Store invoice totals are normalized as decimal strings for the order currency; fiat defaults to two decimal places, USDT/USDC to six, BTC/ETH/SOL to eight. This is not the blockchain payable amount or matching precision. Custom server currency precision needs store-side acceptance.
+
+Existing saved payment payloads are reused unchanged. A legacy mapping with an incorrect conversion must be reviewed manually; it is never silently relinked or rewritten. Check one ON_SITE and one HPP order plus callback verification on staging. Offline fixtures do not substitute for a live installation.

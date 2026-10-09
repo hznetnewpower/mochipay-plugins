@@ -6,7 +6,7 @@ class Complete extends \Magento\Framework\App\Action\Action implements \Magento\
  public function __construct(\Magento\Framework\App\Action\Context $context,\MochiPay\Payment\Model\Portable $portable,\Magento\Checkout\Model\Session $session){parent::__construct($context);$this->portable=$portable;$this->session=$session;}
  public function execute()
  {
-  try{$id=(int)($this->getRequest()->getParam('id') ?: $this->getRequest()->getParam('order_id'));$token=(string)$this->getRequest()->getParam('token');$row=$this->portable->engine()->get($id);
+  try{$id=(int)($this->getRequest()->getParam('id') ?: $this->getRequest()->getParam('order_id'));$token=(string)$this->getRequest()->getParam('token');$row=$this->portable->engine()->get($id,$token);
    $o=$this->portable->order($id);
    if(!$token){$saved=$row ? json_decode($row['payload'],true) : array();if(isset($saved['redirect_url']))throw new \RuntimeException('Invalid payment link.');$key=(string)$this->getRequest()->getParam('key');if(!$key||!$o->getProtectCode()||!hash_equals((string)$o->getProtectCode(),$key))throw new \RuntimeException('Invalid return link.');if($row)$token=$row['token'];}
    if(!$row||!$token||!hash_equals($row['token'],$token))throw new \RuntimeException('Invalid payment link.');
