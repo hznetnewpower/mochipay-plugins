@@ -15,13 +15,14 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 public final class Main {
+    static final class QueryUnavailable extends Exception {}
     static String env(String n,String d){return System.getenv().getOrDefault(n,d);}
     static final Path ROOT=Path.of("").toAbsolutePath();
     static final String BASE=env("MOCHIPAY_BASE_URL","https://mochi.bz").replaceAll("/$",""),PUBLIC=env("APP_PUBLIC_URL","http://127.0.0.1:8080").replaceAll("/$","");
     static final String KEY=env("MOCHIPAY_API_KEY",""),SECRET=env("MOCHIPAY_API_SECRET",""),ACCESS=env("DEMO_ACCESS_TOKEN","");
     static final String AMOUNT=env("DEMO_AMOUNT","10.00"),CURRENCY=env("DEMO_CURRENCY","USD").toUpperCase(Locale.ROOT),DIRECTION=env("DEMO_DIRECTION","UP");
     static final Path STORE=Path.of(env("DEMO_DATA_DIR",ROOT.resolve("private-data").toString())).toAbsolutePath();
-    static final Set<String> METHODS=Set.of("USDT_TRC20","USDC_ERC20","BTC_BITCOIN","ETH_ERC20","SOL_SOLANA"),LANGS=Set.of("en","zh","es","pt-br","fr","de","nl","fa","ru","ar");
+    static final Set<String> METHODS=Set.of("USDT_TRC20","USDC_ERC20","BTC_BITCOIN","ETH_ERC20","SOL_SOLANA"),LANGS=Set.of("en","zh","es","pt-br","fr","de","nl","fa","ru","ar","ja","ko","it","tr","id");
     static final HttpClient CLIENT=HttpClient.newBuilder().followRedirects(HttpClient.Redirect.NEVER).connectTimeout(Duration.ofSeconds(30)).build();
     static String s(JsonObject d,String k){JsonElement v=d.get(k);return v==null||v.isJsonNull()?"":v.getAsString();}
     static JsonObject object(Object... kv){JsonObject d=new JsonObject();for(int i=0;i<kv.length;i+=2){String k=(String)kv[i];Object v=kv[i+1];if(v instanceof JsonElement j)d.add(k,j);else if(v instanceof Boolean b)d.addProperty(k,b);else d.addProperty(k,(String)v);}return d;}
@@ -33,7 +34,7 @@ public final class Main {
     static JsonObject api(String route,JsonObject payload,String query)throws Exception{
         String text=payload==null?query:payload.toString();Mac mac=Mac.getInstance("HmacSHA256");mac.init(new SecretKeySpec(SECRET.getBytes(StandardCharsets.UTF_8),"HmacSHA256"));String sig=Base64.getEncoder().encodeToString(mac.doFinal(text.getBytes(StandardCharsets.UTF_8)));
         HttpRequest.Builder b=HttpRequest.newBuilder(URI.create(BASE+route+(payload==null?"?"+text:""))).timeout(Duration.ofSeconds(30)).header("Content-Type","application/json").header("X-Mochi-Key",KEY).header("X-Mochi-Signature",sig);
-        if(payload==null)b.GET();else b.POST(HttpRequest.BodyPublishers.ofString(text,StandardCharsets.UTF_8));HttpResponse<String> res=CLIENT.send(b.build(),HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));if(res.body().length()>1048576)throw new Exception("Upstream response too large");
+        if(payload==null)b.GET();else b.POST(HttpRequest.BodyPublishers.ofString(text,StandardCharsets.UTF_8));HttpResponse<String> res;try{res=CLIENT.send(b.build(),HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));}catch(java.io.IOException e){throw new QueryUnavailable();}if(res.statusCode()==408||res.statusCode()==429||res.statusCode()>=500)throw new QueryUnavailable();if(res.body().length()>1048576)throw new Exception("Upstream response too large");
         // The strict local JSON codec preserves numeric source text; never parse money as double.
         JsonObject d=JsonParser.parseString(res.body()).getAsJsonObject();JsonElement ok=d.get("success");if(res.statusCode()!=200||ok==null||!ok.isJsonPrimitive()||!ok.getAsJsonPrimitive().isBoolean()||!ok.getAsBoolean())throw new Exception("Upstream rejected payment");return d;
     }
@@ -67,7 +68,7 @@ public final class Main {
             if(verb.equals("GET")&&route.equals("/checkout")){JsonObject d=verify(r,t);String mode=qs.getOrDefault("mode","ON_SITE"),lang=qs.getOrDefault("lang","en");if(!LANGS.contains(lang))lang="en";if(!Set.of("ON_SITE","HPP").contains(mode))throw new Exception("Invalid mode");if(mode.equals("HPP")){x.getResponseHeaders().set("Location",hpp(d)+"?lang="+enc(lang));out(x,303,"text/plain","");return;}String cfg=object("poll","/status"+q(r,t),"complete","/complete"+q(r,t)).toString().replace("<","\\u003c");out(x,200,"text/html; charset=utf-8",Files.readString(ROOT.resolve("assets/checkout.html")).replace("{{CONFIG}}",cfg));return;}
             if(verb.equals("GET")&&route.equals("/complete")){verify(r,t);out(x,200,"text/html; charset=utf-8",Files.readString(ROOT.resolve("assets/complete.html")));return;}
             jout(x,404,object("success",false,"message","Not found"));
-        }catch(Exception e){try{jout(x,409,object("success",false,"message","Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order."));}catch(Exception ignored){x.close();}}
+        }catch(Exception e){try{boolean retryable=e instanceof QueryUnavailable;jout(x,retryable?503:409,object("success",false,"retryable",retryable,"message","Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order."));}catch(Exception ignored){x.close();}}
     }
     public static void main(String[] args)throws Exception{origin(BASE);origin(PUBLIC);if(KEY.isEmpty()||SECRET.isEmpty()||ACCESS.length()<32||ACCESS.startsWith("replace-")||decimal(AMOUNT).equals("0")||!CURRENCY.matches("[A-Z]{3,10}")||!Set.of("UP","DOWN").contains(DIRECTION))throw new Exception("Set valid private credentials, staging token and price");Files.createDirectories(STORE);Path lock=STORE.resolve(".instance.lock");Files.writeString(lock,Long.toString(ProcessHandle.current().pid()),StandardOpenOption.CREATE_NEW);Runtime.getRuntime().addShutdownHook(new Thread(()->{try{Files.deleteIfExists(lock);}catch(Exception ignored){}}));HttpServer server=HttpServer.create(new InetSocketAddress("127.0.0.1",Integer.parseInt(env("DEMO_PORT","8080"))),0);server.createContext("/",Main::handle);server.start();System.out.println("MochiPay staging demo listening on loopback");}
 }

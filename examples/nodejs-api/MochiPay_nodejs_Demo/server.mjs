@@ -1,4 +1,5 @@
 import http from 'node:http';
+import https from 'node:https';
 import {createHmac,randomBytes,timingSafeEqual} from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -12,7 +13,7 @@ originOnly(base);originOnly(pub);
 const key=env('MOCHIPAY_API_KEY'),secret=env('MOCHIPAY_API_SECRET'),access=env('DEMO_ACCESS_TOKEN');
 if(!key||!secret||access.length<32||access.startsWith('replace-'))throw Error('Set private API credentials and a random DEMO_ACCESS_TOKEN of 32+ characters');
 const methods=['USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA'];
-const langs=['en','zh','es','pt-br','fr','de','nl','fa','ru','ar'];
+const langs=['en','zh','es','pt-br','fr','de','nl','fa','ru','ar','ja','ko','it','tr','id'];
 const store=path.resolve(env('DEMO_DATA_DIR',path.join(root,'private-data')));
 fs.mkdirSync(store,{recursive:true,mode:0o700});
 const lock=path.join(store,'.instance.lock');fs.writeFileSync(lock,String(process.pid),{flag:'wx',mode:0o600});
@@ -25,7 +26,22 @@ const currency=env('DEMO_CURRENCY','USD').toUpperCase(),direction=env('DEMO_DIRE
 if(!/^[A-Z]{3,10}$/.test(currency)||!['UP','DOWN'].includes(direction))throw Error('Invalid currency/direction');
 // Tokenize complete JSON strings before numbers, preserving upstream decimal bytes.
 function lossless(s){return JSON.parse(s.replace(/"(?:\\.|[^"\\])*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g,m=>m[0]==='"'?m:JSON.stringify(m)))}
-export async function api(route,payload){const text=typeof payload==='string'?payload:JSON.stringify(payload),post=typeof payload!=='string';const u=new URL(route+(post?'':'?'+text),base);const signature=createHmac('sha256',secret).update(text,'utf8').digest('base64');const r=await fetch(u,{method:post?'POST':'GET',redirect:'error',headers:{'Content-Type':'application/json','X-Mochi-Key':key,'X-Mochi-Signature':signature},body:post?text:undefined,signal:AbortSignal.timeout(30000)});const raw=await r.text();if(raw.length>1048576)throw Error('Upstream response too large');const d=lossless(raw);if(!r.ok||d.success!==true)throw Error('Upstream payment request was not accepted; recover with the same request_id');return d}
+class QueryUnavailable extends Error {}
+export async function api(route,payload){
+ const text=typeof payload==='string'?payload:JSON.stringify(payload),post=typeof payload!=='string',u=new URL(route+(post?'':'?'+text),base);
+ const signature=createHmac('sha256',secret).update(text,'utf8').digest('base64');
+ const response=await new Promise((resolve,reject)=>{
+  const req=(u.protocol==='https:'?https:http).request(u,{method:post?'POST':'GET',timeout:30000,signal:AbortSignal.timeout(30000),headers:{'Content-Type':'application/json','X-Mochi-Key':key,'X-Mochi-Signature':signature}},res=>{
+   let raw='',bytes=0;res.setEncoding('utf8');res.on('data',chunk=>{bytes+=Buffer.byteLength(chunk);if(bytes>1048576){reject(Error('Upstream response too large'));res.destroy();return}raw+=chunk});res.on('end',()=>resolve({status:res.statusCode,raw}));res.on('error',()=>reject(new QueryUnavailable('Query unavailable')));
+  });
+  req.on('timeout',()=>{const error=Error('Request deadline');error.code='ETIMEDOUT';req.destroy(error)});
+  req.on('error',error=>reject(error.name==='AbortError'||['ETIMEDOUT','ECONNRESET','ECONNREFUSED','ENOTFOUND','EAI_AGAIN','EPIPE'].includes(error.code)?new QueryUnavailable('Query unavailable'):error));
+  if(post)req.write(text);req.end();
+ });
+ if(response.status===408||response.status===429||response.status>=500)throw new QueryUnavailable('Query unavailable');
+ const d=lossless(response.raw);if(response.status<200||response.status>=300||d.success!==true)throw Error('Upstream payment request was not accepted; recover with the same request_id');return d
+}
+
 const validId=r=>/^[A-Za-z0-9._:-]{1,64}$/.test(r??'');
 function recordPath(r){if(!validId(r))throw Error('Invalid request_id');return path.join(store,Buffer.from(r).toString('hex')+'.json')}
 function load(r){return JSON.parse(fs.readFileSync(recordPath(r),'utf8'))}
@@ -52,5 +68,5 @@ async function handle(req,res){try{const u=new URL(req.url,'http://127.0.0.1'),r
  if(req.method==='GET'&&u.pathname==='/checkout'){const d=await verify(r,t),mode=u.searchParams.get('mode')??'ON_SITE',lang=langs.includes(u.searchParams.get('lang'))?u.searchParams.get('lang'):'en';if(!['ON_SITE','HPP'].includes(mode))throw Error('Invalid checkout mode');if(mode==='HPP'){const dest=hpp(d);dest.searchParams.set('lang',lang);res.writeHead(303,{Location:dest.href,'Cache-Control':'no-store','Referrer-Policy':'no-referrer'});res.end();return}const q='?r='+encodeURIComponent(r)+'&t='+encodeURIComponent(t),config=JSON.stringify({poll:'/status'+q,complete:'/complete'+q}).replace(/</g,'\\u003c');output(res,200,'text/html; charset=utf-8',fs.readFileSync(path.join(root,'assets/checkout.html'),'utf8').replace('{{CONFIG}}',config));return}
  if(req.method==='GET'&&u.pathname==='/complete'){await verify(r,t);output(res,200,'text/html; charset=utf-8',fs.readFileSync(path.join(root,'assets/complete.html')));return}
  json(res,404,{success:false,message:'Not found'});
- }catch(e){json(res,409,{success:false,message:'Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order.'})}}
+ }catch(e){const retryable=e instanceof QueryUnavailable;json(res,retryable?503:409,{success:false,retryable,message:'Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order.'})}}
 http.createServer((req,res)=>{queue=queue.then(()=>handle(req,res)).catch(()=>{});}).listen(Number(env('DEMO_PORT','8080')),'127.0.0.1',()=>console.log('MochiPay staging demo listening on loopback port '+env('DEMO_PORT','8080')));

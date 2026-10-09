@@ -1,189 +1,23 @@
 # MochiPay payment integrations
 
-![MochiPay crypto checkout](docs/assets/mochipay-plugins.svg)
+Cryptocurrency checkout for ecommerce stores, merchant backends and AI agents. Customer payments go directly to the merchant wallet. The hosted MochiPay service requires a merchant account and active subscription; plugin code is free under its package-specific license.
 
-**Add cryptocurrency checkout to your store. Customer payments go directly to
-your receiving wallet.**
-
-MochiPay connects ecommerce stores to crypto payment requests, payment monitoring
-and verified order updates. Choose **ON_SITE** for a payment popup on your store
-or **HPP** for the MochiPay hosted payment page.
-
-[Get started](https://mochi.bz/GettingStarted.aspx) ·
-[Choose your plugin](docs/DOWNLOADS.md) ·
-[Try the checkout demo](https://mochi.bz/CheckoutDemo.aspx) ·
-[View pricing](https://mochi.bz/Pricing.aspx) ·
-[API guide](https://mochi.bz/Developers/APIGuide.aspx)
-
-## Store integrations
-
-WooCommerce, OpenCart, Zen Cart, Magento / OpenMage, PrestaShop, Shopware, Drupal Commerce, EC-CUBE, Bagisto, Sylius, osCommerce and thirty bees.
-
-**12 store families · 19 independent packages.** Platform branches stay separate
-so you can choose the right installation layout and PHP environment.
-
-| Store family | Package branches |
-|---|---|
-| WooCommerce | Classic Checkout, Checkout Blocks and HPOS |
-| OpenCart | 2.0–2.2, 2.3, 3 and 4 |
-| Zen Cart | 1.5.3–1.5.7 and 1.5.8–2.2 |
-| Magento / OpenMage | Magento 1 / OpenMage and Magento 2 |
-| PrestaShop | 1.6 and 1.7 / 8 / 9 |
-| Shopware | 6.6 and 6.7 |
-| Drupal Commerce | Supported Drupal 9 / 10 / 11 and Commerce branches |
-| EC-CUBE | 4.3 |
-| Bagisto | 2.3 |
-| Sylius | 2.0 |
-| osCommerce | 4.14 |
-| thirty bees | 1.6 |
-
-See [all packages and PHP ranges](docs/DOWNLOADS.md) before installing. Modern
-platforms may require PHP 8; legacy branches have their own PHP requirements.
-This publication is not an official certification by any shopping platform.
-
-## Developer and AI resources
-
-Build your own checkout, unlock a paid report, give an AI assistant integration
-knowledge, or let an Agent create and query payment requests at runtime.
-
-| Resource | What it does | Start here |
-|---|---|---|
-| PHP API Demo | Creates and queries an order; includes ON_SITE and HPP examples | [Setup](docs/DEVELOPER_RESOURCES.md#php-api-demo) |
-| Report Unlock Demo | Verifies payment on the server before unlocking persisted sample content | [Setup](docs/DEVELOPER_RESOURCES.md#report-unlock-demo) |
-| AI Integration Skill | Guides an Agent through plugin selection, API integration and troubleshooting | [Install and use](docs/DEVELOPER_RESOURCES.md#ai-integration-skill) |
-| MCP Server | Exposes create_payment_request and get_payment_status to compatible stdio hosts | [Configure the tools](docs/DEVELOPER_RESOURCES.md#mcp-server) |
-
-**19 store plugin ZIPs + 10 developer resource ZIPs.** Download the matching
-archive from the [full collection → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1).
-For WooCommerce, use the newer [Multilanguages 1.5.7 release](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7).
-The Skill provides instructions; MCP provides running tools. They are separate
-downloads and neither transfers cryptocurrency from a wallet. The report demo
-uses clearly marked sample content; connect your own AI service for real reports.
-
-## Backend and mobile examples
-
-Choose PHP, Node.js, Python, C# / .NET Framework or Java for the merchant backend.
-iOS Swift and Android Kotlin projects use a merchant backend; API credentials
-stay on that server. ON_SITE and HPP use the same saved order. Independent server
-notifications work even when the app or checkout is closed. Browser returns and
-polling reuse verified status; neither proves payment by itself.
-
-[Choose a demo](docs/DEVELOPER_RESOURCES.md) ·
-[Returns and notifications](https://mochi.bz/Developers/Reference.aspx#returns-notifications) ·
-[Source validation and acceptance limits](docs/VALIDATION_WEB80.md)
-
-These are source integration demos. Staging access controls and the private file
-store must be adapted to your application's authenticated ownership and atomic
-database updates. Swift/Kotlin projects still require native build/device and
-store-policy acceptance; they are not approved payment SDKs.
-
-## Two checkout modes
-
-| ON_SITE | HPP |
-|---|---|
-| Payment popup on the store's own domain | Redirect to MochiPay's hosted payment page |
-| Shows network, exact amount, address, QR and payment status | Uses the hosted checkout and returns to the store |
-| Default mode in these plugins | Available in the same gateway settings |
-
-Buyer payment interfaces offer English (fallback), Chinese, Spanish, Brazilian
-Portuguese, French, German, Dutch, Persian, Russian and Arabic. An explicit
-language choice takes priority; otherwise supported browser preferences are
-used, with English fallback. Buyers can switch manually. Arabic/Persian use RTL;
-crypto amounts, addresses and technical identifiers keep their original values.
-Merchant settings and installation instructions remain English. Both modes require server-side
-payment verification; a browser return or a callback body alone is not proof
-of payment.
-
-## Start accepting payments
-
-1. Create a [MochiPay account](https://mochi.bz/Register.aspx), activate a
-   subscription and configure an active receiving wallet for each method offered.
-2. [Choose the correct plugin](docs/DOWNLOADS.md). Download WooCommerce from
-   [Multilanguages 1.5.7 → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7),
-   or other plugins from the [full collection → Assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1).
-   Official guides also provide download links. Do not upload the entire
-   GitHub source archive to your store.
-3. Follow the README or readme.txt inside the ZIP. Enter your API key and secret in the store
-   settings, enable MochiPay and choose your Unique amount direction preference.
-4. Complete any native payment/delivery/channel setup. Test ON_SITE, HPP and a
-   real verified payment in staging before enabling live checkout.
-
-MochiPay URL `https://mochi.bz`, ON_SITE, UP and all five payment choices are
-prefilled. Enable only choices with matching active receiving wallets. Existing
-saved settings take priority during an update.
-
-## Supported assets and networks
-
-| Asset | Network |
-|---|---|
-| USDT | TRON / TRC20 |
-| USDC | Ethereum / ERC20 |
-| BTC | Bitcoin |
-| ETH | Ethereum |
-| SOL | Solana |
-
-Orders can use the supported native store currency while the buyer pays the
-displayed cryptocurrency amount. Exact native-currency limitations remain
-platform-specific, including JPY for this EC-CUBE package. Send the exact
-displayed amount on the correct network; the QR contains the address only.
-
-## Free plugin code; subscription service
-
-The plugins are distributed under the [package-specific licenses](LICENSE.md).
-They connect to the hosted MochiPay service, which requires an active merchant
-subscription. Publishing the plugins does not publish the payment server,
-monitoring service or merchant database.
+[Get started](https://mochi.bz/GettingStarted.aspx) · [API reference](https://mochi.bz/Developers/Reference.aspx) · [Download release assets](https://github.com/hznetnewpower/mochipay-plugins/releases/latest)
 
 ## Current publication
 
-WooCommerce Multilanguages **1.5.7** updates input validation, sanitization,
-output escaping, URL parsing and translation comments. It preserves all ten
-buyer languages, the existing mobile rounded-corner layout, ON_SITE/HPP modes,
-gateway settings and order mappings.
+2026.10.09-payment-flow.1 / WEB82.7 integration rollout. WooCommerce 1.5.14, PHP Demo 1.2.0, MCP 1.0.4, Skill 1.2.5 and Chrome 1.0.4. See [CHANGELOG](CHANGELOG.md) and [download catalog](docs/DOWNLOADS.md).
 
-[Download WooCommerce 1.5.7](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/woocommerce-v1.5.7)
+Each explicit create uses an independent attempt; repeated merchant references are allowed. Retry the same saved request with its original request_id and payload. Bind callback/return processing to the original payment attempt and verify payment on the server before fulfilling orders. A browser return is navigation only.
 
-Upgrade the existing plugin in place; do not uninstall it. Installation and
-language instructions are now included in `readme.txt`. The original
-`mochipay-woocommerce` folder is retained for upgrades, so Plugin Check may
-still report a folder-name trademark warning.
+ON_SITE and HPP checkout are supported. Buyer assets support en, zh, es, pt-br, fr, de, nl, fa, ru, ar, ja, ko, it, tr and id. Setup/technical documents remain English. Exact network and amount must match the saved invoice.
 
-PHP 7.4 syntax and ZIP integrity checks passed. Verify checkout and payment
-confirmation on your store after upgrading.
+## Installation
 
-The full integration collection remains available in
-[2026.10.07-developer-mobile.1](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.07-developer-mobile.1):
-**19 native store ZIPs + 10 developer resource ZIPs**. Use the separate
-WooCommerce 1.5.7 release above instead of the older WooCommerce ZIP in that
-collection. Other packages are unchanged by this update.
+Download the platform-specific ZIP from Release Assets. Do not install the entire GitHub Source code ZIP in your store. Preserve saved gateway configuration and order bindings. WooCommerce changed its root to mochipay-for-woocommerce: deactivate the old mochipay-woocommerce gateway before activating the new one; do not uninstall or run both.
 
-Revision **2026.10.07-developer-mobile.1** added Node.js, Python, C# / .NET Framework
-and Java backend demos, plus iOS Swift and Android Kotlin source projects.
-PHP API Demo **1.1.4**, AI Integration Skill **1.1.4**, Report Unlock Demo
-**1.0.2** and MCP Server **1.0.0** retain their existing versions.
+## Developer resources
 
-Payment APIs, signatures and existing installed integrations remain compatible.
-ON_SITE and HPP reuse the same saved payment. Setup instructions stay English;
-buyer checkout supports ten languages. Native release ZIPs retain the store
-installation roots and public license/setup documents. Their archive hashes may
-differ from website ZIPs because publication documents are included.
+Source folders: plugins/, examples/, skills/, mcp/, mobile/, extensions/chrome-payment-assistant/. Each resource retains its native package root. API secrets stay on the merchant backend; mobile demos do not embed them. The separate PHP SDK lives at https://github.com/hznetnewpower/mochipay-php and is not changed by this publication.
 
-Only plugin, demo, Skill and MCP integration sources are public here.
-MochiPay's payment backend, Monitor, database and production configuration stay
-outside this repository. See [changes](CHANGELOG.md),
-[developer setup](docs/DEVELOPER_RESOURCES.md) and [validation](docs/VALIDATION.md).
-
-Newer store adapters still need complete staging acceptance. No native-store
-certification, live-chain test or live AI-provider integration is claimed.
-
-## Help and contribution
-
-- [Setup and troubleshooting](docs/SETUP.md)
-- [MochiPay FAQ](https://mochi.bz/FAQ.aspx)
-- [Community](https://mochi.bz/Community.aspx)
-- Report reproducible plugin problems in this repository's **Issues** tab.
-- Read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting code, and
-  [SECURITY.md](SECURITY.md) for private reports. Never post API secrets,
-  wallet recovery material or buyer details in public issues.
-
-Maintained by **MochiPay** · https://mochi.bz
+This repository contains only integration sources and public documentation. Native acceptance, marketplace review and real payment verification remain required for deployment. See [publication checks](docs/VALIDATION.md).

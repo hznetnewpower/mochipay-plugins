@@ -1,47 +1,12 @@
-# Changelog
+# MochiPay Plugins — Payment Flow Update
 
-## WooCommerce Multilanguages 1.5.7
+- Each explicit checkout starts a new payment attempt, including repeated merchant_order_id values. Retries of the same transport request retain the saved request_id and exact payload.
+- Native plugins, PHP/backend/report/mobile demos, MCP and Chrome are synchronized with WEB82.7.
+- Hosted checkout offers a merchant return link when a saved validated destination exists. Navigation does not prove payment or stop chain monitoring.
+- Query budgets and transient-failure handling are retained; buyer-facing assets support fifteen languages.
+- WooCommerce 1.5.14 uses mochipay-for-woocommerce and includes the latest class-prefix/text-domain/WordPress HTTP timeout repairs. Deactivate the former mochipay-woocommerce gateway before activating the new directory; do not uninstall or activate both.
+- Zen Cart 1.2.0 ZIPs retain the accepted source-release bytes.
 
-- Improved checkout input filtering, final HTML escaping, URL parsing and translator comments.
-- Preserved ten languages, mobile rounded corners, on-site defaults and saved order mappings.
-- Consolidated installation/language instructions in readme.txt.
-- Updated WooCommerce download/catalogue paths and aligned repository CSS with the released installation package.
-- Recorded reviewed source changes so packaging checks distinguish updates from original baseline files.
+Downloads: 19 native store packages, 10 developer resources, and Chrome Payment Assistant 1.0.4. Choose the platform-specific ZIP from Assets.
 
-
-## 2026.10.07-developer-mobile.1
-
-- Four complete backend demos, two native mobile source projects, PHP1.1.4 and Skill1.1.4.
-- Dedicated HPP returns and ON_SITE/HPP asynchronous notification guide.
-- Canonical Guides/, Payment/ and Developers/ website documentation paths.
-- 29 current release assets; no old multilingual filename aliases.
-
-# 2026.10.07-multilanguages.1
-
-Ten checkout languages, browser preference, RTL and Multilanguages filenames.
-Current PHP demos and Integration Skill references; payment contracts unchanged.
-
-# Changelog
-
-## 2026.10.07-publication.2 — Developer and AI resources
-
-Adds the four existing PHP/AI resources, developer installation guide, MIT resource declarations, source/checksum catalogues and 23-asset build/verification tooling. Existing 19 plugin ZIPs and all 41 original developer files are preserved. No website/server or integration behavior change.
-
-## 2026.10.07-publication.1 — GitHub publication packaging
-
-- Added an English overview, store/PHP/download matrix, setup guidance and
-  links to the official checkout simulation and integration guides.
-- Organized 19 platform archives into 12 store families without combining
-  incompatible native install structures.
-- Added full GPL text where absent and package copyright/publication notices.
-  Preserved existing MIT declarations and all bundled QR notices.
-- Removed the old WooCommerce validation screenshot directory from public
-  distributions; it has no runtime or installation role.
-- Added reproducible ZIP creation, checksums, source comparison and release
-  instructions. The two Shopware Composer support URLs are corrected; all other retained
-  original files are byte-identical to the current website distribution; no payment-code, native-version or protocol bump.
-- Added English issue templates, contribution guidance and a private security
-  reporting policy. No social messages or GitHub publication are automated.
-
-Existing installations continue to use the same API and need no reinstall for
-this packaging revision. Initial adapters still require staging acceptance.
+This publication packaging does not change runtime code and does not claim current live WordPress Plugin Check, native store/mobile builds, live-chain payment tests, or marketplace approval. Use WEB82.7 for the complete rollout; request-id recovery requires WEB82.6 or later. No payment backend, Monitor, database or production configuration is included. The separate PHP SDK repository and WordPress.org submission are not updated by this release.

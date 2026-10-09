@@ -1,4 +1,5 @@
 <?php
+class MochiPayDemoQueryUnavailable extends RuntimeException {}
 /**
  * MochiPay PHP API Demo (PHP 7.0-8.4)
  *
@@ -14,7 +15,7 @@ define('MOCHIPAY_BASE_URL', 'https://mochi.bz');
 define('MOCHIPAY_API_KEY', 'YOUR_API_KEY');
 define('MOCHIPAY_API_SECRET', 'YOUR_API_SECRET');
 
-// SSL peer verification is disabled in the supplied cURL example.
+// Verify both the certificate chain and host before using recovery capabilities.
 define('MOCHIPAY_CHECKOUT_MODE', 'ON_SITE');
 // Optional absolute HTTPS directory URL, especially behind a reverse proxy.
 define('MOCHIPAY_DEMO_PUBLIC_URL', '');
@@ -67,56 +68,50 @@ function mochipay_bound($record, $data)
 }
 function mochipay_begin($payload)
 {
-    $path = mochipay_record_path($payload['merchant_order_id']);
+    $attemptId = isset($payload['request_id']) ? (string)$payload['request_id'] : 'php-' . bin2hex(random_bytes(24));
+    if (!preg_match('/^[A-Za-z0-9_.:-]{1,64}$/D', $attemptId)) throw new RuntimeException('Invalid request ID.');
+    $payload['request_id'] = $attemptId;
+    $path = mochipay_record_path($attemptId);
     $handle = fopen($path, 'c+');
     if (!$handle || !flock($handle, LOCK_EX)) throw new RuntimeException('Demo storage is busy.');
     chmod($path, 0600);
     try {
         $raw = stream_get_contents($handle);
         $record = $raw === '' ? null : json_decode($raw, true);
-        if ($raw !== '' && !is_array($record)) throw new RuntimeException('Damaged demo record. Review before creating another payment.');
+        if ($raw !== '' && !is_array($record)) throw new RuntimeException('Damaged demo record.');
         if ($record) {
-            if (!MochiPayPortable::matches($record['payload'], $payload, '') || $record['payload']['unique_amount_direction'] !== $payload['unique_amount_direction']) {
-                throw new RuntimeException('This reference already belongs to different payment details.');
+            foreach (array('merchant_order_id','amount','currency','payment_method','unique_amount_direction','description','product_type','customer_email') as $key) {
+                if ((string)($record['input'][$key] ?? '') !== (string)($payload[$key] ?? '')) throw new RuntimeException('The request ID has different payment details.');
             }
-            if (!empty($record['snapshot']['order_id'])) {
-                $result = mochipay_query_order('order_id', $record['snapshot']['order_id']);
-            } elseif (!empty($record['payload']['request_id'])) {
-                // Current MochiPay deduplicates this unchanged request_id + payload.
-                $result = mochipay_create_order($record['payload']);
-            } else {
-                // Preserve old saved attempts: query-first recovery, never blind create.
-                $result = mochipay_query_order('merchant_order_id', $payload['merchant_order_id']);
-            }
+            $result = !empty($record['snapshot']['order_id']) ? mochipay_query_order('order_id', $record['snapshot']['order_id']) : mochipay_create_order($record['payload']);
         } else {
-            $payload['request_id'] = 'php-' . substr(hash('sha256', MOCHIPAY_API_KEY . ':' . $payload['merchant_order_id']), 0, 60);
-            $record = array('payload'=>$payload, 'token'=>bin2hex(random_bytes(24)), 'snapshot'=>array(), 'stage'=>'creating');
-            // Save BEFORE the HTTP call. Recovery keeps the exact payload and request_id.
-            $payload['redirect_url'] .= '&token=' . rawurlencode($record['token']);
+            $record = array('attempt_id'=>$attemptId, 'input'=>$payload, 'token'=>bin2hex(random_bytes(24)), 'snapshot'=>array(), 'stage'=>'creating');
+            $q = http_build_query(array('attempt_id'=>$attemptId,'token'=>$record['token']), '', '&', PHP_QUERY_RFC3986);
+            foreach (array('redirect_url','notify_url') as $field) {
+                if (isset($payload[$field])) $payload[$field] .= (strpos($payload[$field], '?') === false ? '?' : '&') . $q;
+            }
             $record['payload'] = $payload;
             mochipay_save_locked($handle, $record);
             $result = mochipay_create_order($payload);
         }
-        if (!$result['ok']) throw new RuntimeException('Payment creation/query needs review: ' . $result['error'] . '. Retry the same reference to query it; do not submit a new reference blindly.');
+        if (!$result['ok']) throw new RuntimeException('Payment request temporarily unavailable. Retry this request ID; a new checkout uses a new request ID.');
         $data = $result['data'];
-        if (!MochiPayPortable::matches($data, $record['payload'], '') || empty($data['order_id']) || !preg_match('/^[a-f0-9]{32}$/i', $data['order_id'])) throw new RuntimeException('Payment does not match the saved local request.');
+        if (!MochiPayPortable::matches($data, $record['payload'], '') || empty($data['order_id']) || !preg_match('/^[a-f0-9]{32}$/iD', $data['order_id'])) throw new RuntimeException('Payment does not match its saved request.');
         MochiPayPortable::view($data);
-        if (!empty($record['snapshot']) && !mochipay_bound($record, $data)) throw new RuntimeException('Payment instructions have changed. Review required.');
-        $expectedUrl = rtrim(MOCHIPAY_BASE_URL, '/') . '/pay/' . $data['order_id'];
-        if (!isset($data['payment_url']) || $data['payment_url'] !== $expectedUrl) throw new RuntimeException('Unexpected hosted payment URL.');
+        if (!empty($record['snapshot']) && !mochipay_bound($record, $data)) throw new RuntimeException('Payment instructions have changed.');
+        if (($data['payment_url'] ?? '') !== rtrim(MOCHIPAY_BASE_URL, '/') . '/pay/' . $data['order_id']) throw new RuntimeException('Unexpected hosted payment URL.');
         $record['snapshot'] = $data; $record['stage'] = 'ready';
         mochipay_save_locked($handle, $record);
         return array($result, $record);
     } finally { flock($handle, LOCK_UN); fclose($handle); }
 }
 
-
 // One verified-payment marker shared by notification and synchronous return.
 // Production fulfillment belongs in your durable order database transaction.
 function mochipay_record_verified($record, $data)
 {
     if (!mochipay_bound($record, $data) || $data['status'] !== 'PAID' || !isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount'])) return false;
-    $path = mochipay_record_path($record['payload']['merchant_order_id']);
+    $path = mochipay_record_path($record['attempt_id']);
     $handle = fopen($path, 'r+');
     if (!$handle || !flock($handle, LOCK_EX)) throw new RuntimeException('Demo storage is busy.');
     try {
@@ -163,10 +158,10 @@ function mochipay_request($method, $path, $signingText, $body)
 
     $options = array(
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_CONNECTTIMEOUT => 30,
         CURLOPT_TIMEOUT => 30,
         CURLOPT_FOLLOWLOCATION => false,
-        CURLOPT_SSL_VERIFYPEER => false,
+        CURLOPT_SSL_VERIFYPEER => true,
         CURLOPT_SSL_VERIFYHOST => 2,
         CURLOPT_HTTPHEADER => $headers
     );
@@ -189,6 +184,7 @@ function mochipay_request($method, $path, $signingText, $body)
         return array(
             'ok' => false,
             'http_code' => $httpCode,
+            'retryable' => true,
             'error' => $curlError !== '' ? $curlError : 'REQUEST_FAILED',
             'raw' => '',
             'data' => null
@@ -198,6 +194,7 @@ function mochipay_request($method, $path, $signingText, $body)
     $data = mochipay_decode($raw);
     $apiSuccess = is_array($data) && !empty($data['success']);
     return array(
+        'retryable' => $httpCode===408 || $httpCode===429 || $httpCode>=500,
         'ok' => $httpCode >= 200 && $httpCode < 300 && $apiSuccess,
         'http_code' => $httpCode,
         'error' => $apiSuccess ? '' : (is_array($data) && isset($data['message'])
@@ -226,7 +223,7 @@ function mochipay_create_order($payload)
 
 function mochipay_query_order($field, $value)
 {
-    if ($field !== 'order_id' && $field !== 'merchant_order_id') {
+    if ($field !== 'order_id' && $field !== 'request_id' && $field !== 'merchant_order_id') {
         return array(
             'ok' => false,
             'http_code' => 0,
@@ -295,6 +292,7 @@ if (isset($_GET['view'])) {
         if (!$record || empty($record['snapshot']) || $token === '' || !hash_equals($record['token'], $token)) throw new RuntimeException('Invalid payment link.');
         if (isset($_GET['poll'])) {
             $verified = mochipay_query_order('order_id', $record['snapshot']['order_id']);
+            if (!$verified['ok'] && !empty($verified['retryable'])) throw new MochiPayDemoQueryUnavailable('Connection failed. Your order is saved. Please check again.');
             if (!$verified['ok'] || !mochipay_bound($record, $verified['data'])) throw new RuntimeException('Payment verification failed.');
             $data = $verified['data'];
             if (strtoupper($data['status']) === 'PAID' && (!isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount']))) throw new RuntimeException('Received payment requires review.');
@@ -303,12 +301,12 @@ if (isset($_GET['view'])) {
             echo json_encode(array('success'=>true, 'data'=>MochiPayPortable::view($data)), JSON_UNESCAPED_SLASHES);
         } else {
             $query = http_build_query(array('view'=>$reference, 'token'=>$token, 'poll'=>1), '', '&', PHP_QUERY_RFC3986);
-            $returnQuery = http_build_query(array('mode'=>'return', 'merchant_order_id'=>$reference, 'token'=>$token), '', '&', PHP_QUERY_RFC3986);
+            $returnQuery = http_build_query(array('mode'=>'return', 'attempt_id'=>$reference, 'token'=>$token), '', '&', PHP_QUERY_RFC3986);
             echo MochiPayPortable::page('order.php?' . $query, 'callback.php?' . $returnQuery);
         }
     } catch (Exception $e) {
-        http_response_code(403);
-        if (isset($_GET['poll'])) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(array('success'=>false, 'message'=>$e->getMessage())); }
+        http_response_code($e instanceof MochiPayDemoQueryUnavailable ? 503 : 403);
+        if (isset($_GET['poll'])) { header('Content-Type: application/json; charset=utf-8'); echo json_encode(array('success'=>false, 'retryable'=>$e instanceof MochiPayDemoQueryUnavailable, 'message'=>$e->getMessage())); }
         else { header('Content-Type: text/plain; charset=utf-8'); echo $e->getMessage(); }
     }
     exit;
@@ -343,6 +341,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ), '', '&', PHP_QUERY_RFC3986);
 
         $payload = array(
+            'request_id' => isset($_POST['request_id']) ? (string)$_POST['request_id'] : 'php-' . bin2hex(random_bytes(24)),
             'merchant_order_id' => $merchantOrderId,
             'amount' => trim(isset($_POST['amount']) ? $_POST['amount'] : ''),
             'currency' => strtoupper(trim(isset($_POST['currency']) ? $_POST['currency'] : 'USD')),
@@ -409,6 +408,7 @@ $defaultMerchantOrderId = $action === 'create' && !empty($merchantOrderId) ? $me
             <form method="post">
                 <input type="hidden" name="csrf" value="<?php echo mochipay_h($_SESSION['mochipay_demo_csrf']); ?>">
                 <input type="hidden" name="action" value="create">
+                <input type="hidden" name="request_id" value="<?php echo mochipay_h('php-' . bin2hex(random_bytes(24))); ?>">
                 <label>Merchant order ID</label>
                 <input name="merchant_order_id" maxlength="100" required value="<?php echo mochipay_h($defaultMerchantOrderId); ?>">
                 <label>Amount</label><input name="amount" required value="<?php echo mochipay_h(mochipay_form_value('amount', '9.90')); ?>" inputmode="decimal">
@@ -434,7 +434,7 @@ $defaultMerchantOrderId = $action === 'create' && !empty($merchantOrderId) ? $me
                 <input type="hidden" name="csrf" value="<?php echo mochipay_h($_SESSION['mochipay_demo_csrf']); ?>">
                 <input type="hidden" name="action" value="query">
                 <label>Identifier type</label>
-                <select name="query_field"><option value="order_id">MochiPay order_id</option><option value="merchant_order_id">merchant_order_id</option></select>
+                <select name="query_field"><option value="order_id">MochiPay order_id</option><option value="request_id">request_id</option><option value="merchant_order_id">merchant_order_id (must be unique)</option></select>
                 <label>Identifier</label><input name="query_value" required placeholder="Paste an order ID">
                 <button type="submit">Query current status</button>
             </form>
@@ -447,10 +447,10 @@ $defaultMerchantOrderId = $action === 'create' && !empty($merchantOrderId) ? $me
             <h3>Request</h3><pre><?php echo mochipay_h(mochipay_pretty_json($requestPreview)); ?></pre>
             <h3>Response</h3><pre><?php echo mochipay_h(mochipay_pretty_json($result['raw'])); ?></pre>
             <?php if ($record !== null): ?>
-                <?php $localQuery = http_build_query(array('view'=>$record['payload']['merchant_order_id'], 'token'=>$record['token']), '', '&', PHP_QUERY_RFC3986); ?>
+                <?php $localQuery = http_build_query(array('view'=>$record['attempt_id'], 'token'=>$record['token']), '', '&', PHP_QUERY_RFC3986); ?>
                 <p class="hint">Selected mode: <?php echo mochipay_h($checkoutMode); ?>. Both links use the same payment order; no second order is created.</p>
                 <?php $onsiteLink = '<a class="pay-link" href="' . mochipay_h('order.php?' . $localQuery) . '">Open on-site payment dialog</a>'; $hppLink = '<a class="pay-link" target="_blank" rel="noopener" href="' . mochipay_h($record['snapshot']['payment_url']) . '">Open HPP ↗</a>'; echo $checkoutMode === 'HPP' ? $hppLink . ' ' . $onsiteLink : $onsiteLink . ' ' . $hppLink; ?>
-                <?php $embeddedQuery = http_build_query(array('reference'=>$record['payload']['merchant_order_id'], 'token'=>$record['token'], 'mode'=>'ON_SITE'), '', '&', PHP_QUERY_RFC3986); $hppExampleQuery = http_build_query(array('reference'=>$record['payload']['merchant_order_id'], 'token'=>$record['token'], 'mode'=>'HPP'), '', '&', PHP_QUERY_RFC3986); ?>
+                <?php $embeddedQuery = http_build_query(array('reference'=>$record['attempt_id'], 'token'=>$record['token'], 'mode'=>'ON_SITE'), '', '&', PHP_QUERY_RFC3986); $hppExampleQuery = http_build_query(array('reference'=>$record['attempt_id'], 'token'=>$record['token'], 'mode'=>'HPP'), '', '&', PHP_QUERY_RFC3986); ?>
                 <p class="hint">Code examples using this same saved order: <a href="<?php echo mochipay_h('checkout.php?' . $embeddedQuery); ?>">Embedded store checkout</a> · <a href="<?php echo mochipay_h('checkout.php?' . $hppExampleQuery); ?>">PHP HPP redirect</a>. See checkout.php for both branches.</p>
             <?php endif; ?>
         </section>

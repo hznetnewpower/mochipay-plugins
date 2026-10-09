@@ -1,3 +1,5 @@
-# Current validation
+# Publication validation
 
-Web78 website baseline:228-source framework compile,6,994 server checks,720 source-derived browser cases/3,285 assertions,30 distributed JS syntax checks. Native payment suffixes and backend contracts compared with the previous website source. Public packaging checks rebuild23 archives, compare source/layout/CRC/hashes and scan for embedded credentials. Native packages retain19 branch roots; four developer ZIPs exactly match Web78. No live native-store installation, Windows IIS, SQL concurrency, real payment or public GitHub upload is claimed.
+All 30 ZIPs are copied byte-for-byte from the WEB82.7 complete-source Downloads folder. Extracted source bytes are checked against every ZIP member. Catalog SHA-256 values for all 19 native packages match. Package count, safe paths and public-file scope are checked.
+
+No integration behavior has been rewritten during packaging. Current native store/mobile deployment, live WordPress Plugin Check and real-chain payment acceptance have not been performed by this packaging task.

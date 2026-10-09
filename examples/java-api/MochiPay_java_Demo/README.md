@@ -1,14 +1,14 @@
-# MochiPay Java Demo 1.0.0 — ON_SITE + HPP
+# MochiPay Java Demo 1.0.5 — ON_SITE + HPP
 
 JDK 17+; JDK HTTP client/server and a small bundled strict JSON codec preserving number text. Maven 3.8+ is optional. No external runtime dependency.
 
 ## Run
 
-Run `mvn package` then `java -jar target/mochipay-demo-1.0.0.jar` from this directory. Without Maven: `javac -d classes src/main/java/com/mochipay/demo/*.java`, then `java -cp classes com.mochipay.demo.Main`. Bind behind HTTPS for public access.
+Run `mvn package` then `java -jar target/mochipay-demo-1.0.2.jar` from this directory. Without Maven: `javac -d classes src/main/java/com/mochipay/demo/*.java`, then `java -cp classes com.mochipay.demo.Main`. Bind behind HTTPS for public access.
 
 Set the values listed in `.env.example` in your service environment. This example does not load `.env` automatically. Set an independent random `DEMO_ACCESS_TOKEN` (32+ characters), your MochiPay API key/secret, and an active receiving wallet. Never put the API key or secret in a browser or mobile app. The service listens only on 127.0.0.1; use a correctly configured HTTPS reverse proxy for external access. Set `APP_PUBLIC_URL` to that public HTTPS origin (no path or trailing slash). Loopback HTTP is permitted only for local development. MochiPay defaults to https://mochi.bz; API redirects are disabled and TLS certificates are verified.
 
-Open http://127.0.0.1:8080. Enter the staging access token, choose an enabled asset/network and language, and create a payment. `DEMO_AMOUNT`, `DEMO_CURRENCY` and `DEMO_DIRECTION` are server-owned, default 10.00 USD and UP. All five methods are listed; configure a receiving wallet for every method you offer. ON_SITE is selected by default. Both links reuse the same saved order. The local popup includes address QR, exact amount, ten-language selector and RTL. HPP redirects to the validated MochiPay payment URL, with the buyer language added locally.
+Open http://127.0.0.1:8080. Enter the staging access token, choose an enabled asset/network and language, and create a payment. `DEMO_AMOUNT`, `DEMO_CURRENCY` and `DEMO_DIRECTION` are server-owned, default 10.00 USD and UP. All five methods are listed; configure a receiving wallet for every method you offer. ON_SITE is selected by default. Both links reuse the same saved order. The local popup includes address QR, exact amount, fifteen-language selector and RTL. HPP redirects to the validated MochiPay payment URL, with the buyer language added locally.
 
 ## Routes and mobile contract
 
@@ -38,7 +38,7 @@ Verify order ID, merchant reference, original amount/currency, asset/network, ad
 
 ## Buyer languages
 
-English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian and Arabic. Explicit lang wins; otherwise the popup uses saved/browser language then English. Installation instructions and staging controls remain English. API calls and payment identity are unchanged by language or mode.
+English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian, Arabic, Japanese, Korean, Italian, Turkish and Indonesian. Explicit lang wins; otherwise the popup uses saved/browser language then English. Installation instructions and staging controls remain English. API calls and payment identity are unchanged by language or mode.
 
 ## Mobile store policy
 

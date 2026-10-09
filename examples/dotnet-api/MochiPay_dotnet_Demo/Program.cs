@@ -12,6 +12,13 @@ namespace MochiPayDemo
 {
     public static class Program
     {
+        static bool QueryRetryable(Exception error) {
+            var network=error as WebException;
+            if(network==null)return false;
+            var response=network.Response as HttpWebResponse;
+            if(response!=null){int status=(int)response.StatusCode;return status==408||status==429||status>=500;}
+            return network.Status==WebExceptionStatus.Timeout||network.Status==WebExceptionStatus.ConnectFailure||network.Status==WebExceptionStatus.NameResolutionFailure||network.Status==WebExceptionStatus.ReceiveFailure||network.Status==WebExceptionStatus.SendFailure||network.Status==WebExceptionStatus.ConnectionClosed;
+        }
         static string Env(string name,string fallback="") { return Environment.GetEnvironmentVariable(name) ?? fallback; }
         static readonly string Root=Environment.CurrentDirectory;
         static readonly string Base=Env("MOCHIPAY_BASE_URL","https://mochi.bz").TrimEnd('/');
@@ -20,7 +27,7 @@ namespace MochiPayDemo
         static readonly string Store=Path.GetFullPath(Env("DEMO_DATA_DIR",Path.Combine(Root,"private-data")));
         static readonly string Amount=Env("DEMO_AMOUNT","10.00"),Currency=Env("DEMO_CURRENCY","USD").ToUpperInvariant(),Direction=Env("DEMO_DIRECTION","UP");
         static readonly string[] Methods={"USDT_TRC20","USDC_ERC20","BTC_BITCOIN","ETH_ERC20","SOL_SOLANA"};
-        static readonly string[] Languages={"en","zh","es","pt-br","fr","de","nl","fa","ru","ar"};
+        static readonly string[] Languages={"en","zh","es","pt-br","fr","de","nl","fa","ru","ar","ja","ko","it","tr","id"};
         static string S(JToken d,string k) { var v=d[k];return v==null?"":v.Type==JTokenType.Float?((decimal)v).ToString(CultureInfo.InvariantCulture):v.ToString(); }
         static string Json(JToken d) { return d.ToString(Formatting.None); }
         static JObject Parse(string text) { using(var r=new JsonTextReader(new StringReader(text)) { FloatParseHandling=FloatParseHandling.Decimal,DateParseHandling=DateParseHandling.None }) return JObject.Load(r); }
@@ -97,7 +104,7 @@ namespace MochiPayDemo
                 if(req.HttpMethod=="GET"&&route=="/complete"){Verify(r,t);Out(res,200,"text/html; charset=utf-8",File.ReadAllText(Path.Combine(Root,"assets/complete.html")));return;}
                 JOut(res,404,new JObject {{"success",false},{"message","Not found"}});
             }
-            catch { JOut(res,409,new JObject {{"success",false},{"message","Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order."}}); }
+            catch (Exception error) { bool retryable=QueryRetryable(error);JOut(res,retryable?503:409,new JObject {{"success",false},{"retryable",retryable},{"message","Unable to verify or recover payment. Keep the original request_id and payment method; check server configuration or review the saved order."}}); }
         }
         public static void Main()
         {

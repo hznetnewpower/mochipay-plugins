@@ -1,45 +1,81 @@
 {
-  "publication_revision": "2026.10.07-developer-mobile.1",
+  "publication_revision": "2026.10.09-payment-flow.1",
   "resources": [
     {
       "id": "php-api",
       "name": "PHP API Demo",
-      "version": "1.1.4",
-      "asset_name": "MochiPay_PHP_API_Demo_1.1.4_Multilanguages_Onsite_HPP.zip",
+      "version": "1.2.0",
+      "asset_name": "MochiPay_PHP_API_Demo_1.2.0_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/php-api",
       "native_root": "MochiPay_PHP_Demo",
-      "runtime": "PHP 7.0\u20138.4; cURL, JSON, sessions, HTTPS and private storage",
+      "runtime": "PHP 7.0–8.4; cURL, JSON, sessions, HTTPS and private storage",
       "guide": "https://mochi.bz/Developers/APIGuide.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "601d9bac2efeb500f181242544bb5c6a8cf015b4feaefdba22ff7470b8438a9e",
-      "original_bytes": 39008
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "a6082e7162d96a72db47971f6e0fb6fac9f89066e2c1e86cfbaf17dfe3828a4f",
+      "bytes": 52127,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "report-unlock",
       "name": "Report Unlock Demo",
-      "version": "1.0.2",
-      "asset_name": "MochiPay_Report_Unlock_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.8",
+      "asset_name": "MochiPay_Report_Unlock_Demo_1.0.8_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/report-unlock",
       "native_root": "mochipay-report-demo",
-      "runtime": "PHP 7.0\u20138.x; cURL, JSON, sessions, HTTPS and persistent private storage",
+      "runtime": "PHP 7.0–8.x; cURL, JSON, sessions, HTTPS and persistent private storage",
       "guide": "https://mochi.bz/Payment/AIAgents.aspx",
       "license": "MIT",
       "modes": [
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "7c811f78b338ee34620b858e2422b048632d4ba135919a2e79354d149729a681",
-      "original_bytes": 37954
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "205f475a94472afcc689d6393876436036723afd87402ef6ecae14a9944b0ca6",
+      "bytes": 51230,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "integration-skill",
       "name": "AI Integration Skill",
-      "version": "1.1.4",
-      "asset_name": "MochiPay_AI_Integration_Skill_1.1.4.zip",
+      "version": "1.2.5",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.2.5.zip",
       "source_directory": "skills",
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
@@ -49,14 +85,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "0a9de99be299acd2b942d09c42297937c28c154e3d3c93a73781a8531c277ab7",
-      "original_bytes": 25457
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "1a2829ec4d33296269d8792e9b9ae282209415a59eaac802e5ea032105b48490",
+      "bytes": 32299,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "mcp-server",
       "name": "MCP Server",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_MCP_Server_1.0.0.zip",
+      "version": "1.0.4",
+      "asset_name": "MochiPay_MCP_Server_1.0.4.zip",
       "source_directory": "mcp",
       "native_root": "mochipay-mcp",
       "runtime": "Python 3.10+; pinned MCP SDK dependency; a host that launches stdio servers",
@@ -66,14 +120,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "a01f9ecb8749724bcb63738144ffc80af0b012fad6fe7117cff4fbed451ec3fc",
-      "original_bytes": 9179
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "2336545077082c13c6a78cef89cdaf0e26696b5ce3bb0b18353c5e4770914d61",
+      "bytes": 12778,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "nodejs-demo",
       "name": "Node.js Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_NodeJS_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_NodeJS_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/nodejs-api",
       "native_root": "MochiPay_nodejs_Demo",
       "runtime": "22+",
@@ -83,14 +155,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "441b7e5586b5456af6a3088421bf128b6db6789a184d5fe688bb4eb8744b0a3e",
-      "original_bytes": 33463
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "c0eb99df1e8e3d8698540044590ce117503c4db08d205552e263688846234388",
+      "bytes": 60686,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "python-demo",
       "name": "Python Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_Python_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_Python_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/python-api",
       "native_root": "MochiPay_python_Demo",
       "runtime": "3.10+",
@@ -100,14 +190,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "cd0ab5455450f3daf18a81a79515f71012d3abb81d6dd6ad6d539acf6c7a0713",
-      "original_bytes": 33625
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "12381c32695e6fc14bfe59e739889d0c239df8f43192c11b075e51e52e4d4516",
+      "bytes": 60623,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "dotnet-demo",
       "name": "C# / .NET Framework Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_DotNet_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_DotNet_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/dotnet-api",
       "native_root": "MochiPay_dotnet_Demo",
       "runtime": "4.6.1 / VS2019",
@@ -117,14 +225,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "807d8d57a37716f686ae1534791fd574a8ab9c55368a918810b29644322a6373",
-      "original_bytes": 35120
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "7cf05e6cc9afaff080daabe913d2c1331f8e2332c0d9822e3b4f6f2513333a3c",
+      "bytes": 62146,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "java-demo",
       "name": "Java Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_Java_API_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_Java_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/java-api",
       "native_root": "MochiPay_java_Demo",
       "runtime": "JDK17+",
@@ -134,14 +260,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "3f9f6d408d6ac3389c09ed713eaaca46678d29b9840c913ab240464fd55a4f79",
-      "original_bytes": 37018
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "0b33a20ba373c318cd44c30eb5c6bc859042b5408899438c08d6bee1f5a1f00d",
+      "bytes": 63954,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "ios-demo",
       "name": "iOS Swift Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_iOS_Swift_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.2",
+      "asset_name": "MochiPay_iOS_Swift_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
       "source_directory": "mobile/ios",
       "native_root": "MochiPay_iOS_Swift_Demo",
       "runtime": "iOS15+ / Xcode14+",
@@ -151,14 +295,32 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "25eb44b2d548a1b8efe3025bb7a489b12339383df95ed5baff63b138eff161f6",
-      "original_bytes": 8868
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "74fa2491ea6dc5b0f888f0bd09fa3cf337e190efbd812a4e6830ffeb75afb976",
+      "bytes": 9284,
+      "publication_revision": "2026.10.09-payment-flow.1"
     },
     {
       "id": "android-demo",
       "name": "Android Kotlin Demo",
-      "version": "1.0.0",
-      "asset_name": "MochiPay_Android_Kotlin_Demo_1.0.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.2",
+      "asset_name": "MochiPay_Android_Kotlin_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
       "source_directory": "mobile/android",
       "native_root": "MochiPay_Android_Kotlin_Demo",
       "runtime": "API26+ / SDK35 / JDK17",
@@ -168,8 +330,37 @@
         "ON_SITE",
         "HPP"
       ],
-      "original_sha256": "5dd47051658d033e3ee09eddac3c68aec355017232aeb5e9cf3eb9f34b51f48a",
-      "original_bytes": 9193
+      "buyer_languages": [
+        "en",
+        "zh",
+        "es",
+        "pt-br",
+        "fr",
+        "de",
+        "nl",
+        "fa",
+        "ru",
+        "ar",
+        "ja",
+        "ko",
+        "it",
+        "tr",
+        "id"
+      ],
+      "sha256": "7f2a71994e0e8b48a3e7b90d3b6e9df997daa162118d77e361e29a3fe4bd881c",
+      "bytes": 9604,
+      "publication_revision": "2026.10.09-payment-flow.1"
     }
-  ]
+  ],
+  "chrome_extension": {
+    "id": "chrome-assistant",
+    "name": "Chrome Payment Assistant",
+    "version": "1.0.4",
+    "license": "MIT",
+    "asset_name": "MochiPay_Chrome_Payment_Assistant_1.0.4.zip",
+    "source_directory": "extensions/chrome-payment-assistant",
+    "sha256": "95e714435fc3711ae98288df92b7c5b3448e532f6152a4fec48c1a4f27a789cb",
+    "bytes": 396269,
+    "publication_revision": "2026.10.09-payment-flow.1"
+  }
 }

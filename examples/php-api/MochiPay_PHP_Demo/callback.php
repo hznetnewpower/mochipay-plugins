@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $verifiedMerchantId = isset($order['merchant_order_id']) ? (string)$order['merchant_order_id'] : '';
-    try { $record = mochipay_load($verifiedMerchantId); }
+    try { $record = mochipay_load(isset($_GET['attempt_id']) ? (string)$_GET['attempt_id'] : ''); }
     catch (Exception $e) { callback_text(503, 'LOCAL_STORAGE_UNAVAILABLE'); }
     if (!mochipay_bound($record, $order) || (isset($callback['merchant_order_id']) && !hash_equals($verifiedMerchantId, (string)$callback['merchant_order_id']))) callback_text(409, 'LOCAL_ORDER_MISMATCH');
     if (!isset($order['received_amount']) || MochiPayPortable::decimal($order['received_amount']) !== MochiPayPortable::decimal($order['pay_amount'])) callback_text(409, 'PAYMENT_AMOUNT_REQUIRES_REVIEW');
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Browser return: query the saved order, then compare its original local binding.
-$merchantOrderId = isset($_GET['merchant_order_id']) ? trim((string)$_GET['merchant_order_id']) : '';
+$merchantOrderId = isset($_GET['attempt_id']) ? trim((string)$_GET['attempt_id']) : '';
 $verified = null; $record = null; $paid = false; $authorized = false;
 try {
     $record = mochipay_load($merchantOrderId);
