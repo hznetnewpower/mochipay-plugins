@@ -5,10 +5,15 @@ def sha(b): return hashlib.sha256(b).hexdigest()
 def mappings(): return json.loads((ROOT/'tools/package-source-map.json').read_text())
 def verify_sources():
  count=0
+ legacy=json.loads((ROOT/'tools/legacy-documentation.sha256.json').read_text())
  for pack in mappings():
   folder=ROOT/pack['source_directory']
   actual={p.relative_to(folder).as_posix() for p in folder.rglob('*') if p.is_file()}
-  assert actual==set(pack['files']),('Source member mismatch',pack['id'])
+  assert set(pack['files']).issubset(actual),('Source member missing',pack['id'])
+  for n in actual-set(pack['files']):
+   relative=pack['source_directory']+'/'+n
+   extra=folder/n
+   assert not extra.is_symlink() and relative in legacy and sha(extra.read_bytes())==legacy[relative],('Unexpected extra source or changed inherited documentation',relative)
   for n,h in pack['files'].items():
    p=folder/n
    assert not p.is_symlink() and sha(p.read_bytes())==h,('Source hash mismatch',p)
