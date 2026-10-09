@@ -1,5 +1,20 @@
 <?php
 
+
+class MochiPayTransportException extends RuntimeException {}
+
+class MochiPayApiException extends RuntimeException
+{
+    public $http, $apiCode, $recoveryContract;
+    public function __construct($http, $code, $contract)
+    {
+        $this->http=(int)$http; $this->apiCode=$code; $this->recoveryContract=$contract;
+        parent::__construct('MochiPay API error: ' . $code);
+    }
+    public function canRecoverNotFound() { return $this->http===404 && $this->apiCode==='ORDER_NOT_FOUND' && $this->recoveryContract==='merchant-reference-v1'; }
+    public function isRejected() { return $this->http>=400 && $this->http<500 && !in_array($this->http,array(408,409,429),true); }
+}
+
 class MochiPayClient
 {
     private $baseUrl;
@@ -12,7 +27,7 @@ class MochiPayClient
         $this->baseUrl = rtrim(trim((string) $baseUrl), '/');
         $this->apiKey = trim((string) $apiKey);
         $this->apiSecret = trim((string) $apiSecret);
-        $this->timeout = max(5, (int) $timeout);
+        $this->timeout = max(30, (int) $timeout);
 
         if (strtolower((string) parse_url($this->baseUrl, PHP_URL_SCHEME)) !== 'https' || parse_url($this->baseUrl, PHP_URL_USER) || parse_url($this->baseUrl, PHP_URL_QUERY)) { throw new RuntimeException('MochiPay URL must be an HTTPS site URL.'); }
         if ($this->baseUrl === '' || $this->apiKey === '' || $this->apiSecret === '') {
@@ -33,6 +48,12 @@ class MochiPayClient
     public function queryOrder($systemOrderId)
     {
         $query = 'order_id=' . rawurlencode(trim((string) $systemOrderId));
+        return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query);
+    }
+
+    public function queryRequest($requestId)
+    {
+        $query = 'request_id=' . rawurlencode(trim((string) $requestId));
         return $this->request('/api/v1/orders/query?' . $query, 'GET', '', $query);
     }
 
@@ -64,7 +85,8 @@ class MochiPayClient
         if ($status < 200 || $status >= 300 || !is_array($decoded) || empty($decoded['success'])) {
             $message = is_array($decoded) && !empty($decoded['message'])
                 ? (string) $decoded['message'] : 'HTTP_' . $status;
-            throw new RuntimeException('MochiPay API error: ' . $message);
+            if (!preg_match('/\A[A-Z][A-Z0-9_]{0,100}\z/', $message)) $message='API_UNAVAILABLE';
+            throw new MochiPayApiException($status, $message, isset($decoded['recovery_contract']) ? $decoded['recovery_contract'] : '');
         }
 
         return $decoded;
@@ -74,7 +96,7 @@ class MochiPayClient
     {
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($curl, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
@@ -86,7 +108,7 @@ class MochiPayClient
         if ($response === false) {
             $error = curl_error($curl);
             curl_close($curl);
-            throw new RuntimeException('MochiPay connection failed: ' . $error);
+            throw new MochiPayTransportException('MochiPay connection failed: ' . $error);
         }
         $status = (int) curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
@@ -108,7 +130,7 @@ class MochiPayClient
         }
         $response = @file_get_contents($url, false, stream_context_create($options));
         if ($response === false) {
-            throw new RuntimeException('MochiPay connection failed.');
+            throw new MochiPayTransportException('MochiPay connection failed.');
         }
         $status = 0;
         if (!empty($http_response_header[0]) && preg_match('/\s([0-9]{3})\s/', $http_response_header[0], $match)) {
@@ -117,3 +139,5 @@ class MochiPayClient
         return array($status, $response);
     }
 }
+
+function mochipay_query_retryable($e) { return $e instanceof MochiPayTransportException || ($e instanceof MochiPayApiException && ($e->http===408 || $e->http===429 || $e->http>=500)); }

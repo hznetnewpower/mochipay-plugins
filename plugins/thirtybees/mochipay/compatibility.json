@@ -1,6 +1,6 @@
 {
   "plugin": "MochiPay",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "platform": "thirty bees",
   "core": "thirty bees >=1.6.0 <1.7.0",
   "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",

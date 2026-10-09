@@ -1,0 +1,26 @@
+.mp-overlay[hidden],.mp-dialog [hidden]{display:none!important}.mp-overlay{position:fixed;inset:0;z-index:999999;background:rgba(22,29,28,.64);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px)}body.mp-modal-open{overflow:hidden}.mp-dialog{box-sizing:border-box;position:relative;background:#fffdf8;color:#25332e;border-radius:22px;box-shadow:0 28px 100px #0004;width:100%;max-width:510px;max-height:calc(100dvh - 32px);overflow:auto;padding:28px;text-align:center;font:14px/1.5 system-ui,-apple-system,sans-serif}.mp-dialog h2{font-size:26px;margin:6px 24px 12px;color:#21392d}.mp-brand{letter-spacing:3px;font-size:11px;font-weight:750;color:#587663}.mp-dialog .mp-close{position:absolute;top:12px;right:12px;border:0;background:transparent;color:#516258;font-size:28px;padding:2px 10px}.mp-dialog button{cursor:pointer;border:1px solid #cdd8cd;border-radius:10px;padding:9px 15px;background:#f1f5ef;color:#284e38;font:600 13px system-ui}.mp-dialog button:focus-visible,.mp-dialog input:focus-visible{outline:3px solid #35795d;outline-offset:3px}.mp-dialog button:disabled{opacity:.5;cursor:wait}.mp-status{padding:9px;border-radius:10px;background:#eaf2e8;color:#2d593b}.mp-pay-amount{font-size:28px;font-weight:750;overflow-wrap:anywhere}.mp-order-total{margin:5px 0;color:#677267}.mp-network{font-weight:700;margin:8px}.mp-qr{background:white;border-radius:14px;padding:16px;margin:12px auto;width:232px;height:232px;box-sizing:border-box;border:1px solid #e3e9dd;display:flex;align-items:center;justify-content:center}.mp-qr img,.mp-qr canvas{max-width:200px;image-rendering:pixelated}.mp-qr-caption{font-size:12px;color:#617466}.mp-address-label{display:block;margin:16px 0 5px;font-weight:650}.mp-dialog .mp-address{display:block;box-sizing:border-box;width:100%;font:12px/1.5 ui-monospace,monospace;text-align:center;padding:12px 5px;background:#f8f9f2;border:1px solid #dce3d4;border-radius:8px;color:#334837;margin:0 0 8px}.mp-copy-note{margin-left:8px;font-size:12px;color:#35734b}.mp-warning{font-size:12px;background:#fff4dc;border-radius:10px;padding:12px;color:#69571f}.mp-expiry,.mp-reference,.mp-footnote{font-size:11px;color:#6c786b;overflow-wrap:anywhere;margin:8px 0}.mp-error{color:#93412d;font-size:13px}.mp-payment-page{max-width:760px;margin:70px auto;padding:24px;text-align:center}.mp-reopen{margin:16px}.mp-refresh{margin:7px!important;background:#245f43!important;color:white!important}@media(max-width:480px){.mp-dialog{padding:22px 16px;border-radius:16px}.mp-dialog h2{font-size:22px}.mp-pay-amount{font-size:25px}}@media(prefers-reduced-motion:reduce){.mp-overlay{backdrop-filter:none}}
+
+/* ON_SITE layout build 76: only the inner region scrolls; the outer corners stay clipped. */
+.mp-overlay .mp-dialog{display:flex;flex-direction:column;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow:hidden;padding:8px;min-width:0}
+.mp-overlay .mp-dialog>[data-native-language-control]{flex:0 0 auto;min-width:0;padding-right:44px!important}
+.mp-overlay .mp-dialog>.mp-dialog-scroll{box-sizing:border-box;flex:1 1 auto;min-height:0;min-width:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-width:thin;scrollbar-color:#9caea2 transparent;border-radius:12px;padding:20px;overflow-wrap:anywhere}
+.mp-overlay .mp-dialog>.mp-dialog-scroll::-webkit-scrollbar{width:10px}
+.mp-overlay .mp-dialog>.mp-dialog-scroll::-webkit-scrollbar-track{background:transparent}
+.mp-overlay .mp-dialog>.mp-dialog-scroll::-webkit-scrollbar-thumb{background:#9caea2;border:2px solid transparent;background-clip:padding-box;border-radius:12px}
+.mp-overlay .mp-dialog>.mp-dialog-scroll:focus-visible{outline:2px solid #35795d;outline-offset:-2px}
+.mp-overlay .mp-dialog>.close,.mp-overlay .mp-dialog>.mp-close{top:8px;right:8px;z-index:2}
+@media(max-width:600px){.mp-overlay .mp-dialog>.mp-dialog-scroll{padding:16px 10px}}
+@media(max-height:420px){.mp-overlay .mp-dialog{max-height:calc(100vh - 20px);max-height:calc(100dvh - 20px)}}
+
+/* Multilanguages UI78: preserve value direction within RTL dialogs. */
+[data-mp-native-language][dir="rtl"]{direction:rtl;text-align:start;font-family:Tahoma,Arial,sans-serif}
+[data-mp-native-language] input,[data-mp-native-language] code,[data-mp-native-language] .mp-pay-amount,[data-mp-native-language] .mp-amount{direction:ltr;unicode-bidi:isolate}
+
+/* Mobile dialog patch 2026-10-08: contain scrollbars and respect device insets. */
+.mp-overlay{box-sizing:border-box;overscroll-behavior:contain}
+.mp-overlay .mp-dialog>.mp-dialog-scroll::-webkit-scrollbar-button{display:none;width:0;height:0}
+.mp-overlay .mp-dialog>.mp-dialog-scroll::-webkit-scrollbar{width:6px}
+@media(max-width:600px){
+.mp-overlay{padding:12px;padding-top:max(12px,env(safe-area-inset-top));padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.mp-overlay .mp-dialog{max-height:calc(100vh - 24px);max-height:calc(100dvh - max(12px,env(safe-area-inset-top)) - max(12px,env(safe-area-inset-bottom)))}
+}

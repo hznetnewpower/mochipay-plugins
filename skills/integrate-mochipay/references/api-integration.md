@@ -1,6 +1,6 @@
 # API integration contract
 
-Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.1.4_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
+Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.0_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
 
 ## Authentication and fields
 
@@ -35,7 +35,11 @@ ON_SITE keeps the store experience and can reduce checkout friction; do not clai
 
 ## Durable attempts and fulfillment
 
-Repeated merchant_order_id alone is **not server idempotency**. The current server supports optional request_id: 1–64 ASCII letters/digits or . _ : -. Persist it and the exact payload before creation. Repeating an identical request_id with unchanged creation fields returns the same order; conflicting fields yield REQUEST_ID_CONFLICT, active creation may yield REQUEST_IN_PROGRESS (Retry-After:2), and a missing saved result yields REQUEST_ORDER_UNAVAILABLE. Once order_id is saved, query it. Only on a verified current server with request_id support may an uncertain initial create replay the unchanged payload/request_id. Preserve legacy attempts without request_id with query-first/manual recovery; do not invent historical IDs or retry blindly. A reference query does not prove historical uniqueness.
+WEB82.3 supports both purchase-reference recovery and optional request_id. Each genuinely new purchase must use an independent merchant_order_id and request_id, even if its price/customer matches an unpaid earlier purchase. A repeat of the same reference with the same amount/currency/payment method reuses the unique saved invoice; conflicting financial fields yield MERCHANT_ORDER_ID_CONFLICT, and historical duplicates yield MERCHANT_ORDER_ID_AMBIGUOUS rather than selecting an arbitrary invoice. References are case-sensitive. The server serializes creation per merchant/reference, independent of customer and amount.
+
+Optional request_id accepts 1–64 ASCII letters/digits or . _ : -. Persist it and the exact payload before creation. Repeating it with unchanged creation fields returns the same order; conflicting fields yield REQUEST_ID_CONFLICT, active creation can yield REQUEST_IN_PROGRESS (Retry-After:2), and missing saved results yield REQUEST_ORDER_UNAVAILABLE. A new request ID recovering a unique existing reference is bound to that invoice and its fingerprint. Once order_id is saved, query it. Do not generate another ID to work around an uncertain purchase.
+
+Authenticated WEB82.6 advertises request-id-v1. Merchant references may repeat; only request_id and unchanged payload identify a transport retry. Query request_id after an uncertain response; query order_id once saved. New checkouts always receive a new request_id. WEB82.7 native, MCP, Chrome and demo packages implement this same independent-attempt rule.
 
 On callback/browser return, ignore unverified incoming payment values. Query server-to-server and compare ID, reference, currency, original amount, method/network and address with the immutable local binding. Require PAID and exact received_amount == pay_amount. Use decimal arithmetic, preserving the unique payable amount. Underpayment, overpayment, expiration or inconsistent fields require pending/review handling. Fulfill atomically once; duplicate notifications must not ship/credit again. Neither a return nor screenshot proves payment.
 
@@ -44,3 +48,7 @@ The Demo uses private demo records and does not fulfill production stores. Repla
 Review the integration's HTTP transport configuration before deployment. Certificate-chain validation and hostname validation are separate controls. Use the merchant project's approved transport policy; do not introduce an insecure TLS setting as a troubleshooting shortcut. The official Demo is a reference implementation, not a guarantee of production security.
 
 Read returns-notifications.md for separate HPP synchronous-return and ON_SITE/HPP asynchronous routes. Read developer-examples.md to choose the correct backend/mobile package and common mobile contract.
+
+## WEB82.6 override
+
+merchant_order_id is a repeatable label, not an idempotency key. New requests with the same reference create separate system orders. Query accepts exactly one of order_id, request_id, or merchant_order_id. Duplicate reference lookups return409 MERCHANT_ORDER_ID_AMBIGUOUS; do not infer the intended attempt from the latest reference match. Persist request_id for transport retries. Current website/Zen release does not migrate old orders.

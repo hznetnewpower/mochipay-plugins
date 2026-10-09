@@ -1,6 +1,6 @@
 # MochiPay for thirty bees
 
-Version 1.0.0 — English interface and documentation.
+Version 1.0.6 — English interface and documentation.
 
 ## Compatibility
 
@@ -25,7 +25,7 @@ The adapter targets thirty bees 1.6 and uses its native PaymentModule and primar
 
 The defaults are MochiPay URL `https://mochi.bz`, payment mode `ON_SITE`, unique amount direction `UP`, and all five supported methods selected: USDT/TRC20, USDC/ERC20, BTC/Bitcoin, ETH/Ethereum and SOL/Solana. The gateway starts disabled. Enter your merchant API key and secret, choose UP or DOWN, enable the native payment method and save. Enable only methods for which the merchant has a matching active wallet configured in MochiPay. There is no third-party facilitator registration.
 
-`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated address-only QR code in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
+`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated QR code (With address by default; optional With amount for supported payments) in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
 
 One currency/network is fixed for each attempt. If creating an order times out, continue the saved checkout. Its immutable payload and `request_id` are reused. Do not create a replacement order or send a second transfer while the first is unresolved.
 

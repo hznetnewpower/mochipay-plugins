@@ -1,6 +1,6 @@
 # Zen Cart 1.5.3-1.5.7 — MochiPay
 
-Plugin version: 1.1.0
+Plugin version: 1.2.0
 
 # MochiPay setup
 
@@ -28,12 +28,14 @@ opens a merchant-local payment page and then the dialog. WooCommerce supports a
 checkout dialog and a protected order payment link. No iframe is used.
 HPP redirects the customer to the MochiPay hosted payment page.
 
-The QR contains the address only; customers must enter the exact displayed amount.
+By default, the QR contains the address only; customers enter the exact displayed amount. With amount is optional for supported assets and precision. See PAYMENT_QR_MODES.md in the package root.
 Automatic polling and callbacks query the authenticated MochiPay API before
 marking an order paid. Underpayment, overpayment, cancellation and expiration
 require review and do not automatically mark orders paid. Payable amounts retain
-server decimal precision. A saved attempt is reused; uncertain creation is queried
-by its merchant reference instead of blindly submitting another create request.
+server decimal precision. Every explicit checkout creates a new payment attempt and system order, even when
+the local order ID or merchant_order_id repeats. A payment token identifies one
+attempt. Refreshing that payment page queries the same system order. Only a
+transport retry of that attempt reuses its saved request_id and payload.
 
 ## Server requirements
 
@@ -43,7 +45,7 @@ package selection guide, not permission to run an older core on newer PHP.
 Enable JSON, OpenSSL and a working HTTPS transport (cURL recommended). The store
 must accept the generated callback URL over HTTPS. Portable adapters use the
 store's MySQL/MariaDB connection, InnoDB and GET_LOCK/RELEASE_LOCK. They add a
-prefixed mochipay_attempt table automatically. No MochiPay service migration is
+prefixed mochipay_attempt_v2 table automatically. No MochiPay service migration is
 needed for these plugin packages. WooCommerce uses native order metadata/options.
 
 ## Updating
@@ -53,9 +55,9 @@ Replace plugin files in place using the same package branch. Do not uninstall or
 remove the module as an upgrade step: removal may delete settings. Clear the
 platform's module/template caches after replacing files. New defaults apply only
 to unset configuration; an existing saved HPP preference remains HPP.
-Historical mapping imports are supported for earlier supplied Zen Cart,
-OpenCart, PrestaShop and Magento 2 packages. A mismatch requires manual review.
-If an older order used the wrong currency-conversion amount, review it manually.
+This release targets the merchant's pre-launch store with no historical orders.
+It does not migrate old payment attempts. The new prefixed mochipay_attempt_v2
+table is created automatically; preserve gateway settings during a file update.
 
 ## Validation scope
 
@@ -97,3 +99,29 @@ Local language/browser checks cover the reusable dialog assets. Real store check
 ## ON_SITE layout update — build 76
 
 The payment dialog keeps all four outer corners rounded. Long content scrolls inside an inset region; the close button and language selector remain outside it. Update both includes/classes/mochipay/onsite.css and includes/classes/mochipay/onsite.js. Preserve gateway settings and order mappings. Clear browser/CDN/storefront caches after replacing these assets. API, PHP payment logic, exact amount, wallet address and callback verification are unchanged. HPP is unchanged.
+
+
+## Independent payment release — Zen Cart1.2.0 / WEB82.6
+
+Deploy and rebuild the MochiPay WEB82.6 payment API before updating this plugin.
+The API permits repeated merchant_order_id labels; only request_id identifies a
+retry. Each explicit checkout creates its own record, token and system order.
+Existing unpaid attempts never block or replace a new checkout. ON_SITE polling
+and callbacks use the selected attempt token/system ID, not the latest payment
+for that store order. Confirmed native orders still fulfill once.
+
+Replace includes/modules/payment/mochipay.php, includes/classes/mochipay_bridge.php,
+includes/classes/mochipay_client.php, includes/classes/mochipay/mochipay_client.php,
+includes/classes/mochipay/mochipay_core.php, mochipay_pay.php and mochipay_callback.php.
+Do not uninstall or reset settings. The attempt_v2 table is created automatically;
+no manual plugin SQL or main payment-system SQL is required. Clear storefront caches.
+
+Zen Cart payment and advisory-lock queries explicitly bypass queryCache; this
+prevents consumed or stale query results from producing an incomplete payment
+link. Retain saved-order amount conversion, null-product fallback, static endpoint
+URLs, stage-seven query deadlines, retryable polling, QR and buyer languages.
+
+Offline fixtures cover checkout123/124/124, ON_SITE/HPP, null products, independent
+links, callbacks, exact received amounts, repeated settlement, request retries and
+query caching. Real Zen Cart installation, IIS/.NET compilation and real payment
+acceptance must still be performed on the merchant environment.

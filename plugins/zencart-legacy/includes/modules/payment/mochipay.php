@@ -83,22 +83,27 @@ class mochipay
         require_once DIR_FS_CATALOG . DIR_WS_CLASSES . 'mochipay_bridge.php';
 
         try {
-            global $cart;
-            if (is_object($cart)) $cart->reset(true);
-            unset($_SESSION['cartID']);
+            // Use the saved order amount, independent of checkout/cart cleanup.
+            if ((int) $insert_id <= 0) throw new RuntimeException('MochiPay requires a saved store order.');
+            $savedOrder = $db->Execute('SELECT order_total, currency, currency_value FROM ' . TABLE_ORDERS . ' WHERE orders_id=' . (int) $insert_id . ' LIMIT 1');
+            if ($savedOrder->EOF || !isset($savedOrder->fields['currency']) || trim($savedOrder->fields['currency']) === '') {
+                throw new RuntimeException('MochiPay could not read a valid saved order amount and currency.');
+            }
+            $amount = mochipay_order_amount($savedOrder->fields['order_total'], $savedOrder->fields['currency_value'], $savedOrder->fields['currency']);
+            $products = $this->orderProducts($order, $insert_id);
             $method = isset($_SESSION['mochipay_payment_method']) ? $_SESSION['mochipay_payment_method'] : 'USDT_TRC20';
             $merchantOrderId = 'ZC-' . strtoupper(substr(md5(HTTP_SERVER . DIR_WS_CATALOG), 0, 8)) . '-' . (int) $insert_id;
-            $returnUrl = zen_href_link('mochipay_return.php', 'local_order_id=' . (int) $insert_id, 'SSL', true, false);
+            $returnUrl = mochipay_endpoint_url('mochipay_return.php', array('local_order_id' => (int) $insert_id));
             $payload = array(
                 'merchant_order_id' => $merchantOrderId,
-                'amount' => number_format((float) $order->info['total'] * (float)$order->info['currency_value'], 8, '.', ''),
-                'currency' => strtoupper($order->info['currency']),
+                'amount' => $amount,
+                'currency' => strtoupper($savedOrder->fields['currency']),
                 'payment_method' => $method,
                 'unique_amount_direction' => $this->direction(),
                 'source' => 'ZENCART',
-                'product_type' => $this->productType($order->products),
+                'product_type' => $this->productType($products),
                 'description' => 'Zen Cart order #' . (int) $insert_id,
-                'product_info' => $this->productInfo($order->products, $insert_id),
+                'product_info' => $this->productInfo($products, $insert_id),
                 'customer_email' => isset($order->customer['email_address']) ? $order->customer['email_address'] : '',
                 'customer_phone' => isset($order->customer['telephone']) ? $order->customer['telephone'] : '',
                 'first_name' => isset($order->delivery['firstname']) ? $order->delivery['firstname'] : '',
@@ -111,12 +116,16 @@ class mochipay
                 'address2' => isset($order->delivery['suburb']) ? $order->delivery['suburb'] : '',
                 'postal_code' => isset($order->delivery['postcode']) ? $order->delivery['postcode'] : '',
                 'customer_ip' => $this->customerIp(),
-                'notify_url' => zen_href_link('mochipay_callback.php', '', 'SSL', true, false),
+                'notify_url' => mochipay_endpoint_url('mochipay_callback.php'),
                 'redirect_url' => $returnUrl,
             );
             $service = mochipay_service();
             $client = new MochiPayClient(MODULE_PAYMENT_MOCHIPAY_API_URL, MODULE_PAYMENT_MOCHIPAY_API_KEY, MODULE_PAYMENT_MOCHIPAY_API_SECRET);
             $attempt = $service->begin((int) $insert_id, $payload);
+            if (!is_array($attempt) || empty($attempt['token']) || !is_string($attempt['token']) ||
+                !preg_match('/^[a-f0-9]{48,64}$/iD', $attempt['token'])) {
+                throw new RuntimeException('MochiPay saved payment link is incomplete. Please retry this order.');
+            }
             unset($_SESSION['mochipay_payment_method']);
             $data = json_decode($attempt['snapshot'], true);
             // Clear the completed cart before either HPP or on-site navigation.
@@ -124,16 +133,24 @@ class mochipay
             if (is_object($cart)) $cart->reset(true);
             unset($_SESSION['cartID']);
             if (defined('MODULE_PAYMENT_MOCHIPAY_CHECKOUT_MODE') && MODULE_PAYMENT_MOCHIPAY_CHECKOUT_MODE === 'ON_SITE') {
-                zen_redirect(zen_href_link('mochipay_pay.php', 'id=' . (int) $insert_id . '&token=' . $attempt['token'], 'SSL', true, false));
+                return zen_redirect(mochipay_endpoint_url('mochipay_pay.php', array('id' => (int) $insert_id, 'token' => $attempt['token'])));
             }
-            zen_redirect($data['payment_url']);
+            return zen_redirect($data['payment_url']);
         } catch (Exception $exception) {
-            $db->Execute("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . " (orders_id, orders_status_id, date_added, customer_notified, comments) VALUES (" .
-                (int) $insert_id . ", " . (int) $this->order_status . ", NOW(), 0, 'MochiPay error: " . zen_db_input($exception->getMessage()) . "')");
-            global $messageStack;
-            $messageStack->add_session('account', 'Your order is saved but payment creation needs review. Contact the store before paying again.', 'error');
-            zen_redirect(zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . (int)$insert_id, 'SSL'));
+            $this->paymentError($exception, $insert_id);
+        } catch (Throwable $exception) {
+            // PHP 7+ type/runtime errors do not extend Exception.
+            $this->paymentError($exception, $insert_id);
         }
+    }
+
+    private function paymentError($exception, $orderId)
+    {
+        global $db, $messageStack;
+        $db->Execute("INSERT INTO " . TABLE_ORDERS_STATUS_HISTORY . " (orders_id, orders_status_id, date_added, customer_notified, comments) VALUES (" .
+            (int) $orderId . ", " . (int) $this->order_status . ", NOW(), 0, 'MochiPay error: " . zen_db_input($exception->getMessage()) . "')");
+        $messageStack->add_session('account', 'Unable to start payment. Your cart is kept. Please return to checkout and try again.', 'error');
+        zen_redirect(zen_href_link(FILENAME_ACCOUNT_HISTORY_INFO, 'order_id=' . (int) $orderId, 'SSL'));
     }
 
     public function get_error()
@@ -175,7 +192,6 @@ class mochipay
             $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, use_function, date_added) VALUES ('" .
                 zen_db_input($row[0]) . "', '" . zen_db_input($row[1]) . "', '" . zen_db_input($row[2]) . "', '" . zen_db_input($row[3]) . "', " . $group . ", " . (int) $row[5] . ", '" . zen_db_input($row[4]) . "', '" . (in_array($row[1], array('MODULE_PAYMENT_MOCHIPAY_ORDER_STATUS_ID','MODULE_PAYMENT_MOCHIPAY_PAID_ORDER_STATUS_ID'),true) ? 'zen_get_order_status_name' : '') . "', NOW())");
         }
-        $db->Execute("CREATE TABLE IF NOT EXISTS " . DB_PREFIX . "mochipay_order (mochipay_order_id VARCHAR(32) NOT NULL, orders_id INT NOT NULL, merchant_order_id VARCHAR(100) NOT NULL, payment_method VARCHAR(30) NOT NULL, tx_hash VARCHAR(255) NULL, date_added DATETIME NOT NULL, date_paid DATETIME NULL, PRIMARY KEY (mochipay_order_id), KEY idx_orders_id (orders_id), KEY idx_merchant_order_id (merchant_order_id)) ENGINE=InnoDB DEFAULT CHARSET=utf8");
     }
 
     public function remove()
@@ -206,9 +222,37 @@ class mochipay
         return defined('MODULE_PAYMENT_MOCHIPAY_UNIQUE_AMOUNT_DIRECTION') && MODULE_PAYMENT_MOCHIPAY_UNIQUE_AMOUNT_DIRECTION === 'DOWN' ? 'DOWN' : 'UP';
     }
 
+    private function orderProducts($checkoutOrder, $orderId)
+    {
+        global $db;
+        // FEC/custom checkouts may clear or replace the global order object.
+        $products = array();
+        if (is_object($checkoutOrder) && isset($checkoutOrder->products) && is_array($checkoutOrder->products)) {
+            foreach ($checkoutOrder->products as $product) {
+                if (is_array($product)) $products[] = $product;
+            }
+        }
+        if (!empty($products)) return $products;
+
+        $rows = $db->Execute('SELECT products_id, products_name, products_model, products_quantity, final_price FROM ' . TABLE_ORDERS_PRODUCTS .
+            ' WHERE orders_id=' . (int) $orderId . ' ORDER BY orders_products_id');
+        while (!$rows->EOF) {
+            $products[] = array(
+                'id' => $rows->fields['products_id'],
+                'name' => $rows->fields['products_name'],
+                'model' => $rows->fields['products_model'],
+                'qty' => $rows->fields['products_quantity'],
+                'final_price' => $rows->fields['final_price'],
+            );
+            $rows->MoveNext();
+        }
+        return $products;
+    }
+
     private function productType(array $products)
     {
         global $db;
+        if (empty($products)) return 'PHYSICAL';
         foreach ($products as $product) {
             $id = isset($product['id']) ? (int) $product['id'] : 0;
             $result = $db->Execute("SELECT products_virtual FROM " . TABLE_PRODUCTS . " WHERE products_id = " . $id . " LIMIT 1");
