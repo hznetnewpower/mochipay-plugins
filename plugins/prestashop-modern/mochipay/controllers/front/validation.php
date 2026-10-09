@@ -35,9 +35,10 @@ class MochipayValidationModuleFrontController extends ModuleFrontController
                 $items[] = array('name' => $product['name'], 'quantity' => (int) $product['cart_quantity'], 'total' => (string) $product['total_wt']);
                 if (empty($product['is_virtual'])) $physical = true;
             }
+            $service = $this->module->portable();
             $payload = array(
                 'merchant_order_id' => $merchantOrderId,
-                'amount' => number_format($total, 8, '.', ''),
+                'amount' => MochiPayPortable::currencyAmount((string)$total, $currency->iso_code),
                 'currency' => strtoupper($currency->iso_code),
                 'payment_method' => $method,
                 'unique_amount_direction' => $this->module->direction(),
@@ -58,13 +59,15 @@ class MochipayValidationModuleFrontController extends ModuleFrontController
                 'postal_code' => $address->postcode,
                 'customer_ip' => filter_var(Tools::getRemoteAddr(), FILTER_VALIDATE_IP) ? Tools::getRemoteAddr() : '',
                 'notify_url' => $this->context->link->getModuleLink('mochipay', 'callback', array(), true),
-                'redirect_url' => $this->context->link->getModuleLink('mochipay', 'return', array('cart_id' => (int) $cart->id), true),
+                'redirect_url' => $this->context->link->getModuleLink('mochipay', 'return', array('cart_id' => (int) $cart->id, 'token' => 'MOCHIPAY_ATTEMPT_TOKEN'), true),
             );
             $service = $this->module->portable();
             $localOrder = new Order($orderId);
             if (!Validate::isLoadedObject($localOrder) || (int)$localOrder->id_customer !== (int)$customer->id || $localOrder->module !== 'mochipay') throw new RuntimeException('Invalid store order.');
-            // Refuse a split-cart mismatch rather than paying only one of several orders.
-            if (MochiPayPortable::decimal($localOrder->total_paid) !== MochiPayPortable::decimal($payload['amount'])) throw new RuntimeException('Split-cart checkout requires separate payment orders.');
+            // This adapter supports one store order per cart.
+            $cartOrders = Db::getInstance()->executeS('SELECT id_order FROM `' . _DB_PREFIX_ . 'orders` WHERE id_cart=' . (int)$cart->id);
+            if (!is_array($cartOrders) || count($cartOrders) !== 1) throw new RuntimeException('Split-cart checkout requires separate payment orders.');
+            if (MochiPayPortable::decimal(MochiPayPortable::currencyAmount($localOrder->total_paid, $currency->iso_code)) !== MochiPayPortable::decimal($payload['amount'])) throw new RuntimeException('Split-cart checkout requires separate payment orders.');
             $service = $this->module->portable();
             $attempt = $service->begin($orderId, $payload);
             $data = json_decode($attempt['snapshot'], true);

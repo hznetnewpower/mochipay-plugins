@@ -37,10 +37,10 @@ class Mochipay extends \Opencart\System\Engine\Controller
             $physical = false;
             foreach ($productsResult->rows as $product) { $items[] = array('name' => $product['name'], 'quantity' => (int) $product['quantity'], 'total' => (string) $product['total']); if (!empty($product['shipping'])) $physical = true; }
             $merchantId = 'OC3-' . strtoupper(substr(md5(HTTPS_SERVER), 0, 8)) . '-' . (int) $order['order_id'];
-            $returnToken = bin2hex(random_bytes(24));
+            $service = $this->portable();
             $payload = array(
                 'merchant_order_id' => $merchantId,
-                'amount' => number_format((float) $order['total'] * (float) $order['currency_value'], 8, '.', ''),
+                'amount' => MochiPayPortable::currencyAmount($order['total'], $order['currency_code'], $order['currency_value']),
                 'currency' => strtoupper($order['currency_code']),
                 'payment_method' => $method,
                 'unique_amount_direction' => strtoupper($this->config->get('payment_mochipay_unique_direction')) === 'DOWN' ? 'DOWN' : 'UP',
@@ -56,11 +56,10 @@ class Mochipay extends \Opencart\System\Engine\Controller
                 'postal_code' => $order['shipping_postcode'] ?: $order['payment_postcode'],
                 'customer_ip' => filter_var($order['ip'], FILTER_VALIDATE_IP) ? $order['ip'] : '',
                 'notify_url' => $this->url->link('extension/mochipay/payment/mochipay.callback', '', true),
-                'redirect_url' => $this->url->link('extension/mochipay/payment/mochipay.complete', 'order_id=' . (int) $order['order_id'] . '&token=' . $returnToken, true),
+                'redirect_url' => $this->url->link('extension/mochipay/payment/mochipay.complete', 'id=' . (int) $order['order_id'] . '&token=MOCHIPAY_ATTEMPT_TOKEN', true),
             );
             require_once DIR_EXTENSION . 'mochipay/system/library/mochipay.php';
             $client = new MochiPayClient($this->config->get('payment_mochipay_api_url'), $this->config->get('payment_mochipay_api_key'), $this->config->get('payment_mochipay_api_secret'));
-            $service = $this->portable();
             $attempt = $service->begin((int)$order['order_id'], $payload);
             $snapshot = json_decode($attempt['snapshot'], true);
             if (!$attempt['settled'] && !(int)$order['order_status_id']) $this->model_checkout_order->addHistory((int)$order['order_id'], (int)$this->config->get('payment_mochipay_pending_status_id'), 'Awaiting MochiPay payment', false);
@@ -78,13 +77,13 @@ class Mochipay extends \Opencart\System\Engine\Controller
         require_once DIR_EXTENSION . 'mochipay/system/library/mochipay.php';
         require_once DIR_EXTENSION . 'mochipay/system/library/mochipay_portable/mochipay_core.php';
         $db = $this->db;
-        $service = new MochiPayPortable(new MochiPayClient($this->config->get('payment_mochipay_api_url'),$this->config->get('payment_mochipay_api_key'),$this->config->get('payment_mochipay_api_secret')),function($sql)use($db){$r=$db->query($sql);return $r->rows;},function($text)use($db){return $db->escape($text);},DB_payment_mochipay_.'mochipay_attempt');
+        $service = new MochiPayPortable(new MochiPayClient($this->config->get('payment_mochipay_api_url'),$this->config->get('payment_mochipay_api_key'),$this->config->get('payment_mochipay_api_secret')),function($sql)use($db){$r=$db->query($sql);return $r->rows;},function($text)use($db){return $db->escape($text);},DB_PREFIX.'mochipay_attempt');
         $service->install(); return $service;
     }
     private function settle($id, $data, $payload)
     {
         $this->load->model('checkout/order');$order=$this->model_checkout_order->getOrder($id);
-        if (!$order || (!isset($order['payment_method']['code']) || $order['payment_method']['code'] !== 'mochipay.mochipay') || strtoupper($order['currency_code'])!==strtoupper($payload['currency']) || MochiPayPortable::decimal(number_format((float)$order['total']*(float)$order['currency_value'],8,'.',''))!==MochiPayPortable::decimal($payload['amount'])) throw new Exception('Store order mismatch.');
+        if (!$order || (!isset($order['payment_method']['code']) || $order['payment_method']['code'] !== 'mochipay.mochipay') || strtoupper($order['currency_code'])!==strtoupper($payload['currency']) || MochiPayPortable::decimal(MochiPayPortable::currencyAmount($order['total'], $order['currency_code'], $order['currency_value']))!==MochiPayPortable::decimal($payload['amount'])) throw new Exception('Store order mismatch.');
         $paid=(int)$this->config->get('payment_mochipay_paid_status_id');$pending=(int)$this->config->get('payment_mochipay_pending_status_id');
         if(!$paid || !$pending || $paid===$pending) throw new Exception('Configure distinct waiting and paid order statuses.');
         if((int)$order['order_status_id']===$paid)return;
@@ -97,19 +96,19 @@ class Mochipay extends \Opencart\System\Engine\Controller
         $this->response->addHeader('Cache-Control: no-store');$this->response->addHeader('Referrer-Policy: same-origin');$this->response->addHeader('X-Robots-Tag: noindex, nofollow');
         try{
             $id=isset($this->request->get['id'])?(int)$this->request->get['id']:0;$token=isset($this->request->get['token'])?(string)$this->request->get['token']:'';
-            $service=$this->portable();$row=$service->get($id);if(!$row||!$token||!hash_equals($row['token'],$token))throw new Exception('Invalid payment link.');
+            $service=$this->portable();$row=$service->get($id,$token);if(!$row||!$token||!hash_equals($row['token'],$token))throw new Exception('Invalid payment link.');
             $self=$this;
             if($poll){$data=$service->check($id,$token,function($d,$p)use($self,$id){$self->settle($id,$d,$p);});$this->response->addHeader('Content-Type: application/json');$this->response->setOutput(json_encode(array('success'=>true,'data'=>$data)));}
             else{$url=$this->url->link('extension/mochipay/payment/mochipay.pay','id='.$id.'&token='.$token.'&poll=1',true);$complete=$this->url->link('extension/mochipay/payment/mochipay.complete','id='.$id.'&token='.$token,true);$this->response->setOutput(MochiPayPortable::page(html_entity_decode($url,ENT_QUOTES,'UTF-8'),html_entity_decode($complete,ENT_QUOTES,'UTF-8')));}
-        }catch(Exception $e){$this->response->addHeader('HTTP/1.1 400 Bad Request');if($poll){$this->response->addHeader('Content-Type: application/json');$this->response->setOutput(json_encode(array('success'=>false,'message'=>$e->getMessage())));}else $this->response->setOutput(htmlspecialchars($e->getMessage(),ENT_QUOTES,'UTF-8'));}
+        }catch(Exception $e){$this->response->addHeader('HTTP/1.1 400 Bad Request');if($poll){$this->response->addHeader('Content-Type: application/json');$this->response->setOutput(json_encode(array('success'=>false,'retryable'=>mochipay_query_retryable($e),'message'=>mochipay_query_retryable($e)?'Connection failed. Your order is saved. Please check again.':$e->getMessage())));}else $this->response->setOutput(htmlspecialchars($e->getMessage(),ENT_QUOTES,'UTF-8'));}
     }
     public function callback()
     {
         try{$body=json_decode(file_get_contents('php://input'),true);$system=is_array($body)&&isset($body['order_id'])?(string)$body['order_id']:'';if(!$system)throw new Exception('ORDER_ID_REQUIRED');
             $service=$this->portable();$row=$service->find($system);
-            if(!$row){$old=$this->db->query("SELECT * FROM `".DB_payment_mochipay_."mochipay_order` WHERE mochipay_order_id='".$this->db->escape($system)."' LIMIT 1");if(!$old->num_rows)throw new Exception('ORDER_NOT_FOUND');$m=$old->row;$this->load->model('checkout/order');$o=$this->model_checkout_order->getOrder((int)$m['order_id']);if(!$o)throw new Exception('ORDER_NOT_FOUND');
+            if(!$row){$old=$this->db->query("SELECT * FROM `".DB_PREFIX."mochipay_order` WHERE mochipay_order_id='".$this->db->escape($system)."' LIMIT 1");if(!$old->num_rows)throw new Exception('ORDER_NOT_FOUND');$m=$old->row;$this->load->model('checkout/order');$o=$this->model_checkout_order->getOrder((int)$m['order_id']);if(!$o)throw new Exception('ORDER_NOT_FOUND');
                 $client=new MochiPayClient($this->config->get('payment_mochipay_api_url'),$this->config->get('payment_mochipay_api_key'),$this->config->get('payment_mochipay_api_secret'));
-                $v=$client->queryOrder($system);$row=$service->adopt((int)$m['order_id'],array('merchant_order_id'=>$m['merchant_order_id'],'amount'=>number_format((float)$o['total'],8,'.',''),'currency'=>$o['currency_code'],'payment_method'=>$m['payment_method']),$v);}
+                $v=$client->queryOrder($system);$row=$service->adopt((int)$m['order_id'],array('merchant_order_id'=>$m['merchant_order_id'],'amount'=>MochiPayPortable::currencyAmount($o['total'], $o['currency_code'], $o['currency_value']),'currency'=>$o['currency_code'],'payment_method'=>$m['payment_method']),$v);}
 $id=(int)$row['local_id'];$self=$this;
             $data=$service->check($id,$row['token'],function($d,$p)use($self,$id){$self->settle($id,$d,$p);});if($data['status']!=='PAID')throw new Exception('ORDER_NOT_PAID');$this->response->setOutput('OK');
         }catch(Exception $e){$this->response->addHeader('HTTP/1.1 409 Conflict');$this->response->setOutput($e->getMessage());}
@@ -117,7 +116,7 @@ $id=(int)$row['local_id'];$self=$this;
     public function complete()
     {
         $id=isset($this->request->get['id'])?(int)$this->request->get['id']:0;$token=isset($this->request->get['token'])?(string)$this->request->get['token']:'';
-        try{$row=$this->portable()->get($id);if(!$row||!$token||!hash_equals($row['token'],$token)||!$row['settled'])throw new Exception('Payment is not confirmed.');$this->session->data['order_id']=$id;$this->response->redirect($this->url->link('checkout/success','',true));}
+        try{$service=$this->portable();$row=$service->get($id,$token);if(!$row||!$token||!hash_equals($row['token'],$token))throw new Exception('Invalid payment link.');if(!$row['settled']){$self=$this;$data=$service->check($id,$token,function($d,$p)use($self,$id){$self->settle($id,$d,$p);});if($data['status']!=='PAID')throw new Exception('Payment is not confirmed.');}$this->session->data['order_id']=$id;$this->response->redirect($this->url->link('checkout/success','',true));}
         catch(Exception $e){$this->response->redirect($this->url->link('account/order','',true));}
     }
 

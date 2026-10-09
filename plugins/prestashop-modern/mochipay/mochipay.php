@@ -8,7 +8,7 @@ use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
 
 class Mochipay extends PaymentModule
 {
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     public function __construct()
     {
@@ -139,7 +139,7 @@ class Mochipay extends PaymentModule
     public function settle($id, $data, $payload)
     {
         $order = new Order((int)$id); $currency = new Currency((int)$order->id_currency);
-        if (!Validate::isLoadedObject($order) || $order->module !== 'mochipay' || strtoupper($currency->iso_code) !== strtoupper($payload['currency']) || MochiPayPortable::decimal($order->total_paid) !== MochiPayPortable::decimal($payload['amount'])) throw new RuntimeException('Store order mismatch.');
+        if (!Validate::isLoadedObject($order) || $order->module !== 'mochipay' || strtoupper($currency->iso_code) !== strtoupper($payload['currency']) || MochiPayPortable::decimal(MochiPayPortable::currencyAmount($order->total_paid, $currency->iso_code)) !== MochiPayPortable::decimal($payload['amount'])) throw new RuntimeException('Store order mismatch.');
         if ($order->hasBeenPaid()) return;
         if ((int)$order->current_state !== (int)Configuration::get('PS_OS_MOCHIPAY_WAITING')) throw new RuntimeException('Store order requires manual review.');
         $order->setCurrentState((int)Configuration::get('PS_OS_PAYMENT'));

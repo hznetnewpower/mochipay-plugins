@@ -9,7 +9,7 @@ class mochipay extends \common\classes\modules\ModulePayment
  protected $encrypted_keys=['MODULE_PAYMENT_MOCHIPAY_SECRET'];
  protected $defaultTranslationArray=['MODULE_PAYMENT_MOCHIPAY_TEXT_TITLE'=>'MochiPay','MODULE_PAYMENT_MOCHIPAY_TEXT_DESCRIPTION'=>'Cryptocurrency payments: ON_SITE and HPP'];
  public function __construct(){parent::__construct();require_once __DIR__.'/lib/MochiPay/bootstrap.php';$this->enabled=defined('MODULE_PAYMENT_MOCHIPAY_STATUS')&&MODULE_PAYMENT_MOCHIPAY_STATUS==='True';$this->sort_order=defined('MODULE_PAYMENT_MOCHIPAY_SORT_ORDER')?(int)MODULE_PAYMENT_MOCHIPAY_SORT_ORDER:0;}
- public static function getVersionHistory(){return ['1.0.0'=>'MochiPay ON_SITE and HPP payment gateway.'];}
+ public static function getVersionHistory(){return ['1.0.6'=>'MochiPay ON_SITE and HPP payment gateway.'];}
  public static function getDescription(){return 'Cryptocurrency payments with verified ON_SITE and HPP checkout.';}
  public function configFor($platform){
   $c=Payment::defaults();foreach(['enabled'=>'STATUS','url'=>'URL','key'=>'KEY','secret'=>'SECRET','mode'=>'MODE','direction'=>'DIRECTION'] as $name=>$suffix){$v=$this->get_config_key((int)$platform,'MODULE_PAYMENT_MOCHIPAY_'.$suffix);if($v!==false)$c[$name]=$v;}
@@ -27,7 +27,6 @@ class mochipay extends \common\classes\modules\ModulePayment
   $o=$this->manager->getOrderInstance();if(!$o->order_id||$o->info['payment_class']!=='mochipay')throw new \RuntimeException('Invalid checkout.');
   $service=$this->service($o->info['platform_id']);$id=(string)$o->order_id;
   $row=$service->store->locked('native:'.$id,function()use($o,$service,$id){return \Yii::$app->db->transaction(function()use($o,$service,$id){
-   $existing=$service->store->get($id);if($existing){$service->authorized($id,$existing['token']);return $existing;}
    $ledger=OrderPayment::createDebitFromOrder($o,$o->info['total_inc_tax'],OrderPayment::OPYS_PENDING,['id'=>'mp-local-'.$id,'payment_class'=>'mochipay','payment_method'=>'MochiPay']);if(!$ledger)throw new \RuntimeException('Unable to save pending payment.');
    $endpoint=tep_href_link('callback/webhooks.payment.mochipay','','SSL');$return=tep_href_link(FILENAME_CHECKOUT_SUCCESS,'order_id='.$id,'SSL');
    return $service->prepare($id,$this->amount($o),$o->info['currency'],$return,$endpoint,'osCommerce',['platform'=>$o->info['platform_id'],'ledger_id'=>$ledger->orders_payment_id,'pending_status'=>(int)$o->info['order_status']]);
@@ -49,7 +48,7 @@ class mochipay extends \common\classes\modules\ModulePayment
   });
  }
  public function call_webhooks(){
-  $input=array_merge(\Yii::$app->request->queryParams,\Yii::$app->request->bodyParams);$row=$this->store()->get($input['id']??'');if(!$row)throw new \yii\web\NotFoundHttpException('Payment was not found.');
+  $input=array_merge(\Yii::$app->request->queryParams,\Yii::$app->request->bodyParams);$row=$this->store()->get($input['id']??'',$input['token']??'');if(!$row)throw new \yii\web\NotFoundHttpException('Payment was not found.');
   list($code,$headers,$body)=\MochiPayShared\Page::handle($this->service($row['extra']['platform']),$input,\Yii::$app->request->method,[$this,'settle']);
   $response=\Yii::$app->response;$response->format=\yii\web\Response::FORMAT_RAW;$response->statusCode=$code;foreach($headers as $k=>$v)$response->headers->set($k,$v);$response->content=$body;return $response;
  }

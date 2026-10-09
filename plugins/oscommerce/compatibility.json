@@ -1,6 +1,6 @@
 {
   "plugin": "MochiPay",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "platform": "osCommerce 4",
   "core": "osCommerce 4.14.x; native V4 orderPayment module API",
   "php": "PHP 7.4.x\u20138.3.x, subject to the installed osCommerce release and dependency lock",
