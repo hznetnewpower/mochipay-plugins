@@ -16,8 +16,6 @@ class Method implements \Eccube\Service\Payment\PaymentMethodInterface
         $service=$this->support->service();$id=(string)$this->order->getId();
         $row=$service->store->locked('native:'.$id,function()use($service,$id){
             return $this->support->em->wrapInTransaction(function()use($service,$id){
-                $existing=$service->store->get($id);
-                if($existing){$service->authorized($id,$existing['token']);if(\MochiPayShared\Payment::decimal((string)$this->order->getPaymentTotal())!==$existing['amount'])throw new \RuntimeException('Order total changed.');return $existing;}
                 $this->order->setOrderStatus($this->support->em->find(\Eccube\Entity\Master\OrderStatus::class,\Eccube\Entity\Master\OrderStatus::PENDING));
                 $this->support->flow->prepare($this->order,new \Eccube\Service\PurchaseFlow\PurchaseContext());
                 $this->support->em->flush();return $this->support->prepare($this->order);

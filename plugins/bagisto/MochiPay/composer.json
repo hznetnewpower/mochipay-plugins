@@ -1,6 +1,6 @@
 {
   "name": "mochipay/bagisto-payment",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "MochiPay ON_SITE and HPP payments for Bagisto",
   "type": "library",
   "license": "MIT",

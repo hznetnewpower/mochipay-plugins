@@ -53,7 +53,7 @@ class MochiPay extends OffsitePaymentGatewayBase
     public function onReturn(OrderInterface $order,Request $request)
     {
         $service=\Drupal\mochipay\Support::service($this->parentEntity);$id=$this->parentEntity->id().':'.$order->id();
-        $row=$service->store->get($id);if(!$row)throw new PaymentGatewayException('Payment is not saved.');
+        $row=$service->store->get($id,(string)$request->query->get('mochipay_token',''));if(!$request->query->get('mochipay_token')||!$row)throw new PaymentGatewayException('Payment is not saved.');
         $view=$service->check($id,$row['token'],function($r,$d){\Drupal\mochipay\Support::settle($r,$d);});
         if($view['status']!=='PAID')throw new PaymentGatewayException('Payment is not confirmed.');
     }

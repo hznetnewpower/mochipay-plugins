@@ -1,2 +1,1 @@
-Platform-specific MochiPay plugin sources.
-Download installable ZIPs from Releases.
+Platform-specific source directories. Install the matching ZIP from Releases, not the full repository archive.

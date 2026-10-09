@@ -9,6 +9,7 @@ final class Page
         $action=$input['action']??'view';
         try {
             $row=$payment->authorized($input['id']??'', $input['token']??'');
+            if ($action==='return' && ($input['mochipay_return']??'')==='cancel') return self::redirect(Payment::url($row,'view'),$headers);
             if ($action==='start') {
                 if ($httpMethod!=='POST' || !hash_equals(hash_hmac('sha256','start',$row['token']),(string)($input['nonce']??''))) throw new \RuntimeException('Invalid payment submission.');
                 $row=$payment->begin($row['local_id'],$row['token'],(string)($input['payment_method']??''));
@@ -31,7 +32,10 @@ final class Page
             return [200,$headers+['Content-Type'=>'text/html; charset=utf-8'],self::onsite($row)];
         } catch (\Throwable $e) {
             $message='Unable to verify this saved payment. Check again or contact the merchant. Do not pay twice.';
-            if ($action==='poll') return [409,$headers+['Content-Type'=>'application/json'],Payment::json(['success'=>false,'message'=>$message])];
+            if ($action==='poll') {
+                $retryable=$e instanceof TransportException || ($e instanceof ApiException && ($e->http===408 || $e->http===429 || $e->http>=500));
+                return [$retryable?503:409,$headers+['Content-Type'=>'application/json'],Payment::json(['success'=>false,'retryable'=>$retryable,'message'=>$message])];
+            }
             return [409,$headers+['Content-Type'=>'text/html; charset=utf-8'],self::shell('<h1>Payment needs attention</h1><p>'.$message.'</p>')];
         }
     }

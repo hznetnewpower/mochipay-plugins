@@ -1,6 +1,6 @@
 # MochiPay for Bagisto
 
-Version 1.0.0 — English interface and documentation.
+Version 1.0.6 — English interface and documentation.
 
 ## Compatibility
 
@@ -15,7 +15,7 @@ The PHP range is the intersection of this adapter and the shopping system's requ
 
 1. Extract the `MochiPay` folder to `packages/MochiPay` in the Bagisto project.
 2. Register a local Composer path repository in the project's composer.json: `{"type":"path","url":"packages/MochiPay","options":{"symlink":false}}`. Keep existing repositories.
-3. Run `composer require mochipay/bagisto-payment:1.0.0`, `php artisan migrate --force` and `php artisan optimize:clear`. Laravel package discovery registers the service provider; no vendor/core edits are needed. If package discovery is disabled, register `MochiPay\Bagisto\Providers\MochiPayServiceProvider` using the app's normal provider configuration.
+3. Run `composer require mochipay/bagisto-payment:1.0.6`, `php artisan migrate --force` and `php artisan optimize:clear`. Laravel package discovery registers the service provider; no vendor/core edits are needed. If package discovery is disabled, register `MochiPay\Bagisto\Providers\MochiPayServiceProvider` using the app's normal provider configuration.
 4. Open Configure > Sales > Payment methods > MochiPay. Set API credentials, enable it, choose direction and save. Configuration is global to the package so asynchronous callbacks do not depend on a browser's channel selection.
 5. The checkout is `/mochipay/checkout`; the initial native redirect is `/mochipay/redirect`. Exempt only this capability-scoped checkout endpoint from CSRF middleware, if your application has added a custom middleware class not already excluded by the package. The endpoint validates its own random attempt token and start nonce.
 
@@ -25,7 +25,7 @@ The adapter collects native cart totals and creates one pending order and attemp
 
 The defaults are MochiPay URL `https://mochi.bz`, payment mode `ON_SITE`, unique amount direction `UP`, and all five supported methods selected: USDT/TRC20, USDC/ERC20, BTC/Bitcoin, ETH/Ethereum and SOL/Solana. The gateway starts disabled. Enter your merchant API key and secret, choose UP or DOWN, enable the native payment method and save. Enable only methods for which the merchant has a matching active wallet configured in MochiPay. There is no third-party facilitator registration.
 
-`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated address-only QR code in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
+`ON_SITE` shows the exact cryptocurrency amount, network, address and a locally generated QR code (With address by default; optional With amount for supported payments) in a dialog on the store's own origin. `HPP` redirects to MochiPay's hosted payment page. The “Use hosted checkout” link reuses the saved payment; closing, polling, refreshing or switching presentation never creates a second payment. The browser receives no merchant API secret.
 
 One currency/network is fixed for each attempt. If creating an order times out, continue the saved checkout. Its immutable payload and `request_id` are reused. Do not create a replacement order or send a second transfer while the first is unresolved.
 

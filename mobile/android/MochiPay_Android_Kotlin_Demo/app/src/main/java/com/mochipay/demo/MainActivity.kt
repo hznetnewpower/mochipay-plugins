@@ -23,7 +23,7 @@ class MainActivity : Activity() {
     // Merchant backend, never the MochiPay API. Configure your own HTTPS staging origin.
     private val backend = Uri.parse("https://your-merchant.example")
     private val methods = listOf("USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA")
-    private val languages = listOf("en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar")
+    private val languages = listOf("en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar","ja","ko","it","tr","id")
     private val handler = Handler(Looper.getMainLooper())
     private val worker = Executors.newSingleThreadExecutor()
     private val prefs by lazy { getSharedPreferences("payment-demo", MODE_PRIVATE) }
@@ -48,7 +48,8 @@ class MainActivity : Activity() {
         label("Checkout mode"); mode = spinner(listOf("ON_SITE", "HPP")); layout.addView(mode)
         label("Buyer language"); language = spinner(languages); layout.addView(language)
         fun button(text: String, action: () -> Unit) { layout.addView(Button(this).apply { this.text = text; setOnClickListener { if (!busy) action() } }) }
-        button("Create or recover payment") { create() }
+        button("Create payment") { create() }
+        button("Retry current payment request") { create(true) }
         button("Open saved checkout") { open() }
         button("Check payment status") { check() }
         button("Start a new purchase") { AlertDialog.Builder(this).setTitle("New purchase?").setMessage("Your previous payment remains on the backend. Do not pay it twice.").setNegativeButton("Cancel", null).setPositiveButton("New purchase") { _, _ -> prefs.edit().clear().commit(); message.text = "Ready for a new purchase." }.show() }
@@ -70,10 +71,10 @@ class MainActivity : Activity() {
         if (busy) return
         busy = true; worker.execute { val result = try { action() } catch (_: Exception) { "Unable to verify or recover. Keep this request and method; check again." }; handler.post { if (!isDestroyed) { busy = false; message.text = result } } }
     }
-    private fun create() {
+    private fun create(retry: Boolean = false) {
         val m = methods[method.selectedItemPosition]; val previous = prefs.getString("method", null)
-        if (previous != null && previous != m) { message.text = "Recover using the original method, or start a new purchase."; return }
-        val r = prefs.getString("request", null) ?: UUID.randomUUID().toString()
+        if (retry && previous != null && previous != m) { message.text = "Recover using the original method, or start a new purchase."; return }
+        val r = if (retry) (prefs.getString("request", null) ?: UUID.randomUUID().toString()) else UUID.randomUUID().toString()
         require(prefs.edit().putString("request", r).putString("method", m).commit())
         val token = access.text.toString()
         work {

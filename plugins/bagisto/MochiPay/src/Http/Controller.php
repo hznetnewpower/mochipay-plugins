@@ -16,7 +16,6 @@ class Controller extends \Illuminate\Routing\Controller
         Cart::collectTotals();$cart=Cart::getCart();$service=Support::service();$id='cart:'.$cart->id;
         // Serialize duplicate redirect requests and commit order + attempt together.
         $row=$service->store->locked('native:'.$id,function()use($service,$id,$cart){return DB::transaction(function()use($service,$id,$cart){
-            $row=$service->store->get($id);if($row){$service->authorized($id,$row['token']);if(Payment::decimal((string)$cart->grand_total)!==$row['amount']||$cart->cart_currency_code!==$row['currency'])throw new \RuntimeException('Cart total changed.');return $row;}
             $data=(new \Webkul\Sales\Transformers\OrderResource($cart))->jsonSerialize();
             $order=app(\Webkul\Sales\Repositories\OrderRepository::class)->create($data);
             $endpoint=route('mochipay.checkout');

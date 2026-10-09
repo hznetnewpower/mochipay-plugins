@@ -1,4 +1,4 @@
-# MochiPay Android / Kotlin Demo 1.0.0 — ON_SITE + HPP
+# MochiPay Android / Kotlin Demo 1.0.2 — ON_SITE + HPP
 
 Android Studio supporting AGP 8.9.1, JDK 17, Gradle 8.11.1, Android SDK 35; device/emulator Android 8.0 / API 26+.
 
@@ -24,7 +24,7 @@ The saved capability URL is sensitive. This sample saves it in app-local prefere
 
 ## Languages and distribution
 
-The app demo controls and instructions remain English. The payment dialog offers English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian and Arabic with RTL. HPP receives the chosen language on the same hosted order.
+The app demo controls and instructions remain English. The payment dialog offers English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian, Arabic, Japanese, Korean, Italian, Turkish and Indonesian with RTL. HPP receives the chosen language on the same hosted order.
 
 Check current Apple App Store / Google Play billing rules for your products, storefronts and region. Digital content/subscriptions may require platform billing; this integration is not a substitute for store approval. This is a staging source demo, not a production app or a native payment SDK. Add your own account authentication, accessibility, branding and app-store resources before distribution.
 

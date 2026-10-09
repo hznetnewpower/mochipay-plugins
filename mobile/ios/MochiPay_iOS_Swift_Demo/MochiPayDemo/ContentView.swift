@@ -6,7 +6,7 @@ import UIKit
 enum DemoConfig {
     static let backend = URL(string: "https://your-merchant.example")!
     static let methods = ["USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA"]
-    static let languages = ["en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar"]
+    static let languages = ["en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar","ja","ko","it","tr","id"]
     static func sameOrigin(_ url: URL) -> Bool {
         url.scheme == "https" && url.host == backend.host && url.port == backend.port && url.user == nil && url.password == nil
     }
@@ -33,14 +33,14 @@ final class PaymentModel: ObservableObject {
         if let saved = defaults.string(forKey: "demoMethod"), DemoConfig.methods.contains(saved) { method = saved }
     }
 
-    func createOrRecover() async {
+    func createOrRecover(retry: Bool = false) async {
         guard !busy else { return }
         busy = true; defer { busy = false }
         do {
             guard DemoConfig.sameOrigin(DemoConfig.backend) else { throw URLError(.badURL) }
             let savedMethod = defaults.string(forKey: "demoMethod")
-            guard savedMethod == nil || savedMethod == method else { message = "Recover with the original method, or start a new purchase."; return }
-            let id = defaults.string(forKey: "demoRequestID") ?? UUID().uuidString.lowercased()
+            guard !retry || savedMethod == nil || savedMethod == method else { message = "Recover with the original method, or start a new purchase."; return }
+            let id = retry ? (defaults.string(forKey: "demoRequestID") ?? UUID().uuidString.lowercased()) : UUID().uuidString.lowercased()
             defaults.set(id, forKey: "demoRequestID"); defaults.set(method, forKey: "demoMethod")
             var request = URLRequest(url: DemoConfig.backend.appendingPathComponent("payments"))
             request.httpMethod = "POST"; request.timeoutInterval = 40
@@ -99,7 +99,8 @@ struct ContentView: View {
                     Picker("Payment method", selection: $model.method) { ForEach(DemoConfig.methods, id: \.self) { Text($0) } }
                     Picker("Checkout mode", selection: $model.mode) { Text("ON_SITE").tag("ON_SITE"); Text("HPP").tag("HPP") }
                     Picker("Buyer language", selection: $model.language) { ForEach(DemoConfig.languages, id: \.self) { Text($0) } }
-                    Button("Create or recover payment") { Task { await model.createOrRecover() } }.disabled(model.busy)
+                    Button("Create payment") { Task { await model.createOrRecover() } }.disabled(model.busy)
+                    Button("Retry current payment request") { Task { await model.createOrRecover(retry: true) } }.disabled(model.busy)
                     Button("Open saved checkout") { model.open() }.disabled(model.busy)
                     Button("Check payment status") { Task { await model.check() } }.disabled(model.busy)
                 }
