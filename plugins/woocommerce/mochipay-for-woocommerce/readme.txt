@@ -4,7 +4,7 @@ Tags: woocommerce, cryptocurrency, payment gateway, usdt, usdc
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.14
+Stable tag: 1.5.19
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ See the installation and multilingual sections below for environments, installat
 
 # WooCommerce 5.8 or later with the native gateway API — MochiPay
 
-Plugin version: 1.5.14
+Plugin version: 1.5.19
 
 # MochiPay setup
 
@@ -124,7 +124,7 @@ Also update mochipay-for-woocommerce/includes/class-mochipay-onsite.php together
 
 MochiPay Multilanguages frontend UI82.1
 
-Buyer checkout supports English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian, Arabic, Japanese, Korean, Italian, Turkish and Indonesian.
+Buyer checkout supports multiple languages, including English, Chinese, Spanish, and more.
 Browser language is used on first opening unless the URL or a previous manual selection takes priority. Arabic and Persian use RTL; amounts and wallet addresses remain unchanged. Merchant plugin settings and installation instructions stay English.
 ON_SITE remains the default; HPP remains supported. No API, signature, callback, payment-state or order-creation contract changes. Existing installed versions keep working. Update this platform package or frontend assets to receive these language choices, retaining merchant credentials and configuration.
 Read the platform-specific PHP table and installation instructions included in this package.

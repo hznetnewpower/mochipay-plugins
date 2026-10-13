@@ -1,4 +1,4 @@
-# MochiPay Payment Assistant 1.0.4
+# MochiPay Payment Assistant 1.0.7
 
 Requires WEB82.6 or newer / DB21 on https://mochi.bz and desktop Chrome 116+. Deploy the matching WEB release, then load this `extension` directory using chrome://extensions → Developer mode → Load unpacked. Generate a one-time code in Merchant Dashboard → Chrome Payment Assistant. No API Secret belongs in the extension.
 
@@ -15,3 +15,5 @@ Do not upload the full website source or outer store-kit ZIP. Upload the extensi
 Each explicit Create payment click uses a new request_id and creates its own invoice, even when an earlier attempt remains unpaid or uncertain. Retry current request resolves only its saved request_id with the identical payload. Refresh/status and sharing an existing link are read-only. Existing settings and connection are preserved. HPP cancel returns to a saved merchant destination when configured; return never proves payment.
 
 Upgrade the extension in place by reloading the packaged extension folder. This release adds no permissions or DB SQL; Monitor15 is unchanged. The earlier connection/startup repair remains included.
+
+1.0.5: WEB82.23 supplies an additive authenticated manual-payment proof. Positive amount differences are recognized only with PAID, a strict boolean proof and explicit clear chain review. Existing exact-payment checks remain. Read429 Retry-After pauses automatic refresh/QR retries. Update the unpacked extension in place; preserve its local connection and saved request. This release has offline SQL/Node checks, with native Chrome/IIS acceptance pending. QA screenshots and older QA files remain historical fixtures.

@@ -9,7 +9,7 @@ class mochipay extends \common\classes\modules\ModulePayment
  protected $encrypted_keys=['MODULE_PAYMENT_MOCHIPAY_SECRET'];
  protected $defaultTranslationArray=['MODULE_PAYMENT_MOCHIPAY_TEXT_TITLE'=>'MochiPay','MODULE_PAYMENT_MOCHIPAY_TEXT_DESCRIPTION'=>'Cryptocurrency payments: ON_SITE and HPP'];
  public function __construct(){parent::__construct();require_once __DIR__.'/lib/MochiPay/bootstrap.php';$this->enabled=defined('MODULE_PAYMENT_MOCHIPAY_STATUS')&&MODULE_PAYMENT_MOCHIPAY_STATUS==='True';$this->sort_order=defined('MODULE_PAYMENT_MOCHIPAY_SORT_ORDER')?(int)MODULE_PAYMENT_MOCHIPAY_SORT_ORDER:0;}
- public static function getVersionHistory(){return ['1.0.6'=>'MochiPay ON_SITE and HPP payment gateway.'];}
+ public static function getVersionHistory(){return ['1.0.7'=>'MochiPay ON_SITE and HPP payment gateway.'];}
  public static function getDescription(){return 'Cryptocurrency payments with verified ON_SITE and HPP checkout.';}
  public function configFor($platform){
   $c=Payment::defaults();foreach(['enabled'=>'STATUS','url'=>'URL','key'=>'KEY','secret'=>'SECRET','mode'=>'MODE','direction'=>'DIRECTION'] as $name=>$suffix){$v=$this->get_config_key((int)$platform,'MODULE_PAYMENT_MOCHIPAY_'.$suffix);if($v!==false)$c[$name]=$v;}

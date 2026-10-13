@@ -1,6 +1,6 @@
 # MochiPay for EC-CUBE
 
-Version 1.0.6 — English interface and documentation.
+Version 1.0.11 — English interface and documentation.
 
 ## Compatibility
 

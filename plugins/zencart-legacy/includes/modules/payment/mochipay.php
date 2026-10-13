@@ -181,7 +181,7 @@ class mochipay
             array('MochiPay URL', 'MODULE_PAYMENT_MOCHIPAY_API_URL', 'https://mochi.bz', 'Site URL without /api.', '', 2),
             array('API Key', 'MODULE_PAYMENT_MOCHIPAY_API_KEY', '', 'Merchant API key.', '', 3),
             array('API Secret', 'MODULE_PAYMENT_MOCHIPAY_API_SECRET', '', 'Merchant API secret.', '', 4),
-            array('Payment Methods', 'MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS', 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA', 'Select customer payment choices.', 'mochipay_cfg_methods(', 5),
+            array('Payment Methods', 'MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS', 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON', 'Select customer payment choices.', 'mochipay_cfg_methods(', 5),
             array('Unique Amount Direction', 'MODULE_PAYMENT_MOCHIPAY_UNIQUE_AMOUNT_DIRECTION', 'UP', 'Increase or decrease a reserved exact amount.', "zen_cfg_select_option(array('UP', 'DOWN'), ", 6),
             array('Waiting Order Status', 'MODULE_PAYMENT_MOCHIPAY_ORDER_STATUS_ID', '1', 'Status while awaiting payment.', 'zen_cfg_pull_down_order_statuses(', 7),
             array('Paid Order Status', 'MODULE_PAYMENT_MOCHIPAY_PAID_ORDER_STATUS_ID', '2', 'Status after verified payment.', 'zen_cfg_pull_down_order_statuses(', 8),
@@ -207,7 +207,7 @@ class mochipay
 
     private function enabledMethods()
     {
-        $labels = array('USDT_TRC20' => 'USDT — TRON (TRC20)', 'USDC_ERC20' => 'USDC — Ethereum (ERC20)', 'BTC_BITCOIN' => 'BTC — Bitcoin', 'ETH_ERC20' => 'ETH — Ethereum', 'SOL_SOLANA' => 'SOL — Solana');
+        $labels = array('USDT_TRC20' => 'USDT — TRON (TRC20)', 'USDC_ERC20' => 'USDC — Ethereum (ERC20)', 'BTC_BITCOIN' => 'BTC — Bitcoin', 'ETH_ERC20' => 'ETH — Ethereum', 'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON');
         $enabled = array();
         $value = defined('MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS') ? MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS : 'USDT_TRC20';
         foreach (explode(',', $value) as $method) {
@@ -280,7 +280,7 @@ class mochipay
 if (!function_exists('mochipay_cfg_methods')) {
     function mochipay_cfg_methods($value, $key='MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS')
     {
-        $codes=array('USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA');$selected=explode(',',(string)$value);
+        $codes=array('USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA','TRX_TRON');$selected=explode(',',(string)$value);
         $out='<div id="mp-asset-settings"><input type="hidden" id="mp-asset-value" name="configuration['.htmlspecialchars($key,ENT_QUOTES,'UTF-8').']" value="'.htmlspecialchars($value,ENT_QUOTES,'UTF-8').'">';
         foreach($codes as $code)$out.='<label style="display:block"><input class="mp-asset-setting" type="checkbox" value="'.$code.'"'.(in_array($code,$selected,true)?' checked':'').'> '.$code.'</label>';
         return $out.'</div><script>(function(){var root=document.getElementById("mp-asset-settings"),hidden=document.getElementById("mp-asset-value");root.addEventListener("change",function(){hidden.value=Array.prototype.map.call(root.querySelectorAll(".mp-asset-setting:checked"),function(n){return n.value}).join(",")})})();</script>';

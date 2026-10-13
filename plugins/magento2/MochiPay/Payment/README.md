@@ -1,6 +1,6 @@
 # Magento Open Source 2.3.7-2.4.8 using native checkout — MochiPay
 
-Plugin version: 1.2.0
+Plugin version: 1.2.5
 
 # MochiPay setup
 

@@ -1,4 +1,4 @@
-# MochiPay MCP Server 1.0.4
+# MochiPay MCP Server 1.0.7
 
 An English, local stdio MCP tool server for a single MochiPay merchant. Python 3.10+ and the pinned official MCP Python SDK 2.3.0 are required. It calls the existing create/query API; no .NET website upgrade or database migration is needed to run this package.
 

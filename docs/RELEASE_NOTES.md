@@ -1,11 +1,7 @@
-# MochiPay Developer & Mobile Integrations
+# MochiPay integrations — multilingual checkout and native TRX
 
-Revision: 2026.10.07-developer-mobile.1
+This release refreshes the public integration source and installer archives from the verified MochiPay website Downloads distribution. It includes WooCommerce 1.5.19, native TRX/TRON selection where supported, updated MCP resources and AI Skill 1.2.11 with flexible multilingual wording, and payment confirmation improvements. Buyer-facing language support is multilingual and may expand without changing these descriptions.
 
-MochiPay now provides complete Node.js, Python, C# and Java backend demos alongside PHP, with iOS Swift and Android Kotlin source projects. Choose ON_SITE or HPP while reusing the same saved payment.
+The OpenCart 4 package is carried forward unchanged because the current website distribution does not include a newer OpenCart 4 ZIP. Install only the archive for your platform. WordPress.org users can install MochiPay for WooCommerce 1.5.19 from the plugin directory.
 
-The updated Integration Skill 1.1.4 covers backend/mobile setup, exact request signatures, stable request_id retry recovery, HPP browser returns and independent asynchronous notifications. Payment is verified on the backend before updating the application once.
-
-Assets: 19 store plugin packages plus 10 developer resources. Installation instructions are English; buyer checkout supports 10 languages. Existing integrations remain compatible. Native mobile builds and real staging payment acceptance remain required.
-
-PHP API Demo: 1.1.4. AI Integration Skill: 1.1.4. Report Unlock Demo: 1.0.2. MCP Server: 1.0.0. New backend/mobile demos: 1.0.0.
+Validation: all current website archive SHA-256 values matched the site catalogs where listed; source members and release assets were checked against their archives. Live payment acceptance and native installation on every platform must still be checked in staging.

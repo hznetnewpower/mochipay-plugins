@@ -8,6 +8,7 @@ import sqlite3
 import ssl
 import time
 import uuid
+from email.utils import parsedate_to_datetime
 from contextlib import contextmanager
 from decimal import Decimal
 from pathlib import Path
@@ -15,12 +16,14 @@ from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, build_opener, HTTPSHandler, HTTPRedirectHandler
 from urllib.error import HTTPError
 
-METHODS = ('USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA')
-STATES = ('WAITING_PAYMENT', 'CONFIRMING', 'PAID', 'UNDERPAID', 'OVERPAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'PENDING', 'WAITING')
+METHODS = ('USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA','TRX_TRON')
+STATES = ('WAITING_PAYMENT', 'CONFIRMING', 'PAID', 'UNDERPAID', 'OVERPAID', 'REVIEW_REQUIRED', 'EXPIRED', 'CANCELLED', 'CANCELED', 'PENDING', 'WAITING')
 
 class PaymentError(Exception):
-    def __init__(self, code, http=0, recovery_contract=''):
+    def __init__(self, code, http=0, recovery_contract='', error_id='', retry_after=0):
         self.code, self.http, self.recovery_contract = code, http, recovery_contract
+        self.error_id = error_id if re.fullmatch(r'[a-f0-9]{12,32}', str(error_id)) else ''
+        self.retry_after = max(0, min(3600, retry_after))
         super().__init__(code)
     def can_recover_not_found(self):
         return self.http == 404 and self.code == 'ORDER_NOT_FOUND' and self.recovery_contract == 'request-id-v1'
@@ -41,6 +44,12 @@ class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
         return None
 
+def retry_seconds(value):
+    try:
+        if str(value).isdigit(): return max(0, min(3600, int(value)))
+        return max(0, min(3600, int(parsedate_to_datetime(str(value)).timestamp()-time.time())+1))
+    except (ValueError, TypeError, OverflowError): return 0
+
 class Client:
     def __init__(self, base_url, key, secret, database, allow_create=False, max_amount='1000'):
         u = urlsplit(base_url)
@@ -48,6 +57,7 @@ class Client:
             raise PaymentError('INVALID_MOCHIPAY_URL')
         if not key or not secret or any(c in key+secret for c in '\r\n'):
             raise PaymentError('API_NOT_CONFIGURED')
+        self.query_retry_at = 0
         self.base = base_url.rstrip('/')
         self.key, self.secret = key, secret
         self.scope = hashlib.sha256((self.base+'\0'+key).encode()).hexdigest()
@@ -82,7 +92,7 @@ class Client:
                 if not isinstance(data, dict):
                     raise PaymentError('INVALID_API_RESPONSE')
                 if data.get('success') is not True:
-                    raise PaymentError(data.get('message') if re.fullmatch(r'[A-Z][A-Z0-9_]{0,100}', str(data.get('message',''))) else 'API_REQUEST_FAILED', getattr(response,'status',200), data.get('recovery_contract',''))
+                    raise PaymentError(data.get('message') if re.fullmatch(r'[A-Z][A-Z0-9_]{0,100}', str(data.get('message',''))) else 'API_REQUEST_FAILED', getattr(response,'status',200), data.get('recovery_contract',''), data.get('error_id',''), retry_seconds(response.headers.get('Retry-After','')))
                 return data
         except PaymentError:
             raise
@@ -91,25 +101,29 @@ class Client:
                 data=json.loads(e.read(262145), parse_float=Decimal, parse_int=Decimal)
                 code=data.get('message','') if isinstance(data,dict) else ''
                 contract=data.get('recovery_contract','') if isinstance(data,dict) else ''
+                error_id=data.get('error_id','') if isinstance(data,dict) else ''
             except Exception:
-                code,contract='', ''
+                code,contract,error_id='', '', ''
             if not re.fullmatch(r'[A-Z][A-Z0-9_]{0,100}', str(code)): code='API_HTTP_'+str(e.code)
-            raise PaymentError(code,e.code,contract) from None
+            raise PaymentError(code,e.code,contract,error_id or e.headers.get('X-Mochi-Error-ID',''),retry_seconds(e.headers.get('Retry-After',''))) from None
         except json.JSONDecodeError:
             raise PaymentError('INVALID_API_RESPONSE') from None
         except Exception:
             raise PaymentError('API_UNAVAILABLE') from None
 
     def query(self, field, value):
+        remaining = self.query_retry_at-time.time()
+        if remaining>0: raise PaymentError('PROVIDER_COOLDOWN',429,retry_after=int(remaining)+1)
         text = urlencode({field:value})
         for attempt in range(3):
             try:
                 return self.request('GET', '/api/v1/orders/query?'+text, text)
             except PaymentError as error:
                 transient = error.code == 'API_UNAVAILABLE' or error.http in (408, 429) or error.http >= 500
-                if not transient or attempt == 2:
+                if error.retry_after>0: self.query_retry_at=time.time()+error.retry_after
+                if not transient or attempt == 2 or error.retry_after>3:
                     raise
-                time.sleep(attempt + 1)
+                time.sleep(max(attempt + 1,error.retry_after))
 
     def validate(self, data, payload, snapshot=None):
         method = data.get('payment_method') or str(data.get('wallet_type',''))+'_'+str(data.get('network',''))
@@ -131,7 +145,9 @@ class Client:
         result['payment_method'] = payload['payment_method']
         result['confirmations'] = int(data.get('confirmations',0))
         result['checkout_mode'] = checkout_mode
-        result['payment_verified'] = result['status']=='PAID' and Decimal(result['received_amount'])==Decimal(result['pay_amount'])
+        result['manual_payment_accepted'] = data.get('manual_payment_accepted') is True
+        pay, received = Decimal(result['pay_amount']), Decimal(result['received_amount'])
+        result['payment_verified'] = result['status']=='PAID' and data.get('chain_review_required') is not True and pay>0 and received>0 and (pay==received or result['manual_payment_accepted'])
         result['checkout_note'] = ('Use the payment fields in your own application checkout; this tool does not embed a payment UI in chat.' if checkout_mode=='ON_SITE' else 'Open payment_url to use hosted checkout.')
         return result
 

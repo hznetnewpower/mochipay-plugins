@@ -12,7 +12,7 @@ function originOnly(u){if(u.username||u.password||u.pathname!=='/'||u.search||u.
 originOnly(base);originOnly(pub);
 const key=env('MOCHIPAY_API_KEY'),secret=env('MOCHIPAY_API_SECRET'),access=env('DEMO_ACCESS_TOKEN');
 if(!key||!secret||access.length<32||access.startsWith('replace-'))throw Error('Set private API credentials and a random DEMO_ACCESS_TOKEN of 32+ characters');
-const methods=['USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA'];
+const methods=['USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA','TRX_TRON'];
 const langs=['en','zh','es','pt-br','fr','de','nl','fa','ru','ar','ja','ko','it','tr','id'];
 const store=path.resolve(env('DEMO_DATA_DIR',path.join(root,'private-data')));
 fs.mkdirSync(store,{recursive:true,mode:0o700});
@@ -48,7 +48,8 @@ function load(r){return JSON.parse(fs.readFileSync(recordPath(r),'utf8'))}
 function save(r,a){const p=recordPath(r),t=p+'.'+randomBytes(8).toString('hex')+'.tmp';fs.writeFileSync(t,JSON.stringify(a),{mode:0o600});fs.renameSync(t,p)}
 function hpp(d){const u=new URL(d.payment_url);if(u.origin!==base.origin||u.username||u.password||u.pathname!=='/pay/'+d.order_id||u.search||u.hash)throw Error('Invalid hosted payment URL');return u}
 function method(d){return d.payment_method??(d.wallet_type+'_'+d.network)}
-function bind(a,d,checkPaid=true){const p=a.payload;if(!/^[a-f0-9]{32}$/.test(d.order_id??'')||d.merchant_order_id!==p.merchant_order_id||d.currency!==p.currency||decimal(d.amount)!==decimal(p.amount)||method(d)!==p.payment_method||!d.payment_address||decimal(d.pay_amount)==='0')throw Error('Payment binding mismatch');hpp(d);if(a.snapshot){const s=a.snapshot;if(d.order_id!==s.order_id||d.payment_address!==s.payment_address||decimal(d.pay_amount)!==decimal(s.pay_amount))throw Error('Immutable payment instructions changed')}if(checkPaid&&d.status==='PAID'&&decimal(d.received_amount)!==decimal(d.pay_amount))throw Error('PAID amount requires review')}
+function acceptedAmount(d){const pay=decimal(d.pay_amount),received=decimal(d.received_amount);return pay!=='0'&&received!=='0'&&(pay===received||d.manual_payment_accepted===true)}
+function bind(a,d,checkPaid=true){const p=a.payload;if(!/^[a-f0-9]{32}$/.test(d.order_id??'')||d.merchant_order_id!==p.merchant_order_id||d.currency!==p.currency||decimal(d.amount)!==decimal(p.amount)||method(d)!==p.payment_method||!d.payment_address||decimal(d.pay_amount)==='0')throw Error('Payment binding mismatch');hpp(d);if(a.snapshot){const s=a.snapshot;if(d.order_id!==s.order_id||d.payment_address!==s.payment_address||decimal(d.pay_amount)!==decimal(s.pay_amount))throw Error('Immutable payment instructions changed')}if(checkPaid&&d.status==='PAID'&&!acceptedAmount(d))throw Error('PAID amount requires review')}
 async function verify(r,t){const a=load(r);if(!equal(a.token,t)||!a.snapshot)throw Error('Invalid payment capability');const d=await api('/api/v1/orders/query','order_id='+encodeURIComponent(a.snapshot.order_id));bind(a,d);if(d.status==='PAID'&&!a.paid_verified){a.paid_verified=true;save(r,a)}return d}
 function safe(d){const parts=method(d).split('_');return {status:d.status,payAmount:String(d.pay_amount),asset:parts[0],network:parts.slice(1).join('_'),address:d.payment_address,amount:String(d.amount),currency:d.currency,expiresAt:d.expires_at,reference:d.merchant_order_id}}
 async function create(p){if(!validId(p.request_id)||!methods.includes(p.payment_method))throw Error('Invalid request_id or method');const r=p.request_id,file=recordPath(r);let a;

@@ -19,7 +19,7 @@ origin(BASE); origin(PUBLIC)
 KEY, SECRET, ACCESS = env('MOCHIPAY_API_KEY', ''), env('MOCHIPAY_API_SECRET', ''), env('DEMO_ACCESS_TOKEN', '')
 if not KEY or not SECRET or len(ACCESS) < 32 or ACCESS.startswith('replace-'):
     raise ValueError('Set private API credentials and a random DEMO_ACCESS_TOKEN of 32+ characters')
-METHODS = ['USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA']
+METHODS = ['USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA','TRX_TRON']
 LANGS = ['en', 'zh', 'es', 'pt-br', 'fr', 'de', 'nl', 'fa', 'ru', 'ar','ja','ko','it','tr','id']
 STORE = Path(env('DEMO_DATA_DIR', str(ROOT/'private-data'))).resolve()
 STORE.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -71,6 +71,10 @@ def hpp(d):
     u = urlsplit(d['payment_url'])
     if origin(BASE) != u.scheme+'://'+u.netloc or u.username or u.password or u.path != '/pay/'+d['order_id'] or u.query or u.fragment: raise ValueError('Invalid hosted URL')
     return d['payment_url']
+def accepted_amount(d):
+    pay, received = decimal(d.get('pay_amount')), decimal(d.get('received_amount'))
+    return pay != '0' and received != '0' and (pay == received or d.get('manual_payment_accepted') is True)
+
 def bind(a, d, check_paid=True):
     p = a['payload']
     if not re.fullmatch('[a-f0-9]{32}', d.get('order_id','')) or d.get('merchant_order_id') != p['merchant_order_id'] or d.get('currency') != p['currency'] or decimal(d.get('amount')) != decimal(p['amount']) or method(d) != p['payment_method'] or not d.get('payment_address') or decimal(d.get('pay_amount')) == '0': raise ValueError('Binding mismatch')
@@ -78,7 +82,7 @@ def bind(a, d, check_paid=True):
     if a.get('snapshot'):
         s = a['snapshot']
         if d['order_id'] != s['order_id'] or d['payment_address'] != s['payment_address'] or decimal(d['pay_amount']) != decimal(s['pay_amount']): raise ValueError('Immutable instructions changed')
-    if check_paid and d.get('status') == 'PAID' and decimal(d.get('received_amount')) != decimal(d['pay_amount']): raise ValueError('PAID amount requires review')
+    if check_paid and d.get('status') == 'PAID' and not accepted_amount(d): raise ValueError('PAID amount requires review')
 def verify(r, t):
     a = load(r)
     if not isinstance(t,str) or not hmac.compare_digest(a['token'],t) or not a.get('snapshot'): raise ValueError('Invalid capability')

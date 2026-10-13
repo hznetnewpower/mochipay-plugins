@@ -15,7 +15,7 @@ $_['entry_unique_direction'] = 'Unique Amount Direction';
 $_['entry_pending_status'] = 'Waiting Order Status';
 $_['entry_paid_status'] = 'Paid Order Status';
 $_['entry_sort_order'] = 'Sort Order';
-$_['help_payment_methods'] = 'Comma-separated: USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA';
+$_['help_payment_methods'] = 'Comma-separated: USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON';
 $_['error_permission'] = 'Warning: You do not have permission to modify MochiPay!';
 $_['error_api'] = 'MochiPay URL, API key and API secret are required.';
 

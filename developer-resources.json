@@ -1,11 +1,11 @@
 {
-  "publication_revision": "2026.10.09-payment-flow.1",
+  "publication_revision": "2026.10.13-multilanguages-trx.1",
   "resources": [
     {
       "id": "php-api",
       "name": "PHP API Demo",
-      "version": "1.2.0",
-      "asset_name": "MochiPay_PHP_API_Demo_1.2.0_Multilanguages_Onsite_HPP.zip",
+      "version": "1.2.4",
+      "asset_name": "MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/php-api",
       "native_root": "MochiPay_PHP_Demo",
       "runtime": "PHP 7.0–8.4; cURL, JSON, sessions, HTTPS and private storage",
@@ -32,15 +32,23 @@
         "tr",
         "id"
       ],
-      "sha256": "a6082e7162d96a72db47971f6e0fb6fac9f89066e2c1e86cfbaf17dfe3828a4f",
-      "bytes": 52127,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "c1afb1241e97f16e0fc293c14984c3bd9d560de5910d6af1ee0c7fac637da389",
+      "bytes": 58032,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "report-unlock",
       "name": "Report Unlock Demo",
-      "version": "1.0.8",
-      "asset_name": "MochiPay_Report_Unlock_Demo_1.0.8_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.12",
+      "asset_name": "MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/report-unlock",
       "native_root": "mochipay-report-demo",
       "runtime": "PHP 7.0–8.x; cURL, JSON, sessions, HTTPS and persistent private storage",
@@ -67,15 +75,15 @@
         "tr",
         "id"
       ],
-      "sha256": "205f475a94472afcc689d6393876436036723afd87402ef6ecae14a9944b0ca6",
-      "bytes": 51230,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "4687cd99e05cd0297c007d91550f70aee6805e96c17adc097bec7edece103184",
+      "bytes": 57163,
+      "publication_revision": "2026.10.13-multilanguages-trx.1"
     },
     {
       "id": "integration-skill",
       "name": "AI Integration Skill",
-      "version": "1.2.5",
-      "asset_name": "MochiPay_AI_Integration_Skill_1.2.5.zip",
+      "version": "1.2.11",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.2.11.zip",
       "source_directory": "skills",
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
@@ -102,15 +110,15 @@
         "tr",
         "id"
       ],
-      "sha256": "1a2829ec4d33296269d8792e9b9ae282209415a59eaac802e5ea032105b48490",
-      "bytes": 32299,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "e3b6e8cbba29ebe1a735d2361d2556a51e0e302382e00bff56fef75e4292fe03",
+      "bytes": 31290,
+      "publication_revision": "2026.10.13-multilanguages-trx.1"
     },
     {
       "id": "mcp-server",
       "name": "MCP Server",
-      "version": "1.0.4",
-      "asset_name": "MochiPay_MCP_Server_1.0.4.zip",
+      "version": "1.0.7",
+      "asset_name": "MochiPay_MCP_Server_1.0.7.zip",
       "source_directory": "mcp",
       "native_root": "mochipay-mcp",
       "runtime": "Python 3.10+; pinned MCP SDK dependency; a host that launches stdio servers",
@@ -137,15 +145,15 @@
         "tr",
         "id"
       ],
-      "sha256": "2336545077082c13c6a78cef89cdaf0e26696b5ce3bb0b18353c5e4770914d61",
-      "bytes": 12778,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "791835e94efcd6a09addb99ed47d32447ac7862c07ee38339d351b8d9561dd11",
+      "bytes": 13778,
+      "publication_revision": "2026.10.13-multilanguages-trx.1"
     },
     {
       "id": "nodejs-demo",
       "name": "Node.js Demo",
-      "version": "1.0.5",
-      "asset_name": "MochiPay_NodeJS_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.9",
+      "asset_name": "MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/nodejs-api",
       "native_root": "MochiPay_nodejs_Demo",
       "runtime": "22+",
@@ -172,15 +180,23 @@
         "tr",
         "id"
       ],
-      "sha256": "c0eb99df1e8e3d8698540044590ce117503c4db08d205552e263688846234388",
-      "bytes": 60686,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "c64b8c4835c14361a0fe51467932419cf418856ee5cdc5d048cb06259dac2fb6",
+      "bytes": 66529,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "python-demo",
       "name": "Python Demo",
-      "version": "1.0.5",
-      "asset_name": "MochiPay_Python_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.9",
+      "asset_name": "MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/python-api",
       "native_root": "MochiPay_python_Demo",
       "runtime": "3.10+",
@@ -207,15 +223,23 @@
         "tr",
         "id"
       ],
-      "sha256": "12381c32695e6fc14bfe59e739889d0c239df8f43192c11b075e51e52e4d4516",
-      "bytes": 60623,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "82b2b8d27ac97058aff8df51371c2141671483f83b9fea975397d05e9a83068e",
+      "bytes": 66478,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "dotnet-demo",
       "name": "C# / .NET Framework Demo",
-      "version": "1.0.5",
-      "asset_name": "MochiPay_DotNet_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.9",
+      "asset_name": "MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/dotnet-api",
       "native_root": "MochiPay_dotnet_Demo",
       "runtime": "4.6.1 / VS2019",
@@ -242,15 +266,23 @@
         "tr",
         "id"
       ],
-      "sha256": "7cf05e6cc9afaff080daabe913d2c1331f8e2332c0d9822e3b4f6f2513333a3c",
-      "bytes": 62146,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "6d563f00b7d7e46b6026440b0f9311fa8eb317956b16297f990202c3ed62833b",
+      "bytes": 68045,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "java-demo",
       "name": "Java Demo",
-      "version": "1.0.5",
-      "asset_name": "MochiPay_Java_API_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.9",
+      "asset_name": "MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip",
       "source_directory": "examples/java-api",
       "native_root": "MochiPay_java_Demo",
       "runtime": "JDK17+",
@@ -277,15 +309,23 @@
         "tr",
         "id"
       ],
-      "sha256": "0b33a20ba373c318cd44c30eb5c6bc859042b5408899438c08d6bee1f5a1f00d",
-      "bytes": 63954,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "d7f842b53c05a58d95d95d1ac66a4fe9e24c346f157d0c813f4bed13cb262b19",
+      "bytes": 69865,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "ios-demo",
       "name": "iOS Swift Demo",
-      "version": "1.0.2",
-      "asset_name": "MochiPay_iOS_Swift_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "mobile/ios",
       "native_root": "MochiPay_iOS_Swift_Demo",
       "runtime": "iOS15+ / Xcode14+",
@@ -312,15 +352,23 @@
         "tr",
         "id"
       ],
-      "sha256": "74fa2491ea6dc5b0f888f0bd09fa3cf337e190efbd812a4e6830ffeb75afb976",
-      "bytes": 9284,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "27fb0297671d103ab22e299fb2f4faa8b40820009bf179580cf2d1ad1346473b",
+      "bytes": 9733,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     },
     {
       "id": "android-demo",
       "name": "Android Kotlin Demo",
-      "version": "1.0.2",
-      "asset_name": "MochiPay_Android_Kotlin_Demo_1.0.2_Multilanguages_Onsite_HPP.zip",
+      "version": "1.0.5",
+      "asset_name": "MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip",
       "source_directory": "mobile/android",
       "native_root": "MochiPay_Android_Kotlin_Demo",
       "runtime": "API26+ / SDK35 / JDK17",
@@ -347,20 +395,28 @@
         "tr",
         "id"
       ],
-      "sha256": "7f2a71994e0e8b48a3e7b90d3b6e9df997daa162118d77e361e29a3fe4bd881c",
-      "bytes": 9604,
-      "publication_revision": "2026.10.09-payment-flow.1"
+      "sha256": "27f27e721a986a055c1b3540cfb5f637ed0245fd8bdbefb2394498a53ab33f14",
+      "bytes": 10045,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "supported_payment_methods": [
+        "USDT_TRC20",
+        "USDC_ERC20",
+        "BTC_BITCOIN",
+        "ETH_ERC20",
+        "SOL_SOLANA",
+        "TRX_TRON"
+      ]
     }
   ],
   "chrome_extension": {
     "id": "chrome-assistant",
     "name": "Chrome Payment Assistant",
-    "version": "1.0.4",
+    "version": "1.0.7",
     "license": "MIT",
-    "asset_name": "MochiPay_Chrome_Payment_Assistant_1.0.4.zip",
+    "asset_name": "MochiPay_Chrome_Payment_Assistant_1.0.7.zip",
     "source_directory": "extensions/chrome-payment-assistant",
-    "sha256": "95e714435fc3711ae98288df92b7c5b3448e532f6152a4fec48c1a4f27a789cb",
-    "bytes": 396269,
-    "publication_revision": "2026.10.09-payment-flow.1"
+    "sha256": "a02e89e3ea7a66b06a1990e673d224e974b4cddb59b9cf7125a2c6b7b69f2f4f",
+    "bytes": 397564,
+    "publication_revision": "2026.10.13-multilanguages-trx.1"
   }
 }

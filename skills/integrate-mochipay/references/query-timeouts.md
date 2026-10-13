@@ -1,3 +1,7 @@
+# Current WEB82.27 / Monitor32 / DB25
+
+MCP1.0.6 preserves bounded Retry-After, cooldown and safe error_id. Payment differences require explicit authenticated manual acceptance after saved-binding, PAID and positive-amount checks. Automatic amount tolerance is removed. REVIEW_REQUIRED stays unpaid. See README_WEB82_25.md for deployment. Historical timing notes below do not replace current scoped read budgets.
+
 # Query timeouts and recovery — WEB82.4
 
 All payment API connections and requests allow at least 30 seconds. Native buyer AJAX allows 40 seconds. The website business SQL connection allows at least 30 seconds and existing commands allow 60 seconds; website payment/subscription polling allows 100 seconds so the database operation has time to finish. Only one browser poll may be in flight. Low-budget optional telemetry/geolocation checks keep their existing budgets.

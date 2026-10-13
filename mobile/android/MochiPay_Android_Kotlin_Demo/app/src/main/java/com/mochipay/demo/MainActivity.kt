@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 class MainActivity : Activity() {
     // Merchant backend, never the MochiPay API. Configure your own HTTPS staging origin.
     private val backend = Uri.parse("https://your-merchant.example")
-    private val methods = listOf("USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA")
+    private val methods = listOf("USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA","TRX_TRON")
     private val languages = listOf("en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar","ja","ko","it","tr","id")
     private val handler = Handler(Looper.getMainLooper())
     private val worker = Executors.newSingleThreadExecutor()

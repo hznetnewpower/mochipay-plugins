@@ -2,7 +2,9 @@
   "mcpServers": {
     "mochipay": {
       "command": "/absolute/path/to/mochipay-mcp/.venv/bin/python",
-      "args": ["/absolute/path/to/mochipay-mcp/server.py"],
+      "args": [
+        "/absolute/path/to/mochipay-mcp/server.py"
+      ],
       "env": {
         "MOCHIPAY_URL": "https://mochi.bz",
         "MOCHIPAY_API_KEY": "SET_PRIVATELY",

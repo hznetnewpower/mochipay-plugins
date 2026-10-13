@@ -27,11 +27,16 @@ function safeOrder(o) {
       typeof o.amount !== 'string' || typeof o.pay_amount !== 'string' ||
       typeof o.received_amount !== 'string' || typeof o.is_paid !== 'boolean') throw new Error('INVALID_RESPONSE');
   decimalKey(o.amount); decimalKey(o.pay_amount); decimalKey(o.received_amount);
-  if (o.is_paid && (o.status !== 'PAID' || decimalKey(o.pay_amount) === '0' || decimalKey(o.received_amount) !== decimalKey(o.pay_amount)))
-    throw new Error('INVALID_RESPONSE');
+  const expected = decimalKey(o.pay_amount), received = decimalKey(o.received_amount);
+  const manual = o.manual_payment_accepted === true;
+  if (o.manual_payment_accepted !== undefined && typeof o.manual_payment_accepted !== 'boolean') throw new Error('INVALID_RESPONSE');
+  if (manual && (o.status !== 'PAID' || expected === '0' || received === '0' || o.chain_review_required !== false)) throw new Error('INVALID_RESPONSE');
+  if (o.is_paid && (o.status !== 'PAID' || expected === '0' || received !== expected || o.chain_review_required === true)) throw new Error('INVALID_RESPONSE');
+  if (manual) o = {...o, is_paid: true};
   return o;
 }
 async function request(s, url, payload) {
+  if(!payload && s.queryRetryAt > Date.now()){const e=new Error('RATE_LIMITED');e.status=429;throw e;}
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 30000);
   try {
@@ -43,6 +48,10 @@ async function request(s, url, payload) {
       redirect: 'error', signal: controller.signal});
     let data; try { data = await r.json(); } catch (_) { if (r.ok) throw new Error('INVALID_RESPONSE'); data = {success: false, message: 'SERVICE_ERROR'}; }
     if (!r.ok || data.success !== true) {
+      if(r.status===429) {
+        const retry = r.headers.get('Retry-After'); const seconds = /^\d+$/.test(retry || '') ? Number(retry) : Math.max(0,(Date.parse(retry)-Date.now())/1000);
+        if(s.token){s.queryRetryAt = Date.now()+Math.max(60000,Math.min(900000,(isFinite(seconds)?seconds:60)*1000)); await save(s);}
+      }
       const e = new Error(typeof data.message === 'string' ? data.message : 'SERVICE_ERROR'); e.status = r.status;
       if (r.status === 401 && s.token) {
         delete s.token; s.orders = []; s.seen = {}; delete s.profile; s.error = 'CONNECTION_REQUIRED';
@@ -63,6 +72,7 @@ async function ensureAlarm() {
 }
 async function refresh() {
   const s = await state(); if (!s.token) return publicState(s);
+  if(s.queryRetryAt > Date.now()){s.queryPending=true;await save(s);return publicState(s);}
   const watch = (s.orders || []).filter(o => !o.is_paid && !['EXPIRED', 'CANCELLED', 'FAILED'].includes(o.status))
     .slice(0, 100).map(o => o.order_id).join(',');
   const url = API + '?action=orders&watch=' + encodeURIComponent(watch) +
@@ -88,7 +98,7 @@ async function refresh() {
     }
   }
   s.seen = Object.fromEntries(orders.map(o => [o.order_id, seen[o.order_id]]));
-  s.orders = orders; s.profile = data.profile; s.baseline = true; s.updated = Date.now(); s.queryFailures = 0; delete s.queryPending; delete s.error;
+  s.orders = orders; s.profile = data.profile; s.baseline = true; s.updated = Date.now(); s.queryFailures = 0; delete s.queryPending; delete s.queryRetryAt; delete s.error;
   // Persist transitions before showing notices to prevent repeats on worker restarts.
   await save(s);
   if (s.notifications && chrome.notifications?.create && await chrome.permissions.contains({permissions: ['notifications']})) {

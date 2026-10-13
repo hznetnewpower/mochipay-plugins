@@ -1,4 +1,4 @@
-# MochiPay PHP API Demo 1.2.0 — On-site + HPP
+# MochiPay PHP API Demo 1.2.4 — On-site + HPP
 
 Requirements: PHP 7.0–8.4, cURL, JSON, sessions, secure random_bytes, HTTPS, and writable PRIVATE temporary storage. This is an integration demo, not a production shopping cart. Restrict order.php to your administrators or a protected staging environment; the create/query forms are not a public checkout.
 
@@ -6,7 +6,7 @@ Requirements: PHP 7.0–8.4, cURL, JSON, sessions, secure random_bytes, HTTPS, a
 1. Upload this entire directory, including portable/ and its bundled QR-code license. Never serve PHP source as text.
 2. In order.php set MOCHIPAY_API_KEY and MOCHIPAY_API_SECRET. MochiPay URL defaults to https://mochi.bz. Configure the merchant wallet for each offered asset/network.
 3. Set MOCHIPAY_DEMO_PUBLIC_URL to the absolute HTTPS directory containing order.php and callback.php (for example https://your-store.example/mochipay-demo). An empty value infers the direct request URL; set it explicitly behind a proxy.
-4. On-site is the default. MOCHIPAY_CHECKOUT_MODE can be ON_SITE or HPP. This selects the preferred link in the demo; it is not a field sent to Create Order. All five methods are available: USDT_TRC20, USDC_ERC20, BTC_BITCOIN, ETH_ERC20, SOL_SOLANA. UP is the default unique amount direction; DOWN is available.
+4. On-site is the default. MOCHIPAY_CHECKOUT_MODE can be ON_SITE or HPP. This selects the preferred link in the demo; it is not a field sent to Create Order. All six methods are available: USDT_TRC20, USDC_ERC20, BTC_BITCOIN, ETH_ERC20, SOL_SOLANA. UP is the default unique amount direction; DOWN is available.
 5. The supplied cURL requests use CURLOPT_SSL_VERIFYPEER => true and CURLOPT_SSL_VERIFYHOST => 2. Configure a trusted CA bundle for certificate errors. API credentials remain server-side.
 
 ## Try both payment flows

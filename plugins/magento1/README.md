@@ -1,6 +1,6 @@
 # Magento CE 1.9.3.0-1.9.4.5; OpenMage 19/20 native M1 API — MochiPay
 
-Plugin version: 1.2.0
+Plugin version: 1.2.5
 
 # MochiPay setup
 

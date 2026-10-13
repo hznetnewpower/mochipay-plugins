@@ -1,6 +1,6 @@
 # Zen Cart 1.5.3-1.5.7 — MochiPay
 
-Plugin version: 1.2.0
+Plugin version: 1.2.5
 
 # MochiPay setup
 

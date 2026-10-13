@@ -110,7 +110,7 @@ function mochipay_begin($payload)
 // Production fulfillment belongs in your durable order database transaction.
 function mochipay_record_verified($record, $data)
 {
-    if (!mochipay_bound($record, $data) || $data['status'] !== 'PAID' || !isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount'])) return false;
+    if (!mochipay_bound($record, $data) || $data['status'] !== 'PAID' || !MochiPayPortable::paidAmountAccepted($data)) return false;
     $path = mochipay_record_path($record['attempt_id']);
     $handle = fopen($path, 'r+');
     if (!$handle || !flock($handle, LOCK_EX)) throw new RuntimeException('Demo storage is busy.');
@@ -295,7 +295,7 @@ if (isset($_GET['view'])) {
             if (!$verified['ok'] && !empty($verified['retryable'])) throw new MochiPayDemoQueryUnavailable('Connection failed. Your order is saved. Please check again.');
             if (!$verified['ok'] || !mochipay_bound($record, $verified['data'])) throw new RuntimeException('Payment verification failed.');
             $data = $verified['data'];
-            if (strtoupper($data['status']) === 'PAID' && (!isset($data['received_amount']) || MochiPayPortable::decimal($data['received_amount']) !== MochiPayPortable::decimal($data['pay_amount']))) throw new RuntimeException('Received payment requires review.');
+            if (strtoupper($data['status']) === 'PAID' && (!MochiPayPortable::paidAmountAccepted($data))) throw new RuntimeException('Received payment requires review.');
             if (strtoupper($data['status']) === 'PAID') mochipay_record_verified($record, $data);
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode(array('success'=>true, 'data'=>MochiPayPortable::view($data)), JSON_UNESCAPED_SLASHES);
@@ -417,7 +417,7 @@ $defaultMerchantOrderId = $action === 'create' && !empty($merchantOrderId) ? $me
                 <select name="checkout_mode"><option value="ON_SITE" <?php echo mochipay_form_value('checkout_mode', MOCHIPAY_CHECKOUT_MODE) === 'ON_SITE' ? 'selected' : ''; ?>>On-site payment dialog (default)</option><option value="HPP" <?php echo mochipay_form_value('checkout_mode', MOCHIPAY_CHECKOUT_MODE) === 'HPP' ? 'selected' : ''; ?>>Hosted Payment Page (HPP)</option></select>
                 <label>Payment method</label>
                 <select name="payment_method">
-                    <option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'USDT_TRC20' ? 'selected' : ''; ?>>USDT_TRC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'USDC_ERC20' ? 'selected' : ''; ?>>USDC_ERC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'BTC_BITCOIN' ? 'selected' : ''; ?>>BTC_BITCOIN</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'ETH_ERC20' ? 'selected' : ''; ?>>ETH_ERC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'SOL_SOLANA' ? 'selected' : ''; ?>>SOL_SOLANA</option>
+                    <option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'USDT_TRC20' ? 'selected' : ''; ?>>USDT_TRC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'USDC_ERC20' ? 'selected' : ''; ?>>USDC_ERC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'BTC_BITCOIN' ? 'selected' : ''; ?>>BTC_BITCOIN</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'ETH_ERC20' ? 'selected' : ''; ?>>ETH_ERC20</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'SOL_SOLANA' ? 'selected' : ''; ?>>SOL_SOLANA</option><option <?php echo mochipay_form_value('payment_method', 'USDT_TRC20') === 'TRX_TRON' ? 'selected' : ''; ?>>TRX_TRON</option>
                 </select>
                 <label>Unique amount direction</label><select name="unique_amount_direction"><option <?php echo mochipay_form_value('unique_amount_direction', 'UP') === 'UP' ? 'selected' : ''; ?>>UP</option><option <?php echo mochipay_form_value('unique_amount_direction', 'UP') === 'DOWN' ? 'selected' : ''; ?>>DOWN</option></select>
                 <label>Product type</label><select name="product_type"><option <?php echo mochipay_form_value('product_type', 'DIGITAL_SERVICE') === 'DIGITAL_SERVICE' ? 'selected' : ''; ?>>DIGITAL_SERVICE</option><option <?php echo mochipay_form_value('product_type', 'DIGITAL_SERVICE') === 'PHYSICAL' ? 'selected' : ''; ?>>PHYSICAL</option></select>

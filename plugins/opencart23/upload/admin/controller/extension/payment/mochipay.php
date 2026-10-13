@@ -5,7 +5,7 @@ class ControllerExtensionPaymentMochipay extends Controller
 
     public function index()
     {
-        if (isset($this->request->post['mochipay_payment_methods']) && is_array($this->request->post['mochipay_payment_methods'])) $this->request->post['mochipay_payment_methods'] = implode(',', array_intersect(array('USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA'), $this->request->post['mochipay_payment_methods']));
+        if (isset($this->request->post['mochipay_payment_methods']) && is_array($this->request->post['mochipay_payment_methods'])) $this->request->post['mochipay_payment_methods'] = implode(',', array_intersect(array('USDT_TRC20','USDC_ERC20','BTC_BITCOIN','ETH_ERC20','SOL_SOLANA','TRX_TRON'), $this->request->post['mochipay_payment_methods']));
         $this->load->language('extension/payment/mochipay');
         $this->englishLanguage();
         $this->document->setTitle($this->language->get('heading_title'));
@@ -17,9 +17,9 @@ class ControllerExtensionPaymentMochipay extends Controller
         }
         $keys = array('mochipay_status', 'mochipay_title', 'mochipay_api_url', 'mochipay_api_key', 'mochipay_api_secret', 'mochipay_payment_methods', 'mochipay_unique_direction', 'mochipay_pending_status_id', 'mochipay_paid_status_id', 'mochipay_sort_order', 'mochipay_checkout_mode');
         foreach ($keys as $key) $data[$key] = isset($this->request->post[$key]) ? $this->request->post[$key] : $this->config->get($key);
-        $defaults = array('mochipay_api_url'=>'https://mochi.bz','mochipay_title'=>'Cryptocurrency (MochiPay)','mochipay_payment_methods'=>'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA','mochipay_unique_direction'=>'UP','mochipay_checkout_mode'=>'ON_SITE','mochipay_pending_status_id'=>1,'mochipay_paid_status_id'=>5,'mochipay_sort_order'=>90);
+        $defaults = array('mochipay_api_url'=>'https://mochi.bz','mochipay_title'=>'Cryptocurrency (MochiPay)','mochipay_payment_methods'=>'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON','mochipay_unique_direction'=>'UP','mochipay_checkout_mode'=>'ON_SITE','mochipay_pending_status_id'=>1,'mochipay_paid_status_id'=>5,'mochipay_sort_order'=>90);
         foreach($defaults as $key=>$value) if($data[$key]===null || $data[$key]==='') $data[$key]=$value;
-        $data['method_options'] = array('USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana');
+        $data['method_options'] = array('USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana','TRX_TRON'=>'TRX · TRON');
         $data['selected_methods'] = explode(',', (string)$data['mochipay_payment_methods']);
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
         $data['breadcrumbs'] = array(
@@ -50,7 +50,7 @@ class ControllerExtensionPaymentMochipay extends Controller
     {
         $this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "mochipay_order` (`mochipay_order_id` VARCHAR(32) NOT NULL, `order_id` INT NOT NULL, `merchant_order_id` VARCHAR(100) NOT NULL, `payment_method` VARCHAR(30) NOT NULL, `return_token` VARCHAR(64) NOT NULL, `tx_hash` VARCHAR(255) NULL, `date_added` DATETIME NOT NULL, `date_paid` DATETIME NULL, PRIMARY KEY (`mochipay_order_id`), KEY `idx_order` (`order_id`), KEY `idx_merchant` (`merchant_order_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8");
         $this->load->model('setting/setting');
-        if (!$this->config->get('mochipay_api_key')) $this->model_setting_setting->editSetting('mochipay', array('mochipay_checkout_mode' => 'ON_SITE', 'mochipay_status' => 0, 'mochipay_title' => 'Cryptocurrency (MochiPay)', 'mochipay_api_url' => 'https://mochi.bz', 'mochipay_api_key' => '', 'mochipay_api_secret' => '', 'mochipay_payment_methods' => 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA', 'mochipay_unique_direction' => 'UP', 'mochipay_pending_status_id' => $this->config->get('config_order_status_id'), 'mochipay_paid_status_id' => 5, 'mochipay_sort_order' => 90));
+        if (!$this->config->get('mochipay_api_key')) $this->model_setting_setting->editSetting('mochipay', array('mochipay_checkout_mode' => 'ON_SITE', 'mochipay_status' => 0, 'mochipay_title' => 'Cryptocurrency (MochiPay)', 'mochipay_api_url' => 'https://mochi.bz', 'mochipay_api_key' => '', 'mochipay_api_secret' => '', 'mochipay_payment_methods' => 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON', 'mochipay_unique_direction' => 'UP', 'mochipay_pending_status_id' => $this->config->get('config_order_status_id'), 'mochipay_paid_status_id' => 5, 'mochipay_sort_order' => 90));
     }
 
     protected function validate()

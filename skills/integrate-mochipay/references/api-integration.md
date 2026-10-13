@@ -1,6 +1,6 @@
 # API integration contract
 
-Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.0_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
+Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.1_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
 
 ## Authentication and fields
 
@@ -52,3 +52,12 @@ Read returns-notifications.md for separate HPP synchronous-return and ON_SITE/HP
 ## WEB82.6 override
 
 merchant_order_id is a repeatable label, not an idempotency key. New requests with the same reference create separate system orders. Query accepts exactly one of order_id, request_id, or merchant_order_id. Duplicate reference lookups return409 MERCHANT_ORDER_ID_AMBIGUOUS; do not infer the intended attempt from the latest reference match. Persist request_id for transport retries. Current website/Zen release does not migrate old orders.
+
+
+## Authenticated manual payment acceptance (WEB82.18)
+A received amount must be valid and positive. Preserve all original invoice bindings and require PAID from an authenticated server query. Accept a received/payable mismatch only when that authenticated query contains the Boolean manual_payment_accepted=true, backed by the server audit. A notification/browser field, string "true", number 1, or PAID alone cannot authorize it. Require WEB82.14+ for this proof; exact paid amounts retain older-server compatibility. Manual callback retries must retain atomic once-only fulfillment.
+
+## Payment verification and manual acceptance
+
+Payment verification (WEB82.27 / Monitor32 / DB25)
+Automatic underpayment/overpayment tolerance is not supported. Require an authenticated query and the saved order binding, PAID, positive expected/received amounts and exact equality. A difference requires strict Boolean manual_payment_accepted=true from an authenticated query after explicit authorized operator acceptance. REVIEW_REQUIRED/UNDERPAID/OVERPAID never authorize fulfillment. Unsigned notifications/browser fields are only lookup hints. Preserve actual amounts and fulfill atomically once.

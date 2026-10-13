@@ -1,3 +1,9 @@
+## 2026.10.13-multilanguages-trx.1
+
+- Synced published website installer ZIPs, including WooCommerce 1.5.19 and native TRX support.
+- Refreshed MCP, AI Skill, demos and package catalogs.
+- Retained OpenCart 4 as a legacy package until a new website distribution is available.
+
 # MochiPay Plugins — Payment Flow Update
 
 - Each explicit checkout starts a new payment attempt, including repeated merchant_order_id values. Retries of the same transport request retain the saved request_id and exact payload.

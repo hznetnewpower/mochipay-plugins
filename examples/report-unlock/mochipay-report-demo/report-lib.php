@@ -116,8 +116,7 @@ function report_verify($reference)
         if (!$response['ok'] && !empty($response['retryable'])) throw new MochiPayDemoQueryUnavailable('Connection failed. Your order is saved. Please check again.');
         if (!$response['ok'] || !report_binding($record, $response['data'])) throw new RuntimeException('Unable to verify the saved payment.');
         $data = $response['data'];
-        $paid = $data['status'] === 'PAID' && isset($data['received_amount']) &&
-            MochiPayPortable::decimal($data['received_amount']) === MochiPayPortable::decimal($record['snapshot']['pay_amount']);
+        $paid = $data['status'] === 'PAID' && MochiPayPortable::paidAmountAccepted($data);
         $view = MochiPayPortable::view($data);
         if ($view['status'] === 'PAID' && !$paid) $view['status'] = 'REVIEW_REQUIRED';
         if ($paid && $record['unlocked_at'] === null) {

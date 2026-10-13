@@ -1,279 +1,115 @@
-# Store packages and setup
+# Store integration packages — WEB82.27
 
-This catalog is a release snapshot, not a promise that every core accepts every PHP version in an envelope. Read the exact core row, package instructions and the installed core's requirements before installing. For an unknown patch release, report compatibility as unverified; inspect its requirements instead of guessing.
+## WooCommerce 1.5.19
 
-All 19 native store packages support ON_SITE and HPP. Use the catalog's exact download URL. Rename the downloaded OpenCart 4 archive to `mochipay.ocmod.zip` before using its Installer; the website Download action supplies this installation filename. Download only from the official site; compare the bundled SHA-256 before executing a pinned package. If the official package changed, verify the updated release and instructions; do not silently bypass a hash mismatch.
+https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.19_Multilanguages.zip
 
-## WooCommerce (`woocommerce`)
+SHA256: `e3271f8ed7cca1eba7989d0e234164946dc7338b6f6dd4d01c710b683a319ed0`
 
-Classic Checkout, Checkout Blocks and HPOS.
+## OpenCart 2.0–2.2 1.2.5
 
-Plugin PHP envelope: PHP 7.4–8.4.
+https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip
 
-| Core | PHP / constraint |
-| --- | --- |
-| WooCommerce + WordPress | 7.4-8.4 within both core releases' requirements |
+SHA256: `2714a1eb286b4f968781b978249fc3bcd2f98db15d996c54136d782e866cbecf`
 
-[Download](https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.14_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideWooCommerce.aspx)
+## OpenCart 2.3 1.2.5
 
-## OpenCart 2.0–2.2 (`opencart20`)
+https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip
 
-Early payment routes and version-specific template paths.
+SHA256: `7d914d3a944328587317cdf9e4ab013c3c4033ddd80c0eb826ed33eb91f4ad07`
 
-Plugin PHP envelope: PHP 5.6–7.4; newer PHP needs core patches.
+## OpenCart 3 1.2.5
 
-| Core | PHP / constraint |
-| --- | --- |
-| Stock 2.0.x-2.2.x | 5.6; use 7.0-7.1 only if the exact core build permits it |
-| Core with PHP compatibility patches | 7.2-7.4 only where the patched core permits it |
+https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart2.aspx)
+SHA256: `7275a93b9e09ce04bcdcb400084dc09b23cdddfd60989041abdf9f4b2fd5b20b`
 
-## OpenCart 2.3 (`opencart23`)
+## OpenCart 4 1.2.5
 
-The separate 2.3 extension/payment structure.
+https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip
 
-Plugin PHP envelope: PHP 5.6–7.4; newer PHP needs core patches.
+SHA256: `42988b07b7d6bdff9742a491d0164a2379bc8f0db3302d87fff5bb6f2942c4b7`
 
-| Core | PHP / constraint |
-| --- | --- |
-| Stock 2.3.x | 5.6-7.1 within the exact core build's requirements |
-| Core with PHP compatibility patches | 7.2-7.4 only where the patched core permits it |
+## Zen Cart 1.5.3–1.5.7 1.2.5
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart23.aspx)
+https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip
 
-## OpenCart 3 (`opencart3`)
+SHA256: `948bb9ebc0cf1a661c51106a833977b3e7083e725641648d31d864b3effb0015`
 
-Twig views and the native OpenCart 3 payment gateway.
+## Zen Cart 1.5.8–2.2 1.2.5
 
-Plugin PHP envelope: PHP 5.6–8.4; exact core/dependency requirements apply.
+https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip
 
-| Core | PHP / constraint |
-| --- | --- |
-| Early 3.0.x builds | 5.6-7.x only within the core/dependency requirements |
-| 3.0.3.8 and later 3.x builds | At least 7.3; newer locked dependencies may raise this minimum |
-| 3.x builds with native PHP 8 compatibility | 8.0-8.4 only within that core build's requirements |
+SHA256: `b5a67fee3aa9e09603ec1a9da87011241538dd407bd521ea2f67b9e6049ec61d`
 
-[Download](https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart3.aspx)
+## Magento 1 / OpenMage 1.2.5
 
-## OpenCart 4 (`opencart4`)
+https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip
 
-Native 4.x namespaces, routes and extension packaging.
+SHA256: `6e1de25b6a0b325c56ad79e5a82f6cdd2b3265f79f57cef6f75e4747d8cbf8cd`
 
-Plugin PHP envelope: PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+.
+## Magento 2 1.2.5
 
-| Core | PHP / constraint |
-| --- | --- |
-| 4.0.2.x | 8.0.2-8.4 within the exact core/dependency requirements |
-| 4.1.x | 8.1-8.4 where required by the release; 4.1.0.4 composer minimum is 8.1 |
+https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip
 
-[Download](https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip) · [Guide](https://mochi.bz/Guides/GuideOpenCart4.aspx)
+SHA256: `1b6427af7f69c14e6595d0350639a0caaa8eb7cebcd0464559266613de064704`
 
-## Zen Cart 1.5.3–1.5.7 (`zencart-legacy`)
+## PrestaShop 1.6 1.2.5
 
-Legacy define-based language files and native status settings.
+https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip
 
-Plugin PHP envelope: PHP 5.6–8.0, depending on the core version.
+SHA256: `dda9466a8b23800e5e7ad9ae081571524a237a7cf337c4728a9bab0fc78832d5`
 
-| Core | PHP / constraint |
-| --- | --- |
-| 1.5.3-1.5.4 | 5.6 |
-| 1.5.5 | 5.6-7.1 |
-| 1.5.6 | 5.6-7.3 |
-| 1.5.7 | 5.6-8.0 |
+## PrestaShop 1.7 / 8 / 9 1.2.5
 
-[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideZenCartLegacy.aspx)
+https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip
 
-## Zen Cart 1.5.8–2.2 (`zencart-modern`)
+SHA256: `ff32c9728fc0086f87458c8e3e18910ebe24d20697d6a8f163cccd989ffff61a`
 
-Modern array-based language files and native status settings.
+## Shopware 6.6 1.0.11
 
-Plugin PHP envelope: PHP 7.3–8.4, depending on the core version.
+https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip
 
-| Core | PHP / constraint |
-| --- | --- |
-| 1.5.8/1.5.8a | 7.3-8.3; installation utility requires 8.2 or lower |
-| 2.0.x / 2.1.x | 8.0-8.3 |
-| 2.2.x | 8.2-8.4 for this package |
+SHA256: `0f4c449624aefb675e7b37e7d10fb60ef0ce19bb5fea81236445d60eaec565f7`
 
-[Download](https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideZenCart.aspx)
+## Shopware 6.7 1.0.11
 
-## Magento 1 / OpenMage (`magento1`)
+https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip
 
-Magento CE 1.9.3.0–1.9.4.5 and compatible OpenMage 19/20.
+SHA256: `11e343eb758f5d4910368f03dc500c38ed8ddd93b4b6e3d0097252afdbb8f52a`
 
-Plugin PHP envelope: PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core.
+## Drupal Commerce 1.0.11
 
-| Core | PHP / constraint |
-| --- | --- |
-| Magento CE 1.9.3.x | 5.6 |
-| Magento CE 1.9.4.x | 5.6 or 7.2, with the applicable PHP/security patches |
-| OpenMage 19 / older 20 releases | Use the exact release's PHP requirements, within 5.6-8.4 |
-| OpenMage 20.14+ | 8.1-8.4; upstream notes possible warnings on 8.4 |
+https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip
 
-[Download](https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideMagento1.aspx)
+SHA256: `febda778262f461d44547d9a899b0738f1d7d0d49103710fa441824f4c67af17`
 
-## Magento 2 (`magento2`)
+## EC-CUBE 4.3 1.0.11
 
-Magento Open Source 2.3.7–2.4.8 with native checkout.
+https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip
 
-Plugin PHP envelope: PHP 7.3–8.4, depending on the core version.
+SHA256: `76db2e163676d483b77d00f0e375b7cea274588a50ea1275308adce65ab85b7e`
 
-| Core | PHP / constraint |
-| --- | --- |
-| 2.3.7 | 7.3/7.4 according to the exact release |
-| 2.4.0-2.4.3 | 7.3/7.4 according to the exact release; later releases in this group require 7.4 |
-| 2.4.4-2.4.5 | 8.1 |
-| 2.4.6 | 8.1/8.2 |
-| 2.4.7 | 8.2/8.3 |
-| 2.4.8 | 8.3/8.4 |
+## Bagisto 2.3 1.0.11
 
-[Download](https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideMagento2.aspx)
+https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip
 
-## PrestaShop 1.6 (`prestashop-legacy`)
+SHA256: `1e3b4c0f22bfa5e000158afc15a30660c55468e9620957cd2ddd516b31b7f693`
 
-The PrestaShop 1.6.1 payment hook and submit form.
+## Sylius 2.0 1.0.11
 
-Plugin PHP envelope: PHP 5.6–7.1.
+https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip
 
-| Core | PHP / constraint |
-| --- | --- |
-| 1.6.1.x | 5.6-7.1 for this module; no PHP 7.2+ or PHP 8 |
+SHA256: `a3c2654e37940beaa70392dc519ffea9fb5e2680eb9c1656a6df9cdbc465a50b`
 
-[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuidePrestaShop16.aspx)
+## osCommerce 4.14 1.0.11
 
-## PrestaShop 1.7 / 8 / 9 (`prestashop-modern`)
+https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip
 
-PrestaShop 1.7.6–1.7.8, 8.x and 9.0.x paymentOptions.
+SHA256: `c9f1e1fa9dac23665ee63b38b9509933eec936c2930d6f899537928869ac6263`
 
-Plugin PHP envelope: PHP 5.6–8.4, depending on the core version.
+## thirty bees 1.6 1.0.11
 
-| Core | PHP / constraint |
-| --- | --- |
-| 1.7.6 | 5.6-7.2 |
-| 1.7.7 | 7.1-7.3 |
-| 1.7.8 | 7.1-7.4 |
-| 8.0-8.2 | 7.2.5-8.1 |
-| 9.0.x | 8.1-8.4 |
+https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip
 
-[Download](https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuidePrestaShop.aspx)
-
-## Shopware 6.6 (`shopware66`)
-
-Shopware asynchronous payment handler. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
-
-| Core | PHP / constraint |
-| --- | --- |
-| Shopware >=6.6.10.0 <6.7.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
-
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
-
-## Shopware 6.7 (`shopware67`)
-
-Shopware AbstractPaymentHandler. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x.
-
-| Core | PHP / constraint |
-| --- | --- |
-| Shopware >=6.7.0.0 <6.8.0.0 | PHP 8.2.x / 8.3.x / 8.4.x |
-
-[Download](https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideShopware.aspx)
-
-## Drupal Commerce (`drupal`)
-
-Commerce offsite payment gateway and completed commerce_payment entity. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; Drupal 11: PHP 8.3–8.4, only when allowed by the exact Drupal release.
-
-| Core | PHP / constraint |
-| --- | --- |
-| Commerce 2.40.x / Drupal 9.3–9.5 | 7.4–8.1 within exact core requirements |
-| Commerce 2.40.x / Drupal 10.x; Commerce 3.3.10+ <3.4 / Drupal 10.3+ | 8.1–8.3; later Drupal 10 releases may require 8.3 |
-| Commerce 3.3.10+ <3.4 / Drupal 11.x | 8.3–8.4 only where allowed by the exact core/dependency lock |
-
-[Download](https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideDrupalCommerce.aspx)
-
-## EC-CUBE 4.3 (`eccube`)
-
-PaymentMethodInterface with native PurchaseFlow prepare/commit. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 8.1.x / 8.2.x / 8.3.x.
-
-| Core | PHP / constraint |
-| --- | --- |
-| EC-CUBE >=4.3.0 <4.4.0 | PHP 8.1.x / 8.2.x / 8.3.x |
-
-[Download](https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideECCube.aspx)
-
-## Bagisto 2.3 (`bagisto`)
-
-Laravel package and Webkul payment adapter with native order/invoice repositories. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock).
-
-| Core | PHP / constraint |
-| --- | --- |
-| Bagisto >=2.3.0 <2.4.0 | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
-
-[Download](https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideBagisto.aspx)
-
-## Sylius 2.0 (`sylius`)
-
-Payum gateway factory/actions and Sylius payment state machine. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock).
-
-| Core | PHP / constraint |
-| --- | --- |
-| Sylius >=2.0.0 <2.1.0 with PayumBundle 2.6+ / Payum 1.7-compatible core | PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock) |
-
-[Download](https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideSylius.aspx)
-
-## osCommerce 4.14 (`oscommerce`)
-
-ModulePayment, platform configuration and native OrdersPayment ledger. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock.
-
-| Core | PHP / constraint |
-| --- | --- |
-| osCommerce 4.14.x; native V4 orderPayment module API | PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock |
-
-[Download](https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideOsCommerce.aspx)
-
-## thirty bees 1.6 (`thirtybees`)
-
-PaymentModule, native waiting state and OrderHistory payment transition. Initial integration build; native-store staging and real-payment acceptance required.
-
-Plugin PHP envelope: PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution.
-
-| Core | PHP / constraint |
-| --- | --- |
-| thirty bees >=1.6.0 <1.7.0 | PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution |
-
-[Download](https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.6_Multilanguages.zip) · [Guide](https://mochi.bz/Guides/GuideThirtyBees.aspx)
-
-New adapters require MochiPay Web65+ for optional request_id deduplication. Do not install both Shopware branches. osCommerce means V4.14, not 2.x/3.x; EC-CUBE means 4.3 with JPY; Sylius means 2.0 with its native Payum checkout. Read each package README for native installation, database and channel constraints. Treat source/interface/simulated checks as distinct from full native-store installation or paid acceptance. Keep existing customer plugins and API programs working unchanged.
-
-## New installation defaults
-
-MochiPay URL `https://mochi.bz` without `/api`; payment interface ON_SITE; five asset/network choices enabled; unique amount direction UP; gateway disabled until the merchant enables it. Enter the merchant's API key and secret privately. Keep only methods supported by active receiving wallets; choose UP or DOWN according to merchant preference. These are new-install defaults, not instructions to overwrite existing saved settings.
-
-Create an account, activate a subscription, set a display name, and configure an active receiving wallet. If using a generated wallet, the merchant must privately back up its recovery phrase; never request it. Obtain API credentials in the dashboard. Do not regenerate an existing secret during troubleshooting: it invalidates integrations using the old secret.
-
-Update native packages in place, preserve settings and historical order mappings, and follow each core's cache/compiler instructions. Do not uninstall as an upgrade step. Original Magento CE 1.0–1.8 and 1.9.0–1.9.2 are outside this M1 package; PHP 8 requires a compatible OpenMage release. Zen Cart before 1.5.3 is outside these packages even if an earlier core runs on PHP 5.
-
-## Classic SaaS and payment links
-
-Classic SaaS: Shopyy / Shopoem (shared guide), Shoplus, Wooshoppaas and Fecify use HPP only. Read their guides from https://mochi.bz/IntegrationGuides.aspx. Dashboard payment links also use HPP; a link alone does not synchronize an external store order. Custom applications and the PHP Demo offer both ON_SITE and HPP.
-
-Current native downloads include one English-default buyer frontend with a manual selector for English, Chinese, Spanish, Brazilian Portuguese, French, German, Dutch, Persian, Russian, Arabic, Japanese, Korean, Italian, Turkish and Indonesian. Gateway settings and installation instructions stay English. No automatic store-language forwarding is required. The current catalog supersedes older download URLs; no old package or redirect is published. Existing installed gateways still work.
-
-Install WEB82.6 or newer before these independent-attempt adapters; WEB82.7 adds HPP cancel/return. See payment-recovery.md. Current native release: WooCommerce1.5.14; eight modern branches1.0.6; OpenCart/PrestaShop/Magento branches1.2.0; Zen Cart branches1.2.0; nineteen packages across twelve families.
-
-## WooCommerce1.5.14 packaging repair
-
-Use the mochipay-for-woocommerce root and matching text domain. Deactivate the former mochipay-woocommerce build before installing/activating this package; never uninstall to upgrade. Gateway ID, settings/order-meta and attempt-option keys remain unchanged. Setup documents are TXT. Requests keep minimum30-second connection/response budgets through WordPress hooks, with no direct cURL calls. Separate English WordPress.org distribution is1.5.8. Run live Plugin Check; offline source checks are not directory approval.
+SHA256: `2a0c32c76a3a7d80b7d8a3ecbb06f5ea6bac51d44ab0d98ac49a9f314d07b0b3`

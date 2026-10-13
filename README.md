@@ -6,11 +6,11 @@ Cryptocurrency checkout for ecommerce stores, merchant backends and AI agents. C
 
 ## Current publication
 
-2026.10.09-payment-flow.1 / WEB82.7 integration rollout. WooCommerce 1.5.14, PHP Demo 1.2.0, MCP 1.0.4, Skill 1.2.5 and Chrome 1.0.4. See [CHANGELOG](CHANGELOG.md) and [download catalog](docs/DOWNLOADS.md).
+2026.10.13-multilanguages-trx.1: WooCommerce 1.5.19 and refreshed store, API, MCP and AI Skill packages. Native TRX/TRON is available in supported integrations. OpenCart 4 remains at its previous package version. See [release notes](docs/RELEASE_NOTES.md) and [download catalog](docs/DOWNLOADS.md).
 
-Each explicit create uses an independent attempt; repeated merchant references are allowed. Retry the same saved request with its original request_id and payload. Bind callback/return processing to the original payment attempt and verify payment on the server before fulfilling orders. A browser return is navigation only.
+Each explicit create uses an independent attempt; repeated merchant references are allowed. Retry a saved request with its original request_id and payload. Bind callback/return processing to the original payment attempt and verify payment on the server before fulfilling orders. A browser return is navigation only.
 
-ON_SITE and HPP checkout are supported. Buyer assets support en, zh, es, pt-br, fr, de, nl, fa, ru, ar, ja, ko, it, tr and id. Setup/technical documents remain English. Exact network and amount must match the saved invoice.
+ON_SITE and HPP checkout are supported. Buyer-facing language support is multilingual, including English, Chinese, Spanish, French and more. Setup/technical documents remain English. Exact network and amount must match the saved invoice.
 
 ## Installation
 

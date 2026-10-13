@@ -4,6 +4,15 @@ defined('ABSPATH') || exit;
 /** No floating point arithmetic is used for payable amounts. */
 final class MochiPay_Payment_Data
 {
+    // Call only on the authenticated query response after original invoice bindings.
+    public static function paidAmountAccepted($data, $expected)
+    {
+        $pay = self::decimal($expected);
+        $received = isset($data['received_amount']) ? self::decimal($data['received_amount']) : '';
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || $received === '' || $received === '0' || $received[0] === '-') return false;
+        return $received === $pay || (isset($data['manual_payment_accepted']) && $data['manual_payment_accepted'] === true);
+    }
+
     public static function decimal($value)
     {
         $text = trim((string) $value);
@@ -55,7 +64,7 @@ final class MochiPay_Payment_Data
         }
         if ('PAID' === strtoupper(isset($data['status']) ? (string)$data['status'] : '')) {
             $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
-            if ($pay === '' || $pay === '0' || $pay[0] === '-' || !isset($data['received_amount']) || self::decimal($data['received_amount']) !== $pay) { return false; }
+            if (!self::paidAmountAccepted($data, $pay)) { return false; }
         }
         return true;
     }
@@ -67,7 +76,7 @@ final class MochiPay_Payment_Data
         $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
         $address = isset($data['payment_address']) ? trim((string) $data['payment_address']) : '';
         $status = strtoupper(isset($data['status']) ? (string) $data['status'] : '');
-        $states = array('WAITING', 'WAITING_PAYMENT', 'PENDING', 'PAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'UNDERPAID', 'OVERPAID', 'CONFIRMING');
+        $states = array('WAITING', 'WAITING_PAYMENT', 'PENDING', 'PAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'UNDERPAID', 'OVERPAID', 'REVIEW_REQUIRED', 'CONFIRMING');
         if ($pay === '' || $pay === '0' || $pay[0] === '-' ||
             !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || !in_array($status, $states, true)) {
             return new WP_Error('mochipay_data', 'Payment data is incomplete or unsupported. Contact the store.');

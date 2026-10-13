@@ -8,7 +8,7 @@ if (!defined('_PS_VERSION_')) {
 
 class Mochipay extends PaymentModule
 {
-    const VERSION = '1.0.6';
+    const VERSION = '1.0.11';
 
     public function __construct()
     {
@@ -42,7 +42,7 @@ class Mochipay extends PaymentModule
 
     private function installDefaults()
     {
-        $values=array('MOCHIPAY_ENABLED'=>0,'MOCHIPAY_API_URL'=>'https://mochi.bz','MOCHIPAY_PAYMENT_METHODS'=>'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA','MOCHIPAY_UNIQUE_DIRECTION'=>'UP','MOCHIPAY_CHECKOUT_MODE'=>'ON_SITE');
+        $values=array('MOCHIPAY_ENABLED'=>0,'MOCHIPAY_API_URL'=>'https://mochi.bz','MOCHIPAY_PAYMENT_METHODS'=>'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON','MOCHIPAY_UNIQUE_DIRECTION'=>'UP','MOCHIPAY_CHECKOUT_MODE'=>'ON_SITE');
         foreach($values as $key=>$value) if(Configuration::get($key)===false && !Configuration::updateValue($key,$value)) return false;
         return true;
     }
@@ -124,7 +124,7 @@ class Mochipay extends PaymentModule
             'USDC_ERC20' => 'USDC — Ethereum (ERC20)',
             'BTC_BITCOIN' => 'BTC — Bitcoin',
             'ETH_ERC20' => 'ETH — Ethereum',
-            'SOL_SOLANA' => 'SOL — Solana',
+            'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON',
         );
         $result = array();
         foreach (explode(',', (string) Configuration::get('MOCHIPAY_PAYMENT_METHODS')) as $method) {
@@ -156,11 +156,11 @@ class Mochipay extends PaymentModule
             'MOCHIPAY_API_URL' => Configuration::get('MOCHIPAY_API_URL') ?: 'https://mochi.bz',
             'MOCHIPAY_API_KEY' => Configuration::get('MOCHIPAY_API_KEY'),
             'MOCHIPAY_API_SECRET' => '',
-            'MOCHIPAY_PAYMENT_METHODS' => Configuration::get('MOCHIPAY_PAYMENT_METHODS') ?: 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA',
+            'MOCHIPAY_PAYMENT_METHODS' => Configuration::get('MOCHIPAY_PAYMENT_METHODS') ?: 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON',
             'MOCHIPAY_UNIQUE_DIRECTION' => Configuration::get('MOCHIPAY_UNIQUE_DIRECTION') ?: 'UP',
         );
         $choices = array();
-        $selected = explode(',', Configuration::get('MOCHIPAY_PAYMENT_METHODS') ?: 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA');
+        $selected = explode(',', Configuration::get('MOCHIPAY_PAYMENT_METHODS') ?: 'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON');
         foreach(array_keys($this->paymentMethodLabels()) as $code){$choices[]=array('id'=>$code,'name'=>$code,'val'=>1);$helper->fields_value['MOCHIPAY_ASSET_'.$code]=in_array($code,$selected,true)?1:0;}
         return $helper->generateForm(array(array('form' => array(
             'legend' => array('title' => $this->l('MochiPay Settings'), 'icon' => 'icon-money'),
@@ -191,7 +191,7 @@ class Mochipay extends PaymentModule
 
     private function paymentMethodLabels()
     {
-        return array('USDT_TRC20' => 1, 'USDC_ERC20' => 1, 'BTC_BITCOIN' => 1, 'ETH_ERC20' => 1, 'SOL_SOLANA' => 1);
+        return array('USDT_TRC20' => 1, 'USDC_ERC20' => 1, 'BTC_BITCOIN' => 1, 'ETH_ERC20' => 1, 'SOL_SOLANA' => 1,'TRX_TRON'=>1);
     }
 
     private function checkCurrency(Cart $cart)

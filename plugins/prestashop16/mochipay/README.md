@@ -1,6 +1,6 @@
 # PrestaShop 1.6.1.x — MochiPay
 
-Plugin version: 1.2.0
+Plugin version: 1.2.5
 
 # MochiPay setup
 

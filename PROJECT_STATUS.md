@@ -1,14 +1,12 @@
-# MochiPay Plugins — Payment Flow Update
+# MochiPay integration publication status
 
-- Each explicit checkout starts a new payment attempt, including repeated merchant_order_id values. Retries of the same transport request retain the saved request_id and exact payload.
-- Native plugins, PHP/backend/report/mobile demos, MCP and Chrome are synchronized with WEB82.7.
-- Hosted checkout offers a merchant return link when a saved validated destination exists. Navigation does not prove payment or stop chain monitoring.
-- Query budgets and transient-failure handling are retained; buyer-facing assets support fifteen languages.
-- WooCommerce 1.5.14 uses mochipay-for-woocommerce and includes the latest class-prefix/text-domain/WordPress HTTP timeout repairs. Deactivate the former mochipay-woocommerce gateway before activating the new directory; do not uninstall or activate both.
-- Zen Cart 1.2.0 ZIPs retain the accepted source-release bytes.
+This source snapshot matches 28 currently distributed website ZIPs and includes the revised AI Skill 1.2.11. The OpenCart 4 ZIP is retained byte-for-byte from the previous GitHub release because no newer OpenCart 4 ZIP is in the current website distribution.
 
-Downloads: 19 native store packages, 10 developer resources, and Chrome Payment Assistant 1.0.4. Choose the platform-specific ZIP from Assets.
+- WooCommerce: 1.5.19 (`mochipay-for-woocommerce`); also published on WordPress.org.
+- Store integrations: native TRX/TRON and multilingual checkout where supported by each package.
+- Developer demos, MCP and Chrome assistant: refreshed from their current website ZIPs. AI Skill 1.2.11 includes revised multilingual wording.
+- PHP SDK: published separately in `hznetnewpower/mochipay-php` at v1.0.1.
 
-This publication packaging does not change runtime code and does not claim current live WordPress Plugin Check, native store/mobile builds, live-chain payment tests, or marketplace approval. Use WEB82.7 for the complete rollout; request-id recovery requires WEB82.6 or later. No payment backend, Monitor, database or production configuration is included. The separate PHP SDK repository and WordPress.org submission are not updated by this release.
+Use the platform-specific ZIP under [Releases](https://github.com/hznetnewpower/mochipay-plugins/releases/latest). The GitHub auto-generated Source code ZIP is not a store installer. The release manifest and SHA256SUMS.txt describe the exact installer bytes.
 
-Checks executed for this packaging: ZIP integrity, source-to-asset byte checks, store catalog hashes, archive paths, source layout, and scoped public-file checks. Remote publication has not been performed.
+Archive integrity, source-member checks and package hashes were verified. This publication task did not perform live blockchain payment acceptance or native installation tests on every platform. Website/server, Monitor and database source are not included here.

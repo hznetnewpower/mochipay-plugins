@@ -10,5 +10,5 @@
 <input-field type="bool"><name>asset_USDC_ERC20</name><label>Enable USDC - Ethereum (ERC20)</label><defaultValue>true</defaultValue></input-field>
 <input-field type="bool"><name>asset_BTC_BITCOIN</name><label>Enable BTC - Bitcoin</label><defaultValue>true</defaultValue></input-field>
 <input-field type="bool"><name>asset_ETH_ERC20</name><label>Enable ETH - Ethereum</label><defaultValue>true</defaultValue></input-field>
-<input-field type="bool"><name>asset_SOL_SOLANA</name><label>Enable SOL - Solana</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_SOL_SOLANA</name><label>Enable SOL - Solana</label><defaultValue>true</defaultValue></input-field><input-field type="bool"><name>asset_TRX_TRON</name><label>Enable TRX - TRON</label><defaultValue>true</defaultValue></input-field>
 </card></config>

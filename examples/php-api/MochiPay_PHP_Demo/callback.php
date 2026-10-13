@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try { $record = mochipay_load(isset($_GET['attempt_id']) ? (string)$_GET['attempt_id'] : ''); }
     catch (Exception $e) { callback_text(503, 'LOCAL_STORAGE_UNAVAILABLE'); }
     if (!mochipay_bound($record, $order) || (isset($callback['merchant_order_id']) && !hash_equals($verifiedMerchantId, (string)$callback['merchant_order_id']))) callback_text(409, 'LOCAL_ORDER_MISMATCH');
-    if (!isset($order['received_amount']) || MochiPayPortable::decimal($order['received_amount']) !== MochiPayPortable::decimal($order['pay_amount'])) callback_text(409, 'PAYMENT_AMOUNT_REQUIRES_REVIEW');
+    if (!MochiPayPortable::paidAmountAccepted($order)) callback_text(409, 'PAYMENT_AMOUNT_REQUIRES_REVIEW');
 
     if (!isset($order['status']) || strtoupper((string) $order['status']) !== 'PAID') {
         callback_text(409, 'ORDER_NOT_PAID');
@@ -81,7 +81,7 @@ try {
     if ($authorized && !empty($record['snapshot']['order_id'])) {
         $verified = mochipay_query_order('order_id', $record['snapshot']['order_id']);
         $data = $verified['data'];
-        $paid = $verified['ok'] && mochipay_bound($record, $data) && strtoupper($data['status']) === 'PAID' && isset($data['received_amount']) && MochiPayPortable::decimal($data['received_amount']) === MochiPayPortable::decimal($data['pay_amount']);
+        $paid = $verified['ok'] && mochipay_bound($record, $data) && strtoupper($data['status']) === 'PAID' && MochiPayPortable::paidAmountAccepted($data);
         if ($paid) mochipay_record_verified($record, $data);
     }
 } catch (Exception $e) { $paid = false; }

@@ -19,3 +19,7 @@ HPP browser returns may precede confirmations or fail to occur. Display waiting 
 ## Saved HPP cancel destination (WEB82.7)
 
 The HPP page exposes a cancel/merchant-return link only for a validated saved HTTP(S) destination. Pending Classic SaaS uses cancel_return_url when present; a paid return uses redirect_url. A cancellation marker is navigation context, never proof of an order state. Bind every returned token/system ID to the original attempt, including older links for a repeated merchant order. Queries and authenticated callbacks continue verifying the exact saved invoice.
+
+
+## Authenticated manual payment acceptance (WEB82.18)
+A received amount must be valid and positive. Preserve all original invoice bindings and require PAID from an authenticated server query. Accept a received/payable mismatch only when that authenticated query contains the Boolean manual_payment_accepted=true, backed by the server audit. A notification/browser field, string "true", number 1, or PAID alone cannot authorize it. Require WEB82.14+ for this proof; exact paid amounts retain older-server compatibility. Manual callback retries must retain atomic once-only fulfillment.

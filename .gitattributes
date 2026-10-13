@@ -1,0 +1,7 @@
+# Installer sources must retain the exact bytes present in their ZIP archives.
+plugins/** -text
+examples/** -text
+skills/** -text
+mcp/** -text
+mobile/** -text
+extensions/** -text

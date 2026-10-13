@@ -5,7 +5,7 @@ import UIKit
 // Merchant backend only. Never put MochiPay API credentials in an app.
 enum DemoConfig {
     static let backend = URL(string: "https://your-merchant.example")!
-    static let methods = ["USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA"]
+    static let methods = ["USDT_TRC20", "USDC_ERC20", "BTC_BITCOIN", "ETH_ERC20", "SOL_SOLANA","TRX_TRON"]
     static let languages = ["en", "zh", "es", "pt-br", "fr", "de", "nl", "fa", "ru", "ar","ja","ko","it","tr","id"]
     static func sameOrigin(_ url: URL) -> Bool {
         url.scheme == "https" && url.host == backend.host && url.port == backend.port && url.user == nil && url.password == nil

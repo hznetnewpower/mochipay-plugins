@@ -25,6 +25,13 @@ class MochiPayPortable
             self::decimal($payload['amount']) !== '' && self::decimal($payload['amount']) === self::decimal($data['amount']) &&
             strtoupper($payload['currency']) === strtoupper($data['currency']) && strtoupper($payload['payment_method']) === strtoupper($method);
     }
+    public static function paidAmountAccepted($data)
+    {
+        if (!is_array($data) || !isset($data['pay_amount'], $data['received_amount'])) return false;
+        $pay = self::decimal($data['pay_amount']); $received = self::decimal($data['received_amount']);
+        if ($pay === '' || $received === '' || $pay === '0' || $received === '0' || $pay[0] === '-' || $received[0] === '-') return false;
+        return $received === $pay || (isset($data['manual_payment_accepted']) && $data['manual_payment_accepted'] === true);
+    }
     public static function view($data)
     {
         $method = isset($data['payment_method']) ? $data['payment_method'] : (isset($data['wallet_type'], $data['network']) ? $data['wallet_type'] . '_' . $data['network'] : '');
@@ -32,7 +39,7 @@ class MochiPayPortable
         $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
         $address = isset($data['payment_address']) ? (string) $data['payment_address'] : '';
         $status = isset($data['status']) ? strtoupper($data['status']) : '';
-        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','EXPIRED','CANCELLED','CANCELED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','REVIEW_REQUIRED','EXPIRED','CANCELLED','CANCELED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
         $expires = isset($data['expires_at']) ? (string) $data['expires_at'] : '';
         if (in_array($status, array('PENDING','WAITING','WAITING_PAYMENT'), true) && isset($data['updated_at']) && preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $expires) && strcmp($data['updated_at'], $expires) >= 0) $status = 'EXPIRED';
         return array('reference'=>$data['order_id'], 'amount'=>self::decimal($data['amount']), 'currency'=>$data['currency'], 'payAmount'=>$pay, 'asset'=>$parts[0], 'network'=>$parts[1], 'address'=>$address, 'status'=>$status, 'expiresAt'=>$expires);

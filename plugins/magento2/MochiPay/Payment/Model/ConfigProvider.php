@@ -38,7 +38,7 @@ class ConfigProvider implements ConfigProviderInterface
             'USDC_ERC20' => 'USDC — Ethereum (ERC20)',
             'BTC_BITCOIN' => 'BTC — Bitcoin',
             'ETH_ERC20' => 'ETH — Ethereum',
-            'SOL_SOLANA' => 'SOL — Solana',
+            'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON',
         );
     }
 }

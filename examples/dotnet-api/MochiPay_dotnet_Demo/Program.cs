@@ -26,7 +26,7 @@ namespace MochiPayDemo
         static readonly string Key=Env("MOCHIPAY_API_KEY"),Secret=Env("MOCHIPAY_API_SECRET"),Access=Env("DEMO_ACCESS_TOKEN");
         static readonly string Store=Path.GetFullPath(Env("DEMO_DATA_DIR",Path.Combine(Root,"private-data")));
         static readonly string Amount=Env("DEMO_AMOUNT","10.00"),Currency=Env("DEMO_CURRENCY","USD").ToUpperInvariant(),Direction=Env("DEMO_DIRECTION","UP");
-        static readonly string[] Methods={"USDT_TRC20","USDC_ERC20","BTC_BITCOIN","ETH_ERC20","SOL_SOLANA"};
+        static readonly string[] Methods={"USDT_TRC20","USDC_ERC20","BTC_BITCOIN","ETH_ERC20","SOL_SOLANA","TRX_TRON"};
         static readonly string[] Languages={"en","zh","es","pt-br","fr","de","nl","fa","ru","ar","ja","ko","it","tr","id"};
         static string S(JToken d,string k) { var v=d[k];return v==null?"":v.Type==JTokenType.Float?((decimal)v).ToString(CultureInfo.InvariantCulture):v.ToString(); }
         static string Json(JToken d) { return d.ToString(Formatting.None); }
@@ -54,12 +54,14 @@ namespace MochiPayDemo
         static void Save(string r,JObject a) { var p=FileFor(r);var t=p+"."+Random()+".tmp";using(var f=new FileStream(t,FileMode.CreateNew,FileAccess.Write,FileShare.None)){byte[] b=Encoding.UTF8.GetBytes(Json(a));f.Write(b,0,b.Length);f.Flush(true);}if(File.Exists(p))File.Replace(t,p,null);else File.Move(t,p); }
         static string Method(JObject d) { return S(d,"payment_method")!=""?S(d,"payment_method"):S(d,"wallet_type")+"_"+S(d,"network"); }
         static string Hpp(JObject d) { var u=new Uri(S(d,"payment_url"));if(u.GetLeftPart(UriPartial.Authority)!=Origin(Base)||u.UserInfo!=""||u.AbsolutePath!="/pay/"+S(d,"order_id")||u.Query!=""||u.Fragment!="")throw new Exception("Invalid hosted URL");return u.AbsoluteUri; }
+        static bool Proof(JObject d,string key) {return d[key]!=null && d[key].Type==JTokenType.Boolean && (bool)d[key];}
+        static bool AcceptedAmount(JObject d) {string pay=Decimal(S(d,"pay_amount")),received=Decimal(S(d,"received_amount"));return pay!="0" && received!="0" && (pay==received || Proof(d,"manual_payment_accepted"));}
         static void Bind(JObject a,JObject d,bool checkPaid=true)
         {
             var p=(JObject)a["payload"];
             if(!Regex.IsMatch(S(d,"order_id"),@"\A[a-f0-9]{32}\z")||S(d,"merchant_order_id")!=S(p,"merchant_order_id")||S(d,"currency")!=S(p,"currency")||Decimal(S(d,"amount"))!=Decimal(S(p,"amount"))||Method(d)!=S(p,"payment_method")||S(d,"payment_address")==""||Decimal(S(d,"pay_amount"))=="0")throw new Exception("Binding mismatch");Hpp(d);
             var s=a["snapshot"] as JObject;if(s!=null&&(S(d,"order_id")!=S(s,"order_id")||S(d,"payment_address")!=S(s,"payment_address")||Decimal(S(d,"pay_amount"))!=Decimal(S(s,"pay_amount"))))throw new Exception("Instructions changed");
-            if(checkPaid&&S(d,"status")=="PAID"&&Decimal(S(d,"received_amount"))!=Decimal(S(d,"pay_amount")))throw new Exception("PAID amount requires review");
+            if(checkPaid&&S(d,"status")=="PAID"&&!AcceptedAmount(d))throw new Exception("PAID amount requires review");
         }
         static JObject Verify(string r,string t)
         {

@@ -5,7 +5,7 @@ final class Payment
 {
     public $store, $client, $config;
     public static function defaults() { return ['enabled'=>false,'url'=>'https://mochi.bz','key'=>'','secret'=>'','mode'=>'ON_SITE','direction'=>'UP','methods'=>array_keys(self::labels())]; }
-    public static function labels() { return ['USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana']; }
+    public static function labels() { return ['USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana','TRX_TRON'=>'TRX · TRON']; }
     public function __construct(Store $store, array $config, $client = null)
     {
         $this->store=$store; $this->config=$config+self::defaults();
@@ -77,7 +77,7 @@ final class Payment
             if (($data['payment_address']??'')!==$snapshot['payment_address'] || self::decimal($data['pay_amount']??'')!==self::decimal($snapshot['pay_amount'])) throw new \RuntimeException('Payment instructions changed. Contact the merchant.');
             $view=self::view($data);
             if ($view['status']==='PAID') {
-                if (self::decimal($data['received_amount']??'')!==self::decimal($snapshot['pay_amount'])) throw new \RuntimeException('Received amount requires merchant review.');
+                if (!self::paidAmountAccepted($data,$snapshot['pay_amount'])) throw new \RuntimeException('Received amount requires merchant review.');
                 if (!$row['settled']) {
                     // Native adapter checks the current total, currency, gateway and state.
                     // It must accept an already recorded identical payment on retries.
@@ -110,6 +110,15 @@ final class Payment
         $u=parse_url($url); $e=parse_url($endpoint);
         if (!$u || !$e || ($u['scheme']??'')!=='https' || ($e['scheme']??'')!=='https' || strtolower($u['host']??'')!==strtolower($e['host']??'') || ($u['port']??443)!==($e['port']??443) || isset($u['user']) || isset($u['pass']) || isset($e['user']) || isset($e['pass']) || isset($u['fragment']) || isset($e['fragment'])) throw new \RuntimeException('Checkout and return URLs must use the same HTTPS store origin.');
     }
+    // Call only on the authenticated query response after original invoice bindings.
+    public static function paidAmountAccepted($data, $expected)
+    {
+        $pay = self::decimal($expected);
+        $received = isset($data['received_amount']) ? self::decimal($data['received_amount']) : '';
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || $received === '' || $received === '0' || $received[0] === '-') return false;
+        return $received === $pay || (isset($data['manual_payment_accepted']) && $data['manual_payment_accepted'] === true);
+    }
+
     public static function decimal($value)
     {
         if (!is_string($value) && !is_int($value)) return '';

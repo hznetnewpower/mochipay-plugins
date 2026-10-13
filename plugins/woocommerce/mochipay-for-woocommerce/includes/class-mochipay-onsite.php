@@ -6,10 +6,47 @@ final class MochiPay_Onsite
     public static function boot()
     {
         add_action('wp_enqueue_scripts', array(__CLASS__, 'enqueue'));
+        add_action('template_redirect', array(__CLASS__, 'return_page'), -1);
         add_action('template_redirect', array(__CLASS__, 'payment_page'), 0);
         add_action('wp_ajax_mochipay_payment', array(__CLASS__, 'ajax'));
         add_action('wp_ajax_nopriv_mochipay_payment', array(__CLASS__, 'ajax'));
     }
+
+
+    // The HPP cancellation link is a navigation action, never evidence of payment.
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended
+    public static function return_page()
+    {
+        if (!isset($_GET['mochipay_return']) || !is_string($_GET['mochipay_return']) || 'cancel' !== sanitize_text_field(wp_unslash($_GET['mochipay_return']))) { return; }
+        $id = absint(get_query_var('order-received'));
+        if (!$id) { return; }
+        $key = isset($_GET['key']) && is_string($_GET['key']) ? sanitize_text_field(wp_unslash($_GET['key'])) : '';
+        $order = self::authorized_order($id, $key);
+        if (!$order) { wp_die(esc_html__('Invalid payment link.', 'mochipay-for-woocommerce'), '', array('response' => 403)); }
+        if ($order->is_paid()) { wp_safe_redirect($order->get_checkout_order_received_url()); exit; }
+        $gateway = self::gateway();
+        if (!$gateway) { wp_die(esc_html__('Payment unavailable', 'mochipay-for-woocommerce'), '', array('response' => 503)); }
+        nocache_headers();
+        header('Referrer-Policy: no-referrer');
+        header('X-Robots-Tag: noindex, nofollow');
+        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.27');
+        wp_enqueue_script('mochipay-qr', MOCHIPAY_WC_URL . 'assets/js/qrcode.min.js', array(), MOCHIPAY_WC_VERSION, true);
+        // No launch/config is provided: importing buyer translations cannot create or query a payment.
+        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.27', true);
+        wp_add_inline_script('mochipay-onsite', 'window.MochiPayNativeLanguage.mount(document.querySelector(".mp-payment-page"));', 'after');
+        get_header();
+        echo '<main class="mp-payment-page"><h1>Payment not completed</h1>';
+        echo '<p>Returning here does not confirm or cancel your payment. If you have already sent funds, do not pay again.</p>';
+        echo '<p>Order #' . esc_html($order->get_order_number()) . '</p>';
+        if (!$order->has_status(array('cancelled', 'refunded', 'failed'))) {
+            $resume = $gateway->payment_redirect($order);
+            if ($resume) { echo '<p><a class="mp-link" href="' . esc_url($resume) . '">Continue existing payment</a></p>'; }
+        }
+        echo '<p><a class="mp-link" href="' . esc_url(wc_get_page_permalink('shop')) . '">Return to store</a></p></main>';
+        get_footer();
+        exit;
+    }
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
     private static function gateway()
     {
@@ -25,9 +62,9 @@ final class MochiPay_Onsite
         if (!is_checkout() && !isset($_GET['mochipay_pay'])) { return; }
         $gateway = self::gateway();
         if (!$gateway || ('onsite' !== $gateway->get_option('checkout_mode', 'onsite') && !isset($_GET['mochipay_pay']))) { return; }
-        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.1');
+        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.27');
         wp_enqueue_script('mochipay-qr', MOCHIPAY_WC_URL . 'assets/js/qrcode.min.js', array(), MOCHIPAY_WC_VERSION, true);
-        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.1', true);
+        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.27', true);
         wp_localize_script('mochipay-onsite', 'MochiPayOnsiteConfig', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mochipay_payment'),

@@ -7,7 +7,7 @@ import ipaddress
 from pathlib import Path
 from urllib.parse import urlsplit
 
-METHODS = {'USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA'}
+METHODS = {'USDT_TRC20', 'USDC_ERC20', 'BTC_BITCOIN', 'ETH_ERC20', 'SOL_SOLANA','TRX_TRON'}
 LIMIT = 'Offline declared-configuration check only; credentials, wallet ownership, live API, core/PHP compatibility and payments are unverified.'
 
 def https_url(value, base=False):
