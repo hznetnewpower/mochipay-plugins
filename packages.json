@@ -1,6 +1,6 @@
 {
-  "publication_revision": "2026.10.17-checkout.1",
-  "website_release": "WEB82.76",
+  "publication_revision": "2026.10.17-checkout.2",
+  "website_release": "WEB82.77",
   "store_families": 12,
   "independent_packages": 19,
   "buyer_languages": [
@@ -88,7 +88,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_WooCommerce_1.5.21_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_WooCommerce_1.5.21_Multilanguages.zip"
     },
     {
       "name": "OpenCart 2.0–2.2",
@@ -149,7 +149,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 2.3",
@@ -210,7 +210,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 3",
@@ -271,7 +271,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_3_Multilanguages.ocmod.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_OpenCart_3_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 4",
@@ -323,7 +323,7 @@
       "bytes": 74222,
       "publication_revision": "2026.10.09-payment-flow.1",
       "carried_forward_unchanged": false,
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/mochipay-multilanguages.ocmod.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/mochipay-multilanguages.ocmod.zip"
     },
     {
       "name": "Zen Cart 1.5.3–1.5.7",
@@ -386,7 +386,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip"
     },
     {
       "name": "Zen Cart 1.5.8–2.2",
@@ -449,7 +449,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip"
     },
     {
       "name": "Magento 1 / OpenMage",
@@ -510,7 +510,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento1_OpenMage_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Magento1_OpenMage_Multilanguages.zip"
     },
     {
       "name": "Magento 2",
@@ -571,7 +571,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento2_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Magento2_Multilanguages.zip"
     },
     {
       "name": "PrestaShop 1.6",
@@ -632,7 +632,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.6_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_PrestaShop_1.6_Multilanguages.zip"
     },
     {
       "name": "PrestaShop 1.7 / 8 / 9",
@@ -693,7 +693,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.7-9_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_PrestaShop_1.7-9_Multilanguages.zip"
     },
     {
       "name": "Shopware 6.6",
@@ -754,7 +754,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Shopware 6.7",
@@ -815,7 +815,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Drupal Commerce",
@@ -876,7 +876,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip"
     },
     {
       "name": "EC-CUBE 4.3",
@@ -937,7 +937,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Bagisto 2.3",
@@ -998,7 +998,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Sylius 2.0",
@@ -1059,7 +1059,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip"
     },
     {
       "name": "osCommerce 4.14",
@@ -1120,7 +1120,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip"
     },
     {
       "name": "thirty bees 1.6",
@@ -1181,7 +1181,7 @@
       ],
       "manual_confirmation_server": "WEB82.14",
       "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip"
     }
   ]
 }

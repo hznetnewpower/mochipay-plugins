@@ -1,5 +1,5 @@
 {
-  "publication_revision": "2026.10.17-checkout.1",
+  "publication_revision": "2026.10.17-checkout.2",
   "resources": [
     {
       "id": "php-api",
@@ -50,7 +50,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "report-unlock",
@@ -93,13 +93,13 @@
       "bytes": 71011,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "integration-skill",
       "name": "AI Integration Skill",
-      "version": "1.2.13",
-      "asset_name": "MochiPay_AI_Integration_Skill_1.2.13.zip",
+      "version": "1.2.14",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.2.14.zip",
       "source_directory": "skills",
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
@@ -126,10 +126,10 @@
         "tr",
         "id"
       ],
-      "sha256": "baee1f9d01bacbacdd4e9f4a94c93984e3d7d04a1ac6ea6a0085bb7307ddf6a2",
-      "bytes": 32325,
-      "publication_revision": "2026.10.13-multilanguages-trx.1",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_AI_Integration_Skill_1.2.13.zip"
+      "sha256": "39c7a912f9d9931c0729fd0367947fec19b4fbdc722b31aa0782929b47428800",
+      "bytes": 32517,
+      "publication_revision": "2026.10.17-checkout.2",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_AI_Integration_Skill_1.2.14.zip"
     },
     {
       "id": "mcp-server",
@@ -165,7 +165,7 @@
       "sha256": "791835e94efcd6a09addb99ed47d32447ac7862c07ee38339d351b8d9561dd11",
       "bytes": 13778,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_MCP_Server_1.0.7.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_MCP_Server_1.0.7.zip"
     },
     {
       "id": "nodejs-demo",
@@ -216,7 +216,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "python-demo",
@@ -267,7 +267,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "dotnet-demo",
@@ -318,7 +318,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "java-demo",
@@ -369,7 +369,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "ios-demo",
@@ -420,7 +420,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "android-demo",
@@ -471,7 +471,7 @@
         "TRX_TRON"
       ],
       "buyer_ui_build": "82.75",
-      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
     }
   ],
   "chrome_extension": {
@@ -484,6 +484,6 @@
     "sha256": "a02e89e3ea7a66b06a1990e673d224e974b4cddb59b9cf7125a2c6b7b69f2f4f",
     "bytes": 397564,
     "publication_revision": "2026.10.13-multilanguages-trx.1",
-    "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Chrome_Payment_Assistant_1.0.7.zip"
+    "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_Chrome_Payment_Assistant_1.0.7.zip"
   }
 }

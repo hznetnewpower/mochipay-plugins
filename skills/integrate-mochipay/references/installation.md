@@ -1,6 +1,6 @@
 # Install and use
 
-Download: https://mochi.bz/Downloads/MochiPay_AI_Integration_Skill_1.2.2.zip
+Download: https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_AI_Integration_Skill_1.2.14.zip
 Guide: https://mochi.bz/Developers/Skill.aspx
 
 ZIP contains one integrate-mochipay folder with SKILL.md, references, assets and an optional Python helper. It does not install a gateway, open an account or grant store/API access.
@@ -24,4 +24,4 @@ Official: https://learn.chatgpt.com/docs/build-skills
 
 Follow the client's documented Agent Skills support: https://agentskills.io/specification. Generic chatbots and ordinary ChatGPT conversations do not necessarily install skill ZIPs. File/network/script tools and account features vary. No MCP server is bundled. Python3 is optional for offline checks; guidance works without it.
 
-Free under the included MIT license; MochiPay service subscriptions and AI-tool charges/features are separate. Merchant authorization/private configuration are required for store/API actions. No third-party marketplace listing is claimed.
+Free under the included MIT-0 license; MochiPay service subscriptions and AI-tool charges/features are separate. Merchant authorization/private configuration are required for store/API actions. Official ClawHub listing: https://clawhub.ai/hznetnewpower/skills/integrate-mochipay.

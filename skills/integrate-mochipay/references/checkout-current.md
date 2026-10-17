@@ -11,3 +11,5 @@ Snapshot: 2026-10-17, WEB82.76; buyer assets WEB82.75.
 - Browser UI and copy/QR events never authorize delivery. Preserve authenticated query, immutable bindings, positive received amount, exact equality or strict Boolean audited manual_payment_accepted, and atomic once-only fulfillment. No automatic payment tolerance.
 - API documentation: https://mochi.bz/Developers/Reference.aspx
 - Interactive demo: https://mochi.bz/CheckoutDemo.aspx
+
+Hosted and subscription checkout on WEB82.77 calibrate saved UTC payment deadlines against server time. Device wall-clock changes must not reset a payment to 60 minutes or expire it early. Deploy the matching page, script and WEB assembly together; source availability does not prove a merchant deployment is current.

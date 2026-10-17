@@ -644,7 +644,7 @@
   },
   {
     "id": "integration-skill",
-    "asset_name": "MochiPay_AI_Integration_Skill_1.2.13.zip",
+    "asset_name": "MochiPay_AI_Integration_Skill_1.2.14.zip",
     "source_directory": "skills",
     "files": {
       "integrate-mochipay/agents/openai.yaml": "a4b2eeff228ae5766588a4c56f353a5c9b872cf6b850def747299b337492c6cc",
@@ -654,10 +654,10 @@
       "integrate-mochipay/PAYMENT_VERIFICATION.txt": "b6fe1ded306e95dcab7283422dd81a7a5b4cef7bc12ca5633fa364019c7194a0",
       "integrate-mochipay/references/api-integration.md": "9e5711c94ea7e64289a92eac5a85ca926f5e6fa59eea91793ec0d99f987edd12",
       "integrate-mochipay/references/catalog.json": "5f8737b9b8da1881ceae5d9ef7045b755bc8d77c2e0115a2609468237ce555c1",
-      "integrate-mochipay/references/checkout-current.md": "3e2bee722c73d62e8817287c020bbefe3ce311bd78f4cfa83817b92400d9582c",
+      "integrate-mochipay/references/checkout-current.md": "c8cb7b26fa21b700d587646336d66292053390351975b35a26a447e14704e0df",
       "integrate-mochipay/references/developer-examples.json": "bb4935b4311f6268eb210973ab0858963c969a96429b2eebc159b46529b6f037",
       "integrate-mochipay/references/developer-examples.md": "5060dbccdcb47ee797900e839113bcb2e10465c11dd6ae668252fb5bd1ee6a39",
-      "integrate-mochipay/references/installation.md": "59abb5e1d0616e0fa49910bc365dd47cd6e38f49ac4004eb573b6992851d4b8a",
+      "integrate-mochipay/references/installation.md": "1f776daddfdfb8b30c59a22776ec910c382c1ed2eeb50659c7ac62596640006c",
       "integrate-mochipay/references/license.md": "8aeed9629eae7c7f238588295952975f1b2c344e5976babdde35ab728265074b",
       "integrate-mochipay/references/payment-recovery.md": "d43f9b3b9abe7c9bb1d9ce5c1011047dccc8f7e7dbf5f4d60f7d0d6813fa1aa8",
       "integrate-mochipay/references/query-timeouts.md": "dfd1efe354941123377cf631875dbb254b1f570b16c45bdbc45f2ef3af6b0a09",

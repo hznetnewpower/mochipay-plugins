@@ -1,3 +1,9 @@
+## 2026.10.17-checkout.2 — Current download references
+
+Skill1.2.14 fixes its pinned installation download and MIT-0 notice, retaining the current API and checkout guidance. The download catalog and archive checksums agree across this release. The bundle includes the same store installers, MCP1.0.7 and Chrome1.0.7 from the prior rollup.
+
+Hosted deadline calibration in WEB82.77 requires the matching server deployment; publishing these public integration resources does not deploy a merchant or the MochiPay server. WordPress.org1.5.21 is published. The four OpenCart branches remain submitted for marketplace review.
+
 # MochiPay integration update — 2026-10-17
 
 Public integration packages are synchronized with WEB82.76 / buyer assets82.75. This publication includes WooCommerce1.5.21, all four OpenCart branches (including the previously missed nested OpenCart4 download), the other native store plugins, and PHP/Node/Python/C#/Java checkout demos. The compact warm-orange QR-first interface retains a centered asset icon, visible address/amount copy feedback, and a countdown based on saved UTC expiry and server time. Expired QR/address stay masked in place. Buyer language choices include English, Chinese, Spanish and more.

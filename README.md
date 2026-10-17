@@ -6,7 +6,7 @@ Cryptocurrency checkout for ecommerce stores, merchant backends and AI agents. C
 
 ## Current publication
 
-2026.10.17-checkout.1: WooCommerce1.5.21, all four OpenCart branches and current checkout/demo assets. Skill1.2.13 refreshes the API/catalog and compact checkout guidance from ClawHub1.2.12. MCP1.0.7 and Chrome1.0.7 remain current; Chrome uses ZIP manual installation. See [release notes](docs/RELEASE_NOTES.md) and [download catalog](docs/DOWNLOADS.md).
+2026.10.17-checkout.2: Current store installers and developer tools in one download catalog. Skill1.2.14 corrects the pinned installation download and MIT-0 notice and documents saved, server-calibrated hosted deadlines in WEB82.77. MCP1.0.7 and Chrome1.0.7 remain current; Chrome uses ZIP manual installation. See [release notes](docs/RELEASE_NOTES.md) and [download catalog](docs/DOWNLOADS.md).
 
 Each explicit create uses an independent attempt; repeated merchant references are allowed. Retry a saved request with its original request_id and payload. Bind callback/return processing to the original payment attempt and verify payment on the server before fulfilling orders. A browser return is navigation only.
 
