@@ -1,6 +1,6 @@
 # OpenCart 4.0.2.x-4.1.x — MochiPay
 
-Plugin version: 1.2.0
+Plugin version: 1.2.5
 
 # MochiPay setup
 

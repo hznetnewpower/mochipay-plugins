@@ -1,5 +1,5 @@
 {
-  "website_release": "WEB82.27",
+  "website_release": "WEB82.76",
   "store_families": 12,
   "independent_packages": 19,
   "packages": [
@@ -7,9 +7,9 @@
       "name": "WooCommerce",
       "core": "WooCommerce 5.8 or later with the native gateway API",
       "php": "PHP 7.4–8.4",
-      "download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.19_Multilanguages.zip",
+      "download": "https://mochi.bz/Downloads/MochiPay_WooCommerce_1.5.21_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideWooCommerce.aspx",
-      "sha256": "e3271f8ed7cca1eba7989d0e234164946dc7338b6f6dd4d01c710b683a319ed0",
+      "sha256": "4cd87d628ccc2f4a87ac7f42a0f6b7fea718e2b0fc8282a33a2da49e2475ba98",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -22,6 +22,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -34,18 +35,25 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
-      "version": "1.5.19",
+      "buyer_ui_build": "82.75",
+      "version": "1.5.21",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
       "plugin_directory": "mochipay-for-woocommerce",
       "upgrade_note": "Deactivate the former mochipay-woocommerce build before activating this root; do not uninstall. Gateway ID/settings/order/attempt keys unchanged.",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_WooCommerce_1.5.21_Multilanguages.zip",
+      "source_directory": "plugins/woocommerce",
+      "bytes": 76398,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -53,7 +61,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_WooCommerce_1.5.21_Multilanguages.zip"
     },
     {
       "name": "OpenCart 2.0–2.2",
@@ -61,7 +72,7 @@
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart2.aspx",
-      "sha256": "2714a1eb286b4f968781b978249fc3bcd2f98db15d996c54136d782e866cbecf",
+      "sha256": "948142c5a573bf1f4b7b5407cb6f14b0a7da3b50b0931647958721dae80fb6a1",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -74,6 +85,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -86,16 +98,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip",
+      "source_directory": "plugins/opencart20",
+      "bytes": 76047,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -103,7 +122,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 2.3",
@@ -111,7 +133,7 @@
       "php": "PHP 5.6–7.4; newer PHP needs core patches",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart23.aspx",
-      "sha256": "7d914d3a944328587317cdf9e4ab013c3c4033ddd80c0eb826ed33eb91f4ad07",
+      "sha256": "94d882416060ba75b0446d965dd83aece69d38889965e97546d798f4b81637d6",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -124,6 +146,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -136,16 +159,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip",
+      "source_directory": "plugins/opencart23",
+      "bytes": 75101,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -153,7 +183,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 3",
@@ -161,7 +194,7 @@
       "php": "PHP 5.6–8.4; exact core/dependency requirements apply",
       "download": "https://mochi.bz/Downloads/MochiPay_OpenCart_3_Multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart3.aspx",
-      "sha256": "7275a93b9e09ce04bcdcb400084dc09b23cdddfd60989041abdf9f4b2fd5b20b",
+      "sha256": "b3f919639151a5edc576eba424855e3d6c2ee04ad6f9863c36b6af88ac2a1afe",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -174,6 +207,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -186,16 +220,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_OpenCart_3_Multilanguages.ocmod.zip",
+      "source_directory": "plugins/opencart3",
+      "bytes": 75119,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -203,7 +244,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_3_Multilanguages.ocmod.zip"
     },
     {
       "name": "OpenCart 4",
@@ -211,7 +255,7 @@
       "php": "PHP 8.0.2–8.4; 4.1.0.4 requires 8.1+",
       "download": "https://mochi.bz/Downloads/OpenCart4/mochipay-multilanguages.ocmod.zip",
       "guide": "https://mochi.bz/Guides/GuideOpenCart4.aspx",
-      "sha256": "42988b07b7d6bdff9742a491d0164a2379bc8f0db3302d87fff5bb6f2942c4b7",
+      "sha256": "cb6997a3c0d90cf201748c971c3432a291ac7daa4f40e1bbfe876467fa9fc53c",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -224,6 +268,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -236,24 +281,25 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
-      "version": "1.2.5",
-      "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
-      "supported_payment_methods": [
-        "USDT_TRC20",
-        "USDC_ERC20",
-        "BTC_BITCOIN",
-        "ETH_ERC20",
-        "SOL_SOLANA",
-        "TRX_TRON"
-      ]
+      "version": "1.2.0",
+      "integration_fix_release": "WEB82.7",
+      "asset_name": "mochipay-multilanguages.ocmod.zip",
+      "source_directory": "plugins/opencart4",
+      "bytes": 74222,
+      "publication_revision": "2026.10.09-payment-flow.1",
+      "carried_forward_unchanged": false,
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/mochipay-multilanguages.ocmod.zip"
     },
     {
       "name": "Zen Cart 1.5.3–1.5.7",
@@ -261,7 +307,7 @@
       "php": "PHP 5.6–8.0, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideZenCartLegacy.aspx",
-      "sha256": "948bb9ebc0cf1a661c51106a833977b3e7083e725641648d31d864b3effb0015",
+      "sha256": "55c74198aff5d2487a0a31d7f9b54cea21df981ab1fef30e8992ae37d80396a9",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -274,6 +320,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -286,9 +333,14 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.6",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
@@ -296,8 +348,10 @@
       "integration_fix_release": "WEB82.18",
       "payment_attempt_policy": "independent-per-checkout",
       "recovery_contract": "request-id-v1",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip",
+      "source_directory": "plugins/zencart-legacy",
+      "bytes": 76178,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -305,7 +359,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip"
     },
     {
       "name": "Zen Cart 1.5.8–2.2",
@@ -313,7 +370,7 @@
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideZenCart.aspx",
-      "sha256": "b5a67fee3aa9e09603ec1a9da87011241538dd407bd521ea2f67b9e6049ec61d",
+      "sha256": "ce906c69b01627ad7866089449e88dbaa78ebae8cefb5862cadf420baa633b83",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -326,6 +383,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -338,9 +396,14 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.6",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
@@ -348,8 +411,10 @@
       "integration_fix_release": "WEB82.18",
       "payment_attempt_policy": "independent-per-checkout",
       "recovery_contract": "request-id-v1",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip",
+      "source_directory": "plugins/zencart-modern",
+      "bytes": 76292,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -357,7 +422,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip"
     },
     {
       "name": "Magento 1 / OpenMage",
@@ -365,7 +433,7 @@
       "php": "PHP 5.6–8.4; PHP 8 requires a compatible OpenMage core",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento1_OpenMage_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideMagento1.aspx",
-      "sha256": "6e1de25b6a0b325c56ad79e5a82f6cdd2b3265f79f57cef6f75e4747d8cbf8cd",
+      "sha256": "3532e534ff3e2ebeebe4b5588aaed2b5cace1f47c63de53f4562ea4737222f55",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -378,6 +446,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -390,16 +459,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Magento1_OpenMage_Multilanguages.zip",
+      "source_directory": "plugins/magento1",
+      "bytes": 72575,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -407,7 +483,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento1_OpenMage_Multilanguages.zip"
     },
     {
       "name": "Magento 2",
@@ -415,7 +494,7 @@
       "php": "PHP 7.3–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_Magento2_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideMagento2.aspx",
-      "sha256": "1b6427af7f69c14e6595d0350639a0caaa8eb7cebcd0464559266613de064704",
+      "sha256": "d7f53499271d1b9bf1d2b58d3bde88496ab2ba97b357f33790babe266106a2f9",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -428,6 +507,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -440,16 +520,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Magento2_Multilanguages.zip",
+      "source_directory": "plugins/magento2",
+      "bytes": 80907,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -457,7 +544,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento2_Multilanguages.zip"
     },
     {
       "name": "PrestaShop 1.6",
@@ -465,7 +555,7 @@
       "php": "PHP 5.6–7.1",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.6_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuidePrestaShop16.aspx",
-      "sha256": "dda9466a8b23800e5e7ad9ae081571524a237a7cf337c4728a9bab0fc78832d5",
+      "sha256": "7a45589d85ad1b6978b35b742124e10f210a2f5c3405649778ac84f1c9705963",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -478,6 +568,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -490,16 +581,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_PrestaShop_1.6_Multilanguages.zip",
+      "source_directory": "plugins/prestashop16",
+      "bytes": 75579,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -507,7 +605,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.6_Multilanguages.zip"
     },
     {
       "name": "PrestaShop 1.7 / 8 / 9",
@@ -515,7 +616,7 @@
       "php": "PHP 5.6–8.4, depending on the core version",
       "download": "https://mochi.bz/Downloads/MochiPay_PrestaShop_1.7-9_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuidePrestaShop.aspx",
-      "sha256": "ff32c9728fc0086f87458c8e3e18910ebe24d20697d6a8f163cccd989ffff61a",
+      "sha256": "c87b16e9b28fd0db18c8e76c36acf05b4e062b4eddcd452890159f4c3cbe7167",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -528,6 +629,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -540,16 +642,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "query_transport_build": "82.4",
       "version": "1.2.5",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_PrestaShop_1.7-9_Multilanguages.zip",
+      "source_directory": "plugins/prestashop-modern",
+      "bytes": 75416,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -557,7 +666,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.7-9_Multilanguages.zip"
     },
     {
       "name": "Shopware 6.6",
@@ -565,7 +677,7 @@
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
       "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
-      "sha256": "0f4c449624aefb675e7b37e7d10fb60ef0ce19bb5fea81236445d60eaec565f7",
+      "sha256": "4e3c90576b1af2464bf6a4d3ef9eea5a1c7dd84fd832297295deeef10e7def1f",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -578,6 +690,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -590,16 +703,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/shopware66",
+      "bytes": 73543,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -607,7 +727,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Shopware 6.7",
@@ -615,7 +738,7 @@
       "php": "PHP 8.2.x / 8.3.x / 8.4.x",
       "download": "https://mochi.bz/Downloads/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideShopware.aspx",
-      "sha256": "11e343eb758f5d4910368f03dc500c38ed8ddd93b4b6e3d0097252afdbb8f52a",
+      "sha256": "fbf2f645cfd92dc6902a584563e331457c633957449dc006f7d2d8865475e9cf",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -628,6 +751,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -640,16 +764,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/shopware67",
+      "bytes": 73536,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -657,7 +788,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Drupal Commerce",
@@ -665,7 +799,7 @@
       "php": "Drupal 9.3–9.5: PHP 7.4–8.1; Drupal 10: PHP 8.1–8.3; Drupal 11: PHP 8.3–8.4, only when allowed by the exact Drupal release",
       "download": "https://mochi.bz/Downloads/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideDrupalCommerce.aspx",
-      "sha256": "febda778262f461d44547d9a899b0738f1d7d0d49103710fa441824f4c67af17",
+      "sha256": "95c70dbea2f9e5d6425b26397534206788444fe75b6ed2be59dcdf34a4dc9db3",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -678,6 +812,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -690,16 +825,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/drupal",
+      "bytes": 73970,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -707,7 +849,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip"
     },
     {
       "name": "EC-CUBE 4.3",
@@ -715,7 +860,7 @@
       "php": "PHP 8.1.x / 8.2.x / 8.3.x",
       "download": "https://mochi.bz/Downloads/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideECCube.aspx",
-      "sha256": "76db2e163676d483b77d00f0e375b7cea274588a50ea1275308adce65ab85b7e",
+      "sha256": "9115689d161a5e27b36c483193e0d7358ed925ecde67c4f59bb36e07c30548c6",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -728,6 +873,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -740,16 +886,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/eccube",
+      "bytes": 73232,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -757,7 +910,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Bagisto 2.3",
@@ -765,7 +921,7 @@
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
       "download": "https://mochi.bz/Downloads/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideBagisto.aspx",
-      "sha256": "1e3b4c0f22bfa5e000158afc15a30660c55468e9620957cd2ddd516b31b7f693",
+      "sha256": "6c2353869a719784917e2382dc0bd4244522755493c428193af37dd6bde38ccc",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -778,6 +934,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -790,16 +947,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/bagisto",
+      "bytes": 74207,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -807,7 +971,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip"
     },
     {
       "name": "Sylius 2.0",
@@ -815,7 +982,7 @@
       "php": "PHP 8.2.x / 8.3.x / 8.4.x (also satisfy the store dependency lock)",
       "download": "https://mochi.bz/Downloads/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideSylius.aspx",
-      "sha256": "a3c2654e37940beaa70392dc519ffea9fb5e2680eb9c1656a6df9cdbc465a50b",
+      "sha256": "0fb12b8cde745d162a279132b9c01366ff0986bf0b3d3db760168bec0fadf981",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -828,6 +995,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -840,16 +1008,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/sylius",
+      "bytes": 75916,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -857,7 +1032,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip"
     },
     {
       "name": "osCommerce 4.14",
@@ -865,7 +1043,7 @@
       "php": "PHP 7.4.x–8.3.x, subject to the installed osCommerce release and dependency lock",
       "download": "https://mochi.bz/Downloads/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideOsCommerce.aspx",
-      "sha256": "c9f1e1fa9dac23665ee63b38b9509933eec936c2930d6f899537928869ac6263",
+      "sha256": "f084e686d6a6557b463caa9a10e25da1b2f4da9fe979808c34b193b519a0a79e",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -878,6 +1056,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -890,16 +1069,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/oscommerce",
+      "bytes": 71759,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -907,7 +1093,10 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip"
     },
     {
       "name": "thirty bees 1.6",
@@ -915,7 +1104,7 @@
       "php": "PHP 7.4.x / 8.0.x / 8.1.x / 8.2.x / 8.3.x; use the matching thirty bees distribution",
       "download": "https://mochi.bz/Downloads/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip",
       "guide": "https://mochi.bz/Guides/GuideThirtyBees.aspx",
-      "sha256": "2a0c32c76a3a7d80b7d8a3ecbb06f5ea6bac51d44ab0d98ac49a9f314d07b0b3",
+      "sha256": "99a1b5527ef2600867d614d6aa24cd80b79525cf0df4cac793b0adb28db79790",
       "modes": [
         "ON_SITE",
         "HPP"
@@ -928,6 +1117,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -940,16 +1130,23 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "buyer_ui_build": "82.27",
+      "buyer_ui_build": "82.75",
       "payment_recovery_release": "WEB82.3",
       "minimum_recovery_server": "WEB82.6",
       "version": "1.0.11",
       "query_transport_build": "82.4",
       "integration_fix_release": "WEB82.18",
-      "manual_confirmation_server": "WEB82.14",
-      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "asset_name": "MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip",
+      "source_directory": "plugins/thirtybees",
+      "bytes": 74442,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
         "USDC_ERC20",
@@ -957,12 +1154,16 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "manual_confirmation_server": "WEB82.14",
+      "manual_confirmation_policy": "authenticated-query-boolean-proof",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip"
     }
   ],
   "buyer_languages": [
     "en",
     "zh",
+    "zh-tw",
     "es",
     "pt-br",
     "fr",
@@ -975,7 +1176,12 @@
     "ko",
     "it",
     "tr",
-    "id"
+    "id",
+    "sv",
+    "vi",
+    "pl",
+    "fi",
+    "da"
   ],
   "buyer_ui_build": "82.1",
   "packaging_revision": "20261010-manual-acceptance",

@@ -68,7 +68,7 @@ namespace MochiPayDemo
             var a=Load(r);if(!Equal(S(a,"token"),t)||a["snapshot"]==null)throw new Exception("Invalid capability");var d=Api("/api/v1/orders/query",null,"order_id="+Uri.EscapeDataString(S(a["snapshot"],"order_id")));Bind(a,d);
             if(S(d,"status")=="PAID"&&!(bool)a["paid_verified"]){a["paid_verified"]=true;Save(r,a);}return d;
         }
-        static JObject Safe(JObject d) { var m=Method(d);var i=m.IndexOf('_');return new JObject {{"status",S(d,"status")},{"payAmount",S(d,"pay_amount")},{"asset",m.Substring(0,i)},{"network",m.Substring(i+1)},{"address",S(d,"payment_address")},{"amount",S(d,"amount")},{"currency",S(d,"currency")},{"expiresAt",S(d,"expires_at")},{"reference",S(d,"merchant_order_id")}}; }
+        static JObject Safe(JObject d) { var m=Method(d);var i=m.IndexOf('_');return new JObject {{"status",S(d,"status")},{"payAmount",S(d,"pay_amount")},{"asset",m.Substring(0,i)},{"network",m.Substring(i+1)},{"address",S(d,"payment_address")},{"amount",S(d,"amount")},{"currency",S(d,"currency")},{"expiresAt",String.IsNullOrEmpty(S(d,"expires_at_utc"))?S(d,"expires_at"):S(d,"expires_at_utc")},{"serverTime",S(d,"server_time_utc")},{"reference",S(d,"merchant_order_id")}}; }
         static string Q(string r,string t) { return "?r="+Uri.EscapeDataString(r)+"&t="+Uri.EscapeDataString(t); }
         static JObject Create(JObject p)
         {

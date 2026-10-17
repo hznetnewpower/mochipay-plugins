@@ -139,11 +139,11 @@ class Mochipay extends PaymentModule
     public function paymentMethods()
     {
         $labels = array(
-            'USDT_TRC20' => 'USDT — TRON (TRC20)',
-            'USDC_ERC20' => 'USDC — Ethereum (ERC20)',
-            'BTC_BITCOIN' => 'BTC — Bitcoin',
-            'ETH_ERC20' => 'ETH — Ethereum',
-            'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON',
+            'USDT_TRC20' => 'USDT/TRC20',
+            'USDC_ERC20' => 'USDC/ERC20',
+            'BTC_BITCOIN' => 'BTC/Bitcoin',
+            'ETH_ERC20' => 'ETH/Ethereum',
+            'SOL_SOLANA' => 'SOL/Solana','TRX_TRON' => 'TRX/TRON',
         );
         $result = array();
         foreach (explode(',', (string) Configuration::get('MOCHIPAY_PAYMENT_METHODS')) as $method) {

@@ -116,7 +116,7 @@ $id=(int)$row['local_id'];$self=$this;
 
     private function methods()
     {
-        $labels = array('USDT_TRC20' => 'USDT — TRON (TRC20)', 'USDC_ERC20' => 'USDC — Ethereum (ERC20)', 'BTC_BITCOIN' => 'BTC — Bitcoin', 'ETH_ERC20' => 'ETH — Ethereum', 'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON');
+        $labels = array('USDT_TRC20' => 'USDT/TRC20', 'USDC_ERC20' => 'USDC/ERC20', 'BTC_BITCOIN' => 'BTC/Bitcoin', 'ETH_ERC20' => 'ETH/Ethereum', 'SOL_SOLANA' => 'SOL/Solana','TRX_TRON' => 'TRX/TRON');
         $result = array();
         foreach (explode(',', (string) $this->config->get('mochipay_payment_methods')) as $method) { $method = strtoupper(trim($method)); if (isset($labels[$method])) $result[$method] = $labels[$method]; }
         return $result ?: array('USDT_TRC20' => $labels['USDT_TRC20']);

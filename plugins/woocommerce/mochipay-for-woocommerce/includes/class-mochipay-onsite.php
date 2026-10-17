@@ -29,10 +29,10 @@ final class MochiPay_Onsite
         nocache_headers();
         header('Referrer-Policy: no-referrer');
         header('X-Robots-Tag: noindex, nofollow');
-        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.27');
+        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.75');
         wp_enqueue_script('mochipay-qr', MOCHIPAY_WC_URL . 'assets/js/qrcode.min.js', array(), MOCHIPAY_WC_VERSION, true);
         // No launch/config is provided: importing buyer translations cannot create or query a payment.
-        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.27', true);
+        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.75', true);
         wp_add_inline_script('mochipay-onsite', 'window.MochiPayNativeLanguage.mount(document.querySelector(".mp-payment-page"));', 'after');
         get_header();
         echo '<main class="mp-payment-page"><h1>Payment not completed</h1>';
@@ -62,9 +62,9 @@ final class MochiPay_Onsite
         if (!is_checkout() && !isset($_GET['mochipay_pay'])) { return; }
         $gateway = self::gateway();
         if (!$gateway || ('onsite' !== $gateway->get_option('checkout_mode', 'onsite') && !isset($_GET['mochipay_pay']))) { return; }
-        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.27');
+        wp_enqueue_style('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/css/onsite.css', array(), MOCHIPAY_WC_VERSION . '.ui82.75');
         wp_enqueue_script('mochipay-qr', MOCHIPAY_WC_URL . 'assets/js/qrcode.min.js', array(), MOCHIPAY_WC_VERSION, true);
-        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.27', true);
+        wp_enqueue_script('mochipay-onsite', MOCHIPAY_WC_URL . 'assets/js/onsite.js', array('jquery', 'mochipay-qr'), MOCHIPAY_WC_VERSION . '.ui82.75', true);
         wp_localize_script('mochipay-onsite', 'MochiPayOnsiteConfig', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mochipay_payment'),

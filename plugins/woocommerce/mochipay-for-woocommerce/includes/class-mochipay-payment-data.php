@@ -91,7 +91,7 @@ final class MochiPay_Payment_Data
             'orderNumber' => (string) $order->get_order_number(),
             'amount' => self::decimal($order->get_total()), 'currency' => $order->get_currency(),
             'payAmount' => $pay, 'asset' => $parts[0], 'network' => isset($parts[1]) ? $parts[1] : '',
-            'address' => $address, 'status' => $status, 'expiresAt' => $expires,
+            'address' => $address, 'status' => $status, 'expiresAt' => (isset($data['expires_at_utc']) ? (string)$data['expires_at_utc'] : $expires), 'serverTime' => (isset($data['server_time_utc']) ? (string)$data['server_time_utc'] : ''),
             'exchangeRate' => isset($data['exchange_rate']) ? self::decimal($data['exchange_rate']) : '',
             'delta' => isset($data['unique_amount_delta']) ? self::decimal($data['unique_amount_delta']) : '',
         );

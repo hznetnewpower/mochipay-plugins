@@ -61,3 +61,10 @@ Read [query timeouts](references/query-timeouts.md) when implementing status pol
 
 ## Authenticated manual payment acceptance (WEB82.18)
 A received amount must be valid and positive. Preserve all original invoice bindings and require PAID from an authenticated server query. Accept a received/payable mismatch only when that authenticated query contains the Boolean manual_payment_accepted=true, backed by the server audit. A notification/browser field, string "true", number 1, or PAID alone cannot authorize it. Require WEB82.14+ for this proof; exact paid amounts retain older-server compatibility. Manual callback retries must retain atomic once-only fulfillment.
+
+
+## Compact checkout and expiration (WEB82.76 / Skill1.2.13)
+
+Read [current checkout contract](references/checkout-current.md) when implementing or repairing HPP, ON_SITE, subscription or demo displays. Preserve the warm-orange compact QR-first layout, the centered asset icon, separate Network / Receiving address / Exact payment amount fields, and icon-only copy actions with visible localized success/failure feedback. Long addresses wrap in full; never abbreviate the copied value. Use the saved payable amount without recalculation or rounding. Mask expired QR/address in place and disable copying; do not remove their layout. API create/query add expires_at_utc and server_time_utc alongside legacy expires_at. Anchor the remaining-time clock to server time plus elapsed time; re-opening a dialog must not restart the original deadline.
+
+Official downloads now include the OpenCart4 package under Downloads/OpenCart4/. Chrome is distributed as a ZIP for manual desktop installation, not as an approved Chrome Web Store listing. PHP SDK documentation and package versions are managed separately on Packagist. MCP1.0.7 and Chrome1.0.7 remain current; do not invent a functional upgrade solely because checkout CSS changed.

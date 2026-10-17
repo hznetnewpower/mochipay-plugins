@@ -5,7 +5,7 @@ final class Payment
 {
     public $store, $client, $config;
     public static function defaults() { return ['enabled'=>false,'url'=>'https://mochi.bz','key'=>'','secret'=>'','mode'=>'ON_SITE','direction'=>'UP','methods'=>array_keys(self::labels())]; }
-    public static function labels() { return ['USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana','TRX_TRON'=>'TRX · TRON']; }
+    public static function labels() { return ['USDT_TRC20'=>'USDT/TRC20','USDC_ERC20'=>'USDC/ERC20','BTC_BITCOIN'=>'BTC/Bitcoin','ETH_ERC20'=>'ETH/Ethereum','SOL_SOLANA'=>'SOL/Solana','TRX_TRON'=>'TRX/TRON']; }
     public function __construct(Store $store, array $config, $client = null)
     {
         $this->store=$store; $this->config=$config+self::defaults();
@@ -99,7 +99,7 @@ final class Payment
         $method=$data['payment_method']??(($data['wallet_type']??'').'_' .($data['network']??''));
         $parts=explode('_',$method,2); $pay=self::decimal($data['pay_amount']??''); $status=strtoupper($data['status']??''); $address=$data['payment_address']??'';
         if (!isset(self::labels()[$method]) || $pay==='' || $pay==='0' || $pay[0]==='-' || !is_string($address) || !preg_match('/^[A-Za-z0-9]{20,120}$/D',$address) || !in_array($status,['PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','REVIEW_REQUIRED','EXPIRED','CANCELLED','CANCELED','FAILED'],true)) throw new \RuntimeException('Payment details are unavailable.');
-        return ['reference'=>$data['order_id'],'amount'=>self::decimal($data['amount']),'currency'=>$data['currency'],'payAmount'=>$pay,'asset'=>$parts[0],'network'=>$parts[1],'address'=>$address,'status'=>$status,'expiresAt'=>(string)($data['expires_at']??'')];
+        return ['reference'=>$data['order_id'],'amount'=>self::decimal($data['amount']),'currency'=>$data['currency'],'payAmount'=>$pay,'asset'=>$parts[0],'network'=>$parts[1],'address'=>$address,'status'=>$status,'expiresAt'=>(string)($data['expires_at_utc']??$data['expires_at']??''),'serverTime'=>(string)($data['server_time_utc']??'')];
     }
     public static function url(array $row,$action)
     {

@@ -1,220 +1,606 @@
-[
-  {
-    "id": "woocommerce",
-    "added": [
-      "mochipay-woocommerce/LICENSE.txt",
-      "mochipay-woocommerce/NOTICE.md",
-      "mochipay-woocommerce/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [
-      "mochipay-woocommerce/validation/browser-results.txt",
-      "mochipay-woocommerce/validation/desktop.png",
-      "mochipay-woocommerce/validation/mobile.png",
-      "mochipay-woocommerce/validation/php-results.txt",
-      "mochipay-woocommerce/validation/qr-results.txt",
-      "mochipay-woocommerce/validation/runtime-tests.php.txt"
-    ],
-    "modified_original_files": [],
-    "preserved_original_files": 12
-  },
-  {
-    "id": "opencart20",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 18
-  },
-  {
-    "id": "opencart23",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 16
-  },
-  {
-    "id": "opencart3",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 16
-  },
-  {
-    "id": "opencart4",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 16
-  },
-  {
-    "id": "zencart-legacy",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 14
-  },
-  {
-    "id": "zencart-modern",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 14
-  },
-  {
-    "id": "magento1",
-    "added": [
-      "LICENSE.txt",
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 19
-  },
-  {
-    "id": "magento2",
-    "added": [
-      "MochiPay/Payment/LICENSE.txt",
-      "MochiPay/Payment/NOTICE.md",
-      "MochiPay/Payment/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 31
-  },
-  {
-    "id": "prestashop16",
-    "added": [
-      "mochipay/LICENSE.txt",
-      "mochipay/NOTICE.md",
-      "mochipay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 17
-  },
-  {
-    "id": "prestashop-modern",
-    "added": [
-      "mochipay/LICENSE.txt",
-      "mochipay/NOTICE.md",
-      "mochipay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 16
-  },
-  {
-    "id": "shopware66",
-    "added": [
-      "MochiPay/NOTICE.md",
-      "MochiPay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [
-      {
-        "path": "MochiPay/composer.json",
-        "change": "Documentation supportLink only"
-      }
-    ],
-    "preserved_original_files": 19
-  },
-  {
-    "id": "shopware67",
-    "added": [
-      "MochiPay/NOTICE.md",
-      "MochiPay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [
-      {
-        "path": "MochiPay/composer.json",
-        "change": "Documentation supportLink only"
-      }
-    ],
-    "preserved_original_files": 19
-  },
-  {
-    "id": "drupal",
-    "added": [
-      "mochipay/NOTICE.md",
-      "mochipay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 21
-  },
-  {
-    "id": "eccube",
-    "added": [
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 20
-  },
-  {
-    "id": "bagisto",
-    "added": [
-      "MochiPay/NOTICE.md",
-      "MochiPay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 22
-  },
-  {
-    "id": "sylius",
-    "added": [
-      "MochiPaySylius/NOTICE.md",
-      "MochiPaySylius/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 25
-  },
-  {
-    "id": "oscommerce",
-    "added": [
-      "NOTICE.md",
-      "PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 13
-  },
-  {
-    "id": "thirtybees",
-    "added": [
-      "mochipay/NOTICE.md",
-      "mochipay/PUBLICATION.md"
-    ],
-    "removed_non_runtime": [],
-    "modified_original_files": [],
-    "preserved_original_files": 17
-  }
-]
+{
+  "publication": "2026.10.17-checkout.1",
+  "source": "WEB82.76 / checkout82.75; live ClawHub1.2.12 base",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "636c16459d87ae9dee0e2c0410820cc84411e1f31187edcfec2a4d6d5b255b53"
+    },
+    {
+      "path": "PROJECT_STATUS.md",
+      "sha256": "a780dce0ddbc115563b2f0700cb5f1eeda02be0573e77d325aee5a9c3741e73d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "1b9e43ddc4a9251bb0a0daf3ac64ba77610c2f0e5e66a8844fb3d9c43662001a"
+    },
+    {
+      "path": "developer-resources.json",
+      "sha256": "3d3387f729885a6739fa103ec5d70dc2e6ceb995fea9522eb1a4ef06bb4adddb"
+    },
+    {
+      "path": "docs/DOWNLOADS.md",
+      "sha256": "02c6f67358425c114c8c23ec7932aec917f2f54ea8554f78c72ff17f03017cd1"
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "sha256": "9cbb59404db0a49b1dbdff83240e1d71a91dba35b043c24a92a009ec6e24261c"
+    },
+    {
+      "path": "examples/dotnet-api/MochiPay_dotnet_Demo/Program.cs",
+      "sha256": "c40c5308b89afa38960d12da5d639edbfdc4207c06e51da368c35933bff62330"
+    },
+    {
+      "path": "examples/dotnet-api/MochiPay_dotnet_Demo/assets/complete.js",
+      "sha256": "20b0ff224a90ace0ee0ca776bba3fa9ccc62b9e0efa2a66ce4345cd6069f8984"
+    },
+    {
+      "path": "examples/dotnet-api/MochiPay_dotnet_Demo/assets/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/dotnet-api/MochiPay_dotnet_Demo/assets/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "examples/dotnet-api/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/java-api/MochiPay_java_Demo/assets/complete.js",
+      "sha256": "20b0ff224a90ace0ee0ca776bba3fa9ccc62b9e0efa2a66ce4345cd6069f8984"
+    },
+    {
+      "path": "examples/java-api/MochiPay_java_Demo/assets/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/java-api/MochiPay_java_Demo/assets/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "examples/java-api/MochiPay_java_Demo/src/main/java/com/mochipay/demo/Main.java",
+      "sha256": "5cc5312c553980dd7b48d35e02afc6c9f9dc6fa910b02a1a763ce423bba8c4b0"
+    },
+    {
+      "path": "examples/java-api/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/nodejs-api/MochiPay_nodejs_Demo/assets/complete.js",
+      "sha256": "20b0ff224a90ace0ee0ca776bba3fa9ccc62b9e0efa2a66ce4345cd6069f8984"
+    },
+    {
+      "path": "examples/nodejs-api/MochiPay_nodejs_Demo/assets/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/nodejs-api/MochiPay_nodejs_Demo/assets/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "examples/nodejs-api/MochiPay_nodejs_Demo/server.mjs",
+      "sha256": "e7b75e4061b530338b9440ce969dd5f578389a7b0845e023f98b3fa2922ba627"
+    },
+    {
+      "path": "examples/nodejs-api/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/checkout.php",
+      "sha256": "012f3fb46d45a8fba6c06df7b509efbe6b4e33909cf346b80a89ee216c64b46d"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/php-api/MochiPay_PHP_Demo/portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "examples/php-api/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/python-api/MochiPay_python_Demo/assets/complete.js",
+      "sha256": "20b0ff224a90ace0ee0ca776bba3fa9ccc62b9e0efa2a66ce4345cd6069f8984"
+    },
+    {
+      "path": "examples/python-api/MochiPay_python_Demo/assets/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/python-api/MochiPay_python_Demo/assets/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "examples/python-api/MochiPay_python_Demo/server.py",
+      "sha256": "30ebf91d63a562f392c24d1200c51cea91c6a1932105bb07a2ef87ccb1847cf9"
+    },
+    {
+      "path": "examples/python-api/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/report-unlock/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/checkout.php",
+      "sha256": "012f3fb46d45a8fba6c06df7b509efbe6b4e33909cf346b80a89ee216c64b46d"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/onsite.css",
+      "sha256": "6c4470b7f9b81cad9ea7d57bb745d29a7d6a16a578814387caee1650c2441685"
+    },
+    {
+      "path": "examples/report-unlock/mochipay-report-demo/portable/onsite.js",
+      "sha256": "15f4c555405c6cc03d4c97cc12be5a359c5b952ba3ca31556e3b0179ff05ce7f"
+    },
+    {
+      "path": "mobile/android/MULTILANGUAGES.md",
+      "sha256": "db70382d03b11b5ba52c563726e43933d02b08be4c5c119282145d30479d4801"
+    },
+    {
+      "path": "mobile/android/MochiPay_Android_Kotlin_Demo/app/src/main/java/com/mochipay/demo/MainActivity.kt",
+      "sha256": "8412c1312ea4bec7f312a54019adb497c2599f36093e3eadd7c189714bee1e1f"
+    },
+    {
+      "path": "mobile/ios/MULTILANGUAGES.md",
+      "sha256": "db70382d03b11b5ba52c563726e43933d02b08be4c5c119282145d30479d4801"
+    },
+    {
+      "path": "mobile/ios/MochiPay_iOS_Swift_Demo/MochiPayDemo/ContentView.swift",
+      "sha256": "433f352322a4228d63920c60e166794f7bd5f5baa0fcabab46d489ca2d6ebde7"
+    },
+    {
+      "path": "packages.json",
+      "sha256": "2ed5485ba829f5a615932c460a28b23dec7ce41035a57ca1733b11037f46dfd6"
+    },
+    {
+      "path": "plugins/bagisto/MochiPay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/bagisto/MochiPay/src/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/bagisto/MochiPay/src/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/bagisto/MochiPay/src/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/drupal/mochipay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/drupal/mochipay/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/drupal/mochipay/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/drupal/mochipay/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/eccube/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/eccube/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/eccube/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/eccube/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/magento1/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/magento1/app/code/local/MochiPay/Payment/Model/Payment.php",
+      "sha256": "42b682ef0f585ca382c071e15250354bcd1d66998550f12cffe7fd9bed92c5f9"
+    },
+    {
+      "path": "plugins/magento1/app/code/local/MochiPay/Payment/portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/magento1/app/code/local/MochiPay/Payment/portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/magento1/app/code/local/MochiPay/Payment/portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/magento2/MochiPay/Payment/Model/ConfigProvider.php",
+      "sha256": "c96b3bcd3dafef2b3d74407e071e8bd4154ac498f23eb34188c246f3eaa511b0"
+    },
+    {
+      "path": "plugins/magento2/MochiPay/Payment/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/magento2/MochiPay/Payment/portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/magento2/MochiPay/Payment/portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/magento2/MochiPay/Payment/portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/opencart20/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/opencart20/upload/admin/controller/payment/mochipay.php",
+      "sha256": "ed86203c298b0365c0a408e7e5bc4193f185102e763f2a31ed47a5f0e71161ef"
+    },
+    {
+      "path": "plugins/opencart20/upload/catalog/controller/payment/mochipay.php",
+      "sha256": "23cb8274c6818f171ac773f4325e070f38a3679cc34d3743f781df3e4a94e378"
+    },
+    {
+      "path": "plugins/opencart20/upload/system/library/mochipay_portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/opencart20/upload/system/library/mochipay_portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/opencart20/upload/system/library/mochipay_portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/opencart23/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/opencart23/upload/admin/controller/extension/payment/mochipay.php",
+      "sha256": "37f37ed5b493fcebd5befd22f8d7da2b9ac82f2906b41efe0aacaa9d0de3b4df"
+    },
+    {
+      "path": "plugins/opencart23/upload/catalog/controller/extension/payment/mochipay.php",
+      "sha256": "4826edf9fe725bc99376d30d935ca2df581a6a7cba99e09c06b29773270bd052"
+    },
+    {
+      "path": "plugins/opencart23/upload/system/library/mochipay_portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/opencart23/upload/system/library/mochipay_portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/opencart23/upload/system/library/mochipay_portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/opencart3/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/opencart3/upload/admin/controller/extension/payment/mochipay.php",
+      "sha256": "84de4ae8f1b04af7a258e5c19c660195162e649941c181ad7827fa72d5a8df59"
+    },
+    {
+      "path": "plugins/opencart3/upload/catalog/controller/extension/payment/mochipay.php",
+      "sha256": "6c74c055aa879fa5bf097a69a96aa94d350bae33ca49c72a04577e1439dc9d79"
+    },
+    {
+      "path": "plugins/opencart3/upload/system/library/mochipay_portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/opencart3/upload/system/library/mochipay_portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/opencart3/upload/system/library/mochipay_portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/opencart4/PAYMENT_QR_MODES.md",
+      "sha256": "4fa46c6799397bfe90330246f2500a2b9d07da797c671336e89d8d05b8cb14c9"
+    },
+    {
+      "path": "plugins/opencart4/PAYMENT_VERIFICATION.txt",
+      "sha256": "80ca195dc98059888718161004411a64be29f7dd7292ff19667b5e5f4552f7e7"
+    },
+    {
+      "path": "plugins/opencart4/QUERY_TIMEOUTS.md",
+      "sha256": "1194f2d7dca0a85322c5cc936eb34dc307cd2485e766f286251027ed536063f8"
+    },
+    {
+      "path": "plugins/opencart4/README.md",
+      "sha256": "76c43a965c8efc73e097d3a06c40ed200f2c2c2765b475f5f43876946ec0a3ab"
+    },
+    {
+      "path": "plugins/opencart4/UPGRADE_MANUAL_CONFIRMATION_WEB82_18.md",
+      "sha256": "44c19d220efa634071450cfab1118b222edcae54713592c9cd554a11e1539220"
+    },
+    {
+      "path": "plugins/opencart4/admin/controller/payment/mochipay.php",
+      "sha256": "aab4519ccb6b7f0bb52fbb71788c2ba6b3afd0144084d2613e0371137f8ccc59"
+    },
+    {
+      "path": "plugins/opencart4/admin/language/en-gb/payment/mochipay.php",
+      "sha256": "b5ee1cedc20c14abb8faf9597cacf4a5831b72b291e148503a6c0c4d145afa4b"
+    },
+    {
+      "path": "plugins/opencart4/catalog/controller/payment/mochipay.php",
+      "sha256": "250345eadb851fab07add926f6a98da0131ba8a949b0b6c4a2e41a65e6ae40c8"
+    },
+    {
+      "path": "plugins/opencart4/install.json",
+      "sha256": "370abec679bda44bf69a3c1cc95e07520371f4f5824c4e9c7fe96d76db654aa0"
+    },
+    {
+      "path": "plugins/opencart4/system/library/mochipay_portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/opencart4/system/library/mochipay_portable/onsite.css",
+      "sha256": "264fe07f2a78d4b7c79d8da000b8b9216a0d8fee17b6fac35184e7560873ff6e"
+    },
+    {
+      "path": "plugins/opencart4/system/library/mochipay_portable/onsite.js",
+      "sha256": "9960ccd8d5a02f4b54f750dc2009c81f878b05435e37db930a63cc3541d5051e"
+    },
+    {
+      "path": "plugins/oscommerce/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/oscommerce/lib/common/modules/orderPayment/lib/MochiPay/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/oscommerce/lib/common/modules/orderPayment/lib/MochiPay/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/oscommerce/lib/common/modules/orderPayment/lib/MochiPay/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/prestashop-modern/mochipay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/prestashop-modern/mochipay/classes/portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/prestashop-modern/mochipay/classes/portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/prestashop-modern/mochipay/classes/portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/prestashop-modern/mochipay/mochipay.php",
+      "sha256": "cfbf87221561ad5782b58df4cb235fda653a1453575856ced72fd2e91f37c047"
+    },
+    {
+      "path": "plugins/prestashop16/mochipay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/prestashop16/mochipay/classes/portable/mochipay_core.php",
+      "sha256": "27d2e0542dc7660c0b1283edabccbf01ab5c04ae65c438af5d983fa774f585e1"
+    },
+    {
+      "path": "plugins/prestashop16/mochipay/classes/portable/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/prestashop16/mochipay/classes/portable/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/prestashop16/mochipay/mochipay.php",
+      "sha256": "e9ff1ef0e524fe3966522359dad0692006a9d0c1a63a1c2ff6bbdcf356c4cf46"
+    },
+    {
+      "path": "plugins/shopware66/MochiPay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/shopware66/MochiPay/src/Resources/config/config.xml",
+      "sha256": "2b729fdbcbdc84b178b8fcba5f41abb606d1565e542b7674ac07a7293bbc00b1"
+    },
+    {
+      "path": "plugins/shopware66/MochiPay/src/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/shopware66/MochiPay/src/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/shopware66/MochiPay/src/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/shopware67/MochiPay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/shopware67/MochiPay/src/Resources/config/config.xml",
+      "sha256": "2b729fdbcbdc84b178b8fcba5f41abb606d1565e542b7674ac07a7293bbc00b1"
+    },
+    {
+      "path": "plugins/shopware67/MochiPay/src/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/shopware67/MochiPay/src/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/shopware67/MochiPay/src/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/sylius/MochiPaySylius/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/sylius/MochiPaySylius/src/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/sylius/MochiPaySylius/src/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/sylius/MochiPaySylius/src/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/thirtybees/mochipay/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/thirtybees/mochipay/lib/Payment.php",
+      "sha256": "553a704a758d0d2da18e213a7032bb972921597ee4b5359be14567d30d214264"
+    },
+    {
+      "path": "plugins/thirtybees/mochipay/lib/onsite.css",
+      "sha256": "17848f451fb7784b1cb27e2bb92aa12e6302cb3b2f88209133841d5eca3ae56b"
+    },
+    {
+      "path": "plugins/thirtybees/mochipay/lib/onsite.js",
+      "sha256": "005c4993cdd33920758539fcf667d18eaf5ba2d57f721ce352826f771d6077e6"
+    },
+    {
+      "path": "plugins/thirtybees/mochipay/mochipay.php",
+      "sha256": "0729f0366c7a01655452395a30219c1953ea282baa90ba9bfac34a5e5239eb17"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/PAYMENT_QR_MODES.txt",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/assets/css/onsite.css",
+      "sha256": "69f2dadcdab4cc7b46652ec58c4492c3a4ca6a1e634abf0e9764e6b7acd7110c"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/assets/js/onsite.js",
+      "sha256": "bb0cead82c85f2dbd83d0089c4b699d702febf99e2b1dfa67f5b61c4bbf332b1"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/includes/class-mochipay-onsite.php",
+      "sha256": "6d851f8c3941f535da34b4667a0d682d91b7eeffdcb385e056cdd80a6d2aeabf"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/includes/class-mochipay-payment-data.php",
+      "sha256": "dac2feb5c47c7ab5f97b8722b1fa4896e58f52f955b450075446e0db43143d01"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/mochipay-woocommerce.php",
+      "sha256": "7b73492735d04f8c1e086a198395ec0e39479a91f6f2673a48a7aaadfe981244"
+    },
+    {
+      "path": "plugins/woocommerce/mochipay-for-woocommerce/readme.txt",
+      "sha256": "cd005772db892343107735b5f1c370c9a8364b45becb84399d810cb41512ef25"
+    },
+    {
+      "path": "plugins/zencart-legacy/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/zencart-legacy/includes/classes/mochipay/mochipay_core.php",
+      "sha256": "1024111b2bb4949347dcca13a12ad80727ec2540c862e0a8e3541a27d39ee18f"
+    },
+    {
+      "path": "plugins/zencart-legacy/includes/classes/mochipay/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/zencart-legacy/includes/classes/mochipay/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/zencart-legacy/includes/modules/payment/mochipay.php",
+      "sha256": "b0b74c69728c2fb7842af6eb81463ae77e4e6fc7f53fc622ca476337a1049e58"
+    },
+    {
+      "path": "plugins/zencart-modern/PAYMENT_QR_MODES.md",
+      "sha256": "e768393fef63b2dba7d7430e51052ff2975bc4417db108235b17708f3098a1ec"
+    },
+    {
+      "path": "plugins/zencart-modern/includes/classes/mochipay/mochipay_core.php",
+      "sha256": "1024111b2bb4949347dcca13a12ad80727ec2540c862e0a8e3541a27d39ee18f"
+    },
+    {
+      "path": "plugins/zencart-modern/includes/classes/mochipay/onsite.css",
+      "sha256": "3098f88ecb2bff25eeaa69d865168bcd7b04f16c14226b5a706b29924934950c"
+    },
+    {
+      "path": "plugins/zencart-modern/includes/classes/mochipay/onsite.js",
+      "sha256": "258a49817187b2fc8a7c27052e2b779a76f7914eb170d7adeabd256d7c42319a"
+    },
+    {
+      "path": "plugins/zencart-modern/includes/modules/payment/mochipay.php",
+      "sha256": "44498df6b9cf20e2f240572ed896e4e16db7581e97c44cfe6bad3f744c08bbcd"
+    },
+    {
+      "path": "skills/integrate-mochipay/LICENSE.txt",
+      "sha256": "8aeed9629eae7c7f238588295952975f1b2c344e5976babdde35ab728265074b"
+    },
+    {
+      "path": "skills/integrate-mochipay/SKILL.md",
+      "sha256": "330960a8362553a1cc510fd218e6cf58fb728b6ba3914a2d79473f03638e704b"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/api-integration.md",
+      "sha256": "9e5711c94ea7e64289a92eac5a85ca926f5e6fa59eea91793ec0d99f987edd12"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/catalog.json",
+      "sha256": "5f8737b9b8da1881ceae5d9ef7045b755bc8d77c2e0115a2609468237ce555c1"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/checkout-current.md",
+      "sha256": "3e2bee722c73d62e8817287c020bbefe3ce311bd78f4cfa83817b92400d9582c"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/license.md",
+      "sha256": "8aeed9629eae7c7f238588295952975f1b2c344e5976babdde35ab728265074b"
+    },
+    {
+      "path": "skills/integrate-mochipay/references/store-packages.md",
+      "sha256": "4cfa5d61f2827488fca30ff9e7f0d040a168e30aef5b2734582ea6f5a421be5d"
+    },
+    {
+      "path": "skills/integrate-mochipay/skill-card.md",
+      "sha256": "bd1d3d6f3d895232ceb741ff309a68526b69dfcd54d34ecab724f6d08ca383c0"
+    },
+    {
+      "path": "tools/package-source-map.json",
+      "sha256": "73c8e01c89fba848a49921dc68bec1892fd84357bab398b3f1b3920aa8d2da9e"
+    }
+  ]
+}

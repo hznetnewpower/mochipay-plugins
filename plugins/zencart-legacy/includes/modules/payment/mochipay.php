@@ -207,7 +207,7 @@ class mochipay
 
     private function enabledMethods()
     {
-        $labels = array('USDT_TRC20' => 'USDT — TRON (TRC20)', 'USDC_ERC20' => 'USDC — Ethereum (ERC20)', 'BTC_BITCOIN' => 'BTC — Bitcoin', 'ETH_ERC20' => 'ETH — Ethereum', 'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON');
+        $labels = array('USDT_TRC20' => 'USDT/TRC20', 'USDC_ERC20' => 'USDC/ERC20', 'BTC_BITCOIN' => 'BTC/Bitcoin', 'ETH_ERC20' => 'ETH/Ethereum', 'SOL_SOLANA' => 'SOL/Solana','TRX_TRON' => 'TRX/TRON');
         $enabled = array();
         $value = defined('MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS') ? MODULE_PAYMENT_MOCHIPAY_PAYMENT_METHODS : 'USDT_TRC20';
         foreach (explode(',', $value) as $method) {

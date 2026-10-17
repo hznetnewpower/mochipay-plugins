@@ -98,7 +98,7 @@ class MochiPayPortable
             }
             $view=self::view($data);
             if($view['status']==='PAID'){
-                if(!isset($data['received_amount']) || self::decimal($data['received_amount'])!==self::decimal($data['pay_amount']))throw new RuntimeException('Received payment requires store review.');
+                if(!self::paidAmountAccepted($data,$snapshot['pay_amount']))throw new RuntimeException('Received payment requires store review.');
                 if(!(int)$row['settled']){call_user_func($settle,$data,$payload);$self->sql('UPDATE '.$self->table.' SET settled=1 WHERE '.$self->where($id,$token));}
             }
             return $view;
@@ -117,6 +117,15 @@ class MochiPayPortable
         if ($text === false) throw new RuntimeException('Unable to encode payment data.');
         return $text;
     }
+    // Call only on the authenticated query response after original invoice bindings.
+    public static function paidAmountAccepted($data, $expected)
+    {
+        $pay = self::decimal($expected);
+        $received = isset($data['received_amount']) ? self::decimal($data['received_amount']) : '';
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || $received === '' || $received === '0' || $received[0] === '-') return false;
+        return $received === $pay || (isset($data['manual_payment_accepted']) && $data['manual_payment_accepted'] === true);
+    }
+
     public static function decimal($value)
     {
         $text = trim((string) $value);
@@ -200,10 +209,10 @@ class MochiPayPortable
         $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
         $address = isset($data['payment_address']) ? (string) $data['payment_address'] : '';
         $status = isset($data['status']) ? strtoupper($data['status']) : '';
-        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','EXPIRED','CANCELLED','CANCELED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','REVIEW_REQUIRED','EXPIRED','CANCELLED','CANCELED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
         $expires = isset($data['expires_at']) ? (string) $data['expires_at'] : '';
         if (in_array($status, array('PENDING','WAITING','WAITING_PAYMENT'), true) && isset($data['updated_at']) && preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $expires) && strcmp($data['updated_at'], $expires) >= 0) $status = 'EXPIRED';
-        return array('reference'=>$data['order_id'], 'amount'=>self::decimal($data['amount']), 'currency'=>$data['currency'], 'payAmount'=>$pay, 'asset'=>$parts[0], 'network'=>$parts[1], 'address'=>$address, 'status'=>$status, 'expiresAt'=>$expires);
+        return array('reference'=>$data['order_id'], 'amount'=>self::decimal($data['amount']), 'currency'=>$data['currency'], 'payAmount'=>$pay, 'asset'=>$parts[0], 'network'=>$parts[1], 'address'=>$address, 'status'=>$status, 'expiresAt'=>(isset($data['expires_at_utc']) ? (string)$data['expires_at_utc'] : $expires), 'serverTime'=>(isset($data['server_time_utc']) ? (string)$data['server_time_utc'] : ''));
     }
     public static function page($pollUrl, $returnUrl)
     {

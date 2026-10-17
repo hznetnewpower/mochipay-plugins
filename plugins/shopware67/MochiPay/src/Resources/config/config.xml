@@ -6,9 +6,9 @@
 <input-field type="password"><name>secret</name><label>API secret</label><defaultValue></defaultValue></input-field>
 <input-field type="single-select"><name>mode</name><label>Payment mode</label><defaultValue>ON_SITE</defaultValue><options><option><id>ON_SITE</id><name>ON_SITE</name></option><option><id>HPP</id><name>HPP</name></option></options></input-field>
 <input-field type="single-select"><name>direction</name><label>Unique amount direction</label><defaultValue>UP</defaultValue><options><option><id>UP</id><name>UP</name></option><option><id>DOWN</id><name>DOWN</name></option></options></input-field>
-<input-field type="bool"><name>asset_USDT_TRC20</name><label>Enable USDT - TRON (TRC20)</label><defaultValue>true</defaultValue></input-field>
-<input-field type="bool"><name>asset_USDC_ERC20</name><label>Enable USDC - Ethereum (ERC20)</label><defaultValue>true</defaultValue></input-field>
-<input-field type="bool"><name>asset_BTC_BITCOIN</name><label>Enable BTC - Bitcoin</label><defaultValue>true</defaultValue></input-field>
-<input-field type="bool"><name>asset_ETH_ERC20</name><label>Enable ETH - Ethereum</label><defaultValue>true</defaultValue></input-field>
-<input-field type="bool"><name>asset_SOL_SOLANA</name><label>Enable SOL - Solana</label><defaultValue>true</defaultValue></input-field><input-field type="bool"><name>asset_TRX_TRON</name><label>Enable TRX - TRON</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_USDT_TRC20</name><label>Enable USDT/TRC20</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_USDC_ERC20</name><label>Enable USDC/ERC20</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_BTC_BITCOIN</name><label>Enable BTC/Bitcoin</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_ETH_ERC20</name><label>Enable ETH/Ethereum</label><defaultValue>true</defaultValue></input-field>
+<input-field type="bool"><name>asset_SOL_SOLANA</name><label>Enable SOL/Solana</label><defaultValue>true</defaultValue></input-field><input-field type="bool"><name>asset_TRX_TRON</name><label>Enable TRX/TRON</label><defaultValue>true</defaultValue></input-field>
 </card></config>

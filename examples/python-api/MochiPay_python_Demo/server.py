@@ -91,7 +91,7 @@ def verify(r, t):
     return d
 def safe(d):
     asset, network = method(d).split('_',1)
-    return dict(status=d['status'],payAmount=str(d['pay_amount']),asset=asset,network=network,address=d['payment_address'],amount=str(d['amount']),currency=d['currency'],expiresAt=d['expires_at'],reference=d['merchant_order_id'])
+    return dict(status=d['status'],payAmount=str(d['pay_amount']),asset=asset,network=network,address=d['payment_address'],amount=str(d['amount']),currency=d['currency'],expiresAt=d.get('expires_at_utc') or d['expires_at'],serverTime=d.get('server_time_utc',''),reference=d['merchant_order_id'])
 def create(p):
     r = p.get('request_id'); f = filename(r)
     if p.get('payment_method') not in METHODS: raise ValueError('Invalid method')

@@ -4,7 +4,7 @@ Tags: woocommerce, cryptocurrency, payment gateway, usdt, usdc
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.19
+Stable tag: 1.5.21
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ See the installation and multilingual sections below for environments, installat
 
 # WooCommerce 5.8 or later with the native gateway API — MochiPay
 
-Plugin version: 1.5.19
+Plugin version: 1.5.21
 
 # MochiPay setup
 
@@ -131,6 +131,10 @@ Read the platform-specific PHP table and installation instructions included in t
 
 
 == Changelog ==
+
+= 1.5.21 =
+* Add Traditional Chinese, Swedish, Vietnamese, Polish, Finnish and Danish to the on-site checkout language selector.
+
 
 = 1.5.14 =
 * Remove direct cURL calls; use the WordPress HTTP API and Requests hook to retain at least30-second connection and response budgets.

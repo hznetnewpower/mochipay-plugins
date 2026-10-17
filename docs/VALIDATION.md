@@ -1,7 +1,7 @@
-# Publication validation
+# Publication validation — 2026-10-17
 
-The release has 30 platform-specific ZIPs. Twenty-eight are copied byte-for-byte from the current MochiPay website Downloads distribution; one AI Skill ZIP contains reviewed multilingual wording; the OpenCart 4 ZIP is copied byte-for-byte from the preceding GitHub release. All ZIPs pass integrity, path-safety and source-member SHA-256 checks. The 25 available website catalog entries with published SHA-256 values match their ZIPs. The release manifest and SHA256SUMS.txt match all 30 staged ZIPs.
+674 source members across30 packages match their archives. Installer CRC, member sets and SHA-256 values pass.29 archive payloads are preserved byte-for-byte from WEB82.76 Downloads, including the nested OpenCart4 package; Skill1.2.13 preserves live ClawHub1.2.12 MIT-0 files and refreshes documentation/catalogs.75 changed JS/PHP/Python/JSON syntax checks passed. PHP SDK offline tests passed with no live API calls. MCP1.0.7 and Chrome1.0.7 production code remain unchanged.
 
-The public source tree contains the package members from those ZIPs plus inherited public documentation. No payment backend, Monitor, database, production configuration or private credential is part of this release.
+WordPress.org1.5.21 uses the matching latest WooCommerce runtime assets/UTC adapter with its review-safe readme. No production credentials, configured private state or MochiPay server/database code are included. Existing live IIS/payment/native-store acceptance remains outside these offline checks.
 
-The verification is a publication check. It does not replace staging installation, native mobile builds or real payment acceptance on every platform. WooCommerce 1.5.19 separately passed WordPress Plugin Check in the owner's test environment and was published on WordPress.org.
+ClawHub generates skill-card.md; it is intentionally omitted from the submission archive.

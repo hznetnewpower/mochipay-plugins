@@ -1,63 +1,41 @@
-# API integration contract
+# MochiPay API integration contract
 
-Snapshot: Web80 / PHP Demo 1.1.4, 2026-10-07. Full reference: https://mochi.bz/Developers/Reference.aspx#checkout-modes and https://mochi.bz/Developers/APIGuide.aspx. Runnable PHP 7.0–8.4 example: https://mochi.bz/Downloads/MochiPay_PHP_API_Demo_1.2.1_Multilanguages_Onsite_HPP.zip. Demo PHP support is independent of shopping core requirements.
+Snapshot: 2026-10-17, WEB82.76. Authoritative reference: https://mochi.bz/Developers/Reference.aspx. Keep setup documentation in English and preserve the merchant application's stack.
 
-## Authentication and fields
+## Authentication and money
 
-Base URL https://mochi.bz, without /api. POST /api/v1/orders/create sends UTF-8 JSON with Content-Type: application/json, X-Mochi-Key and X-Mochi-Signature. Sign the exact body and transmit those same bytes; do not reserialize afterwards. Signature is Base64 of raw HMAC-SHA256 with the API secret.
+POST https://mochi.bz/api/v1/orders/create sends UTF-8 JSON, Content-Type application/json, X-Mochi-Key and X-Mochi-Signature. Sign the exact body bytes and send those same bytes. Signature is Base64 of raw HMAC-SHA256 with the merchant API secret. GET /api/v1/orders/query signs the exact encoded query string without its question mark. API secrets stay on the merchant backend. Verify TLS certificates and hostnames; do not follow redirects carrying authenticated requests.
 
-```php
-$body = json_encode($payload, JSON_UNESCAPED_SLASHES);
-$signature = base64_encode(hash_hmac('sha256', $body, $apiSecret, true));
-// Send $body unchanged with X-Mochi-Key and X-Mochi-Signature.
-```
+Use exact decimal strings, never binary floats. Required create fields include merchant_order_id, positive amount, currency and payment_method. Supported methods are USDT_TRC20, USDC_ERC20, BTC_BITCOIN, ETH_ERC20, SOL_SOLANA and TRX_TRON. Native TRX and USDT/TRC20 are different assets. Enable only configured active receiving wallets/rates. unique_amount_direction is UP or DOWN (default UP). Optional notify_url and redirect_url are merchant HTTPS endpoints. Do not invent payment_mode or a signed language field.
 
-Required fields: merchant_order_id (max 100 characters), positive exact decimal amount, currency, payment_method. Use decimal strings and validate supported precision; never round through binary floats. Methods: USDT_TRC20, USDC_ERC20, BTC_BITCOIN, ETH_ERC20, SOL_SOLANA. Enable only choices backed by active receiving wallets and exchange-rate pairs. unique_amount_direction: UP or DOWN, default UP. Optional notify_url and **redirect_url** are merchant HTTPS endpoints; the latter is not named return_url. See the full reference for product/customer fields.
+## Independent attempts and recovery
 
-GET /api/v1/orders/query uses exactly one identifier, order_id or merchant_order_id. Sign the exact encoded query string **without ?**, preserving ordering/encoding; send the same auth headers. Prefer the saved MochiPay order_id once known.
+merchant_order_id is a repeatable business label, not an idempotency key. Each explicit new checkout gets a fresh request_id, even for the same reference/amount/customer. Persist that ID and exact payload before requesting creation. Only the same request_id plus unchanged payload represent a transport retry. Do not retrofit IDs onto historical attempts.
 
-```php
-$query = http_build_query(array('order_id' => $savedOrderId), '', '&', PHP_QUERY_RFC3986);
-$signature = base64_encode(hash_hmac('sha256', $query, $apiSecret, true));
-// GET $baseUrl . '/api/v1/orders/query?' . $query
-```
+WEB82.6+ advertises request-id-v1. request_id accepts1-64 ASCII letters/digits or . _ : -. Repeated unchanged requests recover their saved order. REQUEST_ID_CONFLICT, REQUEST_IN_PROGRESS (Retry-After) and REQUEST_ORDER_UNAVAILABLE need explicit recovery handling. An uncertain response must not trigger a new attempt silently.
 
-Errors have success:false and message. Check HTTP status and schema; 200 alone is insufficient. Create includes success, order_id, merchant_order_id, status, amount, currency, base_pay_amount, unique_amount_delta, unique_amount_direction, pay_amount, payment_method, payment_address, payment_url, expires_at. Query adds wallet_type, network, received_amount, transaction/confirmation and optional customer details. Query has no payment_method field; reconstruct wallet_type + '_' + network. Preserve JSON money values before float parsing. Dates are yyyy-MM-dd HH:mm:ss with no offset; do not silently interpret as browser local time.
+Query accepts exactly one of order_id, request_id or merchant_order_id. Prefer the saved order_id; use request_id to recover an uncertain creation. Repeated merchant references can produce MERCHANT_ORDER_ID_AMBIGUOUS; never choose an arbitrary/latest invoice. Check success, HTTP status and response schema. HTTP200 alone is insufficient. API errors have success:false and message.
 
-## One order, two interfaces
+## Response and checkout
 
-Keep the interface mode in local merchant config, not a payment_mode API field. Save and reuse one create result:
+Create returns order_id, merchant_order_id, status, amount, currency, base_pay_amount, unique_amount_delta/direction, pay_amount, payment_method, payment_address, payment_url and expires_at. Query includes wallet_type, network, received_amount and transaction/confirmation fields; construct the method from wallet_type + '_' + network where needed. Expose only a minimal authorized browser DTO, never the complete customer record or credentials.
 
-- ON_SITE: show address, exact pay_amount, method/network, QR and copy controls in a merchant-local dialog/page. The address QR omits the amount. Poll your authenticated backend, which makes signed API queries and returns a minimal DTO. Do not expose secrets or the whole query result.
-- HPP: validate the returned URL has HTTPS, configured official origin and exact /pay/<saved-order-id> path, no credentials/unexpected port; redirect with HTTP303. Check application order ownership before either interface.
+Both responses now add expires_at_utc and server_time_utc ISO8601 UTC strings alongside legacy expires_at. Use the saved expiry and server time plus elapsed time for countdowns. Reopening/polling must not reset the invoice to60minutes. Do not parse legacy offset-free dates as browser local time. See checkout-current.md for QR, copy confirmation and expiration masks.
 
-ON_SITE keeps the store experience and can reduce checkout friction; do not claim measured conversion uplift without merchant evidence.
+ON_SITE and HPP present the same saved order. Keep checkout_mode in local merchant config. ON_SITE displays the exact saved pay_amount, asset/network, address and QR. HPP validates HTTPS, the configured MochiPay origin and exact /pay/<saved-order-id> path, with no URL credentials or unexpected port, then redirects303. Switching presentation must not create another invoice.
 
-## Durable attempts and fulfillment
+## Returns, callbacks and fulfillment
 
-WEB82.3 supports both purchase-reference recovery and optional request_id. Each genuinely new purchase must use an independent merchant_order_id and request_id, even if its price/customer matches an unpaid earlier purchase. A repeat of the same reference with the same amount/currency/payment method reuses the unique saved invoice; conflicting financial fields yield MERCHANT_ORDER_ID_CONFLICT, and historical duplicates yield MERCHANT_ORDER_ID_AMBIGUOUS rather than selecting an arbitrary invoice. References are case-sensitive. The server serializes creation per merchant/reference, independent of customer and amount.
+Browser returns and incoming notifications only trigger an authenticated server query. Bind results to the original order ID, reference, original amount/currency, method/network and address. Require PAID, positive received_amount, and exact decimal equality with pay_amount. A mismatch is allowed only with strict Boolean manual_payment_accepted=true from the authenticated query after audited authorized acceptance. String true, number1, callback/browser fields or PAID alone do not authorize it. REVIEW_REQUIRED, UNDERPAID, OVERPAID, EXPIRED and inconsistent bindings never authorize delivery. No automatic payment tolerance.
 
-Optional request_id accepts 1–64 ASCII letters/digits or . _ : -. Persist it and the exact payload before creation. Repeating it with unchanged creation fields returns the same order; conflicting fields yield REQUEST_ID_CONFLICT, active creation can yield REQUEST_IN_PROGRESS (Retry-After:2), and missing saved results yield REQUEST_ORDER_UNAVAILABLE. A new request ID recovering a unique existing reference is bound to that invoice and its fingerprint. Once order_id is saved, query it. Do not generate another ID to work around an uncertain purchase.
+Fulfill atomically once using the merchant application's transaction and uniqueness safeguards. A closed browser must not stop asynchronous verification. Keep redirect_url separate from notify_url. Reuse that same verification routine for callbacks, synchronous returns and status polling. Use at least30-second server transport deadlines and quiet retries for the first two transient query failures; show localized failure feedback after the third. Authorization/binding failures are immediate.
 
-Authenticated WEB82.6 advertises request-id-v1. Merchant references may repeat; only request_id and unchanged payload identify a transport retry. Query request_id after an uncertain response; query order_id once saved. New checkouts always receive a new request_id. WEB82.7 native, MCP, Chrome and demo packages implement this same independent-attempt rule.
+## Official resources
 
-On callback/browser return, ignore unverified incoming payment values. Query server-to-server and compare ID, reference, currency, original amount, method/network and address with the immutable local binding. Require PAID and exact received_amount == pay_amount. Use decimal arithmetic, preserving the unique payable amount. Underpayment, overpayment, expiration or inconsistent fields require pending/review handling. Fulfill atomically once; duplicate notifications must not ship/credit again. Neither a return nor screenshot proves payment.
+- PHP SDK: https://packagist.org/packages/mochipay/php-sdk (PHP7.4+, MIT client; service subscription separate).
+- Backend/mobile demos: https://mochi.bz/Developers/Examples.aspx
+- Store packages: store-packages.md and catalog.json.
+- MCP1.0.7: local stdio server; payment-request/status tools, no wallet transfers or fulfillment.
+- Chrome1.0.7: desktop ZIP manual installation; sharing QR opens HPP, separate from on-chain payment QR.
 
-The Demo uses private demo records and does not fulfill production stores. Replace storage with durable transactions/locks and application ownership checks while keeping callback verification. Do not treat a demo record token as a complete production authorization system.
-
-Review the integration's HTTP transport configuration before deployment. Certificate-chain validation and hostname validation are separate controls. Use the merchant project's approved transport policy; do not introduce an insecure TLS setting as a troubleshooting shortcut. The official Demo is a reference implementation, not a guarantee of production security.
-
-Read returns-notifications.md for separate HPP synchronous-return and ON_SITE/HPP asynchronous routes. Read developer-examples.md to choose the correct backend/mobile package and common mobile contract.
-
-## WEB82.6 override
-
-merchant_order_id is a repeatable label, not an idempotency key. New requests with the same reference create separate system orders. Query accepts exactly one of order_id, request_id, or merchant_order_id. Duplicate reference lookups return409 MERCHANT_ORDER_ID_AMBIGUOUS; do not infer the intended attempt from the latest reference match. Persist request_id for transport retries. Current website/Zen release does not migrate old orders.
-
-
-## Authenticated manual payment acceptance (WEB82.18)
-A received amount must be valid and positive. Preserve all original invoice bindings and require PAID from an authenticated server query. Accept a received/payable mismatch only when that authenticated query contains the Boolean manual_payment_accepted=true, backed by the server audit. A notification/browser field, string "true", number 1, or PAID alone cannot authorize it. Require WEB82.14+ for this proof; exact paid amounts retain older-server compatibility. Manual callback retries must retain atomic once-only fulfillment.
-
-## Payment verification and manual acceptance
-
-Payment verification (WEB82.27 / Monitor32 / DB25)
-Automatic underpayment/overpayment tolerance is not supported. Require an authenticated query and the saved order binding, PAID, positive expected/received amounts and exact equality. A difference requires strict Boolean manual_payment_accepted=true from an authenticated query after explicit authorized operator acceptance. REVIEW_REQUIRED/UNDERPAID/OVERPAID never authorize fulfillment. Unsigned notifications/browser fields are only lookup hints. Preserve actual amounts and fulfill atomically once.
+Test fixtures and merchant ownership/recovery/duplicate notification handling before deployment. Offline tests do not establish real payment or native-store acceptance.

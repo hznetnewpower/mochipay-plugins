@@ -19,7 +19,7 @@ class ControllerExtensionPaymentMochipay extends Controller
         foreach ($keys as $key) $data[$key] = isset($this->request->post[$key]) ? $this->request->post[$key] : $this->config->get($key);
         $defaults = array('payment_mochipay_api_url'=>'https://mochi.bz','payment_mochipay_title'=>'Cryptocurrency (MochiPay)','payment_mochipay_payment_methods'=>'USDT_TRC20,USDC_ERC20,BTC_BITCOIN,ETH_ERC20,SOL_SOLANA,TRX_TRON','payment_mochipay_unique_direction'=>'UP','payment_mochipay_checkout_mode'=>'ON_SITE','payment_mochipay_pending_status_id'=>1,'payment_mochipay_paid_status_id'=>5,'payment_mochipay_sort_order'=>90);
         foreach($defaults as $key=>$value) if($data[$key]===null || $data[$key]==='') $data[$key]=$value;
-        $data['method_options'] = array('USDT_TRC20'=>'USDT — TRON (TRC20)','USDC_ERC20'=>'USDC — Ethereum (ERC20)','BTC_BITCOIN'=>'BTC — Bitcoin','ETH_ERC20'=>'ETH — Ethereum','SOL_SOLANA'=>'SOL — Solana','TRX_TRON'=>'TRX · TRON');
+        $data['method_options'] = array('USDT_TRC20'=>'USDT/TRC20','USDC_ERC20'=>'USDC/ERC20','BTC_BITCOIN'=>'BTC/Bitcoin','ETH_ERC20'=>'ETH/Ethereum','SOL_SOLANA'=>'SOL/Solana','TRX_TRON'=>'TRX/TRON');
         $data['selected_methods'] = explode(',', (string)$data['payment_mochipay_payment_methods']);
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
         $data['breadcrumbs'] = array(

@@ -1,5 +1,5 @@
 {
-  "publication_revision": "2026.10.13-multilanguages-trx.1",
+  "publication_revision": "2026.10.17-checkout.1",
   "resources": [
     {
       "id": "php-api",
@@ -18,6 +18,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -30,10 +31,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "c1afb1241e97f16e0fc293c14984c3bd9d560de5910d6af1ee0c7fac637da389",
-      "bytes": 58032,
+      "sha256": "89f3e31f9f8672767ab5c7a42d3424d4a9a62d89b826978a48fd82a91732eb24",
+      "bytes": 71880,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -42,7 +48,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "report-unlock",
@@ -61,6 +69,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -73,17 +82,24 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "4687cd99e05cd0297c007d91550f70aee6805e96c17adc097bec7edece103184",
-      "bytes": 57163,
-      "publication_revision": "2026.10.13-multilanguages-trx.1"
+      "sha256": "bcf719b159ba6d47cc5b2d3aa2c5d1e14fface72a23716410fa6514e9919be0e",
+      "bytes": 71011,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "integration-skill",
       "name": "AI Integration Skill",
-      "version": "1.2.11",
-      "asset_name": "MochiPay_AI_Integration_Skill_1.2.11.zip",
+      "version": "1.2.13",
+      "asset_name": "MochiPay_AI_Integration_Skill_1.2.13.zip",
       "source_directory": "skills",
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
@@ -110,9 +126,10 @@
         "tr",
         "id"
       ],
-      "sha256": "e3b6e8cbba29ebe1a735d2361d2556a51e0e302382e00bff56fef75e4292fe03",
-      "bytes": 31290,
-      "publication_revision": "2026.10.13-multilanguages-trx.1"
+      "sha256": "baee1f9d01bacbacdd4e9f4a94c93984e3d7d04a1ac6ea6a0085bb7307ddf6a2",
+      "bytes": 32325,
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_AI_Integration_Skill_1.2.13.zip"
     },
     {
       "id": "mcp-server",
@@ -147,7 +164,8 @@
       ],
       "sha256": "791835e94efcd6a09addb99ed47d32447ac7862c07ee38339d351b8d9561dd11",
       "bytes": 13778,
-      "publication_revision": "2026.10.13-multilanguages-trx.1"
+      "publication_revision": "2026.10.13-multilanguages-trx.1",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_MCP_Server_1.0.7.zip"
     },
     {
       "id": "nodejs-demo",
@@ -166,6 +184,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -178,10 +197,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "c64b8c4835c14361a0fe51467932419cf418856ee5cdc5d048cb06259dac2fb6",
-      "bytes": 66529,
+      "sha256": "04f811fa3de51d4257b2015db8066199b61cad6acc56c2cbf3388270bd51a111",
+      "bytes": 85516,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -190,7 +214,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "python-demo",
@@ -209,6 +235,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -221,10 +248,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "82b2b8d27ac97058aff8df51371c2141671483f83b9fea975397d05e9a83068e",
-      "bytes": 66478,
+      "sha256": "0c5a489c310739f1cbe037c321d85f7a2664e1846f176b1b527cee30962720da",
+      "bytes": 85466,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -233,7 +265,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "dotnet-demo",
@@ -252,6 +286,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -264,10 +299,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "6d563f00b7d7e46b6026440b0f9311fa8eb317956b16297f990202c3ed62833b",
-      "bytes": 68045,
+      "sha256": "9264e063b1e756390187a1e121be56a06ec253a2641479ccaf7ed992acfe63a5",
+      "bytes": 87051,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -276,7 +316,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "java-demo",
@@ -295,6 +337,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -307,10 +350,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "d7f842b53c05a58d95d95d1ac66a4fe9e24c346f157d0c813f4bed13cb262b19",
-      "bytes": 69865,
+      "sha256": "041e41a051bf191861f1d53d3690fdd2d995956655b0720548ca72c961f500cf",
+      "bytes": 88855,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -319,7 +367,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "ios-demo",
@@ -338,6 +388,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -350,10 +401,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "27fb0297671d103ab22e299fb2f4faa8b40820009bf179580cf2d1ad1346473b",
-      "bytes": 9733,
+      "sha256": "f6a863d367b40a525be4c4f4bd00c8d42d833e686fdb26d0e39cea95af814375",
+      "bytes": 9766,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -362,7 +418,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
     },
     {
       "id": "android-demo",
@@ -381,6 +439,7 @@
       "buyer_languages": [
         "en",
         "zh",
+        "zh-tw",
         "es",
         "pt-br",
         "fr",
@@ -393,10 +452,15 @@
         "ko",
         "it",
         "tr",
-        "id"
+        "id",
+        "sv",
+        "vi",
+        "pl",
+        "fi",
+        "da"
       ],
-      "sha256": "27f27e721a986a055c1b3540cfb5f637ed0245fd8bdbefb2394498a53ab33f14",
-      "bytes": 10045,
+      "sha256": "8533f42d76db6d3a235a1d2b3e4d1b479dfeb5914ce8c8ac20581802b5c4f97e",
+      "bytes": 10078,
       "publication_revision": "2026.10.13-multilanguages-trx.1",
       "supported_payment_methods": [
         "USDT_TRC20",
@@ -405,7 +469,9 @@
         "ETH_ERC20",
         "SOL_SOLANA",
         "TRX_TRON"
-      ]
+      ],
+      "buyer_ui_build": "82.75",
+      "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip"
     }
   ],
   "chrome_extension": {
@@ -417,6 +483,7 @@
     "source_directory": "extensions/chrome-payment-assistant",
     "sha256": "a02e89e3ea7a66b06a1990e673d224e974b4cddb59b9cf7125a2c6b7b69f2f4f",
     "bytes": 397564,
-    "publication_revision": "2026.10.13-multilanguages-trx.1"
+    "publication_revision": "2026.10.13-multilanguages-trx.1",
+    "github_download": "https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Chrome_Payment_Assistant_1.0.7.zip"
   }
 }

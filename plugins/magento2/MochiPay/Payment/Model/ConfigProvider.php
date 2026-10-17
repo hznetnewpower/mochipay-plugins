@@ -34,11 +34,11 @@ class ConfigProvider implements ConfigProviderInterface
     public static function methodLabels()
     {
         return array(
-            'USDT_TRC20' => 'USDT — TRON (TRC20)',
-            'USDC_ERC20' => 'USDC — Ethereum (ERC20)',
-            'BTC_BITCOIN' => 'BTC — Bitcoin',
-            'ETH_ERC20' => 'ETH — Ethereum',
-            'SOL_SOLANA' => 'SOL — Solana','TRX_TRON' => 'TRX · TRON',
+            'USDT_TRC20' => 'USDT/TRC20',
+            'USDC_ERC20' => 'USDC/ERC20',
+            'BTC_BITCOIN' => 'BTC/Bitcoin',
+            'ETH_ERC20' => 'ETH/Ethereum',
+            'SOL_SOLANA' => 'SOL/Solana','TRX_TRON' => 'TRX/TRON',
         );
     }
 }

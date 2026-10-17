@@ -1,42 +1,34 @@
-# Current downloads
+# Current integration downloads
 
-Release: `2026.10.13-multilanguages-trx.1`
+Install only your platform-specific ZIP. The complete repository Source code ZIP is not a store installer.
 
-These are the installable ZIPs; GitHub's automatic Source code ZIP is not a store installer.
-
-| Resource | Version | ZIP |
-|---|---|---|
-| WooCommerce | 1.5.19 | [MochiPay_WooCommerce_1.5.19_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_WooCommerce_1.5.19_Multilanguages.zip) |
-| OpenCart 2.0–2.2 | 1.2.5 | [MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) |
-| OpenCart 2.3 | 1.2.5 | [MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) |
-| OpenCart 3 | 1.2.5 | [MochiPay_OpenCart_3_Multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) |
-| OpenCart 4 (legacy) | 1.2.0 | [mochipay-multilanguages.ocmod.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/mochipay-multilanguages.ocmod.zip) |
-| Zen Cart 1.5.3–1.5.7 | 1.2.5 | [MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip) |
-| Zen Cart 1.5.8–2.2 | 1.2.5 | [MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip) |
-| Magento 1 / OpenMage | 1.2.5 | [MochiPay_Magento1_OpenMage_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Magento1_OpenMage_Multilanguages.zip) |
-| Magento 2 | 1.2.5 | [MochiPay_Magento2_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Magento2_Multilanguages.zip) |
-| PrestaShop 1.6 | 1.2.5 | [MochiPay_PrestaShop_1.6_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_PrestaShop_1.6_Multilanguages.zip) |
-| PrestaShop 1.7 / 8 / 9 | 1.2.5 | [MochiPay_PrestaShop_1.7-9_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_PrestaShop_1.7-9_Multilanguages.zip) |
-| Shopware 6.6 | 1.0.11 | [MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip) |
-| Shopware 6.7 | 1.0.11 | [MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip) |
-| Drupal Commerce | 1.0.11 | [MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip) |
-| EC-CUBE 4.3 | 1.0.11 | [MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip) |
-| Bagisto 2.3 | 1.0.11 | [MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip) |
-| Sylius 2.0 | 1.0.11 | [MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip) |
-| osCommerce 4.14 | 1.0.11 | [MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip) |
-| thirty bees 1.6 | 1.0.11 | [MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip) |
-| PHP API Demo | 1.2.4 | [MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip) |
-| Report Unlock Demo | 1.0.12 | [MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip) |
-| AI Integration Skill | 1.2.11 | [MochiPay_AI_Integration_Skill_1.2.11.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_AI_Integration_Skill_1.2.11.zip) |
-| MCP Server | 1.0.7 | [MochiPay_MCP_Server_1.0.7.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_MCP_Server_1.0.7.zip) |
-| Node.js Demo | 1.0.9 | [MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) |
-| Python Demo | 1.0.9 | [MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) |
-| C# / .NET Framework Demo | 1.0.9 | [MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) |
-| Java Demo | 1.0.9 | [MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) |
-| iOS Swift Demo | 1.0.5 | [MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip) |
-| Android Kotlin Demo | 1.0.5 | [MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip) |
-| Chrome Payment Assistant | 1.0.7 | [MochiPay_Chrome_Payment_Assistant_1.0.7.zip](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.13-multilanguages-trx.1/MochiPay_Chrome_Payment_Assistant_1.0.7.zip) |
-
-OpenCart 4 remains the previous package because the current website distribution has no updated OpenCart 4 ZIP.
-
-[Release assets](https://github.com/hznetnewpower/mochipay-plugins/releases/tag/v2026.10.13-multilanguages-trx.1) include checksums and a manifest.
+- [WooCommerce 1.5.21](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_WooCommerce_1.5.21_Multilanguages.zip) — SHA256 `4cd87d628ccc2f4a87ac7f42a0f6b7fea718e2b0fc8282a33a2da49e2475ba98`
+- [OpenCart 2.0–2.2 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.0-2.2_Multilanguages.ocmod.zip) — SHA256 `948142c5a573bf1f4b7b5407cb6f14b0a7da3b50b0931647958721dae80fb6a1`
+- [OpenCart 2.3 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_2.3_Multilanguages.ocmod.zip) — SHA256 `94d882416060ba75b0446d965dd83aece69d38889965e97546d798f4b81637d6`
+- [OpenCart 3 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_OpenCart_3_Multilanguages.ocmod.zip) — SHA256 `b3f919639151a5edc576eba424855e3d6c2ee04ad6f9863c36b6af88ac2a1afe`
+- [OpenCart 4 1.2.0](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/mochipay-multilanguages.ocmod.zip) — SHA256 `cb6997a3c0d90cf201748c971c3432a291ac7daa4f40e1bbfe876467fa9fc53c`
+- [Zen Cart 1.5.3–1.5.7 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.3-1.5.7_Multilanguages.zip) — SHA256 `55c74198aff5d2487a0a31d7f9b54cea21df981ab1fef30e8992ae37d80396a9`
+- [Zen Cart 1.5.8–2.2 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_ZenCart_1.5.8-2.2_Multilanguages.zip) — SHA256 `ce906c69b01627ad7866089449e88dbaa78ebae8cefb5862cadf420baa633b83`
+- [Magento 1 / OpenMage 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento1_OpenMage_Multilanguages.zip) — SHA256 `3532e534ff3e2ebeebe4b5588aaed2b5cace1f47c63de53f4562ea4737222f55`
+- [Magento 2 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Magento2_Multilanguages.zip) — SHA256 `d7f53499271d1b9bf1d2b58d3bde88496ab2ba97b357f33790babe266106a2f9`
+- [PrestaShop 1.6 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.6_Multilanguages.zip) — SHA256 `7a45589d85ad1b6978b35b742124e10f210a2f5c3405649778ac84f1c9705963`
+- [PrestaShop 1.7 / 8 / 9 1.2.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PrestaShop_1.7-9_Multilanguages.zip) — SHA256 `c87b16e9b28fd0db18c8e76c36acf05b4e062b4eddcd452890159f4c3cbe7167`
+- [Shopware 6.6 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.6_1.0.11_Multilanguages.zip) — SHA256 `4e3c90576b1af2464bf6a4d3ef9eea5a1c7dd84fd832297295deeef10e7def1f`
+- [Shopware 6.7 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Shopware_6.7_1.0.11_Multilanguages.zip) — SHA256 `fbf2f645cfd92dc6902a584563e331457c633957449dc006f7d2d8865475e9cf`
+- [Drupal Commerce 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Drupal_Commerce_1.0.11_Multilanguages.zip) — SHA256 `95c70dbea2f9e5d6425b26397534206788444fe75b6ed2be59dcdf34a4dc9db3`
+- [EC-CUBE 4.3 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_EC-CUBE_4.3_1.0.11_Multilanguages.zip) — SHA256 `9115689d161a5e27b36c483193e0d7358ed925ecde67c4f59bb36e07c30548c6`
+- [Bagisto 2.3 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Bagisto_2.3_1.0.11_Multilanguages.zip) — SHA256 `6c2353869a719784917e2382dc0bd4244522755493c428193af37dd6bde38ccc`
+- [Sylius 2.0 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Sylius_2.0_1.0.11_Multilanguages.zip) — SHA256 `0fb12b8cde745d162a279132b9c01366ff0986bf0b3d3db760168bec0fadf981`
+- [osCommerce 4.14 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_osCommerce_4.14_1.0.11_Multilanguages.zip) — SHA256 `f084e686d6a6557b463caa9a10e25da1b2f4da9fe979808c34b193b519a0a79e`
+- [thirty bees 1.6 1.0.11](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_thirty_bees_1.6_1.0.11_Multilanguages.zip) — SHA256 `99a1b5527ef2600867d614d6aa24cd80b79525cf0df4cac793b0adb28db79790`
+- [PHP API Demo 1.2.4](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_PHP_API_Demo_1.2.4_Multilanguages_Onsite_HPP.zip) — SHA256 `89f3e31f9f8672767ab5c7a42d3424d4a9a62d89b826978a48fd82a91732eb24`
+- [Report Unlock Demo 1.0.12](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Report_Unlock_Demo_1.0.12_Multilanguages_Onsite_HPP.zip) — SHA256 `bcf719b159ba6d47cc5b2d3aa2c5d1e14fface72a23716410fa6514e9919be0e`
+- [AI Integration Skill 1.2.13](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_AI_Integration_Skill_1.2.13.zip) — SHA256 `ee662ecd335dde1a8fb0bd2328fefb9bf2b363b72d1a2b5fc6fafe58f393af7a`
+- [MCP Server 1.0.7](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_MCP_Server_1.0.7.zip) — SHA256 `791835e94efcd6a09addb99ed47d32447ac7862c07ee38339d351b8d9561dd11`
+- [Node.js Demo 1.0.9](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_NodeJS_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) — SHA256 `04f811fa3de51d4257b2015db8066199b61cad6acc56c2cbf3388270bd51a111`
+- [Python Demo 1.0.9](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Python_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) — SHA256 `0c5a489c310739f1cbe037c321d85f7a2664e1846f176b1b527cee30962720da`
+- [C# / .NET Framework Demo 1.0.9](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_DotNet_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) — SHA256 `9264e063b1e756390187a1e121be56a06ec253a2641479ccaf7ed992acfe63a5`
+- [Java Demo 1.0.9](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Java_API_Demo_1.0.9_Multilanguages_Onsite_HPP.zip) — SHA256 `041e41a051bf191861f1d53d3690fdd2d995956655b0720548ca72c961f500cf`
+- [iOS Swift Demo 1.0.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_iOS_Swift_Demo_1.0.5_Multilanguages_Onsite_HPP.zip) — SHA256 `f6a863d367b40a525be4c4f4bd00c8d42d833e686fdb26d0e39cea95af814375`
+- [Android Kotlin Demo 1.0.5](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Android_Kotlin_Demo_1.0.5_Multilanguages_Onsite_HPP.zip) — SHA256 `8533f42d76db6d3a235a1d2b3e4d1b479dfeb5914ce8c8ac20581802b5c4f97e`
+- [Chrome Payment Assistant 1.0.7](https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.1/MochiPay_Chrome_Payment_Assistant_1.0.7.zip) — SHA256 `a02e89e3ea7a66b06a1990e673d224e974b4cddb59b9cf7125a2c6b7b69f2f4f`
