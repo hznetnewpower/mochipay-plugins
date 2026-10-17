@@ -48,14 +48,14 @@ included in these plugin licenses or distributions.
 ## Developer resources
 
 The following MochiPay-authored integration sources and their corresponding
-official downloadable archives are offered under MIT. Existing license and
+official downloadable archives use the licenses listed below. Existing license and
 third-party notices are retained; no payment server code is included.
 
 | Resource | License |
 |---|---|
 | PHP API Demo | [MIT](examples/php-api/LICENSE), applies to the MochiPay-authored files in this subtree and their official archive |
 | Report Unlock Demo | [MIT](examples/report-unlock/mochipay-report-demo/LICENSE) |
-| AI Integration Skill | [MIT](skills/integrate-mochipay/references/license.md) |
+| AI Integration Skill | [MIT-0](skills/integrate-mochipay/references/license.md) |
 | MCP Server | [MIT](mcp/mochipay-mcp/LICENSE) |
 
 The QR libraries retain their davidshimjs MIT notices. Dependencies installed
