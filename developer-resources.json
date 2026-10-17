@@ -104,7 +104,7 @@
       "native_root": "integrate-mochipay",
       "runtime": "An Agent Skills-compatible host; optional Python 3 offline checks",
       "guide": "https://mochi.bz/Developers/Skill.aspx",
-      "license": "MIT",
+      "license": "MIT-0",
       "modes": [
         "ON_SITE",
         "HPP"
