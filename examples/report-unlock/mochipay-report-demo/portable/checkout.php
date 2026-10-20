@@ -32,6 +32,18 @@ class MochiPayPortable
         if ($pay === '' || $received === '' || $pay === '0' || $received === '0' || $pay[0] === '-' || $received[0] === '-') return false;
         return $received === $pay || (isset($data['manual_payment_accepted']) && $data['manual_payment_accepted'] === true);
     }
+    // Local browser DTO only; standard MochiPay API and notification fields are unchanged.
+    public static function sandboxView($data, $base)
+    {
+        if (!preg_match('/^SANDBOX0[a-f0-9]{32}$/D', isset($data['payment_address']) ? (string)$data['payment_address'] : '')) return array();
+        $base = rtrim(trim((string)$base), '/');
+        $id = isset($data['order_id']) ? (string)$data['order_id'] : '';
+        $url = isset($data['payment_url']) ? (string)$data['payment_url'] : '';
+        $parts = parse_url($base);
+        if (!$parts || !isset($parts['scheme'], $parts['host']) || $parts['scheme'] !== 'https' || isset($parts['user']) || isset($parts['pass']) || isset($parts['query']) || isset($parts['fragment']) || !empty($parts['path']) || !preg_match('/^[a-f0-9]{32}$/D', $id) || $url !== $base . '/pay/' . $id) throw new RuntimeException('Invalid sandbox checkout destination.');
+        return array('sandboxApiBase'=>$base, 'sandboxHppUrl'=>$url);
+    }
+
     public static function view($data)
     {
         $method = isset($data['payment_method']) ? $data['payment_method'] : (isset($data['wallet_type'], $data['network']) ? $data['wallet_type'] . '_' . $data['network'] : '');
@@ -39,10 +51,10 @@ class MochiPayPortable
         $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
         $address = isset($data['payment_address']) ? (string) $data['payment_address'] : '';
         $status = isset($data['status']) ? strtoupper($data['status']) : '';
-        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','REVIEW_REQUIRED','EXPIRED','CANCELLED','CANCELED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
+        if ($pay === '' || $pay === '0' || $pay[0] === '-' || !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || count($parts) !== 2 || !in_array($status, array('PAID','PENDING','WAITING','WAITING_PAYMENT','CONFIRMING','UNDERPAID','OVERPAID','REVIEW_REQUIRED','EXPIRED','CANCELLED','CANCELED','FAILED'), true)) throw new RuntimeException('Payment data is incomplete or unsupported.');
         $expires = isset($data['expires_at']) ? (string) $data['expires_at'] : '';
         if (in_array($status, array('PENDING','WAITING','WAITING_PAYMENT'), true) && isset($data['updated_at']) && preg_match('/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $expires) && strcmp($data['updated_at'], $expires) >= 0) $status = 'EXPIRED';
-        return array('reference'=>$data['order_id'], 'amount'=>self::decimal($data['amount']), 'currency'=>$data['currency'], 'payAmount'=>$pay, 'asset'=>$parts[0], 'network'=>$parts[1], 'address'=>$address, 'status'=>$status, 'expiresAt'=>(isset($data['expires_at_utc']) ? (string)$data['expires_at_utc'] : $expires), 'serverTime'=>(isset($data['server_time_utc']) ? (string)$data['server_time_utc'] : ''));
+        return array('reference'=>$data['order_id'], 'amount'=>self::decimal($data['amount']), 'currency'=>$data['currency'], 'payAmount'=>$pay, 'asset'=>$parts[0], 'network'=>$parts[1], 'address'=>$address, 'status'=>$status, 'expiresAt'=>(isset($data['expires_at_utc']) ? (string)$data['expires_at_utc'] : $expires), 'serverTime'=>(isset($data['server_time_utc']) ? (string)$data['server_time_utc'] : '')) + self::sandboxView($data, defined('MOCHIPAY_BASE_URL') ? MOCHIPAY_BASE_URL : '');
     }
     public static function page($pollUrl, $returnUrl)
     {

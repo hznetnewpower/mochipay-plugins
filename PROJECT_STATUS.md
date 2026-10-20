@@ -1,11 +1,14 @@
-# Current publication:2026.10.17-checkout.1
+# MochiPay integrations — 2026-10-20
 
-# MochiPay integration update — 2026-10-17
+- Test payment success and failure from ON_SITE checkout or the hosted checkout page using merchant sandbox mode. Test orders are identified in the dashboards and excluded from live collection totals.
+- Update WooCommerce to 1.5.24 for the current sandbox checkout and responsive payment interface.
+- Refresh native store packages and backend demos with the current checkout controls and layout. Existing order verification and callback rules are retained.
+- Update the MIT-0 integration Skill to 1.2.15 with current package checksums and sandbox guidance.
 
-Public integration packages are synchronized with WEB82.76 / buyer assets82.75. This publication includes WooCommerce1.5.21, all four OpenCart branches (including the previously missed nested OpenCart4 download), the other native store plugins, and PHP/Node/Python/C#/Java checkout demos. The compact warm-orange QR-first interface retains a centered asset icon, visible address/amount copy feedback, and a countdown based on saved UTC expiry and server time. Expired QR/address stay masked in place. Buyer language choices include English, Chinese, Spanish and more.
+Choose the ZIP for your platform from Release Assets. The repository Source code ZIP is not a store installer. Preserve gateway settings and existing order bindings when upgrading. Marketplace review and native-store acceptance remain separate.
 
-Skill1.2.13 starts from the live ClawHub1.2.12 MIT-0 files, refreshes exact catalogs/hashes and the current API contract, and documents checkout/expiry behavior. Merchant references remain repeatable labels; request_id is the retry identity. The PHP SDK is maintained independently. MCP1.0.7 and Chrome1.0.7 code were already current and are preserved byte-for-byte. Chrome distribution is a ZIP for manual desktop installation; no Chrome Web Store publication is claimed.
+Sandbox orders can trigger a connected store's normal fulfillment flow. Use internal test orders and switch the merchant back to Live before accepting real customer payments. Current sandbox controls require the corresponding MochiPay WEB82.102 server deployment. Publishing these integration packages does not deploy the server, Monitor or database.
 
-Install the exact platform archive and update gateways in place, preserving settings and order bindings. Match platform/runtime requirements in the package. The plugins are free; the hosted service requires a merchant subscription. No payment transaction commission. Real blockchain acceptance/native installation on each core remains separate.
+MCP 1.0.7, Chrome Payment Assistant 1.0.7 and PHP SDK 1.0.2 retain their existing client versions. Chrome is distributed as a ZIP for manual installation. PHP SDK is maintained in its separate repository.
 
-No MochiPay server/Monitor/database change is introduced by this integration publication. The separate WEB82.76 hosted-page repair still needs its two ASPX deployments if not already applied.
+Publication source: WEB82.102 / WooCommerce 1.5.24 / Skill 1.2.15. All 30 integration archives have CRC and member-hash validation. Real native installations and blockchain payments were not repeated for this publication.

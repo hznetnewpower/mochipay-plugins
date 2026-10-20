@@ -91,7 +91,7 @@ def verify(r, t):
     return d
 def safe(d):
     asset, network = method(d).split('_',1)
-    return dict(status=d['status'],payAmount=str(d['pay_amount']),asset=asset,network=network,address=d['payment_address'],amount=str(d['amount']),currency=d['currency'],expiresAt=d.get('expires_at_utc') or d['expires_at'],serverTime=d.get('server_time_utc',''),reference=d['merchant_order_id'])
+    return dict(status=d['status'],payAmount=str(d['pay_amount']),asset=asset,network=network,address=d['payment_address'],amount=str(d['amount']),currency=d['currency'],expiresAt=d.get('expires_at_utc') or d['expires_at'],serverTime=d.get('server_time_utc',''),reference=d['merchant_order_id'],sandboxApiBase=origin(BASE),sandboxHppUrl=hpp(d))
 def create(p):
     r = p.get('request_id'); f = filename(r)
     if p.get('payment_method') not in METHODS: raise ValueError('Invalid method')
@@ -110,7 +110,7 @@ class Handler(BaseHTTPRequestHandler):
     def log_message(self, *_): pass  # Never log order capability URLs.
     def out(self, code, typ, data, extra=None):
         self.send_response(code)
-        for k,v in {'Content-Type':typ,'Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'none'",**(extra or {})}.items(): self.send_header(k,v)
+        for k,v in {'Content-Type':typ,'Cache-Control':'no-store','Referrer-Policy':'no-referrer','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' "+origin(BASE)+"; frame-ancestors 'self'; base-uri 'none'",**(extra or {})}.items(): self.send_header(k,v)
         self.end_headers(); self.wfile.write(data.encode() if isinstance(data,str) else data)
     def jout(self, code, obj): self.out(code,'application/json; charset=utf-8',json.dumps(obj))
     def do_GET(self): self.handle_route()

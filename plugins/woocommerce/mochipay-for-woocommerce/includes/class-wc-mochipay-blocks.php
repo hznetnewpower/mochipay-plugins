@@ -51,10 +51,7 @@ final class MochiPay_WC_Blocks extends AbstractPaymentMethodType
 
         return array(
             'title' => $this->get_setting('title', __('Cryptocurrency', 'mochipay-for-woocommerce')),
-            'description' => $this->get_setting(
-                'description',
-                __('Pay securely with cryptocurrency through MochiPay.', 'mochipay-for-woocommerce')
-            ),
+            'description' => $this->get_setting('description', ''),
             'checkoutMode' => $this->get_setting('checkout_mode', 'onsite'),
             'paymentMethods' => $payment_methods,
             'supports' => array('products'),

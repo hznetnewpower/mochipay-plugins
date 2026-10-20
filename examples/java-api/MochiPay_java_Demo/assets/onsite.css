@@ -164,3 +164,19 @@
 .mp-checkout-surface .mp-copy-feedback{position:absolute;bottom:calc(100% + 6px);inset-inline-end:0;z-index:10;display:block!important;width:max-content;max-width:230px;padding:5px 8px;border:1px solid #e7b78e;border-radius:6px;background:#fff5e9;color:#99480f;font:600 11px/1.4 var(--mp-payment-font)!important;white-space:normal;line-height:1.4!important;pointer-events:none;box-shadow:0 3px 12px #70451b14}
 .mp-checkout-surface :is(.mp-payment-field-value,.mp-checkout-address-box,.mp-checkout-amount-row,.demo-field-line).mp-copy-success{border-color:#d8894f!important;box-shadow:0 0 0 1px #d8894f30!important}
 .mp-checkout-surface .mp-copy-error .mp-copy-feedback{color:#a1271d;border-color:#dca59e;background:#fff6f5}
+
+/* MochiPay ON_SITE sandbox presentation 82.102. Scoped to simulated orders. */
+.mp-sandbox-checkout .mp-details>.mp-sandbox-panel,.mp-sandbox-checkout #details>.mp-sandbox-panel{order:0;flex:0 0 auto;width:100%;margin:0 0 12px;padding:12px;border:1px solid #ffd1ac;border-radius:10px;background:#fff8ef;color:#5e3925;text-align:start;font:inherit}
+.mp-sandbox-checkout .mp-sandbox-badge{display:block;margin:0;padding:0;font-size:12px;font-weight:700;line-height:1.4;color:#9a470e;text-align:start}
+.mp-sandbox-checkout .mp-sandbox-note{margin:4px 0 10px;padding:0;font-size:12px;line-height:1.5;text-align:start}
+.mp-sandbox-checkout .mp-sandbox-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:8px;margin:0;padding:0}
+.mp-sandbox-checkout .mp-sandbox-actions button{box-sizing:border-box;position:static;min-width:0;width:100%;min-height:38px;height:auto;margin:0;padding:9px 10px;border:1px solid #ff8b3d;border-radius:8px;background:#ff8b3d;color:#fff;font:inherit;font-size:12px;font-weight:600;line-height:1.4;white-space:normal;overflow-wrap:anywhere;cursor:pointer;box-shadow:none;text-transform:none;text-align:center}
+.mp-sandbox-checkout .mp-sandbox-actions .mp-sandbox-failed{background:#fff;color:#85411b;border-color:#e6c4ad}
+.mp-sandbox-checkout .mp-sandbox-actions button:disabled{opacity:.6;cursor:default}
+.mp-sandbox-checkout .mp-sandbox-message{margin:9px 0 0;padding:0;font-size:12px;line-height:1.5;overflow-wrap:anywhere;text-align:start}
+.mp-sandbox-checkout .mp-sandbox-message:empty{display:none}
+.mp-sandbox-checkout .mp-sandbox-fallback{display:inline-block;margin:9px 0 0;color:#a34811;font-size:12px;line-height:1.5;text-decoration:underline;overflow-wrap:anywhere}
+.mp-sandbox-checkout .mp-sandbox-fallback[hidden],.mp-sandbox-checkout .mp-qr-modes,.mp-sandbox-checkout .mp-warning,.mp-sandbox-checkout .warning,.mp-sandbox-checkout .mp-qr-note,.mp-sandbox-checkout .mp-copy-address,.mp-sandbox-checkout .mp-copy-amount,.mp-sandbox-checkout #copyAddress,.mp-sandbox-checkout #copyAmount,.mp-sandbox-checkout .mp-checkout-address-box button,.mp-sandbox-checkout .mp-checkout-amount-box button{display:none!important}
+.mp-sandbox-checkout .mp-checkout-address-box{opacity:.65}
+.mp-sandbox-checkout .mp-sandbox-actions button:focus-visible,.mp-sandbox-checkout .mp-sandbox-fallback:focus-visible{outline:2px solid #c55c19;outline-offset:2px}
+@media(max-width:360px){.mp-sandbox-checkout .mp-sandbox-actions{grid-template-columns:minmax(0,1fr)}}

@@ -1,6 +1,7 @@
 # Install and use
 
-Download: https://github.com/hznetnewpower/mochipay-plugins/releases/download/v2026.10.17-checkout.2/MochiPay_AI_Integration_Skill_1.2.14.zip
+Current published download: https://mochi.bz/Developers/Skill.aspx
+ClawHub: https://clawhub.ai/hznetnewpower/skills/integrate-mochipay
 Guide: https://mochi.bz/Developers/Skill.aspx
 
 ZIP contains one integrate-mochipay folder with SKILL.md, references, assets and an optional Python helper. It does not install a gateway, open an account or grant store/API access.

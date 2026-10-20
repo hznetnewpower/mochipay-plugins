@@ -76,6 +76,11 @@ final class Payment
             $snapshot=$row['snapshot'];
             if (($data['payment_address']??'')!==$snapshot['payment_address'] || self::decimal($data['pay_amount']??'')!==self::decimal($snapshot['pay_amount'])) throw new \RuntimeException('Payment instructions changed. Contact the merchant.');
             $view=self::view($data);
+            // Private browser view only. No environment field is added to upstream APIs.
+            if (preg_match('/^SANDBOX0[a-f0-9]{32}$/D', $data['payment_address'])) {
+                $view['sandboxApiBase']=$self->config['url'];
+                $view['sandboxHppUrl']=$self->client->hosted($data['payment_url']??'', $data['order_id']);
+            }
             if ($view['status']==='PAID') {
                 if (!self::paidAmountAccepted($data,$snapshot['pay_amount'])) throw new \RuntimeException('Received amount requires merchant review.');
                 if (!$row['settled']) {

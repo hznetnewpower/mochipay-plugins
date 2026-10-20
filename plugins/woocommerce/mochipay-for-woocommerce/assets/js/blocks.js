@@ -13,7 +13,7 @@
     var settings = settingsApi.getSetting('mochipay_data', {});
     var title = htmlEntities.decodeEntities(settings.title || 'Cryptocurrency');
     var description = htmlEntities.decodeEntities(
-        settings.description || 'Pay securely with cryptocurrency through MochiPay.'
+        typeof settings.description === 'string' ? settings.description : ''
     );
     var paymentMethods = Array.isArray(settings.paymentMethods) ? settings.paymentMethods : [];
 
@@ -78,7 +78,7 @@
         return element.createElement(
             'div',
             { className: 'mochipay-blocks-description' },
-            element.createElement('p', null, description),
+            description.trim() ? element.createElement('p', null, description) : null,
             element.createElement(
                 'label',
                 {
@@ -106,7 +106,7 @@
         return element.createElement(
             'div',
             { className: 'mochipay-blocks-description' },
-            element.createElement('p', null, description),
+            description.trim() ? element.createElement('p', null, description) : null,
             labels ? element.createElement('small', null, 'Available: ' + labels) : null
         );
     }

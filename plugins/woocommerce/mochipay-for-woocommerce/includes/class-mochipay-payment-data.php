@@ -69,14 +69,26 @@ final class MochiPay_Payment_Data
         return true;
     }
 
-    public static function view($data, $order, $attempt = null)
+    // Local browser DTO only; standard MochiPay API and notification fields are unchanged.
+    public static function sandboxView($data, $base)
+    {
+        if (!preg_match('/^SANDBOX0[a-f0-9]{32}$/D', isset($data['payment_address']) ? (string)$data['payment_address'] : '')) return array();
+        $base = rtrim(trim((string)$base), '/');
+        $id = isset($data['order_id']) ? (string)$data['order_id'] : '';
+        $url = isset($data['payment_url']) ? (string)$data['payment_url'] : '';
+        $parts = parse_url($base);
+        if (!$parts || !isset($parts['scheme'], $parts['host']) || $parts['scheme'] !== 'https' || isset($parts['user']) || isset($parts['pass']) || isset($parts['query']) || isset($parts['fragment']) || !empty($parts['path']) || !preg_match('/^[a-f0-9]{32}$/D', $id) || $url !== $base . '/pay/' . $id) throw new RuntimeException('Invalid sandbox checkout destination.');
+        return array('sandboxApiBase'=>$base, 'sandboxHppUrl'=>$url);
+    }
+
+    public static function view($data, $order, $attempt = null, $apiBase = '')
     {
         $method = is_array($attempt) ? (string) $attempt['payload']['payment_method'] : (string) $order->get_meta('_mochipay_payment_method');
         $parts = explode('_', $method, 2);
         $pay = isset($data['pay_amount']) ? self::decimal($data['pay_amount']) : '';
         $address = isset($data['payment_address']) ? trim((string) $data['payment_address']) : '';
         $status = strtoupper(isset($data['status']) ? (string) $data['status'] : '');
-        $states = array('WAITING', 'WAITING_PAYMENT', 'PENDING', 'PAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'UNDERPAID', 'OVERPAID', 'REVIEW_REQUIRED', 'CONFIRMING');
+        $states = array('WAITING', 'WAITING_PAYMENT', 'PENDING', 'PAID', 'EXPIRED', 'CANCELLED', 'CANCELED', 'UNDERPAID', 'OVERPAID', 'REVIEW_REQUIRED', 'CONFIRMING', 'FAILED');
         if ($pay === '' || $pay === '0' || $pay[0] === '-' ||
             !preg_match('/^[A-Za-z0-9]{20,120}$/', $address) || !in_array($status, $states, true)) {
             return new WP_Error('mochipay_data', 'Payment data is incomplete or unsupported. Contact the store.');
@@ -94,6 +106,6 @@ final class MochiPay_Payment_Data
             'address' => $address, 'status' => $status, 'expiresAt' => (isset($data['expires_at_utc']) ? (string)$data['expires_at_utc'] : $expires), 'serverTime' => (isset($data['server_time_utc']) ? (string)$data['server_time_utc'] : ''),
             'exchangeRate' => isset($data['exchange_rate']) ? self::decimal($data['exchange_rate']) : '',
             'delta' => isset($data['unique_amount_delta']) ? self::decimal($data['unique_amount_delta']) : '',
-        );
+        ) + self::sandboxView($data, $apiBase);
     }
 }

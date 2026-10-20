@@ -68,3 +68,8 @@ A received amount must be valid and positive. Preserve all original invoice bind
 Read [current checkout contract](references/checkout-current.md) when implementing or repairing HPP, ON_SITE, subscription or demo displays. Preserve the warm-orange compact QR-first layout, the centered asset icon, separate Network / Receiving address / Exact payment amount fields, and icon-only copy actions with visible localized success/failure feedback. Long addresses wrap in full; never abbreviate the copied value. Use the saved payable amount without recalculation or rounding. Mask expired QR/address in place and disable copying; do not remove their layout. API create/query add expires_at_utc and server_time_utc alongside legacy expires_at. Anchor the remaining-time clock to server time plus elapsed time; re-opening a dialog must not restart the original deadline.
 
 Official downloads now include the OpenCart4 package under Downloads/OpenCart4/. Chrome is distributed as a ZIP for manual desktop installation, not as an approved Chrome Web Store listing. PHP SDK documentation and package versions are managed separately on Packagist. MCP1.0.7 and Chrome1.0.7 remain current; do not invent a functional upgrade solely because checkout CSS changed.
+
+
+## Sandbox checkout integration
+
+For merchant sandbox setup or simulation failures, read the sandbox section in [current checkout contract](references/checkout-current.md). Sandbox uses the existing credentials and verified-order flow. Do not add a new API environment field or replace authenticated verification with a local simulated paid state.

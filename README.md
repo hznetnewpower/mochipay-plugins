@@ -6,11 +6,11 @@ Cryptocurrency checkout for ecommerce stores, merchant backends and AI agents. C
 
 ## Current publication
 
-2026.10.17-checkout.2: Current store installers and developer tools in one download catalog. Skill1.2.14 corrects the pinned installation download and MIT-0 notice and documents saved, server-calibrated hosted deadlines in WEB82.77. MCP1.0.7 and Chrome1.0.7 remain current; Chrome uses ZIP manual installation. See [release notes](docs/RELEASE_NOTES.md) and [download catalog](docs/DOWNLOADS.md).
+**2026.10.20-sandbox.1** includes WooCommerce 1.5.24, current native store packages and backend demos, and integration Skill 1.2.15. Merchant sandbox mode supports simulated success/failure in ON_SITE and hosted checkout. See [release notes](docs/RELEASE_NOTES.md) and the [download catalog](docs/DOWNLOADS.md).
 
-Each explicit create uses an independent attempt; repeated merchant references are allowed. Retry a saved request with its original request_id and payload. Bind callback/return processing to the original payment attempt and verify payment on the server before fulfilling orders. A browser return is navigation only.
+Use internal orders for sandbox testing: a simulated paid order can trigger the connected store's normal fulfillment. Switch to Live before taking real customer payments. Current sandbox controls require the corresponding WEB82.102 server deployment.
 
-ON_SITE and HPP checkout are supported. Buyer-facing language support is multilingual, including English, Chinese, Spanish, French and more. Setup/technical documents remain English. Exact network and amount must match the saved invoice.
+Each explicit checkout is independent. Retain the original request_id and payload for retries. Verify the saved invoice binding and authenticated payment status on the server before fulfillment; browser returns and QR scans do not prove payment.
 
 ## Installation
 

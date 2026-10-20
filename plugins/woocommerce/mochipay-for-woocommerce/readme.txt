@@ -4,7 +4,7 @@ Tags: woocommerce, cryptocurrency, payment gateway, usdt, usdc
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.5.21
+Stable tag: 1.5.24
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ See the installation and multilingual sections below for environments, installat
 
 # WooCommerce 5.8 or later with the native gateway API — MochiPay
 
-Plugin version: 1.5.21
+Plugin version: 1.5.24
 
 # MochiPay setup
 
@@ -131,6 +131,24 @@ Read the platform-specific PHP table and installation instructions included in t
 
 
 == Changelog ==
+
+= 1.5.24 =
+* Place sandbox simulation controls before the QR code with consistent spacing and responsive buttons.
+* Refresh checkout stylesheet cache after the layout correction.
+
+= 1.5.23 =
+* Fix sandbox checkout creation by passing the configured MochiPay URL to payment-view validation.
+* Keep the existing HTTPS destination checks and production payment verification.
+
+
+= 1.5.22 =
+* Leave the checkout description empty by default on new installations.
+* Preserve intentionally empty checkout descriptions after saving settings.
+* Hide cleared descriptions in classic and block checkout without restoring default text or leaving an empty paragraph.
+
+= 1.5.22 =
+* Preserve intentionally empty checkout descriptions after saving settings.
+* Hide cleared descriptions in classic and block checkout without restoring default text or leaving an empty paragraph.
 
 = 1.5.21 =
 * Add Traditional Chinese, Swedish, Vietnamese, Polish, Finnish and Danish to the on-site checkout language selector.

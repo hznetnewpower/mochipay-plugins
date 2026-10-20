@@ -35,6 +35,18 @@ class MochiPayClient
         }
     }
 
+    // Local browser DTO only; standard MochiPay API and notification fields are unchanged.
+    public function sandboxView($data)
+    {
+        if (!preg_match('/^SANDBOX0[a-f0-9]{32}$/D', isset($data['payment_address']) ? (string)$data['payment_address'] : '')) return array();
+        $base = $this->baseUrl;
+        $id = isset($data['order_id']) ? (string)$data['order_id'] : '';
+        $url = isset($data['payment_url']) ? (string)$data['payment_url'] : '';
+        $parts = parse_url($base);
+        if (!$parts || !isset($parts['scheme'], $parts['host']) || $parts['scheme'] !== 'https' || isset($parts['user']) || isset($parts['pass']) || isset($parts['query']) || isset($parts['fragment']) || !empty($parts['path']) || !preg_match('/^[a-f0-9]{32}$/D', $id) || $url !== $base . '/pay/' . $id) throw new RuntimeException('Invalid sandbox checkout destination.');
+        return array('sandboxApiBase'=>$base, 'sandboxHppUrl'=>$url);
+    }
+
     public function createOrder(array $payload)
     {
         $body = json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);

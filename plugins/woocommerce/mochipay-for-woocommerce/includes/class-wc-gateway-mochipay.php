@@ -25,10 +25,8 @@ class MochiPay_WC_Gateway extends WC_Payment_Gateway
         $this->init_settings();
 
         $this->title = $this->get_option('title', 'Cryptocurrency');
-        $this->description = $this->get_option(
-            'description',
-            'Pay securely with cryptocurrency through MochiPay.'
-        );
+        // An explicitly saved empty description must remain empty, including in admin settings.
+        $this->description = $this->get_option('description');
         $this->enabled = $this->get_option('enabled', 'no');
         $this->api_base_url = untrailingslashit(trim((string) $this->get_option('api_base_url', 'https://mochi.bz')));
         $this->api_key = trim((string) $this->get_option('api_key', ''));
@@ -64,7 +62,7 @@ class MochiPay_WC_Gateway extends WC_Payment_Gateway
             'description' => array(
                 'title' => __('Checkout description', 'mochipay-for-woocommerce'),
                 'type' => 'textarea',
-                'default' => __('Pay securely with cryptocurrency through MochiPay.', 'mochipay-for-woocommerce'),
+                'default' => '',
             ),
             'checkout_mode' => array(
                 'title' => __('Payment interface', 'mochipay-for-woocommerce'),
@@ -279,7 +277,7 @@ class MochiPay_WC_Gateway extends WC_Payment_Gateway
 
         $merchant_order_id = $payload['merchant_order_id'];
         $attempt = array('wc_order_id' => (int) $order->get_id(), 'snapshot' => $result, 'payload' => $payload);
-        if (!MochiPay_Payment_Data::matches($result, $order, $merchant_order_id, $attempt) || is_wp_error(MochiPay_Payment_Data::view($result, $order, $attempt))) {
+        if (!MochiPay_Payment_Data::matches($result, $order, $merchant_order_id, $attempt) || is_wp_error(MochiPay_Payment_Data::view($result, $order, $attempt, $this->api_base_url))) {
             wc_add_notice(__('MochiPay returned an incomplete payment response.', 'mochipay-for-woocommerce'), 'error');
             return array('result' => 'failure');
         }
